@@ -15,6 +15,9 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
+        return view('mahasiswa.index')->with([
+            'mahasiswa' => Mahasiswa::paginate(5),
+        ]);
     }
 
     /**
@@ -24,6 +27,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
+        return view('mahasiswa.create');
     }
 
     /**
@@ -34,6 +38,19 @@ class MahasiswaController extends Controller
      */
     public function store(StoreMahasiswaRequest $request)
     {
+        $request->validate([
+            'nama' =>'required',
+            'nim'=>'required|numeric|unique:mahasiswa,nim|max:10',
+            'email'=>'required|max:12',
+            'jurusan'=>'required',
+            'nomor_handphone'=>'required|numeric|max:10',
+            'alamat'=>'required',
+        ]);
+
+        Mahasiswa::create($request->all());
+
+        return redirect()->route('mahasiswa.index')
+            ->with('success', 'Mahasiswa berhasil ditambahkan');
     }
 
     /**
@@ -42,8 +59,10 @@ class MahasiswaController extends Controller
      * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mahasiswa $mahasiswa)
+    public function edit(string $id)
     {
+        $mahasiswa = Mahasiswa::find($id);
+        return view('mahasiswa.edit', compact('mahasiswa'));
     }
 
     /**
@@ -55,6 +74,19 @@ class MahasiswaController extends Controller
      */
     public function update(UpdateMahasiswaRequest $request, Mahasiswa $mahasiswa)
     {
+        $request->validate([
+            'nama' =>'required',
+            'nim'=>'required|numeric|unique:mahasiswa,nim|max:10',
+            'email'=>'required|max:12',
+            'jurusan'=>'required',
+            'nomor_handphone'=>'required|numeric|max:10',
+            'alamat'=>'required',
+        ]);
+
+        Mahasiswa::find($mahasiswa)->update($request->all());
+
+        return redirect()->route('mahasiswas.index')
+            ->with('success', 'Mahasiswa berhasil diupdate');
     }
 
     /**
@@ -65,5 +97,9 @@ class MahasiswaController extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
+        $mahasiswa->delete();
+
+        return redirect()->route('mahasiswa.index')
+            ->with('success', 'Mahasiswa berhasil dihapus');
     }
 }
