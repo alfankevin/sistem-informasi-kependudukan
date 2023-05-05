@@ -828,7 +828,7 @@ select.form-control:not([size]):not([multiple]) {
     border-radius: 30px;
 }
 .card .card-header .btn:hover {
-    box-shadow: none;
+    box-shadow: inset;
 }
 .card .card-header .form-control {
     height: 31px;
