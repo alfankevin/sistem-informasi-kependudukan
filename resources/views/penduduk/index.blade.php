@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Mahasiswa Management</h2>
+            <h2 class="section-title">Penduduk Management</h2>
 
             <div class="row">
                 <div class="col-12">
@@ -25,9 +25,7 @@
                         <div class="card-header">
                             <h4>User List</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('mahasiswa.create') }}">Create
-                                    New
-                                    Mahasiswa</a>
+                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Penduduk</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -37,36 +35,44 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th>Nim</th>
-                                            <th>Email</th>
-                                            <th>Jurusan</th>
-                                            <th>Nomor Handphone</th>
+                                            <th>Tempat Lahir</th>
+                                            <th>Tgl Lahir</th>
+                                            <th>Jenis.</th>
+                                            <th>Gol.</th>
+                                            <th>Agama</th>
+                                            <th>Pekerjaan</th>
                                             <th>Alamat</th>
                                             <th class="text-right">Action</th>
                                         </tr>
-                                        @foreach ($mahasiswa as $key => $item)
+                                        @foreach ($penduduk as $key => $item)
                                             <tr>
-                                                <td>{{ ($mahasiswa->currentPage() - 1) * $mahasiswa->perPage() + $key + 1 }}
+                                                <td>{{ ($penduduk->currentPage() - 1) * $penduduk->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->nim }}</td>
-                                                <td>{{ $item->email }}</td>
-                                                <td>{{ $item->jurusan }}</td>
-                                                <td>{{ $item->nomor_handphone }}</td>
+                                                <td>{{ $item->tempat_lahir }}</td>
+                                                <td>{{ $item->tanggal_lahir }}</td>
+                                                <td>{{ $item->jenis_kelamin }}</td>
+                                                <td>{{ $item->golongan_darah }}</td>
+                                                <td>{{ $item->agama }}</td>
+                                                <td>{{ $item->pekerjaan }}</td>
                                                 <td>{{ $item->alamat }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <a href="{{ route('mahasiswa.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-info btn-icon "><i
-                                                                class="fas fa-edit"></i>
+                                                        <a href="{{ route('penduduk.edit', $item->id) }}"
+                                                            class="btn btn-sm btn-info btn-icon" style="min-width: 55px"><i
+                                                                class="fas fa-book"></i><br>
+                                                            Detail</a>
+                                                        <a href="{{ route('penduduk.edit', $item->id) }}"
+                                                            class="btn btn-sm btn-success btn-icon ml-2 mr-2" style="min-width: 55px"><i
+                                                                class="fas fa-edit"></i><br>
                                                             Edit</a>
-                                                        <form action="{{ route('mahasiswa.destroy', $item->id) }}"
-                                                            method="POST" class="ml-2">
+                                                        <form action="{{ route('penduduk.destroy', $item->id) }}"
+                                                            method="POST">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                                <i class="fas fa-times"></i> Delete </button>
+                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete" style="min-width: 55px">
+                                                                <i class="fas fa-times"></i><br> Delete</button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -75,14 +81,10 @@
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {{ $mahasiswa->withQueryString()->links() }}
+                                    {{ $penduduk->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>

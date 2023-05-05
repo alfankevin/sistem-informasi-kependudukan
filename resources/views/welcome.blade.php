@@ -17,13 +17,13 @@
   <link rel="stylesheet" href="../assets/css/components.css">
 </head>
 
-<body>
+<body style="overflow: hidden">
   <div id="app">
     <section class="section">
       <div class="d-flex flex-wrap align-items-stretch">
         <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
           <div class="p-4 m-3">
-            <img src="../assets/img/stisla-fill.svg" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
+            <img src="../assets/img/pp.png" alt="logo" width="80" class="mb-5 mt-2">
             <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Stisla</span></h4>
             <p class="text-muted">Before you get started, you must login or register if you don't already have an account.</p>
             <form action="{{ route('login') }}" method="POST">

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             MenuItemSeeder::class,
             CategorySeeder::class,
             MahasiswaSeeder::class,
+            PendudukSeeder::class,
         ]);
     }
 }

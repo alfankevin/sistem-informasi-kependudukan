@@ -29,9 +29,9 @@ class MenuGroupSeeder extends Seeder
                     'permission_name' => 'user.management',
                 ],
                 [
-                    'name' => 'Uts Laravel',
+                    'name' => 'Data Penduduk',
                     'icon' => 'fas fa-user-tag',
-                    'permisison_name' => 'mahasiswa.management',
+                    'permisison_name' => 'penduduk.management',
                 ],
                 [
                     'name' => 'Role Management',

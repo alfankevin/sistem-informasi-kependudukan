@@ -26,6 +26,8 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'role.permission.management']);
         Permission::create(['name' => 'menu.management']);
         Permission::create(['name' => 'mahasiswa.management']);
+        Permission::create(['name' => 'penduduk.management']);
+
         //user
         Permission::create(['name' => 'user.index']);
         Permission::create(['name' => 'user.create']);
@@ -33,11 +35,18 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'user.destroy']);
         Permission::create(['name' => 'user.import']);
         Permission::create(['name' => 'user.export']);
+
         //mahasiswa
         Permission::create(['name' => 'mahasiswa.index']);
         Permission::create(['name' => 'mahasiswa.create']);
         Permission::create(['name' => 'mahasiswa.edit']);
         Permission::create(['name' => 'mahasiswa.destroy']);
+        
+        //penduduk
+        Permission::create(['name' => 'penduduk.index']);
+        Permission::create(['name' => 'penduduk.create']);
+        Permission::create(['name' => 'penduduk.edit']);
+        Permission::create(['name' => 'penduduk.destroy']);
 
         //role
         Permission::create(['name' => 'role.index']);

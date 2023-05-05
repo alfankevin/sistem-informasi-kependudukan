@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\DemoController;
-use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\Menu\MenuGroupController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\RoleAndPermission\AssignPermissionController;
@@ -29,15 +29,15 @@ use App\Models\Category;
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('welcome');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', function () {
         return view('home', ['users' => User::get(),]);
     });
-    //user list
 
+    //user list
     Route::prefix('user-management')->group(function () {
         Route::resource('user', UserController::class);
         Route::post('import', [UserController::class, 'import'])->name('user.import');
@@ -49,10 +49,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::resource('menu-group', MenuGroupController::class);
         Route::resource('menu-item', MenuItemController::class);
     });
-    Route::prefix('mahasiswa-management')->group(function () {
-        //mahasiswa
-        Route::resource('mahasiswa', MahasiswaController::class)->except(['show']);
+
+    Route::prefix('penduduk-management')->group(function () {
+        //penduduk
+        Route::resource('penduduk', PendudukController::class)->except(['show']);
     });
+
     Route::group(['prefix' => 'role-and-permission'], function () {
         //role
         Route::resource('role', RoleController::class);

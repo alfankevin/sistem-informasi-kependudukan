@@ -31,9 +31,9 @@ class MenuItemSeeder extends Seeder
                     'menu_group_id' => 2,
                 ],
                 [
-                    'name' => 'Mahasiswa List',
-                    'route' => 'mahasiswa-management/mahasiswa',
-                    'permission_name' => 'mahasiswa.index',
+                    'name' => 'Daftar Penduduk',
+                    'route' => 'penduduk-management/penduduk',
+                    'permission_name' => 'penduduk.index',
                     'menu_group_id' => 3,
                 ],
                 [
