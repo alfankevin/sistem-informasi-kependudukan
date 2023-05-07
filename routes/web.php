@@ -1,21 +1,26 @@
 <?php
 
+use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\SosialController;
+use App\Http\Controllers\PotensiController;
 use App\Http\Controllers\PendudukController;
-use App\Http\Controllers\Menu\MenuGroupController;
+use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\Menu\MenuItemController;
+use App\Http\Controllers\Menu\MenuGroupController;
+use App\Http\Controllers\RoleAndPermission\RoleController;
+use App\Http\Controllers\RoleAndPermission\ExportRoleController;
+use App\Http\Controllers\RoleAndPermission\ImportRoleController;
+use App\Http\Controllers\RoleAndPermission\PermissionController;
 use App\Http\Controllers\RoleAndPermission\AssignPermissionController;
 use App\Http\Controllers\RoleAndPermission\AssignUserToRoleController;
 use App\Http\Controllers\RoleAndPermission\ExportPermissionController;
-use App\Http\Controllers\RoleAndPermission\ExportRoleController;
 use App\Http\Controllers\RoleAndPermission\ImportPermissionController;
-use App\Http\Controllers\RoleAndPermission\ImportRoleController;
-use App\Http\Controllers\RoleAndPermission\PermissionController;
-use App\Http\Controllers\RoleAndPermission\RoleController;
-use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use App\Http\Controllers\UserController;
-use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +34,7 @@ use App\Models\Category;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -53,6 +58,31 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('penduduk-management')->group(function () {
         //penduduk
         Route::resource('penduduk', PendudukController::class)->except(['show']);
+    });
+
+    Route::prefix('organisasi-management')->group(function () {
+        //organisasi
+        Route::resource('organisasi', OrganisasiController::class)->except(['show']);
+    });
+
+    Route::prefix('sosial-management')->group(function () {
+        //sosial
+        Route::resource('sosial', SosialController::class)->except(['show']);
+    });
+
+    Route::prefix('agenda-management')->group(function () {
+        //agenda
+        Route::resource('agenda', AgendaController::class)->except(['show']);
+    });
+
+    Route::prefix('potensi-management')->group(function () {
+        //potensi
+        Route::resource('potensi', PotensiController::class)->except(['show']);
+    });
+
+    Route::prefix('galeri-management')->group(function () {
+        //galeri
+        Route::resource('galeri', GaleriController::class)->except(['show']);
     });
 
     Route::group(['prefix' => 'role-and-permission'], function () {

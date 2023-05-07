@@ -4,7 +4,7 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Data Kependudukan</h1>
+            <h1>Data Organisasi Masyarakat</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">Components</a></div>
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Manajemen Kependudukan</h2>
+            <h2 class="section-title">Manajemen Organisasi Masyarakat</h2>
 
             <div class="row">
                 <div class="col-12">
@@ -23,9 +23,9 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Daftar Penduduk</h4>
+                            <h4>Daftar Organisasi</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Penduduk</a>
+                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Organisasi</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -44,9 +44,9 @@
                                             <th>Alamat</th>
                                             <th class="text-right">Action</th>
                                         </tr>
-                                        @foreach ($penduduk as $key => $item)
+                                        @foreach ($organisasi as $key => $item)
                                             <tr>
-                                                <td>{{ ($penduduk->currentPage() - 1) * $penduduk->perPage() + $key + 1 }}
+                                                <td>{{ ($organisasi->currentPage() - 1) * $organisasi->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->tempat_lahir }}</td>
@@ -79,7 +79,7 @@
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {{ $penduduk->withQueryString()->links() }}
+                                    {{ $organisasi->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>

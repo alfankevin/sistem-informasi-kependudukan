@@ -25,8 +25,12 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'user.management']);
         Permission::create(['name' => 'role.permission.management']);
         Permission::create(['name' => 'menu.management']);
-        Permission::create(['name' => 'mahasiswa.management']);
         Permission::create(['name' => 'penduduk.management']);
+        Permission::create(['name' => 'organisasi.management']);
+        Permission::create(['name' => 'sosial.management']);
+        Permission::create(['name' => 'agenda.management']);
+        Permission::create(['name' => 'potensi.management']);
+        Permission::create(['name' => 'galeri.management']);        
 
         //user
         Permission::create(['name' => 'user.index']);
@@ -36,17 +40,41 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'user.import']);
         Permission::create(['name' => 'user.export']);
 
-        //mahasiswa
-        Permission::create(['name' => 'mahasiswa.index']);
-        Permission::create(['name' => 'mahasiswa.create']);
-        Permission::create(['name' => 'mahasiswa.edit']);
-        Permission::create(['name' => 'mahasiswa.destroy']);
-        
         //penduduk
         Permission::create(['name' => 'penduduk.index']);
         Permission::create(['name' => 'penduduk.create']);
         Permission::create(['name' => 'penduduk.edit']);
         Permission::create(['name' => 'penduduk.destroy']);
+
+        //organisasi
+        Permission::create(['name' => 'organisasi.index']);
+        Permission::create(['name' => 'organisasi.create']);
+        Permission::create(['name' => 'organisasi.edit']);
+        Permission::create(['name' => 'organisasi.destroy']);
+
+        //sosial
+        Permission::create(['name' => 'sosial.index']);
+        Permission::create(['name' => 'sosial.create']);
+        Permission::create(['name' => 'sosial.edit']);
+        Permission::create(['name' => 'sosial.destroy']);
+
+        //agenda
+        Permission::create(['name' => 'agenda.index']);
+        Permission::create(['name' => 'agenda.create']);
+        Permission::create(['name' => 'agenda.edit']);
+        Permission::create(['name' => 'agenda.destroy']);
+
+        //potensi
+        Permission::create(['name' => 'potensi.index']);
+        Permission::create(['name' => 'potensi.create']);
+        Permission::create(['name' => 'potensi.edit']);
+        Permission::create(['name' => 'potensi.destroy']);
+
+        //galeri
+        Permission::create(['name' => 'galeri.index']);
+        Permission::create(['name' => 'galeri.create']);
+        Permission::create(['name' => 'galeri.edit']);
+        Permission::create(['name' => 'galeri.destroy']);
 
         //role
         Permission::create(['name' => 'role.index']);

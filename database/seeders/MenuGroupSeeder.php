@@ -24,14 +24,39 @@ class MenuGroupSeeder extends Seeder
                     'permission_name' => 'dashboard',
                 ],
                 [
-                    'name' => 'Users Management',
+                    'name' => 'Kependudukan',
                     'icon' => 'fas fa-users',
-                    'permission_name' => 'user.management',
+                    'permisison_name' => 'penduduk.management',
                 ],
                 [
-                    'name' => 'Data Penduduk',
+                    'name' => 'Organisasi',
+                    'icon' => 'fas fa-sitemap',
+                    'permisison_name' => 'organisasi.management',
+                ],
+                [
+                    'name' => 'Bantuan Sosial',
+                    'icon' => 'fas fa-handshake',
+                    'permisison_name' => 'sosial.management',
+                ],
+                [
+                    'name' => 'Agenda',
+                    'icon' => 'fas fa-book',
+                    'permisison_name' => 'agenda.management',
+                ],
+                [
+                    'name' => 'Potensi',
+                    'icon' => 'fas fa-store',
+                    'permisison_name' => 'potensi.management',
+                ],
+                [
+                    'name' => 'Galeri',
+                    'icon' => 'fas fa-image',
+                    'permisison_name' => 'galeri.management',
+                ],
+                [
+                    'name' => 'Users Management',
                     'icon' => 'fas fa-user-tag',
-                    'permisison_name' => 'penduduk.management',
+                    'permission_name' => 'user.management',
                 ],
                 [
                     'name' => 'Role Management',

@@ -21,7 +21,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body class="">
+<body class="sidebar-mini">
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>

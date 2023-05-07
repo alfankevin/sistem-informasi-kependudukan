@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>{{ config('app.name') }} - Forgot Password</title>
+    <title>Forgot Password</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -27,8 +27,7 @@
                     <div
                         class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="login-brand">
-                            <img src="../assets/img/stisla-fill.svg" alt="logo" width="100"
-                                class="shadow-light rounded-circle">
+                            <img src="../assets/img/malang.png" alt="logo" width="100">
                         </div>
 
                         <div class="card card-primary">
@@ -66,7 +65,7 @@
                             </div>
                         </div>
                         <div class="simple-footer">
-                            Copyright &copy; Stisla 2018
+                            Copyright &copy; {{ now()->year }}
                         </div>
                     </div>
                 </div>
