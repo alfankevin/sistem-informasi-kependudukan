@@ -3370,7 +3370,7 @@ body.sidebar-mini .hide-sidebar-mini {
 body.sidebar-mini .main-sidebar {
     width: 65px;
     overflow: initial !important;
-    position: absolute;
+    position: fixed;
     box-shadow: none;
 }
 body.sidebar-mini .main-sidebar:after {
