@@ -34,35 +34,20 @@
                                     <tbody>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nama</th>
-                                            <th>Tempat Lahir</th>
-                                            <th>Tgl Lahir</th>
-                                            <th>Jenis.</th>
-                                            <th>Gol.</th>
-                                            <th>Agama</th>
-                                            <th>Pekerjaan</th>
-                                            <th>Alamat</th>
+                                            <th>Nama Organisasi</th>
+                                            <th>Gambar</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                         @foreach ($organisasi as $key => $item)
                                             <tr>
                                                 <td>{{ ($organisasi->currentPage() - 1) * $organisasi->perPage() + $key + 1 }}
                                                 </td>
-                                                <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->tempat_lahir }}</td>
-                                                <td>{{ $item->tanggal_lahir }}</td>
-                                                <td>{{ $item->jenis_kelamin }}</td>
-                                                <td>{{ $item->golongan_darah }}</td>
-                                                <td>{{ $item->agama }}</td>
-                                                <td>{{ $item->pekerjaan }}</td>
-                                                <td>{{ $item->alamat }}</td>
+                                                <td>{{ $item->nama_ormas }}</td>
+                                                <td>{{ $item->gambar_ormas }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('penduduk.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-info btn-icon d-flex align-items-center">
-                                                            <span><i class="fas fa-user"></i></span>&nbsp;Detail</a>
-                                                        <a href="{{ route('penduduk.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-success btn-icon ml-2 mr-2 d-flex align-items-center">
+                                                            class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center">
                                                             <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>
                                                         <form action="{{ route('penduduk.destroy', $item->id) }}"
                                                             method="POST">

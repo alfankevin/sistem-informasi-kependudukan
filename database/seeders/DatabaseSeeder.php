@@ -23,6 +23,11 @@ class DatabaseSeeder extends Seeder
             MenuItemSeeder::class,
             CategorySeeder::class,
             PendudukSeeder::class,
+            OrganisasiSeeder::class,
+            SosialSeeder::class,
+            AgendaSeeder::class,
+            PotensiSeeder::class,
+            GaleriSeeder::class,
         ]);
     }
 }

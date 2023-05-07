@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Galeri;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class GaleriSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class GaleriSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Galeri::create([
+            'foto' => "Foto"
+        ]);
     }
 }

@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('potensi', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_umkm', 128);
+            $table->string('alamat_umkm', 128);
+            $table->string('deskripsi_umkm', 2048);
+            $table->string('sosial_media', 128);
+            $table->string('gambar_umkm');
             $table->timestamps();
         });
     }
