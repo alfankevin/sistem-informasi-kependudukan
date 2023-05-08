@@ -26,7 +26,7 @@ class PotensiController extends Controller
      */
     public function create()
     {
-        //
+        return view('potensi.create');
     }
 
     /**
@@ -37,16 +37,27 @@ class PotensiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_umkm'=>'required',
+            'alamat_umkm'=>'required',
+            'deskripsi_umkm'=>'required',
+            'sosial_media'=>'required',
+            'gambar_umkm'=>'required',
+        ]);
+
+        Potensi::create($request->all());
+
+        return redirect()->route('potensi.index')
+            ->with('success', 'Potensi berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Potensi  $potensi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Potensi $potensi)
+    public function show($id)
     {
         //
     }
@@ -54,34 +65,49 @@ class PotensiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Potensi  $potensi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Potensi $potensi)
+    public function edit(string $id)
     {
-        //
+        $potensi = Potensi::find($id);
+        return view('potensi.edit', compact('potensi'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Potensi  $potensi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Potensi $potensi)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_umkm'=>'required',
+            'alamat_umkm'=>'required',
+            'deskripsi_umkm'=>'required',
+            'sosial_media'=>'required',
+            'gambar_umkm'=>'required',
+        ]);
+
+        Potensi::find($id)->update($request->all());
+
+        return redirect()->route('potensi.index')
+            ->with('success', 'Potensi berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Potensi  $potensi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Potensi $potensi)
     {
-        //
+        $potensi->delete();
+
+        return redirect()->route('potensi.index')
+            ->with('success', 'Potensi berhasil dihapus');
     }
 }

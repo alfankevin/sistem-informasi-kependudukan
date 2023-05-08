@@ -25,7 +25,7 @@
                         <div class="card-header">
                             <h4>Daftar Bantuan</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Bantuan</a>
+                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('sosial.create') }}">Tambah Bantuan</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -44,10 +44,10 @@
                                                 <td>{{ $item->nama_sosial }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <a href="{{ route('penduduk.edit', $item->id) }}"
+                                                        <a href="{{ route('sosial.edit', $item->id) }}"
                                                             class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center">
                                                             <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>
-                                                        <form action="{{ route('penduduk.destroy', $item->id) }}"
+                                                        <form action="{{ route('sosial.destroy', $item->id) }}"
                                                             method="POST">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"

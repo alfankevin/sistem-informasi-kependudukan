@@ -26,7 +26,7 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        //
+        return view('galeri.create');
     }
 
     /**
@@ -37,16 +37,23 @@ class GaleriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'foto'=>'required',
+        ]);
+
+        Galeri::create($request->all());
+
+        return redirect()->route('galeri.index')
+            ->with('success', 'Gambar berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Galeri  $galeri
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Galeri $galeri)
+    public function show($id)
     {
         //
     }
@@ -54,34 +61,45 @@ class GaleriController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Galeri  $galeri
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Galeri $galeri)
+    public function edit(string $id)
     {
-        //
+        $galeri = Galeri::find($id);
+        return view('galeri.edit', compact('galeri'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Galeri  $galeri
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeri $galeri)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'foto'=>'required',
+        ]);
+
+        Galeri::find($id)->update($request->all());
+
+        return redirect()->route('galeri.index')
+            ->with('success', 'Gambar berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Galeri  $galeri
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Galeri $galeri)
     {
-        //
+        $galeri->delete();
+
+        return redirect()->route('galeri.index')
+            ->with('success', 'Gambar berhasil dihapus');
     }
 }

@@ -26,7 +26,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        //
+        return view('agenda.create');
     }
 
     /**
@@ -37,16 +37,25 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul_agenda'=>'required',
+            'deskripsi_agenda'=>'required',
+            'gambar_agenda'=>'required',
+        ]);
+
+        Agenda::create($request->all());
+
+        return redirect()->route('agenda.index')
+            ->with('success', 'Agenda berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Agenda  $agenda
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Agenda $agenda)
+    public function show($id)
     {
         //
     }
@@ -54,34 +63,47 @@ class AgendaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Agenda  $agenda
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Agenda $agenda)
+    public function edit(string $id)
     {
-        //
+        $agenda = Agenda::find($id);
+        return view('agenda.edit', compact('agenda'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Agenda  $agenda
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agenda $agenda)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'judul_agenda'=>'required',
+            'deskripsi_agenda'=>'required',
+            'gambar_agenda'=>'required',
+        ]);
+
+        Agenda::find($id)->update($request->all());
+
+        return redirect()->route('agenda.index')
+            ->with('success', 'Agenda berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Agenda  $agenda
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Agenda $agenda)
     {
-        //
+        $agenda->delete();
+
+        return redirect()->route('agenda.index')
+            ->with('success', 'Agenda berhasil dihapus');
     }
 }

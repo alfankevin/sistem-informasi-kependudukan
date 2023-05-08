@@ -66,7 +66,7 @@ class PendudukController extends Controller
      */
     public function show(Penduduk $penduduk)
     {
-        
+        //
     }
 
     /**

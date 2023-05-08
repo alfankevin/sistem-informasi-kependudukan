@@ -11,131 +11,44 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Edit Penduduk</h2>
+            <h2 class="section-title">Edit Agenda</h2>
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Validasi Edit Penduduk</h4>
+                    <h4>Validasi Edit Agenda</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('penduduk.update', $penduduk) }}" method="POST">
+                    <form action="{{ route('agenda.update', $agenda) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="form-group ">
-                            <label for="nik">NIK</label>
-                            <input id="nik" name="nik" type="text"
-                            class="form-control @error('nik') is-invalid @enderror"
-                                value="{{ old('nik', $penduduk->nik) }}">
-                            @error('nik')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
-                            name="nama" value="{{ old('nama', $penduduk->nama) }}">
-                            @error('nama')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="tempat_lahir">Tempat Lahir</label>
-                            <input id="tempat_lahir" name="tempat_lahir" type="text"
-                                class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                value="{{ old('tempat_lahir', $penduduk->tempat_lahir) }}">
-                            @error('tempat_lahir')
+                            <label for="judul_agenda">Nama Agenda</label>
+                            <input id="judul_agenda" name="judul_agenda" type="text"
+                            class="form-control @error('judul_agenda') is-invalid @enderror"
+                                value="{{ old('judul_agenda', $agenda->judul_agenda) }}">
+                            @error('judul_agenda')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-group ">
-                            <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input id="tanggal_lahir" name="tanggal_lahir" type="text"
-                                class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                value={{ old('tanggal_lahir', $penduduk->tanggal_lahir) }}>
-                            @error('tanggal_lahir')
+                            <label for="deskripsi_agenda">Deskripsi Agenda</label>
+                            <input id="deskripsi_agenda" name="deskripsi_agenda" type="text"
+                            class="form-control @error('deskripsi_agenda') is-invalid @enderror"
+                                value="{{ old('deskripsi_agenda', $agenda->deskripsi_agenda) }}">
+                            @error('deskripsi_agenda')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-group ">
-                            <label for="jenis_kelamin">Jenis Kelamin </label>
-                            <input id="jenis_kelamin" name="jenis_kelamin" type="text"
-                                class="form-control @error('jenis_kelamin') is-invalid @enderror"
-                                value="{{ old('jenis_kelamin', $penduduk->jenis_kelamin) }}">
-                            @error('jenis_kelamin')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="golongan_darah">Golongan Darah</label>
-                            <input id="golongan_darah" name="golongan_darah" type="text"
-                                class="form-control @error('golongan_darah') is-invalid @enderror"
-                                value="{{ old('golongan_darah', $penduduk->golongan_darah) }}">
-                            @error('golongan_darah')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="agama">Agama</label>
-                            <input id="agama" name="agama" type="text"
-                                class="form-control @error('agama') is-invalid @enderror"
-                                value="{{ old('agama', $penduduk->agama) }}">
-                            @error('agama')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="status_perkawinan">Status Perkawinan</label>
-                            <input id="status_perkawinan" name="status_perkawinan" type="text"
-                                class="form-control @error('status_perkawinan') is-invalid @enderror"
-                                value="{{ old('status_perkawinan', $penduduk->status_perkawinan) }}">
-                            @error('status_perkawinan')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="pekerjaan">Pekerjaan</label>
-                            <input id="pekerjaan" name="pekerjaan" type="text"
-                                class="form-control @error('pekerjaan') is-invalid @enderror"
-                                value="{{ old('pekerjaan', $penduduk->pekerjaan) }}">
-                            @error('pekerjaan')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="alamat">Alamat</label>
-                            <input id="alamat" name="alamat" type="text"
-                                class="form-control @error('alamat') is-invalid @enderror"
-                                value="{{ old('alamat', $penduduk->alamat) }}">
-                            @error('alamat')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="keterangan">Keterangan</label>
-                            <input id="keterangan" name="keterangan" type="text"
-                                class="form-control @error('keterangan') is-invalid @enderror"
-                                value="{{ old('keterangan', $penduduk->keterangan) }}">
-                            @error('keterangan')
+                            <label for="gambar_agenda">Gambar Agenda</label>
+                            <input id="gambar_agenda" name="gambar_agenda" type="text"
+                            class="form-control @error('gambar_agenda') is-invalid @enderror"
+                                value="{{ old('gambar_agenda', $agenda->gambar_agenda) }}">
+                            @error('gambar_agenda')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -144,7 +57,7 @@
                 </div>
                 <div class="card-footer text-right">
                     <button class="btn btn-primary">Submit</button>
-                    <a class="btn btn-secondary" href="{{ route('penduduk.index') }}">Cancel</a>
+                    <a class="btn btn-secondary" href="{{ route('agenda.index') }}">Cancel</a>
                 </div>
                 </form>
             </div>

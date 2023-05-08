@@ -26,7 +26,7 @@ class SosialController extends Controller
      */
     public function create()
     {
-        //
+        return view('sosial.create');
     }
 
     /**
@@ -37,16 +37,23 @@ class SosialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_sosial'=>'required',
+        ]);
+
+        Sosial::create($request->all());
+
+        return redirect()->route('sosial.index')
+            ->with('success', 'Bantuan sosial berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sosial  $sosial
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sosial $sosial)
+    public function show($id)
     {
         //
     }
@@ -54,34 +61,45 @@ class SosialController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Sosial  $sosial
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sosial $sosial)
+    public function edit(string $id)
     {
-        //
+        $sosial = Sosial::find($id);
+        return view('sosial.edit', compact('sosial'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sosial  $sosial
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sosial $sosial)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_sosial'=>'required',
+        ]);
+
+        Sosial::find($id)->update($request->all());
+
+        return redirect()->route('sosial.index')
+            ->with('success', 'Bantuan sosial berhasil diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sosial  $sosial
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Sosial $sosial)
     {
-        //
+        $sosial->delete();
+
+        return redirect()->route('sosial.index')
+            ->with('success', 'Bantuan sosial berhasil dihapus');
     }
 }

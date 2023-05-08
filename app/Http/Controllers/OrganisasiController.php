@@ -26,7 +26,7 @@ class OrganisasiController extends Controller
      */
     public function create()
     {
-        //
+        return view('organisasi.create');
     }
 
     /**
@@ -37,7 +37,15 @@ class OrganisasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_ormas'=>'required',
+            'gambar_ormas'=>'required',
+        ]);
+
+        Organisasi::create($request->all());
+
+        return redirect()->route('organisasi.index')
+            ->with('success', 'Organisasi berhasil ditambahkan');
     }
 
     /**
@@ -57,9 +65,10 @@ class OrganisasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(string $id)
     {
-        //
+        $organisasi = Organisasi::find($id);
+        return view('organisasi.edit', compact('organisasi'));
     }
 
     /**
@@ -69,9 +78,17 @@ class OrganisasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_ormas'=>'required',
+            'gambar_ormas'=>'required',
+        ]);
+
+        Organisasi::find($id)->update($request->all());
+
+        return redirect()->route('organisasi.index')
+            ->with('success', 'Organisasi berhasil diupdate');
     }
 
     /**
@@ -80,8 +97,11 @@ class OrganisasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Organisasi $organisasi)
     {
-        //
+        $organisasi->delete();
+
+        return redirect()->route('organisasi.index')
+            ->with('success', 'Organisasi berhasil dihapus');
     }
 }
