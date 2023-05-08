@@ -21,6 +21,16 @@
                     <form action="{{ route('penduduk.update', $penduduk) }}" method="POST">
                         @method('PUT')
                         @csrf
+                        <div class="form-group">
+                            <label for="nama">Nama</label>
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
+                            name="nama" value="{{ old('nama', $penduduk->nama) }}">
+                            @error('nama')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                         <div class="form-group ">
                             <label for="nik">NIK</label>
                             <input id="nik" name="nik" type="text"
@@ -30,16 +40,6 @@
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
-                            name="nama" value="{{ old('nama', $penduduk->nama) }}">
-                            @error('nama')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
                             @enderror
                         </div>
                         <div class="form-group ">
