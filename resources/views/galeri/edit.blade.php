@@ -18,12 +18,12 @@
                     <h4>Validasi Edit Galeri</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('galeri.update', $galeri) }}" method="POST">
+                    <form action="{{ route('galeri.update', $galeri) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="form-group ">
                             <label for="foto">Foto</label>
-                            <input id="foto" name="foto" type="text"
+                            <input id="foto" name="foto" type="file"
                             class="form-control @error('foto') is-invalid @enderror"
                                 value="{{ old('foto', $galeri->foto) }}">
                             @error('foto')

@@ -33,6 +33,17 @@
                             @enderror
                         </div>
                         <div class="form-group ">
+                            <label for="tanggal_agenda">Tanggal Agenda</label>
+                            <input id="tanggal_agenda" name="tanggal_agenda" type="date"
+                            class="form-control @error('tanggal_agenda') is-invalid @enderror"
+                                value="{{ old('tanggal_agenda', $agenda->tanggal_agenda) }}">
+                            @error('tanggal_agenda')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group ">
                             <label for="deskripsi_agenda">Deskripsi Agenda</label>
                             <input id="deskripsi_agenda" name="deskripsi_agenda" type="text"
                             class="form-control @error('deskripsi_agenda') is-invalid @enderror"
@@ -45,7 +56,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="gambar_agenda">Gambar Agenda</label>
-                            <input id="gambar_agenda" name="gambar_agenda" type="text"
+                            <input id="gambar_agenda" name="gambar_agenda" type="file"
                             class="form-control @error('gambar_agenda') is-invalid @enderror"
                                 value="{{ old('gambar_agenda', $agenda->gambar_agenda) }}">
                             @error('gambar_agenda')

@@ -22,24 +22,35 @@
                         @method('PUT')
                         @csrf
                         <div class="form-group ">
-                            <label for="nama_ormas">Nama Organisasi</label>
-                            <input id="nama_ormass" name="nama_ormas" type="text"
-                            class="form-control @error('nama_ormas') is-invalid @enderror"
-                                value="{{ old('nama_ormas', $organisasi->nama_ormas) }}">
-                            @error('nama_ormas')
+                            <label for="nama_organisasi">Nama Organisasi</label>
+                            <input id="nama_organisasi" name="nama_organisasi" type="text"
+                            class="form-control @error('nama_organisasi') is-invalid @enderror"
+                                value="{{ old('nama_organisasi', $organisasi->nama_organisasi) }}">
+                            @error('nama_organisasi')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="gambar_ormas">Gambar Organisasi</label>
-                            <input type="text" class="form-control @error('gambar_ormas') is-invalid @enderror" id="gambar_ormas"
-                            name="gambar_ormas" value="{{ old('gambar_ormas', $organisasi->gambar_ormas) }}">
-                            @error('gambar_ormas')
+                            <label for="gambar_organisasi">Gambar Organisasi</label>
+                            <input type="file" class="form-control @error('gambar_organisasi') is-invalid @enderror" id="gambar_organisasi"
+                            name="gambar_organisasi" value="{{ old('gambar_organisasi', $organisasi->gambar_organisasi) }}">
+                            @error('gambar_organisasi')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
+                            @enderror
+                        </div>
+                        <div class="form-group ">
+                            <label for="deskripsi_organisasi">Deskripsi Organisasi</label>
+                            <input id="deskripsi_organisasi" name="deskripsi_organisasi" type="text"
+                            class="form-control @error('deskripsi_organisasi') is-invalid @enderror"
+                                value="{{ old('deskripsi_organisasi', $organisasi->deskripsi_organisasi) }}">
+                            @error('deskripsi_organisasi')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                 </div>

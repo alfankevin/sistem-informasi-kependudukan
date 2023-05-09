@@ -21,6 +21,28 @@
                     <form action="{{ route('penduduk.update', $penduduk) }}" method="POST">
                         @method('PUT')
                         @csrf
+                        <div class="form-group ">
+                            <label for="no_kk">No. KK</label>
+                            <input id="no_kk" name="no_kk" type="text"
+                            class="form-control @error('no_kk') is-invalid @enderror"
+                            value="{{ old('no_kk', $penduduk->no_kk) }}">
+                            @error('no_kk')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group ">
+                            <label for="nik">NIK</label>
+                            <input id="nik" name="nik" type="text"
+                            class="form-control @error('nik') is-invalid @enderror"
+                            value="{{ old('nik', $penduduk->nik) }}">
+                            @error('nik')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
@@ -29,17 +51,6 @@
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="nik">NIK</label>
-                            <input id="nik" name="nik" type="text"
-                            class="form-control @error('nik') is-invalid @enderror"
-                                value="{{ old('nik', $penduduk->nik) }}">
-                            @error('nik')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
                             @enderror
                         </div>
                         <div class="form-group ">
@@ -55,7 +66,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input id="tanggal_lahir" name="tanggal_lahir" type="text"
+                            <input id="tanggal_lahir" name="tanggal_lahir" type="date"
                                 class="form-control @error('tanggal_lahir') is-invalid @enderror"
                                 value={{ old('tanggal_lahir', $penduduk->tanggal_lahir) }}>
                             @error('tanggal_lahir')

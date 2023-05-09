@@ -16,32 +16,39 @@ class OrganisasiSeeder extends Seeder
     public function run()
     {
         Organisasi::create([
-            'nama_ormas' => "RT (Rukun Tetangga)",
-            'gambar_ormas' => "Gambar"
+            'nama_organisasi' => "RT (Rukun Tetangga)",
+            'gambar_organisasi' => "gambar.jpeg",
+            'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
-            'nama_ormas' => "RW (Rukun Warga)",
-            'gambar_ormas' => "Gambar"
+            'nama_organisasi' => "RW (Rukun Warga)",
+            'gambar_organisasi' => "gambar.jpeg",
+            'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
-            'nama_ormas' => "Karang Taruna",
-            'gambar_ormas' => "Gambar"
+            'nama_organisasi' => "Karang Taruna",
+            'gambar_organisasi' => "gambar.jpeg",
+            'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
-            'nama_ormas' => "Posyandu",
-            'gambar_ormas' => "Gambar"
+            'nama_organisasi' => "Posyandu",
+            'gambar_organisasi' => "gambar.jpeg",
+            'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
-            'nama_ormas' => "PKK (Pembina Kesejahteraan Keluarga)",
-            'gambar_ormas' => "Gambar"
+            'nama_organisasi' => "PKK (Pembina Kesejahteraan Keluarga)",
+            'gambar_organisasi' => "gambar.jpeg",
+            'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
-            'nama_ormas' => "Sistem Keamanan Lingkungan",
-            'gambar_ormas' => "Gambar"
+            'nama_organisasi' => "Sistem Keamanan Lingkungan",
+            'gambar_organisasi' => "gambar.jpeg",
+            'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
-            'nama_ormas' => "Ketakmiran Masjid",
-            'gambar_ormas' => "Gambar"
+            'nama_organisasi' => "Ketakmiran Masjid",
+            'gambar_organisasi' => "gambar.jpeg",
+            'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
     }
 }

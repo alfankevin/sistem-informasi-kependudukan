@@ -41,10 +41,21 @@ class GaleriController extends Controller
             'foto'=>'required',
         ]);
 
-        Galeri::create($request->all());
+        if($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $fileName = $file->getClientOriginalName();
+            $path = 'assets/img/galeri/';
+            $file = $file->move($path, $fileName);
+        }
+
+        $galeri = new Galeri(array(
+            'foto' => $fileName,
+        ));
+
+        $galeri->save();
 
         return redirect()->route('galeri.index')
-            ->with('success', 'Gambar berhasil ditambahkan');
+            ->with('success', 'Gambar berhasil ditambahkan');            
     }
 
     /**

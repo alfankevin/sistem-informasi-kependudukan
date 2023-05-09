@@ -614,3 +614,13 @@ $(function() {
     });
   }
 });
+
+const gambar = document.getElementById("gambar");
+
+function openGambar() {
+  gambar.style.display = "unset";
+}
+
+function closeGambar() {
+  gambar.style.display = "none";
+}

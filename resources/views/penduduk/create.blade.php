@@ -20,7 +20,17 @@
                 <div class="card-body">
                     <form action="{{ route('penduduk.store') }}" method="post">
                         @csrf
-                        <div class="form-group ">
+                        <div class="form-group">
+                            <label for="no_kk">No. KK</label>
+                            <input id="no_kk" name="no_kk" type="text"
+                            class="form-control @error('no_kk') is-invalid @enderror" value="{{ old('no_kk') }}">
+                            @error('no_kk')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="nik">NIK</label>
                             <input id="nik" name="nik" type="text"
                             class="form-control @error('nik') is-invalid @enderror" value="{{ old('nik') }}">
@@ -40,7 +50,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="tempat_lahir">Tempat Lahir</label>
                             <input id="tempat_lahir" name="tempat_lahir" type="text"
                                 class="form-control @error('tempat_lahir') is-invalid @enderror" value="{{ old('tempat_lahir') }}">
@@ -50,9 +60,9 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input id="tanggal_lahir" name="tanggal_lahir" type="text"
+                            <input id="tanggal_lahir" name="tanggal_lahir" type="date"
                                 class="form-control @error('tanggal_lahir') is-invalid @enderror" value={{ old('tanggal_lahir') }}>
                             @error('tanggal_lahir')
                                 <div class="invalid-feedback">
@@ -60,7 +70,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="jenis_kelamin">Jenis Kelamin</label>
                             <input id="jenis_kelamin" name="jenis_kelamin" type="text"
                                 class="form-control @error('jenis_kelamin') is-invalid @enderror"
@@ -71,7 +81,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="golongan_darah">Golongan Darah</label>
                             <input id="golongan_darah" name="golongan_darah" type="text"
                                 class="form-control @error('golongan_darah') is-invalid @enderror" value="{{ old('golongan_darah') }}">
@@ -81,7 +91,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="agama">Agama</label>
                             <input id="agama" name="agama" type="text"
                                 class="form-control @error('agama') is-invalid @enderror" value="{{ old('agama') }}">
@@ -91,7 +101,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="status_perkawinan">Status Perkawinan</label>
                             <input id="status_perkawinan" name="status_perkawinan" type="text"
                                 class="form-control @error('status_perkawinan') is-invalid @enderror" value="{{ old('status_perkawinan') }}">
@@ -101,7 +111,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="pekerjaan">Pekerjaan</label>
                             <input id="pekerjaan" name="pekerjaan" type="text"
                                 class="form-control @error('pekerjaan') is-invalid @enderror" value="{{ old('pekerjaan') }}">
@@ -111,7 +121,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="alamat">Alamat</label>
                             <input id="alamat" name="alamat" type="text"
                                 class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}">
@@ -121,7 +131,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="keterangan">Keterangan</label>
                             <input id="keterangan" name="keterangan" type="text"
                                 class="form-control @error('keterangan') is-invalid @enderror" value="{{ old('keterangan') }}">

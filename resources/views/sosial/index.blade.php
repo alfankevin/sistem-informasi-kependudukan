@@ -34,7 +34,7 @@
                                     <tbody>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nama Bantuan</th>
+                                            <th>Nama</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                         @foreach ($sosial as $key => $item)

@@ -39,6 +39,7 @@ class PendudukController extends Controller
     public function store(StorePendudukRequest $request)
     {
         $request->validate([
+            'no_kk'=>'required',
             'nik'=>'required',
             'nama'=>'required',
             'tempat_lahir'=>'required',
@@ -91,6 +92,7 @@ class PendudukController extends Controller
     public function update(UpdatePendudukRequest $request, string $id)
     {
         $request->validate([
+            'no_kk'=>'required',
             'nik'=>'required',
             'nama'=>'required',
             'tempat_lahir'=>'required',

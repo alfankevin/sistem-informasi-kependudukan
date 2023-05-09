@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <form action="{{ route('sosial.store') }}" method="post">
                         @csrf
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="nama_sosial">Nama Bantuan Sosial</label>
                             <input id="nama_sosial" name="nama_sosial" type="text"
                             class="form-control @error('nama_sosial') is-invalid @enderror" value="{{ old('nama_sosial') }}">

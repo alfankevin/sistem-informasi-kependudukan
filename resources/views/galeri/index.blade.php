@@ -41,7 +41,9 @@
                                             <tr>
                                                 <td>{{ ($galeri->currentPage() - 1) * $galeri->perPage() + $key + 1 }}
                                                 </td>
-                                                <td>{{ $item->foto }}</td>
+                                                <td id='gambar' class='gambar'>
+                                                    <img src="/assets/img/galeri/{{ $item->foto }}" alt="Foto">
+                                                </td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('galeri.edit', $item->id) }}"

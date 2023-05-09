@@ -16,7 +16,7 @@ class GaleriSeeder extends Seeder
     public function run()
     {
         Galeri::create([
-            'foto' => "Foto"
+            'foto' => "gambar.jpeg"
         ]);
     }
 }

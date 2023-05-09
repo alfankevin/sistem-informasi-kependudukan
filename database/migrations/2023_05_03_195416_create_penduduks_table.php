@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sosial_id')->default(0);
-            $table->foreignId('kk_id')->default(0);
+            $table->char('no_kk',16);
             $table->char('nik', 16);
+            $table->enum('kepala_keluarga', ['0','1'])->default(0);
             $table->string('nama', 128);
             $table->string('tempat_lahir', 128);
             $table->date('tanggal_lahir');

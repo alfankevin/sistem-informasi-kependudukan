@@ -34,16 +34,21 @@
                                     <tbody>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nama Organisasi</th>
+                                            <th>Nama</th>
                                             <th>Gambar</th>
+                                            <th>Deskripsi</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                         @foreach ($organisasi as $key => $item)
                                             <tr>
                                                 <td>{{ ($organisasi->currentPage() - 1) * $organisasi->perPage() + $key + 1 }}
                                                 </td>
-                                                <td>{{ $item->nama_ormas }}</td>
-                                                <td>{{ $item->gambar_ormas }}</td>
+                                                <td>{{ $item->nama_organisasi }}</td>
+                                                <td class="gambar">
+                                                    <span onclick="openGambar()">{{ $item->gambar_organisasi }}</span>
+                                                    <img onclick="closeGambar()" id="gambar" src="/assets/img/organisasi/{{ $item->gambar_organisasi }}" alt="Gambar">
+                                                </td>
+                                                <td>{{ $item->deskripsi_organisasi }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('organisasi.edit', $item->id) }}"

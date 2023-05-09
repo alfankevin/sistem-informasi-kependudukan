@@ -18,11 +18,11 @@
                     <h4>Validasi Tambah Data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('galeri.store') }}" method="post">
+                    <form action="{{ route('galeri.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="foto">Foto</label>
-                            <input id="foto" name="foto" type="text"
+                            <input id="foto" name="foto" type="file"
                             class="form-control @error('foto') is-invalid @enderror" value="{{ old('foto') }}">
                             @error('foto')
                             <div class="invalid-feedback">

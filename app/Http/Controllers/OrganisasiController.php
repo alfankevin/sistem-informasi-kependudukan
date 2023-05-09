@@ -38,11 +38,25 @@ class OrganisasiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_ormas'=>'required',
-            'gambar_ormas'=>'required',
+            'nama_organisasi'=>'required',
+            'gambar_organisasi'=>'required',
+            'deskripsi_organisasi'=>'required',
         ]);
 
-        Organisasi::create($request->all());
+        if($request->hasFile('gambar_organisasi')) {
+            $file = $request->file('gambar_organisasi');
+            $fileName = $file->getClientOriginalName();
+            $path = 'assets/img/organisasi/';
+            $file = $file->move($path, $fileName);
+        }
+
+        $organisasi = new Organisasi(array(
+            'nama_organisasi' => $request->get('nama_organisasi'),
+            'gambar_organisasi' => $fileName,
+            'deskripsi_organisasi' => $request->get('deskripsi_organisasi'),
+        ));
+
+        $organisasi->save();
 
         return redirect()->route('organisasi.index')
             ->with('success', 'Organisasi berhasil ditambahkan');
@@ -81,8 +95,9 @@ class OrganisasiController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nama_ormas'=>'required',
-            'gambar_ormas'=>'required',
+            'nama_organisasi'=>'required',
+            'gambar_organisasi'=>'required',
+            'deskripsi_organisasi'=>'required',
         ]);
 
         Organisasi::find($id)->update($request->all());

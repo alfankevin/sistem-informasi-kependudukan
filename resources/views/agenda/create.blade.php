@@ -18,13 +18,23 @@
                     <h4>Validasi Tambah Data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('agenda.store') }}" method="post">
+                    <form action="{{ route('agenda.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="judul_agenda">Judul Agenda</label>
                             <input id="judul_agenda" name="judul_agenda" type="text"
                             class="form-control @error('judul_agenda') is-invalid @enderror" value="{{ old('judul_agenda') }}">
                             @error('judul_agenda')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal_agenda">Tanggal Agenda</label>
+                            <input id="tanggal_agenda" name="tanggal_agenda" type="date"
+                            class="form-control @error('tanggal_agenda') is-invalid @enderror" value="{{ old('tanggal_agenda') }}">
+                            @error('tanggal_agenda')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -42,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="gambar_agenda">Gambar Agenda</label>
-                            <input type="text" class="form-control @error('gambar_agenda') is-invalid @enderror" id="gambar_agenda"
+                            <input type="file" class="form-control @error('gambar_agenda') is-invalid @enderror" id="gambar_agenda"
                                 name="gambar_agenda" value="{{ old('gambar_agenda') }}">
                             @error('gambar_agenda')
                                 <div class="invalid-feedback">

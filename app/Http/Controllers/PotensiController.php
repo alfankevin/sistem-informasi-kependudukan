@@ -45,10 +45,25 @@ class PotensiController extends Controller
             'gambar_umkm'=>'required',
         ]);
 
-        Potensi::create($request->all());
+        if($request->hasFile('gambar_umkm')) {
+            $file = $request->file('gambar_umkm');
+            $fileName = $file->getClientOriginalName();
+            $path = 'assets/img/potensi/';
+            $file = $file->move($path, $fileName);
+        }
+
+        $potensi = new Potensi(array(
+            'nama_umkm' => $request->get('nama_umkm'),
+            'alamat_umkm' => $request->get('alamat_umkm'),
+            'deskripsi_umkm' => $request->get('deskripsi_umkm'),
+            'sosial_media' => $request->get('sosial_media'),
+            'gambar_umkm' => $fileName,
+        ));
+
+        $potensi->save();
 
         return redirect()->route('potensi.index')
-            ->with('success', 'Potensi berhasil ditambahkan');
+            ->with('success', 'UMKM berhasil ditambahkan');
     }
 
     /**
@@ -94,7 +109,7 @@ class PotensiController extends Controller
         Potensi::find($id)->update($request->all());
 
         return redirect()->route('potensi.index')
-            ->with('success', 'Potensi berhasil diupdate');
+            ->with('success', 'UMKM berhasil diupdate');
     }
 
     /**
@@ -108,6 +123,6 @@ class PotensiController extends Controller
         $potensi->delete();
 
         return redirect()->route('potensi.index')
-            ->with('success', 'Potensi berhasil dihapus');
+            ->with('success', 'UMKM berhasil dihapus');
     }
 }

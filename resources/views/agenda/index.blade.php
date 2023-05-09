@@ -34,7 +34,8 @@
                                     <tbody>
                                         <tr>
                                             <th>#</th>
-                                            <th>Judul Agenda</th>
+                                            <th>Judul</th>
+                                            <th>Tanggal</th>
                                             <th>Deskripsi</th>
                                             <th>Gambar</th>
                                             <th class="text-right">Action</th>
@@ -44,8 +45,12 @@
                                                 <td>{{ ($agenda->currentPage() - 1) * $agenda->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->judul_agenda }}</td>
+                                                <td>{{ $item->tanggal_agenda }}</td>
                                                 <td>{{ $item->deskripsi_agenda }}</td>
-                                                <td>{{ $item->gambar_agenda }}</td>
+                                                <td class="gambar">
+                                                    <span onclick="openGambar()">{{ $item->gambar_agenda }}</span>
+                                                    <img onclick="closeGambar()" id="gambar" src="/assets/img/agenda/{{ $item->gambar_agenda }}" alt="Gambar">
+                                                </td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('agenda.edit', $item->id) }}"

@@ -39,11 +39,26 @@ class AgendaController extends Controller
     {
         $request->validate([
             'judul_agenda'=>'required',
+            'tanggal_agenda'=>'required',
             'deskripsi_agenda'=>'required',
             'gambar_agenda'=>'required',
         ]);
 
-        Agenda::create($request->all());
+        if($request->hasFile('gambar_agenda')) {
+            $file = $request->file('gambar_agenda');
+            $fileName = $file->getClientOriginalName();
+            $path = 'assets/img/agenda/';
+            $file = $file->move($path, $fileName);
+        }
+
+        $agenda = new Agenda(array(
+            'judul_agenda' => $request->get('judul_agenda'),
+            'tanggal_agenda' => $request->get('tanggal_agenda'),
+            'deskripsi_agenda' => $request->get('deskripsi_agenda'),
+            'gambar_agenda' => $fileName,
+        ));
+
+        $agenda->save();
 
         return redirect()->route('agenda.index')
             ->with('success', 'Agenda berhasil ditambahkan');
@@ -83,6 +98,7 @@ class AgendaController extends Controller
     {
         $request->validate([
             'judul_agenda'=>'required',
+            'tanggal_agenda'=>'required',
             'deskripsi_agenda'=>'required',
             'gambar_agenda'=>'required',
         ]);

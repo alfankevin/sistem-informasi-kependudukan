@@ -18,8 +18,8 @@ class PendudukFactory extends Factory
     {
         return [
             'sosial_id' => $this->faker->randomDigit(),
-            'kk_id' => $this->faker->randomDigit(),
-            'nik' => $this->faker->randomNumber(9, true),
+            'no_kk' => $this->faker->nik(),
+            'nik' => $this->faker->nik(),
             'nama' => $this->faker->name(),
             'tempat_lahir' => $this->faker->state(),
             'tanggal_lahir' => $this->faker->date(),

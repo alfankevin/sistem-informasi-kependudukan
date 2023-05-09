@@ -80,7 +80,7 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
 }
 
 .bg-primary {
-    background-color: #007bff;!important;
+    background-color: #007bff !important;
 }
 
 .bg-secondary {
@@ -115,7 +115,7 @@ a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
 .text-primary-all *,
 .text-primary-all *:before,
 .text-primary-all *:after {
-    color: #007bff;!important;
+    color: #007bff !important;
 }
 
 .text-secondary,
@@ -335,7 +335,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::before,
 .custom-control-input:checked ~ .custom-control-label::before {
-    background-color: #007bff;!important;
+    background-color: #007bff !important;
 }
 
 .custom-file-label {
@@ -548,8 +548,7 @@ select.form-control:not([size]):not([multiple]) {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background: #007bff;        url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E")
-        no-repeat center center/50% 50%;
+    background: #007bff;
     color: #fff;
     z-index: 1;
     border-radius: 3px;
@@ -981,7 +980,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .card.card-hero .card-header {
     padding: 40px;
-    background-image: linear-gradient(to bottom, #007bff; #95a0f4);
+    background-image: linear-gradient(to bottom, #007bff, #95a0f4);
     color: #fff;
     overflow: hidden;
     height: auto;
@@ -1881,7 +1880,7 @@ h6 .badge {
 .btn-outline-primary.disabled:hover,
 .btn-outline-primary.disabled:focus,
 .btn-outline-primary.disabled:active {
-    background-color: #007bff;!important;
+    background-color: #007bff !important;
     color: #fff;
 }
 
@@ -4122,4 +4121,20 @@ body:not(.sidebar-mini)
         -webkit-transform: scale(1.2, 1.2);
         opacity: 0;
     }
+}
+
+.gambar span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.gambar img {
+    display: none;
+    width: 900px;
+    height: 600px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    cursor: pointer;
 }

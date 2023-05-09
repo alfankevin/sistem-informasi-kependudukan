@@ -49,7 +49,10 @@
                                                 <td>{{ $item->alamat_umkm }}</td>
                                                 <td>{{ $item->deskripsi_umkm }}</td>
                                                 <td>{{ $item->sosial_media }}</td>
-                                                <td>{{ $item->gambar_umkm }}</td>
+                                                <td class="gambar">
+                                                    <span onclick="openGambar()">{{ $item->gambar_umkm }}</span>
+                                                    <img onclick="closeGambar()" id="gambar" src="/assets/img/potensi/{{ $item->gambar_umkm }}" alt="Gambar">
+                                                </td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('potensi.edit', $item->id) }}"
