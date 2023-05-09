@@ -47,9 +47,9 @@
                                                 <td>{{ $item->judul_agenda }}</td>
                                                 <td>{{ $item->tanggal_agenda }}</td>
                                                 <td>{{ $item->deskripsi_agenda }}</td>
-                                                <td class="gambar">
-                                                    <span onclick="openGambar()">{{ $item->gambar_agenda }}</span>
-                                                    <img onclick="closeGambar()" id="gambar" src="/assets/img/agenda/{{ $item->gambar_agenda }}" alt="Gambar">
+                                                <td class="gambar" item-id={{ $item->id }}>
+                                                    <span item-id="{{ $item->id }}" class="open-item">{{ $item->gambar_agenda }}</span>
+                                                    <img id="open-{{ $item->id }}" class="close-item" src="/assets/img/agenda/{{ $item->gambar_agenda }}" alt="Gambar">
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">

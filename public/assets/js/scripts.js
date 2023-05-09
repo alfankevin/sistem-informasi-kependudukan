@@ -615,12 +615,19 @@ $(function() {
   }
 });
 
-const gambar = document.getElementById("gambar");
+var openGambar = document.querySelectorAll('.open-item')
+var closeGambar = document.querySelectorAll('.close-item')
 
-function openGambar() {
-  gambar.style.display = "unset";
-}
+openGambar.forEach(function(item) {
+  item.addEventListener('click', function() {
+    var itemId = this.getAttribute('item-id');
+    document.getElementById('open-' + itemId).style.display = 'unset'  
+  })
+})
 
-function closeGambar() {
-  gambar.style.display = "none";
-}
+closeGambar.forEach(function(item) {
+  item.addEventListener('click', function() {
+    var itemId = this.getAttribute('id');
+    document.getElementById(itemId).style.display = 'none'  
+  })
+})

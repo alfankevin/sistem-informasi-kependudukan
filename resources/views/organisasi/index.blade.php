@@ -44,9 +44,9 @@
                                                 <td>{{ ($organisasi->currentPage() - 1) * $organisasi->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama_organisasi }}</td>
-                                                <td class="gambar">
-                                                    <span onclick="openGambar()">{{ $item->gambar_organisasi }}</span>
-                                                    <img onclick="closeGambar()" id="gambar" src="/assets/img/organisasi/{{ $item->gambar_organisasi }}" alt="Gambar">
+                                                <td class="gambar" item-id={{ $item->id }}>
+                                                    <span item-id="{{ $item->id }}" class="open-item">{{ $item->gambar_organisasi }}</span>
+                                                    <img id="open-{{ $item->id }}" class="close-item" src="/assets/img/organisasi/{{ $item->gambar_organisasi }}" alt="Gambar">
                                                 </td>
                                                 <td>{{ $item->deskripsi_organisasi }}</td>
                                                 <td class="text-right">
