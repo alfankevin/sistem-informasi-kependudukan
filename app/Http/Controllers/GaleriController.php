@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Galeri;
 use Illuminate\Http\Request;
+use File;
 
 class GaleriController extends Controller
 {
@@ -55,7 +56,7 @@ class GaleriController extends Controller
         $galeri->save();
 
         return redirect()->route('galeri.index')
-            ->with('success', 'Gambar berhasil ditambahkan');            
+            ->with('success', 'Gambar berhasil ditambahkan');
     }
 
     /**
@@ -88,13 +89,29 @@ class GaleriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'foto'=>'required',
         ]);
 
-        Galeri::find($id)->update($request->all());
+        $galeri = Galeri::findorfail($id);
+
+        if($request->hasFile('foto')) {
+
+            $destination = 'assets/img/galeri/'.$galeri->foto;
+            if (file_exists($destination)) {
+                File::delete($destination);
+            }
+
+            $file = $request->file('foto');
+            $fileName = $file->getClientOriginalName();
+            $path = 'assets/img/galeri/';
+            $file = $file->move($path, $fileName);
+            $galeri->foto = $fileName;
+        }
+
+        $galeri->update();
 
         return redirect()->route('galeri.index')
             ->with('success', 'Gambar berhasil diupdate');

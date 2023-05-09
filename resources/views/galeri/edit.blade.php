@@ -18,7 +18,7 @@
                     <h4>Validasi Edit Galeri</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('galeri.update', $galeri) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('galeri.update', $galeri->id) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="form-group ">
