@@ -41,8 +41,9 @@
                                             <tr>
                                                 <td>{{ ($galeri->currentPage() - 1) * $galeri->perPage() + $key + 1 }}
                                                 </td>
-                                                <td id='gambar' class='gambar'>
-                                                    <img src="/assets/img/galeri/{{ $item->foto }}" alt="Foto">
+                                                <td>
+                                                    {{-- <img src="/assets/img/galeri/{{ $item->foto }}" alt="Foto"> --}}
+                                                    <img src="{{ asset('assets/img/galeri/'.$item->foto) }}" alt="" width="100px">
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
