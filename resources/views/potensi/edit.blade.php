@@ -18,7 +18,7 @@
                     <h4>Validasi Edit Potensi UMKM</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('potensi.update', $potensi) }}" method="POST">
+                    <form action="{{ route('potensi.update', $potensi) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="form-group ">
@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="gambar_umkm">Gambar UMKM</label>
-                            <input id="gambar_umkm" name="gambar_umkm" type="text"
+                            <input id="gambar_umkm" name="gambar_umkm" type="file"
                                 class="form-control @error('gambar_umkm') is-invalid @enderror"
                                 value={{ old('gambar_umkm', $potensi->gambar_umkm) }}>
                             @error('gambar_umkm')

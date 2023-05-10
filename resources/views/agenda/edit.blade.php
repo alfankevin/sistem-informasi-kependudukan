@@ -18,7 +18,7 @@
                     <h4>Validasi Edit Agenda</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('agenda.update', $agenda) }}" method="POST">
+                    <form action="{{ route('agenda.update', $agenda) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="form-group ">
