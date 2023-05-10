@@ -51,7 +51,9 @@
                                                 <td>{{ $item->sosial_media }}</td>
                                                 <td class="gambar" item-id={{ $item->id }}>
                                                     <span item-id="{{ $item->id }}" class="open-item">{{ $item->gambar_umkm }}</span>
-                                                    <img id="open-{{ $item->id }}" class="close-item" src="/assets/img/potensi/{{ $item->gambar_umkm }}" alt="Gambar">
+                                                    <div id="open-{{ $item->id }}" class="close-item">
+                                                        <img src="/assets/img/potensi/{{ $item->gambar_umkm }}" alt="Gambar">
+                                                    </div>                                                
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">

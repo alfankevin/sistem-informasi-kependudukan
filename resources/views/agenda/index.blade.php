@@ -49,7 +49,9 @@
                                                 <td>{{ $item->deskripsi_agenda }}</td>
                                                 <td class="gambar" item-id={{ $item->id }}>
                                                     <span item-id="{{ $item->id }}" class="open-item">{{ $item->gambar_agenda }}</span>
-                                                    <img id="open-{{ $item->id }}" class="close-item" src="/assets/img/agenda/{{ $item->gambar_agenda }}" alt="Gambar">
+                                                    <div id="open-{{ $item->id }}" class="close-item">
+                                                        <img src="/assets/img/agenda/{{ $item->gambar_agenda }}" alt="Gambar">
+                                                    </div>                                                
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">

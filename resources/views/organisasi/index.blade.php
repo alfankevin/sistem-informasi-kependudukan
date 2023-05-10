@@ -46,7 +46,9 @@
                                                 <td>{{ $item->nama_organisasi }}</td>
                                                 <td class="gambar" item-id={{ $item->id }}>
                                                     <span item-id="{{ $item->id }}" class="open-item">{{ $item->gambar_organisasi }}</span>
-                                                    <img id="open-{{ $item->id }}" class="close-item" src="/assets/img/organisasi/{{ $item->gambar_organisasi }}" alt="Gambar">
+                                                    <div id="open-{{ $item->id }}" class="close-item">
+                                                        <img src="/assets/img/organisasi/{{ $item->gambar_organisasi }}" alt="Gambar">
+                                                    </div>                                                
                                                 </td>
                                                 <td>{{ $item->deskripsi_organisasi }}</td>
                                                 <td class="text-right">
