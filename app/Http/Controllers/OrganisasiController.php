@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organisasi;
 use Illuminate\Http\Request;
+use File;
 
 class OrganisasiController extends Controller
 {
@@ -92,7 +93,7 @@ class OrganisasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nama_organisasi'=>'required',
@@ -100,7 +101,25 @@ class OrganisasiController extends Controller
             'deskripsi_organisasi'=>'required',
         ]);
 
-        Organisasi::find($id)->update($request->all());
+        // Organisasi::find($id)->update($request->all());
+
+        $organisasi = Organisasi::findorfail($id);
+
+        if($request->hasFile('gambar_organisasi')) {
+
+            $destination = 'assets/img/organisasi/'.$organisasi->gambar_organisasi;
+            if (file_exists($destination)) {
+                File::delete($destination);
+            }
+
+            $file = $request->file('gambar_organisasi');
+            $fileName = $file->getClientOriginalName();
+            $path = 'assets/img/organisasi/';
+            $file = $file->move($path, $fileName);
+            $organisasi->gambar_organisasi = $fileName;
+        }
+
+        $organisasi->update();
 
         return redirect()->route('organisasi.index')
             ->with('success', 'Organisasi berhasil diupdate');

@@ -18,7 +18,7 @@
                     <h4>Validasi Edit Organisasi</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('organisasi.update', $organisasi) }}" method="POST">
+                    <form action="{{ route('organisasi.update', $organisasi) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="form-group ">
