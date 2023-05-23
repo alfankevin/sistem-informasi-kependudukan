@@ -4123,35 +4123,15 @@ body:not(.sidebar-mini)
     }
 }
 
-.gambar span:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.gambar div {
-    display: none;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 99;
-    cursor: pointer;
-}
-
-.gambar div img {
-    width: 800px;
-    height: 450px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-}
-
 .text-color-blue {
     color: #007bff !important;
 }
 
 .btn-color-blue {
     background-color: #007bff !important;
+}
+
+.gambar:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }

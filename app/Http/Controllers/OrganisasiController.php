@@ -103,11 +103,8 @@ class OrganisasiController extends Controller
     {
         $request->validate([
             'nama_organisasi'=>'required',
-            'gambar_organisasi'=>'required',
             'deskripsi_organisasi'=>'required',
         ]);
-
-        // Organisasi::find($id)->update($request->all());
 
         $organisasi = Organisasi::findorfail($id);
 

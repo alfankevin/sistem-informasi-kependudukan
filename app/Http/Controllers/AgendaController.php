@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agenda;
 use Illuminate\Http\Request;
+use File;
 
 class AgendaController extends Controller
 {
@@ -100,16 +101,31 @@ class AgendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'judul_agenda'=>'required',
             'tanggal_agenda'=>'required',
             'deskripsi_agenda'=>'required',
-            'gambar_agenda'=>'required',
         ]);
 
-        Agenda::find($id)->update($request->all());
+        $agenda = Agenda::findorfail($id);
+
+        if($request->hasFile('gambar_agenda')) {
+
+            $destination = 'assets/img/agenda/'.$agenda->gambar_agenda;
+            if (file_exists($destination)) {
+                File::delete($destination);
+            }
+
+            $file = $request->file('gambar_agenda');
+            $fileName = $file->getClientOriginalName();
+            $path = 'assets/img/agenda/';
+            $file = $file->move($path, $fileName);
+            $agenda->gambar_agenda = $fileName;
+        }
+
+        $agenda->update();
 
         return redirect()->route('agenda.index')
             ->with('success', 'Agenda berhasil diupdate');

@@ -58,9 +58,8 @@
                                                 <td>{{ $item->alamat }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <a href="{{ route('penduduk.show', $item->id) }}"
-                                                            class="btn btn-sm btn-success btn-icon d-flex align-items-center">
-                                                            <span><i class="fas fa-user"></i></span>&nbsp;Detail</a>
+                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center" data-toggle="modal" data-target="#exampleModalCenter">
+                                                            <span><i class="fas fa-user"></i></span>&nbsp;Detail</button>
                                                         <a href="{{ route('penduduk.edit', $item->id) }}"
                                                             class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center">
                                                             <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>
@@ -88,6 +87,13 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                {{ $item->nama }}
+            </div>
+        </div>
+    </div>
 @endsection
 @push('customScript')
     <script>

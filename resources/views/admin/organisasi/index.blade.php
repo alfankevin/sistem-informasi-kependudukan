@@ -44,12 +44,7 @@
                                                 <td>{{ ($organisasi->currentPage() - 1) * $organisasi->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama_organisasi }}</td>
-                                                <td class="gambar" item-id={{ $item->id }}>
-                                                    <span item-id="{{ $item->id }}" class="open-item">{{ $item->gambar_organisasi }}</span>
-                                                    <div id="open-{{ $item->id }}" class="close-item">
-                                                        <img src="/assets/img/organisasi/{{ $item->gambar_organisasi }}" alt="Gambar">
-                                                    </div>                                                
-                                                </td>
+                                                <td class="gambar" data-toggle="modal" data-target="#exampleModalCenter">{{ $item->gambar_organisasi }}</td>
                                                 <td>{{ $item->deskripsi_organisasi }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
@@ -80,6 +75,13 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <img src="/assets/img/agenda/gambar.jpeg" alt="Gambar" height="450px" width="800px" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">
+            </div>
+        </div>
+    </div>
 @endsection
 @push('customScript')
     <script>

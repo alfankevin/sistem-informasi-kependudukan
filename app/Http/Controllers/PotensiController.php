@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Potensi;
 use Illuminate\Http\Request;
+use File;
 
 class PotensiController extends Controller
 {
@@ -103,17 +104,32 @@ class PotensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nama_umkm'=>'required',
             'alamat_umkm'=>'required',
             'deskripsi_umkm'=>'required',
             'sosial_media'=>'required',
-            'gambar_umkm'=>'required',
         ]);
 
-        Potensi::find($id)->update($request->all());
+        $potensi = Potensi::findorfail($id);
+
+        if($request->hasFile('gambar_umkm')) {
+
+            $destination = 'assets/img/potensi/'.$potensi->gambar_umkm;
+            if (file_exists($destination)) {
+                File::delete($destination);
+            }
+
+            $file = $request->file('gambar_umkm');
+            $fileName = $file->getClientOriginalName();
+            $path = 'assets/img/potensi/';
+            $file = $file->move($path, $fileName);
+            $potensi->gambar_umkm = $fileName;
+        }
+
+        $potensi->update();
 
         return redirect()->route('potensi.index')
             ->with('success', 'UMKM berhasil diupdate');

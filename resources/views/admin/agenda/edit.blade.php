@@ -18,10 +18,10 @@
                     <h4>Validasi Edit Agenda</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('agenda.update', $agenda) }}" method="POST">
+                    <form action="{{ route('agenda.update', $agenda) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="judul_agenda">Nama Agenda</label>
                             <input id="judul_agenda" name="judul_agenda" type="text"
                             class="form-control @error('judul_agenda') is-invalid @enderror"
@@ -32,7 +32,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="tanggal_agenda">Tanggal Agenda</label>
                             <input id="tanggal_agenda" name="tanggal_agenda" type="date"
                             class="form-control @error('tanggal_agenda') is-invalid @enderror"
@@ -43,7 +43,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="deskripsi_agenda">Deskripsi Agenda</label>
                             <input id="deskripsi_agenda" name="deskripsi_agenda" type="text"
                             class="form-control @error('deskripsi_agenda') is-invalid @enderror"
@@ -54,7 +54,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="gambar_agenda">Gambar Agenda</label><br>
                             <img src="/assets/img/agenda/{{ $agenda->gambar_agenda }}" alt="{{ $agenda->gambar_agenda }}" height="180px" width="320px" class="mb-2">
                             <input id="gambar_agenda" name="gambar_agenda" type="file"
