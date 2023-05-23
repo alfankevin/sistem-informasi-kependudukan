@@ -74,8 +74,7 @@ class PendudukController extends Controller
      */
     public function show(string $id)
     {
-        $penduduk = Penduduk::find($id);
-        return view('admin.penduduk.detail', compact('penduduk'));
+        //
     }
 
     /**

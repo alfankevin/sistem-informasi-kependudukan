@@ -5,7 +5,7 @@
         <div class="section-header">
             <h1>Kependudukan</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Penduduk</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('penduduk.index') }}">Penduduk</a></div>
                 <div class="breadcrumb-item"><a href="#">Management</a></div>
                 <div class="breadcrumb-item">Create</div>
             </div>

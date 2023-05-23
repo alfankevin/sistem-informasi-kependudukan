@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::prefix('penduduk-management')->group(function () {
         //penduduk
-        Route::resource('penduduk', PendudukController::class);
+        Route::resource('penduduk', PendudukController::class)->except(['show']);
     });
 
     Route::prefix('organisasi-management')->group(function () {

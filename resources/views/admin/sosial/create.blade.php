@@ -5,7 +5,7 @@
         <div class="section-header">
             <h1>Bantuan Sosial</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Sosial</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('sosial.index') }}">Sosial</a></div>
                 <div class="breadcrumb-item"><a href="#">Management</a></div>
                 <div class="breadcrumb-item">Create</div>
             </div>
