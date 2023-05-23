@@ -23,7 +23,7 @@
                         @csrf
                         <div class="form-group ">
                             <label for="nama_sosial">Nama Bantuan Sosial</label>
-                            <input id="nama_sosial" name="nama_sosial" type="text"
+                            <input id="nama_sosial" name="nama_sosial" type="text" spellcheck="false" autocomplete="off"
                             class="form-control @error('nama_sosial') is-invalid @enderror"
                                 value="{{ old('nama_sosial', $sosial->nama_sosial) }}">
                             @error('nama_sosial')

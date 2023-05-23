@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" value="{{ $user->name }}">
+                                name="name" value="{{ $user->name }}" spellcheck="false" autocomplete="off">
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
-                                name="email" value="{{ $user->email }}">
+                                name="email" value="{{ $user->email }}" spellcheck="false" autocomplete="off">
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}

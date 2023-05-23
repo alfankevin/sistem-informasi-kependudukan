@@ -22,7 +22,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="foto">Foto</label>
-                            <input id="foto" name="foto" type="file"
+                            <input id="foto" name="foto" type="file" spellcheck="false" autocomplete="off"
                             class="form-control @error('foto') is-invalid @enderror" value="{{ old('foto') }}">
                             @error('foto')
                             <div class="invalid-feedback">

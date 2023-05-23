@@ -24,7 +24,7 @@
                         <div class="form-group ">
                             <label for="foto">Foto</label><br>
                             <img src="/assets/img/galeri/{{ $galeri->foto }}" alt="{{ $galeri->foto }}" height="180px" width="320px" class="mb-2">
-                            <input id="foto" name="foto" type="file"
+                            <input id="foto" name="foto" type="file" spellcheck="false" autocomplete="off"
                             class="form-control @error('foto') is-invalid @enderror"
                                 value="{{ old('foto', $galeri->foto) }}">
                             @error('foto')

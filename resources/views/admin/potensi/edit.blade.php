@@ -23,7 +23,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="nama_umkm">Nama UMKM</label>
-                            <input id="nama_umkm" name="nama_umkm" type="text"
+                            <input id="nama_umkm" name="nama_umkm" type="text" spellcheck="false" autocomplete="off"
                             class="form-control @error('nama_umkm') is-invalid @enderror"
                                 value="{{ old('nama_umkm', $potensi->nama_umkm) }}">
                             @error('nama_umkm')
@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label for="alamat_umkm">Alamat UMKM</label>
                             <input type="text" class="form-control @error('alamat_umkm') is-invalid @enderror" id="alamat_umkm"
-                            name="alamat_umkm" value="{{ old('alamat_umkm', $potensi->alamat_umkm) }}">
+                            name="alamat_umkm" value="{{ old('alamat_umkm', $potensi->alamat_umkm) }}" spellcheck="false" autocomplete="off">
                             @error('alamat_umkm')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -44,7 +44,7 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsi_umkm">Deskripsi UMKM</label>
-                            <input id="deskripsi_umkm" name="deskripsi_umkm" type="text"
+                            <input id="deskripsi_umkm" name="deskripsi_umkm" type="text" spellcheck="false" autocomplete="off"
                                 class="form-control @error('deskripsi_umkm') is-invalid @enderror"
                                 value="{{ old('deskripsi_umkm', $potensi->deskripsi_umkm) }}">
                             @error('deskripsi_umkm')
@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             <label for="sosial_media">Sosial Media</label>
-                            <input id="sosial_media" name="sosial_media" type="text"
+                            <input id="sosial_media" name="sosial_media" type="text" spellcheck="false" autocomplete="off"
                                 class="form-control @error('sosial_media') is-invalid @enderror"
                                 value={{ old('sosial_media', $potensi->sosial_media) }}>
                             @error('sosial_media')
@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label for="gambar_umkm">Gambar UMKM</label><br>
                             <img src="/assets/img/potensi/{{ $potensi->gambar_umkm }}" alt="{{ $potensi->gambar_umkm }}" height="180px" width="320px" class="mb-2">
-                            <input id="gambar_umkm" name="gambar_umkm" type="file"
+                            <input id="gambar_umkm" name="gambar_umkm" type="file" spellcheck="false" autocomplete="off"
                                 class="form-control @error('gambar_umkm') is-invalid @enderror"
                                 value={{ old('gambar_umkm', $potensi->gambar_umkm) }}>
                             @error('gambar_umkm')

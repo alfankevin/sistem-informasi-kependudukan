@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" placeholder="Enter User Name">
+                                name="name" placeholder="Enter User Name" spellcheck="false" autocomplete="off">
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
-                                name="email" placeholder="Enter User Email" value="{{ old('email') }}">
+                                name="email" placeholder="Enter User Email" value="{{ old('email') }}" spellcheck="false" autocomplete="off">
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                id="password" name="password" placeholder="Enter User Password">
+                                id="password" name="password" placeholder="Enter User Password" spellcheck="false" autocomplete="off">
                             @error('password')
                                 <div class="invalid-feedback">
                                     {{ $message }}

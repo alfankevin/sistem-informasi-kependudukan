@@ -23,7 +23,7 @@
                         @csrf
                         <div class="form-group ">
                             <label for="nama_organisasi">Nama Organisasi</label>
-                            <input id="nama_organisasi" name="nama_organisasi" type="text"
+                            <input id="nama_organisasi" name="nama_organisasi" type="text" spellcheck="false" autocomplete="off"
                             class="form-control @error('nama_organisasi') is-invalid @enderror"
                                 value="{{ old('nama_organisasi', $organisasi->nama_organisasi) }}">
                             @error('nama_organisasi')
@@ -36,7 +36,7 @@
                             <label for="gambar_organisasi">Gambar Organisasi</label><br>
                             <img src="/assets/img/organisasi/{{ $organisasi->gambar_organisasi }}" alt="{{ $organisasi->gambar_organisasi }}" height="180px" width="320px" class="mb-2">
                             <input type="file" class="form-control @error('gambar_organisasi') is-invalid @enderror" id="gambar_organisasi"
-                            name="gambar_organisasi" value="{{ old('gambar_organisasi', $organisasi->gambar_organisasi) }}">
+                            name="gambar_organisasi" value="{{ old('gambar_organisasi', $organisasi->gambar_organisasi) }}" spellcheck="false" autocomplete="off">
                             @error('gambar_organisasi')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="deskripsi_organisasi">Deskripsi Organisasi</label>
-                            <input id="deskripsi_organisasi" name="deskripsi_organisasi" type="text"
+                            <input id="deskripsi_organisasi" name="deskripsi_organisasi" type="text" spellcheck="false" autocomplete="off"
                             class="form-control @error('deskripsi_organisasi') is-invalid @enderror"
                                 value="{{ old('deskripsi_organisasi', $organisasi->deskripsi_organisasi) }}">
                             @error('deskripsi_organisasi')

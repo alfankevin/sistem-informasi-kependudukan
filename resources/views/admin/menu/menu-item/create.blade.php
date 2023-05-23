@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label for="name">Menu Item Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" placeholder="Menu Item Name" value="{{ old('name') }}">
+                                name="name" placeholder="Menu Item Name" value="{{ old('name') }}" spellcheck="false" autocomplete="off">
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -58,7 +58,7 @@
                             <label for="name">Permission Name</label>
                             <input type="text" class="form-control @error('permission_name') is-invalid @enderror"
                                 id="permission_name" name="permission_name" placeholder="Permission Name"
-                                value="{{ old('permission_name') }}">
+                                value="{{ old('permission_name') }}" spellcheck="false" autocomplete="off">
                             @error('permission_name')
                                 <div class="invalid-feedback">
                                     {{ $message }}

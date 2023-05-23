@@ -23,7 +23,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="judul_agenda">Nama Agenda</label>
-                            <input id="judul_agenda" name="judul_agenda" type="text"
+                            <input id="judul_agenda" name="judul_agenda" type="text" spellcheck="false" autocomplete="off"
                             class="form-control @error('judul_agenda') is-invalid @enderror"
                                 value="{{ old('judul_agenda', $agenda->judul_agenda) }}">
                             @error('judul_agenda')
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tanggal_agenda">Tanggal Agenda</label>
-                            <input id="tanggal_agenda" name="tanggal_agenda" type="date"
+                            <input id="tanggal_agenda" name="tanggal_agenda" type="date" spellcheck="false" autocomplete="off"
                             class="form-control @error('tanggal_agenda') is-invalid @enderror"
                                 value="{{ old('tanggal_agenda', $agenda->tanggal_agenda) }}">
                             @error('tanggal_agenda')
@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsi_agenda">Deskripsi Agenda</label>
-                            <input id="deskripsi_agenda" name="deskripsi_agenda" type="text"
+                            <input id="deskripsi_agenda" name="deskripsi_agenda" type="text" spellcheck="false" autocomplete="off"
                             class="form-control @error('deskripsi_agenda') is-invalid @enderror"
                                 value="{{ old('deskripsi_agenda', $agenda->deskripsi_agenda) }}">
                             @error('deskripsi_agenda')
@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label for="gambar_agenda">Gambar Agenda</label><br>
                             <img src="/assets/img/agenda/{{ $agenda->gambar_agenda }}" alt="{{ $agenda->gambar_agenda }}" height="180px" width="320px" class="mb-2">
-                            <input id="gambar_agenda" name="gambar_agenda" type="file"
+                            <input id="gambar_agenda" name="gambar_agenda" type="file" spellcheck="false" autocomplete="off"
                             class="form-control @error('gambar_agenda') is-invalid @enderror"
                                 value="{{ old('gambar_agenda', $agenda->gambar_agenda) }}">
                             @error('gambar_agenda')

@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" placeholder="Menu Group Name" value="{{ old('name') }}">
+                                name="name" placeholder="Menu Group Name" value="{{ old('name') }}" spellcheck="false" autocomplete="off">
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="name">Icon Name</label>
                             <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon"
-                                name="icon" placeholder="Font Aweseome Icon Name" value="{{ old('icon') }}">
+                                name="icon" placeholder="Font Aweseome Icon Name" value="{{ old('icon') }}" spellcheck="false" autocomplete="off">
                             @error('icon')
                                 <div class="invalid-feedback">
                                     {{ $message }}
