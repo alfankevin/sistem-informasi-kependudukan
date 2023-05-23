@@ -15,7 +15,7 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        return view('galeri.index')->with([
+        return view('admin.galeri.index')->with([
             'galeri' => Galeri::paginate(10),
         ]);
     }
@@ -27,7 +27,7 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        return view('galeri.create');
+        return view('admin.galeri.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class GaleriController extends Controller
     public function edit(string $id)
     {
         $galeri = Galeri::find($id);
-        return view('galeri.edit', compact('galeri'));
+        return view('admin.galeri.edit', compact('galeri'));
     }
 
     /**

@@ -46,7 +46,7 @@ class UserController extends Controller
             })
             ->select('id', 'name', 'email', DB::raw("DATE_FORMAT(created_at, '%d %M %Y') as created_at"))
             ->paginate(10);
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -57,7 +57,7 @@ class UserController extends Controller
     public function create()
     {
         // halaman tambah user
-        return view('users.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -96,7 +96,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit')
+        return view('admin.users.edit')
             ->with('user', $user);
     }
 

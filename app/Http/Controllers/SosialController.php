@@ -14,7 +14,7 @@ class SosialController extends Controller
      */
     public function index()
     {
-        return view('sosial.index')->with([
+        return view('admin.sosial.index')->with([
             'sosial' => Sosial::paginate(10),
         ]);
     }
@@ -26,7 +26,7 @@ class SosialController extends Controller
      */
     public function create()
     {
-        return view('sosial.create');
+        return view('admin.sosial.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class SosialController extends Controller
     public function edit(string $id)
     {
         $sosial = Sosial::find($id);
-        return view('sosial.edit', compact('sosial'));
+        return view('admin.sosial.edit', compact('sosial'));
     }
 
     /**

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('status_perkawinan', 32);
             $table->string('pekerjaan', 128);
             $table->string('alamat', 256);
+            $table->string('jabatan')->default(0);
             $table->string('keterangan', 128);
             $table->timestamps();
         });

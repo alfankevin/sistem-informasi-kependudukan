@@ -14,7 +14,7 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        return view('agenda.index')->with([
+        return view('admin.agenda.index')->with([
             'agenda' => Agenda::paginate(10),
         ]);
     }
@@ -26,7 +26,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        return view('agenda.create');
+        return view('admin.agenda.create');
     }
 
     /**
@@ -84,7 +84,7 @@ class AgendaController extends Controller
     public function edit(string $id)
     {
         $agenda = Agenda::find($id);
-        return view('agenda.edit', compact('agenda'));
+        return view('admin.agenda.edit', compact('agenda'));
     }
 
     /**

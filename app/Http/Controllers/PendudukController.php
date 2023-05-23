@@ -15,8 +15,8 @@ class PendudukController extends Controller
      */
     public function index()
     {
-        return view('penduduk.index')->with([
-            'penduduk' => Penduduk::paginate(10),
+        return view('admin.penduduk.index')->with([
+            'penduduk' => Penduduk::paginate(15),
         ]);
     }
 
@@ -27,7 +27,7 @@ class PendudukController extends Controller
      */
     public function create()
     {
-        return view('penduduk.create');
+        return view('admin.penduduk.create');
     }
 
     /**
@@ -65,9 +65,10 @@ class PendudukController extends Controller
      * @param  \App\Models\Penduduk  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function show(Penduduk $penduduk)
+    public function show(string $id)
     {
-        //
+        $penduduk = Penduduk::find($id);
+        return view('admin.penduduk.detail', compact('penduduk'));
     }
 
     /**
@@ -79,7 +80,7 @@ class PendudukController extends Controller
     public function edit(string $id)
     {
         $penduduk = Penduduk::find($id);
-        return view('penduduk.edit', compact('penduduk'));
+        return view('admin.penduduk.edit', compact('penduduk'));
     }
 
     /**

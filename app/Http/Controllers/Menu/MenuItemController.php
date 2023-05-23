@@ -30,7 +30,7 @@ class MenuItemController extends Controller
                 return $query->where('url', 'like', '%' . $url . '%');
             })
             ->paginate(10);
-        return view('menu.menu-item.index', compact('menuItems'));
+        return view('admin.menu.menu-item.index', compact('menuItems'));
     }
 
     /**
@@ -43,7 +43,7 @@ class MenuItemController extends Controller
         //
         $routeCollection = Route::getRoutes();
         $menuGroups = MenuGroup::all();
-        return view('menu.menu-item.create', compact('routeCollection', 'menuGroups'));
+        return view('admin.menu.menu-item.create', compact('routeCollection', 'menuGroups'));
     }
 
 
@@ -78,7 +78,7 @@ class MenuItemController extends Controller
      */
     public function edit(MenuItem $menuItem)
     {
-        return view('menu.menu-item.edit', compact('menuItem'));
+        return view('admin.menu.menu-item.edit', compact('menuItem'));
     }
 
     /**

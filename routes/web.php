@@ -34,12 +34,16 @@ use App\Http\Controllers\RoleAndPermission\ImportPermissionController;
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('main.index');
+});
+
+Route::get('/admin', function () {
+    return view('admin.auth/login');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', function () {
-        return view('home', ['users' => User::get(),]);
+        return view('admin.index', ['users' => User::get(),]);
     });
 
     //user list
@@ -57,7 +61,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::prefix('penduduk-management')->group(function () {
         //penduduk
-        Route::resource('penduduk', PendudukController::class)->except(['show']);
+        Route::resource('penduduk', PendudukController::class);
     });
 
     Route::prefix('organisasi-management')->group(function () {

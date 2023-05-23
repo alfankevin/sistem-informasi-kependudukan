@@ -25,7 +25,7 @@ class MenuGroupController extends Controller
                 return $query->where('name', 'like', '%' . $name . '%');
             })
             ->paginate(10);
-        return view('menu.menu-group.index', compact('menuGroups'));
+        return view('admin.menu.menu-group.index', compact('menuGroups'));
     }
 
     /**
@@ -37,7 +37,7 @@ class MenuGroupController extends Controller
     {
         //
         $permissions = Permission::all();
-        return view('menu.menu-group.create', compact('permissions'));
+        return view('admin.menu.menu-group.create', compact('permissions'));
     }
 
     /**
@@ -73,7 +73,7 @@ class MenuGroupController extends Controller
     public function edit(MenuGroup $menuGroup)
     {
         //
-        return view('menu.menu-group.edit', compact('menuGroup'));
+        return view('admin.menu.menu-group.edit', compact('menuGroup'));
     }
 
     /**

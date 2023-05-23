@@ -35,7 +35,7 @@ class PermissionController extends Controller
                 return $query->where('guard_name', 'like', '%' . $guard_name . '%');
             })
             ->paginate(10);
-        return view('permissions.permissions.index', compact('permissions'));
+        return view('admin.permissions.permissions.index', compact('permissions'));
     }
 
     /**
@@ -46,7 +46,7 @@ class PermissionController extends Controller
     public function create()
     {
         //
-        return view('permissions.permissions.create');
+        return view('admin.permissions.permissions.create');
     }
 
     /**
@@ -85,7 +85,7 @@ class PermissionController extends Controller
     public function edit(Permission $permission)
     {
         //
-        return view('permissions.permissions.edit', compact('permission'));
+        return view('admin.permissions.permissions.edit', compact('permission'));
     }
 
     /**

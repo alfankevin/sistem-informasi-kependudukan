@@ -14,7 +14,7 @@ class PotensiController extends Controller
      */
     public function index()
     {
-        return view('potensi.index')->with([
+        return view('admin.potensi.index')->with([
             'potensi' => Potensi::paginate(10),
         ]);
     }
@@ -26,7 +26,7 @@ class PotensiController extends Controller
      */
     public function create()
     {
-        return view('potensi.create');
+        return view('admin.potensi.create');
     }
 
     /**
@@ -86,7 +86,7 @@ class PotensiController extends Controller
     public function edit(string $id)
     {
         $potensi = Potensi::find($id);
-        return view('potensi.edit', compact('potensi'));
+        return view('admin.potensi.edit', compact('potensi'));
     }
 
     /**

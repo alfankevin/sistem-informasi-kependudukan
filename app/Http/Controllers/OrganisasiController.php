@@ -15,7 +15,7 @@ class OrganisasiController extends Controller
      */
     public function index()
     {
-        return view('organisasi.index')->with([
+        return view('admin.organisasi.index')->with([
             'organisasi' => Organisasi::paginate(10),
         ]);
     }
@@ -27,7 +27,7 @@ class OrganisasiController extends Controller
      */
     public function create()
     {
-        return view('organisasi.create');
+        return view('admin.organisasi.create');
     }
 
     /**
@@ -83,7 +83,7 @@ class OrganisasiController extends Controller
     public function edit(string $id)
     {
         $organisasi = Organisasi::find($id);
-        return view('organisasi.edit', compact('organisasi'));
+        return view('admin.organisasi.edit', compact('organisasi'));
     }
 
     /**

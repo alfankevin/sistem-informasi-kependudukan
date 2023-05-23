@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('tanggal_agenda');
             $table->string('deskripsi_agenda', 256);
             $table->string('gambar_agenda');
+            $table->enum('prioritas', ['0','1'])->default(0);
             $table->timestamps();
         });
     }

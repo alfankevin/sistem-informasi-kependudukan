@@ -24,7 +24,7 @@ class AssignUserToRoleController extends Controller
         //
         // $users = User::with('roles')->paginate(5);
         $users = User::with('roles')->paginate(5);
-        return view('permissions.user.index', compact('users'));
+        return view('admin.permissions.user.index', compact('users'));
     }
 
     function create()
@@ -32,7 +32,7 @@ class AssignUserToRoleController extends Controller
         //
         $roles = Role::all();
         $users = User::all();
-        return view('permissions.user.create', compact('roles', 'users'));
+        return view('admin.permissions.user.create', compact('roles', 'users'));
     }
 
     function store(StoreUserToRoleRequest $request)
@@ -48,7 +48,7 @@ class AssignUserToRoleController extends Controller
         //
         $roles = Role::all();
         $users = User::all();
-        return view('permissions.user.edit', compact('user', 'roles', 'users'));
+        return view('admin.permissions.user.edit', compact('user', 'roles', 'users'));
     }
 
     public function update(UpdateUserToRoleRequest $request, User $user)

@@ -58,11 +58,11 @@ class MenuGroupSeeder extends Seeder
                     'icon' => 'fas fa-user-tag',
                     'permission_name' => 'user.management',
                 ],
-                [
-                    'name' => 'Role Management',
-                    'icon' => 'fas fa-user-tag',
-                    'permisison_name' => 'role.permission.management',
-                ],
+                // [
+                //     'name' => 'Role Management',
+                //     'icon' => 'fas fa-user-tag',
+                //     'permisison_name' => 'role.permission.management',
+                // ],
                 [
                     'name' => 'Menu Management',
                     'icon' => 'fas fa-bars',

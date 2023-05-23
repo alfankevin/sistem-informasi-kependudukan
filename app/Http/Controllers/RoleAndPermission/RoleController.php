@@ -31,7 +31,7 @@ class RoleController extends Controller
                 return $query->where('name', 'like', '%' . $name . '%');
             })
             ->paginate(10);
-        return view('permissions.roles.index', compact('roles'));
+        return view('admin.permissions.roles.index', compact('roles'));
     }
 
     /**
@@ -42,7 +42,7 @@ class RoleController extends Controller
     public function create()
     {
         //
-        return view('permissions.roles.create');
+        return view('admin.permissions.roles.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         //
-        return view('permissions.roles.edit', compact('role'));
+        return view('admin.permissions.roles.edit', compact('role'));
     }
 
     /**

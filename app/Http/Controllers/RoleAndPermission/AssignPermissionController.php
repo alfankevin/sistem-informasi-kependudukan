@@ -33,7 +33,7 @@ class AssignPermissionController extends Controller
     {
         //
         $roles = Role::with('permissions')->paginate(10);
-        return view('permissions.assign.index', compact('roles'));
+        return view('admin.permissions.assign.index', compact('roles'));
     }
 
     /**
@@ -45,7 +45,7 @@ class AssignPermissionController extends Controller
     {
         $roles = Role::all();
         $permissions = Permission::all();
-        return view('permissions.assign.create', compact('roles', 'permissions'));
+        return view('admin.permissions.assign.create', compact('roles', 'permissions'));
     }
 
     /**
@@ -83,7 +83,7 @@ class AssignPermissionController extends Controller
         //
         $roles = Role::all();
         $permissions = Permission::all();
-        return view('permissions.assign.edit', compact('role', 'roles', 'permissions'));
+        return view('admin.permissions.assign.edit', compact('role', 'roles', 'permissions'));
     }
 
     /**
