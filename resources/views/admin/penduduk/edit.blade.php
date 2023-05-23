@@ -3,15 +3,15 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Table</h1>
+            <h1>Kependudukan</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Components</a></div>
-                <div class="breadcrumb-item">Table</div>
+                <div class="breadcrumb-item active"><a href="#">Penduduk</a></div>
+                <div class="breadcrumb-item"><a href="#">Management</a></div>
+                <div class="breadcrumb-item">Edit</div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Edit Penduduk</h2>
+            <h2 class="section-title">Manajemen Kependudukan</h2>
 
             <div class="card">
                 <div class="card-header">
