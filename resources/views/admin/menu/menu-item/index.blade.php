@@ -60,7 +60,7 @@
                                         <div class="form-group col-md-4">
                                             <label for="role">Menu Item</label>
                                             <input type="text" name="name" class="form-control" id="name"
-                                                placeholder="Menu Item Name">
+                                                placeholder="Menu Item Name" spellcheck="false" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="text-right">

@@ -58,7 +58,7 @@
                                         <div class="form-group col-md-4">
                                             <label for="role">User</label>
                                             <input type="text" name="name" class="form-control" id="name"
-                                                placeholder="User Name">
+                                                placeholder="User Name" spellcheck="false" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="text-right">
