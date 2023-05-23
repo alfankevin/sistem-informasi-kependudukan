@@ -12,11 +12,18 @@ class PotensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.potensi.index')->with([
-            'potensi' => Potensi::paginate(10),
-        ]);
+        if($request->has('search')) {
+            $potensi = Potensi::where('nama_umkm','like','%'.$request->search.'%')
+            ->orWhere('alamat_umkm','like','%'.$request->search.'%')->paginate(15);
+        } else {
+            $potensi = Potensi::all();
+            $potensi = Potensi::orderBy('id', 'asc')->paginate(15);
+        }
+        
+        return view('admin.potensi.index', compact('potensi'));
+        with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

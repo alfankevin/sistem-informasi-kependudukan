@@ -13,11 +13,17 @@ class OrganisasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.organisasi.index')->with([
-            'organisasi' => Organisasi::paginate(10),
-        ]);
+        if($request->has('search')) {
+            $organisasi = Organisasi::where('nama_organisasi','like','%'.$request->search.'%')->paginate(15);
+        } else {
+            $organisasi = Organisasi::all();
+            $organisasi = Organisasi::orderBy('id', 'asc')->paginate(15);
+        }
+        
+        return view('admin.organisasi.index', compact('organisasi'));
+        with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

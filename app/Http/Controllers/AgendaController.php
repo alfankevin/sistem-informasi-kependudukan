@@ -12,11 +12,17 @@ class AgendaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.agenda.index')->with([
-            'agenda' => Agenda::paginate(10),
-        ]);
+        if($request->has('search')) {
+            $agenda = Agenda::where('judul_agenda','like','%'.$request->search.'%')->paginate(15);
+        } else {
+            $agenda = Agenda::all();
+            $agenda = Agenda::orderBy('id', 'asc')->paginate(15);
+        }
+        
+        return view('admin.agenda.index', compact('agenda'));
+        with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

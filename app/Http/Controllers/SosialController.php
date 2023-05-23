@@ -12,11 +12,17 @@ class SosialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.sosial.index')->with([
-            'sosial' => Sosial::paginate(10),
-        ]);
+        if($request->has('search')) {
+            $sosial = Sosial::where('nama_sosial','like','%'.$request->search.'%')->paginate(15);
+        } else {
+            $sosial = Sosial::all();
+            $sosial = Sosial::orderBy('id', 'asc')->paginate(15);
+        }
+        
+        return view('admin.sosial.index', compact('sosial'));
+        with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

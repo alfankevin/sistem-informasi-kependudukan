@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePendudukRequest;
 use App\Http\Requests\UpdatePendudukRequest;
 use App\Models\Penduduk;
+use Illuminate\Http\Request;
 
 class PendudukController extends Controller
 {
@@ -13,11 +14,17 @@ class PendudukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.penduduk.index')->with([
-            'penduduk' => Penduduk::paginate(15),
-        ]);
+        if($request->has('search')) {
+            $penduduk = Penduduk::where('nama','like','%'.$request->search.'%')->paginate(15);
+        } else {
+            $penduduk = Penduduk::all();
+            $penduduk = Penduduk::orderBy('id', 'asc')->paginate(15);
+        }
+        
+        return view('admin.penduduk.index', compact('penduduk'));
+        with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
