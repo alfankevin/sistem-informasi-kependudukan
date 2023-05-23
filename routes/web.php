@@ -43,7 +43,7 @@ Route::get('/admin', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', function () {
-        return view('admin.index', ['users' => User::get(),]);
+        return view('admin.home', ['users' => User::get(),]);
     });
 
     //user list

@@ -36,7 +36,7 @@
                             <h4>Jumlah RW</h4>
                         </div>
                         <div class="card-body">
-                            5
+                            3
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             <h4>Jumlah RT</h4>
                         </div>
                         <div class="card-body">
-                            11
+                            5
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-success">
-                        <i class="fas fa-file"></i>
+                        <i class="far fa-file"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
@@ -81,7 +81,7 @@
                             <h4>Komposisi Penduduk Berdasarkan Jenis Kelamin</h4>
                         </div>
                         <div class="card-body">
-                            <br><br><br><br><br><br><br><br>
+                            <br><br><br><br><br><br><br><br><br><br>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             <h4>Komposisi Penduduk Berdasarkan Agama</h4>
                         </div>
                         <div class="card-body">
-                            <br><br><br><br><br><br><br><br>
+                            <br><br><br><br><br><br><br><br><br><br>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                             <h4>Komposisi Penduduk Berdasarkan Golongan Darah</h4>
                         </div>
                         <div class="card-body">
-                            <br><br><br><br><br><br><br><br>
+                            <br><br><br><br><br><br><br><br><br><br>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                             <h4>Komposisi Penduduk Berdasarkan Status Perkawinan</h4>
                         </div>
                         <div class="card-body">
-                            <br><br><br><br><br><br><br><br>
+                            <br><br><br><br><br><br><br><br><br><br>
                         </div>
                     </div>
                 </div>
