@@ -50,8 +50,17 @@
                                                 <td class="gambar" data-toggle="modal" data-target="#exampleModalCenter">{{ $item->gambar_agenda }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <button class="btn btn-sm btn-warning btn-icon d-flex align-items-center">
+                                                        @if ($item->prioritas)
+                                                        <button class="unmark-btn btn-sm btn-success btn-icon d-flex align-items-center" data-id="{{ $item->id }}">
                                                             <span><i class="fas fa-eye"></i></span>&nbsp;Mark</button>
+                                                            {{-- <button class="unmark-btn" data-id="{{ $row->id }}">Unmark</button> --}}
+                                                        @else
+                                                        <button class="mark-btn btn-sm btn-warning btn-icon d-flex align-items-center" data-id="{{ $item->id }}">
+                                                            <span><i class="fas fa-eye"></i></span>&nbsp;Mark</button>
+                                                            {{-- <button class="mark-btn" data-id="{{ $row->id }}">Mark</button> --}}
+                                                        @endif
+                                                        {{-- <button class="btn btn-sm btn-warning btn-icon d-flex align-items-center">
+                                                            <span><i class="fas fa-eye"></i></span>&nbsp;Mark</button> --}}
                                                         <a href="{{ route('agenda.edit', $item->id) }}"
                                                             class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center">
                                                             <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>
@@ -108,6 +117,41 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+        $('.mark-btn, .unmark-btn').click(function() {
+            var button = $(this);
+            var id = button.data('id');
+            var url = "{{ route('agenda.mark', ':id') }}";
+            url = url.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: 'PATCH',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id
+                },
+                success: function(response) {
+                    // Update the button text and class
+                    if (button.hasClass('mark-btn')) {
+                        // button.text('Mark');
+                        button.removeClass('mark-btn btn-sm btn-warning btn-icon d-flex align-items-center').addClass('unmark-btn btn-sm btn-success btn-icon d-flex align-items-center');
+                        // button.removeClass('mark-btn').addClass('unmark-btn');
+                    } else {
+                        // button.text('Mark');
+                        button.removeClass('unmark-btn btn-sm btn-success btn-icon d-flex align-items-center').addClass('mark-btn btn-sm btn-warning btn-icon d-flex align-items-center');
+                    }
+                },
+                error: function(xhr) {
+                    var error = JSON.parse(xhr.responseText);
+                    alert(error.message);
+                }
+            });
+        });
+    });
+</script>
 @endpush
 
 @push('customStyle')

@@ -16,7 +16,7 @@
                             <h4>Jumlah Penduduk</h4>
                         </div>
                         <div class="card-body">
-                            1,201
+                            {{ $countPenduduk->count() }}
                         </div>
                     </div>
                 </div>

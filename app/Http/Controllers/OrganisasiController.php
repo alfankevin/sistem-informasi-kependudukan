@@ -21,7 +21,7 @@ class OrganisasiController extends Controller
             $organisasi = Organisasi::all();
             $organisasi = Organisasi::orderBy('id', 'asc')->paginate(15);
         }
-        
+
         return view('admin.organisasi.index', compact('organisasi'));
         with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -107,6 +107,8 @@ class OrganisasiController extends Controller
         ]);
 
         $organisasi = Organisasi::findorfail($id);
+
+        $organisasi->update($request->all());
 
         if($request->hasFile('gambar_organisasi')) {
 

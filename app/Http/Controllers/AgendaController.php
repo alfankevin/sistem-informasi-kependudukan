@@ -21,7 +21,7 @@ class AgendaController extends Controller
             $agenda = Agenda::all();
             $agenda = Agenda::orderBy('id', 'asc')->paginate(15);
         }
-        
+
         return view('admin.agenda.index', compact('agenda'));
         with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -111,6 +111,8 @@ class AgendaController extends Controller
 
         $agenda = Agenda::findorfail($id);
 
+        $agenda->update($request->all());
+
         if($request->hasFile('gambar_agenda')) {
 
             $destination = 'assets/img/agenda/'.$agenda->gambar_agenda;
@@ -143,5 +145,24 @@ class AgendaController extends Controller
 
         return redirect()->route('agenda.index')
             ->with('success', 'Agenda berhasil dihapus');
+    }
+
+    public function prioritas($id)
+    {
+        $row = Agenda::findorfail($id);
+
+        if ($row->prioritas) {
+            $row->prioritas = false;
+        } else {
+            $rowCount = Agenda::where('prioritas', true)->count();
+            if ($rowCount >= 3) {
+                return response()->json(['message' => 'Hanya 3 agenda yang dapat diprioritaskan'], 422);
+            }
+            $row->prioritas = true;
+        }
+
+        $row->save();
+
+        return response()->json(['message' => 'Agenda berhasil diprioritaskan']);
     }
 }

@@ -22,7 +22,7 @@ class PendudukController extends Controller
             $penduduk = Penduduk::all();
             $penduduk = Penduduk::orderBy('id', 'asc')->paginate(15);
         }
-        
+
         return view('admin.penduduk.index', compact('penduduk'));
         with('i', (request()->input('page', 1) - 1) * 5);
     }

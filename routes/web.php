@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\SosialController;
 use App\Http\Controllers\PotensiController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\RoleAndPermission\AssignPermissionController;
 use App\Http\Controllers\RoleAndPermission\AssignUserToRoleController;
 use App\Http\Controllers\RoleAndPermission\ExportPermissionController;
 use App\Http\Controllers\RoleAndPermission\ImportPermissionController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +44,11 @@ Route::get('/admin', function () {
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/dashboard', function () {
-        return view('admin.home', ['users' => User::get(),]);
-    });
+
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    // Route::get('/dashboard', function () {
+    //     return view('admin.home', ['users' => User::get(), DashboardController::class, 'index']);
+    // });
 
     //user list
     Route::prefix('user-management')->group(function () {
@@ -77,6 +81,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('agenda-management')->group(function () {
         //agenda
         Route::resource('agenda', AgendaController::class)->except(['show']);
+        Route::patch('/agenda/{id}/mark', [AgendaController::class, 'prioritas'])->name('agenda.mark');
     });
 
     Route::prefix('potensi-management')->group(function () {

@@ -22,7 +22,7 @@ class PotensiController extends Controller
             $potensi = Potensi::all();
             $potensi = Potensi::orderBy('id', 'asc')->paginate(15);
         }
-        
+
         return view('admin.potensi.index', compact('potensi'));
         with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -114,6 +114,7 @@ class PotensiController extends Controller
         ]);
 
         $potensi = Potensi::findorfail($id);
+        $potensi->update($request->all());
 
         if($request->hasFile('gambar_umkm')) {
 
