@@ -39,6 +39,14 @@ Route::get('/', function () {
     return view('main.index');
 });
 
+Route::get('/agenda', function () {
+    return view('main.page.agenda');
+});
+
+Route::get('/umkm', function () {
+    return view('main.page.potensi');
+});
+
 Route::get('/admin', function () {
     return view('admin.auth/login');
 });
@@ -46,9 +54,6 @@ Route::get('/admin', function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
-    // Route::get('/dashboard', function () {
-    //     return view('admin.home', ['users' => User::get(), DashboardController::class, 'index']);
-    // });
 
     //user list
     Route::prefix('user-management')->group(function () {

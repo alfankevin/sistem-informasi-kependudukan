@@ -18,6 +18,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/components.css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
@@ -117,6 +118,9 @@
     <script src="/assets/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
+    <script src="/assets/js/Chart.min.js"></script>
+    <script src="/assets/js/chartjs.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
     @stack('customScript')
 </body>
 

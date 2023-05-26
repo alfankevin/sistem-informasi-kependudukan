@@ -20,7 +20,7 @@ class MenuGroupSeeder extends Seeder
             [
                 [
                     'name' => 'Dashboard',
-                    'icon' => 'fas fa-tachometer-alt',
+                    'icon' => 'fas fa-chart-pie',
                     'permission_name' => 'dashboard',
                 ],
                 [
@@ -34,7 +34,7 @@ class MenuGroupSeeder extends Seeder
                     'permisison_name' => 'organisasi.management',
                 ],
                 [
-                    'name' => 'Bantuan Sosial',
+                    'name' => 'Bantuan',
                     'icon' => 'fas fa-handshake',
                     'permisison_name' => 'sosial.management',
                 ],
@@ -54,17 +54,17 @@ class MenuGroupSeeder extends Seeder
                     'permisison_name' => 'galeri.management',
                 ],
                 [
-                    'name' => 'Users Management',
+                    'name' => 'Users',
                     'icon' => 'fas fa-user-tag',
                     'permission_name' => 'user.management',
                 ],
                 // [
-                //     'name' => 'Role Management',
+                //     'name' => 'Role',
                 //     'icon' => 'fas fa-user-tag',
                 //     'permisison_name' => 'role.permission.management',
                 // ],
                 [
-                    'name' => 'Menu Management',
+                    'name' => 'Menu',
                     'icon' => 'fas fa-bars',
                     'permisison_name' => 'menu.management',
                 ]

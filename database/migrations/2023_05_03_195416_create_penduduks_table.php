@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('sosial_id')->default(0);
             $table->char('no_kk',16);
             $table->char('nik', 16);
-            $table->enum('kepala_keluarga', ['0','1'])->default(0);
+            $table->boolean('kepala_keluarga')->default(false);
             $table->string('nama', 128);
             $table->string('tempat_lahir', 128);
             $table->date('tanggal_lahir');
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('status_perkawinan', 32);
             $table->string('pekerjaan', 128);
             $table->string('alamat', 256);
+            $table->integer('rt');
             $table->string('jabatan')->default(0);
             $table->string('keterangan', 128);
             $table->timestamps();

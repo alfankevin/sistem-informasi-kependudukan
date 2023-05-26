@@ -42,6 +42,7 @@
                                             <th>Agama</th>
                                             <th>Pekerjaan</th>
                                             <th>Alamat</th>
+                                            <th>RT</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                         @foreach ($penduduk as $key => $item)
@@ -50,12 +51,13 @@
                                                 </td>
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->tempat_lahir }}</td>
-                                                <td>{{ $item->tanggal_lahir }}</td>
+                                                <td style="white-space: nowrap">{{ $item->tanggal_lahir }}</td>
                                                 <td>{{ $item->jenis_kelamin }}</td>
                                                 <td>{{ $item->golongan_darah }}</td>
                                                 <td>{{ $item->agama }}</td>
                                                 <td>{{ $item->pekerjaan }}</td>
                                                 <td>{{ $item->alamat }}</td>
+                                                <td>0{{ $item->rt }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <button class="btn btn-sm btn-success btn-icon d-flex align-items-center" data-toggle="modal" data-target="#exampleModalCenter">

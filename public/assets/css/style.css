@@ -980,7 +980,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .card.card-hero .card-header {
     padding: 40px;
-    background-image: linear-gradient(to bottom, #0000AA, #95a0f4);
+    background-image: linear-gradient(to bottom, #007bff, #007bff80);
     color: #fff;
     overflow: hidden;
     height: auto;
@@ -998,7 +998,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .card.card-hero .card-header .card-icon {
     float: right;
-    color: #8c98f3;
+    color: #ffffff40;
     margin: -60px;
 }
 .card.card-hero .card-header .card-icon .ion,
@@ -1423,20 +1423,20 @@ table tr:hover .table-links {
 
 /* 3.10 Pagination */
 .page-item .page-link {
-    color: #0000AA;
+    color: #007bff;
     border-radius: 3px;
     margin: 0 3px;
 }
 
 .page-item.active .page-link {
-    background-color: #0000AA;
-    border-color: #0000AA;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .page-item.disabled .page-link {
     border-color: transparent;
     background-color: #f9fafe;
-    color: #0000AA;
+    color: #007bff;
     opacity: 0.6;
 }
 
@@ -1446,7 +1446,7 @@ table tr:hover .table-links {
     font-weight: 600;
 }
 .page-link:hover {
-    background-color: #0000AA;
+    background-color: #007bff;
     color: #fff;
     border-color: transparent;
 }

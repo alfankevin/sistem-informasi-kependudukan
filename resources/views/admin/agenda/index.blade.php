@@ -53,14 +53,10 @@
                                                         @if ($item->prioritas)
                                                         <button class="unmark-btn btn btn-sm btn-success btn-icon d-flex align-items-center" data-id="{{ $item->id }}">
                                                             <span><i class="fas fa-eye"></i></span>&nbsp;Mark</button>
-                                                            {{-- <button class="unmark-btn" data-id="{{ $row->id }}">Unmark</button> --}}
                                                         @else
                                                         <button class="mark-btn btn btn-sm btn-warning btn-icon d-flex align-items-center" data-id="{{ $item->id }}">
                                                             <span><i class="fas fa-eye"></i></span>&nbsp;Mark</button>
-                                                            {{-- <button class="mark-btn" data-id="{{ $row->id }}">Mark</button> --}}
                                                         @endif
-                                                        {{-- <button class="btn btn-sm btn-warning btn-icon d-flex align-items-center">
-                                                            <span><i class="fas fa-eye"></i></span>&nbsp;Mark</button> --}}
                                                         <a href="{{ route('agenda.edit', $item->id) }}"
                                                             class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center">
                                                             <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>

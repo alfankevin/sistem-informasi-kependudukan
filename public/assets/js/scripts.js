@@ -614,20 +614,3 @@ $(function() {
     });
   }
 });
-
-var openGambar = document.querySelectorAll('.open-item')
-var closeGambar = document.querySelectorAll('.close-item')
-
-openGambar.forEach(function(item) {
-  item.addEventListener('click', function() {
-    var itemId = this.getAttribute('item-id');
-    document.getElementById('open-' + itemId).style.display = 'unset'  
-  })
-})
-
-closeGambar.forEach(function(item) {
-  item.addEventListener('click', function() {
-    var itemId = this.getAttribute('id');
-    document.getElementById(itemId).style.display = 'none'  
-  })
-})
