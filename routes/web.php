@@ -6,14 +6,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\SosialController;
 use App\Http\Controllers\PotensiController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Menu\MenuGroupController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use App\Http\Controllers\RoleAndPermission\ExportRoleController;
 use App\Http\Controllers\RoleAndPermission\ImportRoleController;
@@ -22,7 +24,6 @@ use App\Http\Controllers\RoleAndPermission\AssignPermissionController;
 use App\Http\Controllers\RoleAndPermission\AssignUserToRoleController;
 use App\Http\Controllers\RoleAndPermission\ExportPermissionController;
 use App\Http\Controllers\RoleAndPermission\ImportPermissionController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,8 @@ Route::get('/umkm', function () {
 Route::get('/admin', function () {
     return view('admin.auth/login');
 });
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
