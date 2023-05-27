@@ -9,8 +9,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $countPenduduk = Penduduk::all();;
+        $countPenduduk = Penduduk::count();
+        $countLaki = Penduduk::where('jenis_kelamin', 'L')->count();
+        $countPerempuan = Penduduk::where('jenis_kelamin', 'P')->count();
+        $countKK = Penduduk::where('kepala_keluarga', true)->count();
 
-        return view('admin.home', compact('countPenduduk'));
+        return view('admin.home', compact('countPenduduk', 'countLaki', 'countPerempuan', 'countKK'));
     }
 }

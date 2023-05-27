@@ -16,7 +16,7 @@
                             <h4>Penduduk</h4>
                         </div>
                         <div class="card-body">
-                            {{ $countPenduduk->count() }}
+                            {{ $countPenduduk }}
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                             <h4>Laki-laki</h4>
                         </div>
                         <div class="card-body">
-                            100
+                            {{ $countLaki }}
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             <h4>Perempuan</h4>
                         </div>
                         <div class="card-body">
-                            80
+                            {{ $countPerempuan }}
                         </div>
                     </div>
                 </div>
@@ -55,12 +55,12 @@
                             <h4>Kepala Keluarga</h4>
                         </div>
                         <div class="card-body">
-                            47
+                            {{ $countKK }}
                         </div>
                     </div>
                 </div>
             </div>
-    
+
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="card">
@@ -205,7 +205,7 @@
                             <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
                         </div>
-      
+
                         <div class="mb-4">
                           <div class="text-small float-right font-weight-bold text-muted">1,880</div>
                           <div class="font-weight-bold mb-1">RT 02</div>
@@ -213,7 +213,7 @@
                             <div class="progress-bar" role="progressbar" data-width="67%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
                         </div>
-      
+
                         <div class="mb-4">
                           <div class="text-small float-right font-weight-bold text-muted">1,521</div>
                           <div class="font-weight-bold mb-1">RT 03</div>
@@ -221,7 +221,7 @@
                             <div class="progress-bar" role="progressbar" data-width="58%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
                         </div>
-      
+
                         <div class="mb-4">
                           <div class="text-small float-right font-weight-bold text-muted">884</div>
                           <div class="font-weight-bold mb-1">RT 04</div>
@@ -229,7 +229,7 @@
                             <div class="progress-bar" role="progressbar" data-width="36%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
                         </div>
-      
+
                         <div class="mb-4">
                           <div class="text-small float-right font-weight-bold text-muted">473</div>
                           <div class="font-weight-bold mb-1">RT 05</div>
@@ -238,7 +238,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>    
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
