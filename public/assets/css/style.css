@@ -4131,9 +4131,14 @@ body:not(.sidebar-mini)
     background-color: #007bff !important;
 }
 
+.gambar {
+    max-height: 450px;
+    max-width: 800px;
+}
+
 .editGambar {
-    height: 180px;
-    width: 320px;
+    max-height: 180px;
+    max-width: 100%;
     border-radius: .25rem;
 }
 
