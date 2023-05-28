@@ -44,7 +44,7 @@ Route::get('/agenda', function () {
     return view('main.page.agenda');
 });
 
-Route::get('/umkm', function () {
+Route::get('/potensi', function () {
     return view('main.page.potensi');
 });
 
@@ -74,7 +74,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('penduduk-management')->group(function () {
         //penduduk
         Route::resource('penduduk', PendudukController::class)->except(['show']);
-        Route::resource('sosial', SosialController::class);
     });
 
     Route::prefix('organisasi-management')->group(function () {

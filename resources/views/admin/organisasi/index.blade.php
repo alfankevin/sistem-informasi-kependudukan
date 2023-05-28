@@ -77,8 +77,8 @@
     </section>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content" style="overflow: hidden">
-                <img id="gambar" alt="Gambar" height="450px" width="800px">
+            <div class="modal-content" style="overflow: hidden; background: rgba(0,0,0,0)">
+                <img id="gambar" alt="Gambar" style="max-height: 450px; max-width: 800px">
             </div>
         </div>
     </div>
