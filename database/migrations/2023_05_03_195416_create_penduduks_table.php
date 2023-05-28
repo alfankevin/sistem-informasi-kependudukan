@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sosial_id')->default(0);
             $table->char('no_kk',16);
             $table->char('nik', 16);
-            $table->boolean('kepala_keluarga')->default(false);
+            $table->enum('kepala_keluarga', [0, 1]);
             $table->string('nama', 128);
             $table->string('tempat_lahir', 128);
             $table->date('tanggal_lahir');
@@ -29,7 +28,9 @@ return new class extends Migration
             $table->string('pekerjaan', 128);
             $table->string('alamat', 256);
             $table->integer('rt');
-            $table->string('jabatan')->default(0);
+            // $table->foreignId('sosial_id');
+            $table->unsignedBigInteger('sosial_id')->default(0);
+            $table->foreign('sosial_id')->references('id')->on('sosial')->onDelete('cascade');
             $table->string('keterangan', 128);
             $table->timestamps();
         });

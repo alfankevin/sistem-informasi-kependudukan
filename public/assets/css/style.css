@@ -2663,7 +2663,7 @@ ul.nav-tabs li.nav-item a.nav-link.active i {
 
 /* 3.21 Progress Bar */
 .progress-bar {
-    background-color: #0000AA;
+    background-color: #007bff;
 }
 
 /* 3.22 Jumbotron */
@@ -4131,7 +4131,23 @@ body:not(.sidebar-mini)
     background-color: #007bff !important;
 }
 
-.gambar:hover {
+.editGambar {
+    height: 180px;
+    width: 320px;
+    border-radius: .25rem;
+}
+
+.openGambar:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+
+.mmodal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    height: 450px;
+    width: 800px;
+    background: #87ceea;
 }

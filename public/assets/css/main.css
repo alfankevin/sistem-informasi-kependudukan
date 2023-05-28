@@ -1,3 +1,6 @@
+body {
+    background-color: #f4f6f9;
+}
 
 .navbar, #ormas h2, #agenda h2, #potensi h2, #agenda h5, #potensi h5{
     font-family: 'Poppins', sans-serif;
@@ -136,6 +139,21 @@ background-color: blue
 
 .blue-title{
 color: #485ae4;
+}
+
+.sambutan {
+    background-image: url(/assets/img/main/bg-pantai.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.profile {
+    height: 350px;
+    width: 400px;
+    object-fit: cover;
+    object-position: 100% 35%;
+    background-color: #f4f6f9;
 }
 
 .potensi img{

@@ -1,9 +1,9 @@
 <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-        <a href="#"><img src="/assets/img/malang.png" width="25px" alt=""></a>
+        <a href="/dashboard"><img src="/assets/img/malang.png" width="25px" alt=""></a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-        <a href="#"><img src="/assets/img/malang.png" width="25px" alt=""></a>
+        <a href="/dashboard"><img src="/assets/img/malang.png" width="25px" alt=""></a>
     </div>
     <ul class="sidebar-menu">
         @foreach ($menuGroups as $item)

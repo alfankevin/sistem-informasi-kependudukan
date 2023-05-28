@@ -83,7 +83,7 @@ var myChart = new Chart(ctx, {
     }],
     labels: [
       'Islam',
-      'Kristen',
+      'Katolik',
       'Protestan',
       'Hindu',
       'Budha'

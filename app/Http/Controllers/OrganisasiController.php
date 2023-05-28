@@ -46,8 +46,8 @@ class OrganisasiController extends Controller
     {
         $request->validate([
             'nama_organisasi'=>'required',
-            'gambar_organisasi'=>'required',
             'deskripsi_organisasi'=>'required',
+            'gambar_organisasi'=>'required',
         ]);
 
         if($request->hasFile('gambar_organisasi')) {
@@ -59,8 +59,8 @@ class OrganisasiController extends Controller
 
         $organisasi = new Organisasi(array(
             'nama_organisasi' => $request->get('nama_organisasi'),
-            'gambar_organisasi' => $fileName,
             'deskripsi_organisasi' => $request->get('deskripsi_organisasi'),
+            'gambar_organisasi' => $fileName,
         ));
 
         $organisasi->save();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePendudukRequest;
 use App\Http\Requests\UpdatePendudukRequest;
 use App\Models\Penduduk;
+use App\Models\Sosial;
 use Illuminate\Http\Request;
 
 class PendudukController extends Controller
@@ -34,7 +35,8 @@ class PendudukController extends Controller
      */
     public function create()
     {
-        return view('admin.penduduk.create');
+        $sosial = Sosial::all();
+        return view('admin.penduduk.create', compact('sosial'));
     }
 
     /**
@@ -57,7 +59,9 @@ class PendudukController extends Controller
             'status_perkawinan'=>'required',
             'pekerjaan'=>'required',
             'alamat'=>'required',
+            'rt'=>'required',
             'keterangan'=>'required',
+            'sosial_id'=>'required',
         ]);
 
         Penduduk::create($request->all());
@@ -86,7 +90,9 @@ class PendudukController extends Controller
     public function edit(string $id)
     {
         $penduduk = Penduduk::find($id);
-        return view('admin.penduduk.edit', compact('penduduk'));
+        $sosial = Sosial::all();
+        // $nama_sosial = select nama_sosial from sosial where id = (select sosial_id from penduduk where id = $id);
+        return view('admin.penduduk.edit', compact('penduduk', 'sosial'));
     }
 
     /**
@@ -110,7 +116,9 @@ class PendudukController extends Controller
             'status_perkawinan'=>'required',
             'pekerjaan'=>'required',
             'alamat'=>'required',
+            'rt'=>'required',
             'keterangan'=>'required',
+            'sosial_id'=>'required',
         ]);
 
         Penduduk::find($id)->update($request->all());

@@ -57,7 +57,7 @@
                             <label for="sosial_media">Sosial Media</label>
                             <input id="sosial_media" name="sosial_media" type="text" spellcheck="false" autocomplete="off"
                                 class="form-control @error('sosial_media') is-invalid @enderror"
-                                value={{ old('sosial_media', $potensi->sosial_media) }}>
+                                value="{{ old('sosial_media', $potensi->sosial_media) }}">
                             @error('sosial_media')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -66,10 +66,10 @@
                         </div>
                         <div class="form-group">
                             <label for="gambar_umkm">Gambar UMKM</label><br>
-                            <img src="/assets/img/potensi/{{ $potensi->gambar_umkm }}" alt="{{ $potensi->gambar_umkm }}" height="180px" width="320px" class="mb-2">
+                            <img src="/assets/img/potensi/{{ $potensi->gambar_umkm }}" alt="{{ $potensi->gambar_umkm }}" class="editGambar mb-2">
                             <input id="gambar_umkm" name="gambar_umkm" type="file" spellcheck="false" autocomplete="off"
                                 class="form-control @error('gambar_umkm') is-invalid @enderror"
-                                value={{ old('gambar_umkm', $potensi->gambar_umkm) }}>
+                                value="{{ old('gambar_umkm', $potensi->gambar_umkm) }}">
                             @error('gambar_umkm')
                                 <div class="invalid-feedback">
                                     {{ $message }}

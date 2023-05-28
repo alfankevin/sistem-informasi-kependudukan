@@ -47,7 +47,7 @@
                                                 <td>{{ $item->judul_agenda }}</td>
                                                 <td>{{ $item->tanggal_agenda }}</td>
                                                 <td>{{ $item->deskripsi_agenda }}</td>
-                                                <td class="gambar" data-toggle="modal" data-target="#exampleModalCenter">{{ $item->gambar_agenda }}</td>
+                                                <td class="openGambar" data-toggle="modal" data-target="#exampleModalCenter" data-gambar="/assets/img/agenda/{{ $item->gambar_agenda }}">{{ $item->gambar_agenda }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         @if ($item->prioritas)
@@ -85,14 +85,21 @@
         </div>
     </section>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <img src="/assets/img/agenda/gambar.jpeg" alt="Gambar" height="450px" width="800px" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" style="overflow: hidden">
+                <img id="gambar" alt="Gambar" height="450px" width="800px">
             </div>
         </div>
     </div>
 @endsection
 @push('customScript')
+    <script>
+        $(document).on("click", ".openGambar", function () {
+            var gambar = $(this).data('gambar');
+            $('.modal-content img').prop('src', $(this).data('gambar'));
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             $('.import').click(function(event) {
@@ -114,40 +121,40 @@
         });
     </script>
 
-<script>
-    $(document).ready(function() {
-        $('.mark-btn, .unmark-btn').click(function() {
-            var button = $(this);
-            var id = button.data('id');
-            var url = "{{ route('agenda.mark', ':id') }}";
-            url = url.replace(':id', id);
+    <script>
+        $(document).ready(function() {
+            $('.mark-btn, .unmark-btn').click(function() {
+                var button = $(this);
+                var id = button.data('id');
+                var url = "{{ route('agenda.mark', ':id') }}";
+                url = url.replace(':id', id);
 
-            $.ajax({
-                url: url,
-                type: 'PATCH',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: id
-                },
-                success: function(response) {
-                    // Update the button text and class
-                    if (button.hasClass('mark-btn')) {
-                        // button.text('Mark');
-                        button.removeClass('mark-btn btn btn-sm btn-warning btn-icon d-flex align-items-center').addClass('unmark-btn btn btn-sm btn-success btn-icon d-flex align-items-center');
-                        // button.removeClass('mark-btn').addClass('unmark-btn');
-                    } else {
-                        // button.text('Mark');
-                        button.removeClass('unmark-btn btn-sm btn btn-success btn-icon d-flex align-items-center').addClass('mark-btn btn btn-sm btn-warning btn-icon d-flex align-items-center');
+                $.ajax({
+                    url: url,
+                    type: 'PATCH',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: id
+                    },
+                    success: function(response) {
+                        // Update the button text and class
+                        if (button.hasClass('mark-btn')) {
+                            // button.text('Mark');
+                            button.removeClass('mark-btn btn btn-sm btn-warning btn-icon d-flex align-items-center').addClass('unmark-btn btn btn-sm btn-success btn-icon d-flex align-items-center');
+                            // button.removeClass('mark-btn').addClass('unmark-btn');
+                        } else {
+                            // button.text('Mark');
+                            button.removeClass('unmark-btn btn-sm btn btn-success btn-icon d-flex align-items-center').addClass('mark-btn btn btn-sm btn-warning btn-icon d-flex align-items-center');
+                        }
+                    },
+                    error: function(xhr) {
+                        var error = JSON.parse(xhr.responseText);
+                        alert(error.message);
                     }
-                },
-                error: function(xhr) {
-                    var error = JSON.parse(xhr.responseText);
-                    alert(error.message);
-                }
+                });
             });
         });
-    });
-</script>
+    </script>
 @endpush
 
 @push('customStyle')

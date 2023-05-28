@@ -60,7 +60,9 @@
                                                 <td>0{{ $item->rt }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center" data-toggle="modal" data-target="#exampleModalCenter">
+                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center openKTP" data-toggle="modal" data-target="#exampleModalCenter"
+                                                            data-nama="{{ $item->nama }}"
+                                                            data-tempat_lahir="{{ $item->tempat_lahir }}">
                                                             <span><i class="fas fa-user"></i></span>&nbsp;Detail</button>
                                                         <a href="{{ route('penduduk.edit', $item->id) }}"
                                                             class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center">
@@ -91,8 +93,11 @@
     </section>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                {{ $item->nama }}
+            <div class="modal-content detail-nik">
+                <div class="">
+                    <div name="nama" id="nama"></div>
+                    <div name="tempat_lahir" id="tempat_lahir"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -116,6 +121,13 @@
                 var file = $('#file-upload')[0].files[0].name;
                 $(this).prev('label').text(file);
             });
+        });
+
+        $(document).on("click", ".openKTP", function () {
+            var nama = $(this).data('nama');
+            var tempat_lahir = $(this).data('tempat_lahir');
+            $(".modal-content #nama").text(nama);
+            $(".modal-content #tempat_lahir").text(tempat_lahir);
         });
     </script>
 @endpush

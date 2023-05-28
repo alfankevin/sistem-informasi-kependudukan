@@ -35,8 +35,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th>Gambar</th>
                                             <th>Deskripsi</th>
+                                            <th>Gambar</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                         @foreach ($organisasi as $key => $item)
@@ -44,8 +44,8 @@
                                                 <td>{{ ($organisasi->currentPage() - 1) * $organisasi->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama_organisasi }}</td>
-                                                <td class="gambar" data-toggle="modal" data-target="#exampleModalCenter">{{ $item->gambar_organisasi }}</td>
                                                 <td>{{ $item->deskripsi_organisasi }}</td>
+                                                <td class="openGambar" data-toggle="modal" data-target="#exampleModalCenter" data-gambar="/assets/img/organisasi/{{ $item->gambar_organisasi }}">{{ $item->gambar_organisasi }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('organisasi.edit', $item->id) }}"
@@ -76,9 +76,9 @@
         </div>
     </section>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <img src="/assets/img/agenda/gambar.jpeg" alt="Gambar" height="450px" width="800px" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" style="overflow: hidden">
+                <img id="gambar" alt="Gambar" height="450px" width="800px">
             </div>
         </div>
     </div>
@@ -102,6 +102,13 @@
                 var file = $('#file-upload')[0].files[0].name;
                 $(this).prev('label').text(file);
             });
+        });
+    </script>
+
+    <script>
+        $(document).on("click", ".openGambar", function () {
+            var gambar = $(this).data('gambar');
+            $('.modal-content img').prop('src', $(this).data('gambar'));
         });
     </script>
 @endpush

@@ -49,7 +49,7 @@
                                                 <td>{{ $item->alamat_umkm }}</td>
                                                 <td>{{ $item->deskripsi_umkm }}</td>
                                                 <td>{{ $item->sosial_media }}</td>
-                                                <td class="gambar" data-toggle="modal" data-target="#exampleModalCenter">{{ $item->gambar_umkm }}</td>
+                                                <td class="openGambar" data-toggle="modal" data-target="#exampleModalCenter" data-gambar="/assets/img/potensi/{{ $item->gambar_umkm }}">{{ $item->gambar_umkm }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('potensi.edit', $item->id) }}"
@@ -80,9 +80,9 @@
         </div>
     </section>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <img src="/assets/img/organisasi/gambar.jpeg" alt="Gambar" height="450px" width="800px" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" style="overflow: hidden">
+                <img id="gambar" alt="Gambar" height="450px" width="800px">
             </div>
         </div>
     </div>
@@ -106,6 +106,13 @@
                 var file = $('#file-upload')[0].files[0].name;
                 $(this).prev('label').text(file);
             });
+        });
+    </script>
+    
+    <script>
+        $(document).on("click", ".openGambar", function () {
+            var gambar = $(this).data('gambar');
+            $('.modal-content img').prop('src', $(this).data('gambar'));
         });
     </script>
 @endpush

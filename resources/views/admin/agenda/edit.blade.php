@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label for="gambar_agenda">Gambar Agenda</label><br>
-                            <img src="/assets/img/agenda/{{ $agenda->gambar_agenda }}" alt="{{ $agenda->gambar_agenda }}" height="180px" width="320px" class="mb-2">
+                            <img src="/assets/img/agenda/{{ $agenda->gambar_agenda }}" alt="{{ $agenda->gambar_agenda }}" class="editGambar mb-2">
                             <input id="gambar_agenda" name="gambar_agenda" type="file" spellcheck="false" autocomplete="off"
                             class="form-control @error('gambar_agenda') is-invalid @enderror"
                                 value="{{ old('gambar_agenda', $agenda->gambar_agenda) }}">

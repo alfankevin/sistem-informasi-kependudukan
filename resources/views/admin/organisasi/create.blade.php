@@ -31,20 +31,20 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="gambar_organisasi">Gambar Organisasi</label>
-                            <input type="file" class="form-control @error('gambar_organisasi') is-invalid @enderror" id="gambar_organisasi"
-                            name="gambar_organisasi" value="{{ old('gambar_organisasi') }}" spellcheck="false" autocomplete="off">
-                            @error('gambar_organisasi')
+                            <label for="deskripsi_organisasi">Deskripsi Organisasi</label>
+                            <input id="deskripsi_organisasi" name="deskripsi_organisasi" type="text" spellcheck="false" autocomplete="off"
+                            class="form-control @error('deskripsi_organisasi') is-invalid @enderror" value="{{ old('deskripsi_organisasi') }}">
+                            @error('deskripsi_organisasi')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="deskripsi_organisasi">Deskripsi Organisasi</label>
-                            <input id="deskripsi_organisasi" name="deskripsi_organisasi" type="text" spellcheck="false" autocomplete="off"
-                            class="form-control @error('deskripsi_organisasi') is-invalid @enderror" value="{{ old('deskripsi_organisasi') }}">
-                            @error('deskripsi_organisasi')
+                            <label for="gambar_organisasi">Gambar Organisasi</label>
+                            <input type="file" class="form-control @error('gambar_organisasi') is-invalid @enderror" id="gambar_organisasi"
+                            name="gambar_organisasi" value="{{ old('gambar_organisasi') }}" spellcheck="false" autocomplete="off">
+                            @error('gambar_organisasi')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

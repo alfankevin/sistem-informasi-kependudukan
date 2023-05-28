@@ -33,32 +33,34 @@
     </section>
     <!-- Sambutan -->
     <!-- About start -->
-    <div class="container-xxl py-5">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-4">
-                <div class="">
-                    <img class="img-fluid rounded-5"
-                        src="{{ asset('assets/img/main/profile.jpeg') }}" style="object-fit: cover; object-position: 100% 15%; width: 400px; height: 350px;" alt="img">
+    <section class="sambutan">
+        <div class="container-xxl py-5">
+            <div class="row g-5 align-items-center" style="min-height: 500px">
+                <div class="col-lg-4">
+                    <div class="">
+                        <img class="img-fluid rounded-4 profile"
+                            src="{{ asset('assets/img/main/profile2.png') }}" alt="Profile">
+                    </div>
+    
                 </div>
-
-            </div>
-            <div class="col-lg-8">
-                <h1 class="mb-4">SAMBUTAN <span class="text-dark-blue text-uppercase">KETUA RW 05</span></h1>
-                <p class="mb-4"> Assalamualaikum Wr. Wb.</b></p>
-
-                <p>
-                Kemanusiaan Yang Adil dan Beradab adalah sebaik-baik barometer kita sebagai Warga Negara yang baik dalam memberikan pelayanan dan sebagai wakil pemerintah di tengah-tengah masyarakat, karena kemajuan sebuah lingkungan terutama sosial ekonomi bukan hanya menjadi tanggung jawab perorangan. Melainkan tanggung jawab kita semua. Untuk itu hanya dengan niat dan kemauan yang kuat ditambah doa kita Semua insyaAllah mampu mengubah RW 05 Kelurahan Tanjungrejo, Kota Malang ini menjadi lingkungan yang lebih guyub dan rukun, adil dan beradab sosial dan ekonominya. Lebih merdeka dalam segala hal yang positif. Terima kasih. </p>
-
-                <p>
-                  <span class="badge rounded-pill bg-dark-blue">#tonggoKuiseduLurPalingCede'k</span>
-                  <span class="badge rounded-pill bg-dark-blue">#RW05PeduliLingkungan</span>
-                  <span class="badge rounded-pill bg-dark-blue">#TanjungrejoDisiniAja</span>
-                  <span class="badge rounded-pill bg-dark-blue">#TidakKemana-ManaAdaDimana-Mana</span>
-                </p>
+                <div class="col-lg-8">
+                    <h1 class="mb-4">SAMBUTAN <span class="text-dark-blue text-uppercase">KETUA RW 05</span></h1>
+                    <p class="mb-4"> Assalamualaikum Wr. Wb.</b></p>
+    
+                    <p class="mb-4" style="line-height: 2">
+                    Kemanusiaan Yang Adil dan Beradab adalah sebaik-baik barometer kita sebagai Warga Negara yang baik dalam memberikan pelayanan dan sebagai wakil pemerintah di tengah-tengah masyarakat, karena kemajuan sebuah lingkungan terutama sosial ekonomi bukan hanya menjadi tanggung jawab perorangan. Melainkan tanggung jawab kita semua. Untuk itu hanya dengan niat dan kemauan yang kuat ditambah doa kita Semua insyaAllah mampu mengubah RW 05 Kelurahan Tanjungrejo, Kota Malang ini menjadi lingkungan yang lebih guyub dan rukun, adil dan beradab sosial dan ekonominya. Lebih merdeka dalam segala hal yang positif. Terima kasih. </p>
+    
+                    <p>
+                        <span class="badge rounded-pill bg-dark-blue">#tonggoKuiseduLurPalingCede'k</span>
+                        <span class="badge rounded-pill bg-dark-blue">#RW05PeduliLingkungan</span>
+                        <span class="badge rounded-pill bg-dark-blue">#TanjungrejoDisiniAja</span>
+                        <span class="badge rounded-pill bg-dark-blue">#TidakKemana-ManaAdaDimana-Mana</span>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row p-3 mb-2 bg-dark-blue text-white" style="background-image: url(/assets/img/main/bg.jpg); background-position: center; background-repeat: no-repeat; background-size: cover">
+    </section>
+    <div class="row p-3 mb-2 bg-dark-blue text-white" style="background-image: url(/assets/img/main/bg-gunung.jpg); background-position: center; background-repeat: no-repeat; background-size: cover">
         <div class="col-sm-3 wow fadeIn" data-wow-delay="0.1s">
             <div class=" p-1">
                 <div class=" text-center p-4">
@@ -315,61 +317,63 @@
         <!-- about end -->
 
         <!-- galery start -->
-        <section class="container">
-            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4 mx-auto">
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=1"
-                            alt="Random Image"></figure>
+        <div style="background: #eaeaea">
+            <section class="container">
+                <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4 mx-auto">
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=1"
+                                alt="Random Image"></figure>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=2"
+                                alt="Random Image"></figure>
+                    </div>
+    
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+    
+                        <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=3"
+                                alt="Random Image"></figure>
+    
+                    </div>
+    
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+    
+                        <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=4"
+                                alt="Random Image"></figure>
+    
+                    </div>
+    
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+    
+                        <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=5"
+                                alt="Random Image"></figure>
+    
+                    </div>
+    
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+    
+                        <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=6"
+                                alt="Random Image"></figure>
+    
+                    </div>
+    
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+    
+                        <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=7"
+                                alt="Random Image"></figure>
+    
+                    </div>
+    
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+    
+                        <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=8"
+                                alt="Random Image"></figure>
+    
+                    </div>
+    
                 </div>
-
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=2"
-                            alt="Random Image"></figure>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-
-                    <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=3"
-                            alt="Random Image"></figure>
-
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-
-                    <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=4"
-                            alt="Random Image"></figure>
-
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-
-                    <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=5"
-                            alt="Random Image"></figure>
-
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-
-                    <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=6"
-                            alt="Random Image"></figure>
-
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-
-                    <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=7"
-                            alt="Random Image"></figure>
-
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-
-                    <figure><img class="img-fluid img-thumbnail" src="https://picsum.photos/940/650?random=8"
-                            alt="Random Image"></figure>
-
-                </div>
-
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 @endsection
