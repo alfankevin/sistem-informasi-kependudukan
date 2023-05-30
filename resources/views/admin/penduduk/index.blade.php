@@ -62,7 +62,7 @@
                                                 <td>0{{ $item->rt }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
+                                                        <button class="btn btn-sm btn-warning btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
                                                             data-toggle="modal"
                                                             data-target="#exampleModalCenter"
                                                             data-nama="{{ $item->nama }}"
