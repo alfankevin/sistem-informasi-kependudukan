@@ -67,6 +67,7 @@ var myChart = new Chart(ctx, {
     datasets: [{
       data: [
         80,
+        30,
         50,
         40,
         30,
@@ -74,6 +75,7 @@ var myChart = new Chart(ctx, {
       ],
       backgroundColor: [
         '#191d21',
+        '#6c757d',
         '#47c363',
         '#ffa426',
         '#fc544b',
@@ -86,7 +88,8 @@ var myChart = new Chart(ctx, {
       'Katolik',
       'Protestan',
       'Hindu',
-      'Budha'
+      'Budha',
+      'Konghucu'
     ],
   },
   options: {

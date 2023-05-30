@@ -21,11 +21,10 @@ class PendudukController extends Controller
             $penduduk = Penduduk::where('nama','like','%'.$request->search.'%')->paginate(15);
         } else {
             $penduduk = Penduduk::all();
-            $penduduk = Penduduk::orderBy('id', 'asc')->paginate(15);
         }
 
         return view('admin.penduduk.index', compact('penduduk'));
-        with('i', (request()->input('page', 1) - 1) * 5);
+        with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**

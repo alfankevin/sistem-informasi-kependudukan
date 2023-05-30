@@ -41,19 +41,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Kepala Keluarga</label>
-                            <select class="form-control select2 @error('kepala_keluarga') is-invalid @enderror" name="kepala_keluarga">
-                                <option value=""></option>
-                                <option value="1" @if (old('kepala_keluarga') == "1") {{ 'selected' }} @endif>Ya</option>
-                                <option value="0" @if (old('kepala_keluarga') == "0") {{ 'selected' }} @endif>Tidak</option>
-                            </select>
-                            @error('kepala_keluarga')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                 id="nama" name="nama" value="{{ old('nama') }} " spellcheck="false" autocomplete="off">
@@ -121,6 +108,7 @@
                                 <option value="Protestan" @if (old('agama') == "Protestan") {{ 'selected' }} @endif>Protestan</option>
                                 <option value="Hindu" @if (old('agama') == "Hindu") {{ 'selected' }} @endif>Hindu</option>
                                 <option value="Budha" @if (old('agama') == "Budha") {{ 'selected' }} @endif>Budha</option>
+                                <option value="Konghucu" @if (old('agama') == "Konghucu") {{ 'selected' }} @endif>Konghucu</option>
                             </select>
                             @error('agama')
                                 <div class="invalid-feedback">
@@ -140,6 +128,20 @@
                                 <option value="Cerai Mati" @if (old('status_perkawinan') == "Cerai Mati") {{ 'selected' }} @endif>Cerai Mati</option>
                             </select>
                             @error('status_perkawinan')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Status Hubungan Dalam Keluarga</label>
+                            <select class="form-control select2 @error('kepala_keluarga') is-invalid @enderror" name="kepala_keluarga">
+                                <option value=""></option>
+                                <option value="1" @if (old('kepala_keluarga') == "1") {{ 'selected' }} @endif>Kepala Keluarga</option>
+                                <option value="0" @if (old('kepala_keluarga') == "0") {{ 'selected' }} @endif>Istri</option>
+                                {{-- <option value="0" @if (old('kepala_keluarga') == "0") {{ 'selected' }} @endif>Anak</option> --}}
+                            </select>
+                            @error('kepala_keluarga')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

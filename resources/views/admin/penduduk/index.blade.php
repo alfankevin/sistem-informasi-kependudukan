@@ -30,12 +30,12 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-md">
-                                    <tbody>
+                                <table class="table table-bordered table-md" id="table-1">
+                                    <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th>Tempat Lahir</th>
+                                            <th style="white-space: nowrap">Tempat Lahir</th>
                                             <th>Tgl Lahir</th>
                                             <th>Jenis.</th>
                                             <th>Gol.</th>
@@ -45,9 +45,11 @@
                                             <th>RT</th>
                                             <th class="text-right">Action</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
                                         @foreach ($penduduk as $key => $item)
                                             <tr>
-                                                <td>{{ ($penduduk->currentPage() - 1) * $penduduk->perPage() + $key + 1 }}
+                                                <td>{{ $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->tempat_lahir }}</td>
@@ -60,20 +62,22 @@
                                                 <td>0{{ $item->rt }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center openKTP" data-toggle="modal" data-target="#exampleModalCenter"
+                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModalCenter"
                                                             data-nama="{{ $item->nama }}"
                                                             data-tempat_lahir="{{ $item->tempat_lahir }}">
-                                                            <span><i class="fas fa-user"></i></span>&nbsp;Detail</button>
+                                                            <i class="fas fa-user"></i></button>
                                                         <a href="{{ route('penduduk.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center">
-                                                            <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>
+                                                            class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
+                                                            <i class="fas fa-pen"></i></a>
                                                         <form action="{{ route('penduduk.destroy', $item->id) }}"
                                                             method="POST">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete d-flex align-items-center">
-                                                            <span><i class="fas fa-times"></i></span>&nbsp;Delete</button>
+                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
+                                                            <i class="fas fa-trash"></i></button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -81,9 +85,6 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="d-flex justify-content-center">
-                                    {{ $penduduk->withQueryString()->links() }}
-                                </div>
                             </div>
                         </div>
                     </div>

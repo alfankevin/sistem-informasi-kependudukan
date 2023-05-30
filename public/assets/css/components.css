@@ -332,9 +332,11 @@
 table.dataTable {
   border-collapse: collapse !important; }
   table.dataTable thead th, table.dataTable thead td {
-    border-bottom: 1px solid #ddd !important; }
+    /* border-bottom: 1px solid #ddd !important; } */
+    border-bottom: 1px solid #f6f6f6 !important; }
   table.dataTable.no-footer {
-    border-bottom: 1px solid #ddd !important; }
+    /* border-bottom: 1px solid #ddd !important; } */
+    border-bottom: 1px solid #f6f6f6 !important; }
 
 .dataTables_wrapper {
   padding: 0 !important;
@@ -719,6 +721,9 @@ tr:first-child > td > .fc-day-grid-event {
 
 .select2-results__option {
   padding: 10px; }
+
+.select2-results__option:first-child {
+  padding: 0; }
 
 .select2-search--dropdown .select2-search__field {
   padding: 7px; }

@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css" />
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/assets/css/select.bootstrap4.min.css">
     @stack('customStyle')
     <!-- Template CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -105,6 +107,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="/assets/js/stisla.js"></script>
@@ -112,6 +115,9 @@
     <!-- JS Libraies -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/assets/js/page/modules-sweetalert.js"></script>
+    <script src="/assets/js/dataTables.min.js"></script>
+    <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/js/select.bootstrap4.min.js"></script>
 
     <!-- Template JS File -->
     <script src="/assets/js/scripts.js"></script>
@@ -120,6 +126,7 @@
     <!-- Page Specific JS File -->
     <script src="/assets/js/Chart.min.js"></script>
     <script src="/assets/js/chartjs.js"></script>
+    <script src="/assets/js/datatables.js"></script>
     <script src="/assets/js/owl.carousel.min.js"></script>
     @stack('customScript')
 </body>
