@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('golongan_darah', 2);
             $table->string('agama', 16);
             $table->string('status_perkawinan', 32);
-            $table->enum('status_keluarga', ['0', '1']);
+            $table->boolean('status_keluarga')->default(false);
             $table->string('pekerjaan', 128);
             $table->string('alamat', 256);
             $table->integer('rt');
