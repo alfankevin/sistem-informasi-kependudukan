@@ -17,14 +17,8 @@ class PendudukController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('search')) {
-            $penduduk = Penduduk::where('nama','like','%'.$request->search.'%')->paginate(15);
-        } else {
-            $penduduk = Penduduk::all();
-        }
-
+        $penduduk = Penduduk::all();
         return view('admin.penduduk.index', compact('penduduk'));
-        with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
