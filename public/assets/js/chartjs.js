@@ -60,19 +60,15 @@ var myChart = new Chart(ctx, {
   }
 });
 
+console.log(dataAgama);
+console.log(labelAgama);
+
 var ctx = document.getElementById("myChart4").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
     datasets: [{
-      data: [
-        80,
-        30,
-        50,
-        40,
-        30,
-        20,
-      ],
+      data: dataAgama,
       backgroundColor: [
         '#191d21',
         '#6c757d',
@@ -83,14 +79,7 @@ var myChart = new Chart(ctx, {
       ],
       label: 'Agama'
     }],
-    labels: [
-      'Islam',
-      'Katolik',
-      'Protestan',
-      'Hindu',
-      'Budha',
-      'Konghucu'
-    ],
+    labels: labelAgama,
   },
   options: {
     responsive: true,
@@ -100,17 +89,15 @@ var myChart = new Chart(ctx, {
   }
 });
 
+console.log(dataGolDarah);
+console.log(labelGolDarah);
+
 var ctx = document.getElementById("myChart5").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
     datasets: [{
-      data: [
-        80,
-        50,
-        40,
-        30,
-      ],
+      data: dataGolDarah,
       backgroundColor: [
         '#47c363',
         '#ffa426',
@@ -119,12 +106,7 @@ var myChart = new Chart(ctx, {
       ],
       label: 'Golongan Darah'
     }],
-    labels: [
-      'A',
-      'B',
-      'AB',
-      'O'
-    ],
+    labels: labelGolDarah,
   },
   options: {
     responsive: true,

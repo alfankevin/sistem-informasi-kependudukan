@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->char('no_kk',16);
             $table->char('nik', 16);
-            $table->enum('kepala_keluarga', [0, 1]);
+            $table->boolean('kepala_keluarga')->default(false);
             $table->string('nama', 128);
             $table->string('tempat_lahir', 128);
             $table->date('tanggal_lahir');

@@ -329,4 +329,11 @@
             </div>
         </div>
     </section>
+
+    <script>
+        var dataGolDarah = <?php echo json_encode($dataGolDarah); ?>;
+        var labelGolDarah = <?php echo json_encode($labelGolDarah); ?>;
+        var dataAgama = <?php echo json_encode($dataAgama); ?>;
+        var labelAgama = <?php echo json_encode($labelAgama); ?>;
+    </script>
 @endsection
