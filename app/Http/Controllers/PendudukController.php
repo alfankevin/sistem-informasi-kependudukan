@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePendudukRequest;
 use App\Models\Penduduk;
 use App\Models\Sosial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PendudukController extends Controller
 {
@@ -50,6 +51,7 @@ class PendudukController extends Controller
             'golongan_darah'=>'required',
             'agama'=>'required',
             'status_perkawinan'=>'required',
+            'status_keluarga'=>'required',
             'pekerjaan'=>'required',
             'alamat'=>'required',
             'rt'=>'required',
@@ -84,8 +86,8 @@ class PendudukController extends Controller
     {
         $penduduk = Penduduk::find($id);
         $sosial = Sosial::all();
-        // $nama_sosial = select nama_sosial from sosial where id = (select sosial_id from penduduk where id = $id);
-        return view('admin.penduduk.edit', compact('penduduk', 'sosial'));
+        $nama_sosial = DB::select("SELECT nama_sosial FROM sosial WHERE id = (SELECT sosial_id FROM penduduk WHERE id = ?)", [$id]);
+        return view('admin.penduduk.edit', compact('penduduk', 'sosial', 'nama_sosial'));
     }
 
     /**
@@ -107,6 +109,7 @@ class PendudukController extends Controller
             'golongan_darah'=>'required',
             'agama'=>'required',
             'status_perkawinan'=>'required',
+            'status_keluarga'=>'required',
             'pekerjaan'=>'required',
             'alamat'=>'required',
             'rt'=>'required',

@@ -135,13 +135,12 @@
                         </div>
                         <div class="form-group">
                             <label>Status Hubungan Dalam Keluarga</label>
-                            <select class="form-control select2 @error('kepala_keluarga') is-invalid @enderror" name="kepala_keluarga">
+                            <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="status_keluarga">
                                 <option value=""></option>
-                                <option value="1" @if (old('kepala_keluarga') == "1") {{ 'selected' }} @endif>Kepala Keluarga</option>
-                                <option value="0" @if (old('kepala_keluarga') == "0") {{ 'selected' }} @endif>Istri</option>
-                                {{-- <option value="0" @if (old('kepala_keluarga') == "0") {{ 'selected' }} @endif>Anak</option> --}}
+                                <option value="0" @if (old('status_keluarga') == "0") {{ 'selected' }} @endif>-</option>
+                                <option value="1" @if (old('status_keluarga') == "1") {{ 'selected' }} @endif>Kepala Keluarga</option>
                             </select>
-                            @error('kepala_keluarga')
+                            @error('status_keluarga')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

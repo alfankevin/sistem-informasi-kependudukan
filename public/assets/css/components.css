@@ -723,7 +723,7 @@ tr:first-child > td > .fc-day-grid-event {
   padding: 10px; }
 
 .select2-results__option:first-child {
-  padding: 0; }
+  padding: 0 10px; }
 
 .select2-search--dropdown .select2-search__field {
   padding: 7px; }
