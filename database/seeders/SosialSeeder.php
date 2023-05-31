@@ -16,6 +16,9 @@ class SosialSeeder extends Seeder
     public function run()
     {
         Sosial::create([
+            'nama_sosial' => "-"
+        ]);
+        Sosial::create([
             'nama_sosial' => "Bantuan Pangan Non Tunai"
         ]);
         Sosial::create([
