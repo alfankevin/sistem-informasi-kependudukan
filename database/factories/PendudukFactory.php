@@ -17,21 +17,21 @@ class PendudukFactory extends Factory
     public function definition()
     {
         return [
-            'no_kk' => $this->faker->nik(),
-            'nik' => $this->faker->nik(),
-            'kepala_keluarga' => $this->faker->randomElement(['0', '1']),
+            'no_kk' => $this->faker->randomNumber(9, true),
+            'nik' => $this->faker->randomNumber(9, true),
             'nama' => $this->faker->name(),
             'tempat_lahir' => $this->faker->state(),
             'tanggal_lahir' => $this->faker->date(),
             'jenis_kelamin' => $this->faker->randomElement(['L','P']),           
             'golongan_darah' => $this->faker->randomElement(['A','B','AB','O']),
-            'agama' => $this->faker->randomElement(['Islam','Katolik','Protestan','Hindu','Budha']),
-            'status_perkawinan' => $this->faker->randomElement(['Sudah Kawin','Belum Kawin']),
+            'agama' => $this->faker->randomElement(['Islam','Katolik','Protestan','Hindu','Budha','Konghucu']),
+            'status_perkawinan' => $this->faker->randomElement(['Kawin','Belum Kawin']),
+            'status_keluarga' => $this->faker->randomElement(['0', '1']),
             'pekerjaan' => $this->faker->jobTitle(),
             'alamat' => $this->faker->address(),
             'rt' => $this->faker->randomElement(['1','2','3','4','5']),
             'keterangan' => $this->faker->randomElement(['Hidup','Meninggal']),
-            'sosial_id' => $this->faker->randomElement(['1','2']),
+            'sosial_id' => $this->faker->randomElement(['1','2','3','4','5']),
         ];
     }
 }

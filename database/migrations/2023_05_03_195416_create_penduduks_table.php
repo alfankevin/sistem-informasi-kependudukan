@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->char('no_kk',16);
             $table->char('nik', 16);
-            $table->boolean('kepala_keluarga')->default(false);
             $table->string('nama', 128);
             $table->string('tempat_lahir', 128);
             $table->date('tanggal_lahir');
@@ -25,13 +24,13 @@ return new class extends Migration
             $table->string('golongan_darah', 2);
             $table->string('agama', 16);
             $table->string('status_perkawinan', 32);
+            $table->boolean('status_keluarga')->default(false);
             $table->string('pekerjaan', 128);
             $table->string('alamat', 256);
             $table->integer('rt');
-            // $table->foreignId('sosial_id');
+            $table->string('keterangan', 128);
             $table->unsignedBigInteger('sosial_id')->default(0);
             $table->foreign('sosial_id')->references('id')->on('sosial')->onDelete('cascade');
-            $table->string('keterangan', 128);
             $table->timestamps();
         });
     }

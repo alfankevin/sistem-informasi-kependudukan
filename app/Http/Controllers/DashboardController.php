@@ -13,7 +13,7 @@ class DashboardController extends Controller
         $countPenduduk = Penduduk::count();
         $countLaki = Penduduk::where('jenis_kelamin', 'L')->count();
         $countPerempuan = Penduduk::where('jenis_kelamin', 'P')->count();
-        $countKK = Penduduk::where('kepala_keluarga', true)->count();
+        $countKK = Penduduk::where('status_keluarga', true)->count();
 
         $golDarah = DB::table('penduduk')
             ->select('golongan_darah', DB::raw('count(*) as total'))

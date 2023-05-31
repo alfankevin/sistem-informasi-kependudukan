@@ -113,6 +113,7 @@
                                 <option value="Protestan" @if (old('agama', $penduduk->agama) == "Protestan") {{ 'selected' }} @endif>Protestan</option>
                                 <option value="Hindu" @if (old('agama', $penduduk->agama) == "Hindu") {{ 'selected' }} @endif>Hindu</option>
                                 <option value="Budha" @if (old('agama', $penduduk->agama) == "Budha") {{ 'selected' }} @endif>Budha</option>
+                                <option value="Konghucu" @if (old('agama', $penduduk->agama) == "Konghucu") {{ 'selected' }} @endif>Konghucu</option>
                             </select>
                             @error('agama')
                                 <div class="invalid-feedback">
@@ -139,13 +140,12 @@
                         </div>
                         <div class="form-group">
                             <label>Status Hubungan Dalam Keluarga</label>
-                            <select class="form-control select2 @error('kepala_keluarga') is-invalid @enderror" name="kepala_keluarga">
+                            <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="status_keluarga">
                                 <option value=""></option>
-                                <option value="1" @if (old('kepala_keluarga', $penduduk->kepala_keluarga) == "1") {{ 'selected' }} @endif>Kepala Keluarga</option>
-                                <option value="0" @if (old('kepala_keluarga', $penduduk->kepala_keluarga) == "0") {{ 'selected' }} @endif>Istri</option>
-                                {{-- <option value="0" @if (old('kepala_keluarga', $penduduk->kepala_keluarga) == "0") {{ 'selected' }} @endif>Anak</option> --}}
+                                <option value="0" @if (old('status_keluarga', $penduduk->status_keluarga) == "0") {{ 'selected' }} @endif>-</option>
+                                <option value="1" @if (old('status_keluarga', $penduduk->status_keluarga) == "1") {{ 'selected' }} @endif>Kepala Keluarga</option>
                             </select>
-                            @error('kepala_keluarga')
+                            @error('status_keluarga')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -205,7 +205,7 @@
                         <div class="form-group">
                             <label>Bantuan Sosial</label>
                             <select class="form-control select2" name="sosial_id">
-                                <option value="{{ old('sosial_id', $penduduk->sosial_id) }}">{{ $penduduk->sosial_id }}</option>
+                                <option value="{{ old('sosial_id', $penduduk->sosial_id) }}">{{ $nama_sosial[0]->nama_sosial }}</option>
                                 @foreach ($sosial as $item)
                                     <option value="{{ $item->id }}">{{ $item->nama_sosial }}</option>
                                 @endforeach
