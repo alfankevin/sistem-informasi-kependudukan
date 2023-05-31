@@ -1,13 +1,18 @@
 "use strict";
 
+console.log(dataUmurL);
+console.log(labelUmurL);
+console.log(dataUmurP);
+console.log(labelUmurP);
+
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["1-5", "6-10", "11-15", "16-20", "21-25", "26-30", "31-35", "36-40", "41-45", "46-50", "51-55", "56-60"],
+    labels: labelUmurL,
     datasets: [{
       label: 'Laki-laki',
-      data: [10, 90, 20, 130, 50, 90, 40, 70, 50, 110, 20, 65],
+      data: dataUmurL,
       borderWidth: 2,
       backgroundColor: 'rgba(0,123,255,.8)',
       borderWidth: 0,
@@ -19,7 +24,7 @@ var myChart = new Chart(ctx, {
     },
     {
       label: 'Perempuan',
-      data: [10, 20, 110, 50, 70, 40, 90, 50, 130, 20, 90, 50],
+      data: dataUmurP,
       borderWidth: 2,
       backgroundColor: 'rgba(254,86,83,.7)',
       borderWidth: 0,

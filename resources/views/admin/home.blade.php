@@ -335,5 +335,9 @@
         var labelGolDarah = <?php echo json_encode($labelGolDarah); ?>;
         var dataAgama = <?php echo json_encode($dataAgama); ?>;
         var labelAgama = <?php echo json_encode($labelAgama); ?>;
+        var labelUmurL = <?php echo json_encode($labelUmurL); ?>;
+        var dataUmurL = <?php echo json_encode($dataUmurL); ?>;
+        var labelUmurP = <?php echo json_encode($labelUmurP); ?>;
+        var dataUmurP = <?php echo json_encode($dataUmurP); ?>;
     </script>
 @endsection
