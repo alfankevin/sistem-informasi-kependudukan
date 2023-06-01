@@ -68,7 +68,7 @@
                             <h4 style="color: #6c757d !important">Komposisi Penduduk Berdasarkan Usia</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart"></canvas>
+                            <canvas id="usia"></canvas>
                         </div>
                     </div>
                 </div>
@@ -195,46 +195,82 @@
                   <div class="col-lg-12 col-md-12" style="padding: 0">
                     <div class="card">
                       <div class="card-header">
-                        <h4 style="color: #6c757d !important">Komposisi Penduduk Berdasarkan RT</h4>
+                        <h4 style="color: #6c757d !important">Komposisi Penduduk Berdasarkan Pekerjaan</h4>
                       </div>
                       <div class="card-body">
-                        <div class="mb-4">
-                          <div class="text-small float-right font-weight-bold text-muted">2,100</div>
-                          <div class="font-weight-bold mb-1">RT 01</div>
-                          <div class="progress" data-height="3">
-                            <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        <canvas id="pekerjaan"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12" style="padding: 0">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4>Best Products</h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="owl-carousel owl-theme" id="products-carousel">
+                          <div>
+                            <div class="product-item pb-3">
+                              <div class="product-image">
+                                <img alt="image" src="../assets/img/products/product-4-50.png" class="img-fluid">
+                              </div>
+                              <div class="product-details">
+                                <div class="product-name">iBook Pro 2018</div>
+                                <div class="product-review">
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                </div>
+                                <div class="text-muted text-small">67 Sales</div>
+                                <div class="product-cta">
+                                  <a href="#" class="btn btn-primary">Detail</a>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-
-                        <div class="mb-4">
-                          <div class="text-small float-right font-weight-bold text-muted">1,880</div>
-                          <div class="font-weight-bold mb-1">RT 02</div>
-                          <div class="progress" data-height="3">
-                            <div class="progress-bar" role="progressbar" data-width="67%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div>
+                            <div class="product-item">
+                              <div class="product-image">
+                                <img alt="image" src="../assets/img/products/product-3-50.png" class="img-fluid">
+                              </div>
+                              <div class="product-details">
+                                <div class="product-name">oPhone S9 Limited</div>
+                                <div class="product-review">
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star-half"></i>
+                                </div>
+                                <div class="text-muted text-small">86 Sales</div>
+                                <div class="product-cta">
+                                  <a href="#" class="btn btn-primary">Detail</a>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-
-                        <div class="mb-4">
-                          <div class="text-small float-right font-weight-bold text-muted">1,521</div>
-                          <div class="font-weight-bold mb-1">RT 03</div>
-                          <div class="progress" data-height="3">
-                            <div class="progress-bar" role="progressbar" data-width="58%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-
-                        <div class="mb-4">
-                          <div class="text-small float-right font-weight-bold text-muted">884</div>
-                          <div class="font-weight-bold mb-1">RT 04</div>
-                          <div class="progress" data-height="3">
-                            <div class="progress-bar" role="progressbar" data-width="36%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-
-                        <div class="mb-4">
-                          <div class="text-small float-right font-weight-bold text-muted">473</div>
-                          <div class="font-weight-bold mb-1">RT 05</div>
-                          <div class="progress" data-height="3">
-                            <div class="progress-bar" role="progressbar" data-width="28%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div>
+                            <div class="product-item">
+                              <div class="product-image">
+                                <img alt="image" src="../assets/img/products/product-1-50.png" class="img-fluid">
+                              </div>
+                              <div class="product-details">
+                                <div class="product-name">Headphone Blitz</div>
+                                <div class="product-review">
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="fas fa-star"></i>
+                                  <i class="far fa-star"></i>
+                                </div>
+                                <div class="text-muted text-small">63 Sales</div>
+                                <div class="product-cta">
+                                  <a href="#" class="btn btn-primary">Detail</a>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -245,87 +281,74 @@
                   <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h4 style="color: #6c757d !important">Penduduk Berdasarkan Gol. Darah</h4>
+                            <div class="card-header" style="overflow: hidden;">
+                                <h4 style="color: #6c757d !important; white-space: nowrap; overflow: hidden;">Penduduk Berdasarkan Gol. Darah</h4>
                             </div>
                             <div class="card-body" style="padding: 0 10px 25px 0">
-                                <canvas id="myChart5"></canvas>
+                                <canvas id="darah"></canvas>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 style="color: #6c757d !important">Penduduk Berdasarkan Agama</h4>
+                                <h4 style="color: #6c757d !important; white-space: nowrap; overflow: hidden;">Penduduk Berdasarkan Agama</h4>
                             </div>
                             <div class="card-body" style="padding: 0 10px 25px 0">
-                                <canvas id="myChart4"></canvas>
+                                <canvas id="agama"></canvas>
                             </div>
                         </div>
                     </div>
-                  </div>
-                </div>
-            </div>
-
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h4 style="color: #6c757d !important">Organisasi Masyarakat</h4>
-                  </div>
-                  <div class="card-body">
-                  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                  <div class="card card-hero">
-                    <div class="card-header">
-                      <div class="card-icon">
-                        <i class="far fa-handshake"></i>
-                      </div>
-                      <h4>6</h4>
-                      <div class="card-description">Bantuan Sosial</div>
-                    </div>
-                    <div class="card-body p-0">
-                      <div class="tickets-list">
-                        <a href="#" class="ticket-item">
-                          <div class="ticket-title">
-                            <h4>My order hasn't arrived yet</h4>
+                    <div class="col-lg-12 col-md-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h4 style="color: #6c757d !important">Komposisi Penduduk Berdasarkan RT</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">2,100</div>
+                            <div class="font-weight-bold mb-1">RT 01</div>
+                            <div class="progress" data-height="3">
+                              <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                           </div>
-                          <div class="ticket-info">
-                            <div>Laila Tazkiah</div>
-                            <div class="bullet"></div>
-                            <div class="text-primary">1 min ago</div>
+  
+                          <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">1,880</div>
+                            <div class="font-weight-bold mb-1">RT 02</div>
+                            <div class="progress" data-height="3">
+                              <div class="progress-bar" role="progressbar" data-width="67%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                           </div>
-                        </a>
-                        <a href="#" class="ticket-item">
-                          <div class="ticket-title">
-                            <h4>Please cancel my order</h4>
+  
+                          <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">1,521</div>
+                            <div class="font-weight-bold mb-1">RT 03</div>
+                            <div class="progress" data-height="3">
+                              <div class="progress-bar" role="progressbar" data-width="58%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                           </div>
-                          <div class="ticket-info">
-                            <div>Rizal Fakhri</div>
-                            <div class="bullet"></div>
-                            <div>2 hours ago</div>
+  
+                          <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">884</div>
+                            <div class="font-weight-bold mb-1">RT 04</div>
+                            <div class="progress" data-height="3">
+                              <div class="progress-bar" role="progressbar" data-width="36%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                           </div>
-                        </a>
-                        <a href="#" class="ticket-item">
-                          <div class="ticket-title">
-                            <h4>Do you see my mother?</h4>
+  
+                          <div class="mb-4">
+                            <div class="text-small float-right font-weight-bold text-muted">473</div>
+                            <div class="font-weight-bold mb-1">RT 05</div>
+                            <div class="progress" data-height="3">
+                              <div class="progress-bar" role="progressbar" data-width="28%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                           </div>
-                          <div class="ticket-info">
-                            <div>Syahdan Ubaidillah</div>
-                            <div class="bullet"></div>
-                            <div>6 hours ago</div>
-                          </div>
-                        </a>
-                        <a href="/sosial-management/sosial" class="ticket-item ticket-more">
-                          View All <i class="fas fa-chevron-right"></i>
-                        </a>
+                        </div>
                       </div>
                     </div>
                   </div>
-              </div>
+                </div>
             </div>
         </div>
     </section>

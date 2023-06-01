@@ -5,7 +5,7 @@ console.log(labelUmurL);
 console.log(dataUmurP);
 console.log(labelUmurP);
 
-var ctx = document.getElementById("myChart").getContext('2d');
+var ctx = document.getElementById("usia").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -65,26 +65,67 @@ var myChart = new Chart(ctx, {
   }
 });
 
-console.log(dataAgama);
-console.log(labelAgama);
+var ctx = document.getElementById("pekerjaan").getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    datasets: [{
+      label: 'Pekerjaan',
+      data: [46, 45, 33, 50, 43, 61, 48],
+      borderWidth: 1,
+      backgroundColor: 'rgba(41, 156, 219, .8)',
+      borderColor: 'rgba(41, 156, 219, 0)',
+      borderWidth: 2.5,
+      pointBackgroundColor: '#ffffff',
+      pointRadius: 4
+    }]
+  },
+  options: {
+    legend: {
+      display: false
+    },
+    scales: {
+      yAxes: [{
+        gridLines: {
+          drawBorder: false,
+          color: '#f2f2f2',
+        },
+        ticks: {
+          beginAtZero: true,
+          stepSize: 10
+        }
+      }],
+      xAxes: [{
+        ticks: {
+          display: true
+        },
+        gridLines: {
+          display: false
+        }
+      }]
+    },
+  }
+});
 
-var ctx = document.getElementById("myChart4").getContext('2d');
+console.log(dataGolDarah);
+console.log(labelGolDarah);
+
+var ctx = document.getElementById("darah").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
     datasets: [{
-      data: dataAgama,
+      data: dataGolDarah,
       backgroundColor: [
-        '#191d21',
-        'rgb(64, 81, 137)',
-        'rgb(10, 179, 156)',
-        'rgb(247, 184, 75)',
-        'rgb(240, 101, 72)',
         'rgb(41, 156, 219)',
+        'rgb(240, 101, 72)',
+        'rgb(247, 184, 75)',
+        'rgb(10, 179, 156)',
       ],
-      label: 'Agama'
+      label: 'Golongan Darah'
     }],
-    labels: labelAgama,
+    labels: labelGolDarah,
   },
   options: {
     responsive: true,
@@ -94,24 +135,26 @@ var myChart = new Chart(ctx, {
   }
 });
 
-console.log(dataGolDarah);
-console.log(labelGolDarah);
+console.log(dataAgama);
+console.log(labelAgama);
 
-var ctx = document.getElementById("myChart5").getContext('2d');
+var ctx = document.getElementById("agama").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
     datasets: [{
-      data: dataGolDarah,
+      data: dataAgama,
       backgroundColor: [
-        'rgb(10, 179, 156)',
-        'rgb(247, 184, 75)',
-        'rgb(240, 101, 72)',
+        '#191d21',
+        'rgb(64, 81, 137)',
         'rgb(41, 156, 219)',
+        'rgb(240, 101, 72)',
+        'rgb(247, 184, 75)',
+        'rgb(10, 179, 156)',
       ],
-      label: 'Golongan Darah'
+      label: 'Agama'
     }],
-    labels: labelGolDarah,
+    labels: labelAgama,
   },
   options: {
     responsive: true,
