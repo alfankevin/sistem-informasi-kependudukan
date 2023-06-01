@@ -25,9 +25,21 @@ class MenuItemSeeder extends Seeder
                     'menu_group_id' => 1,
                 ],
                 [
-                    'name' => 'Data Kependudukan',
+                    'name' => 'Data Penduduk',
                     'route' => 'penduduk-management/penduduk',
                     'permission_name' => 'penduduk.index',
+                    'menu_group_id' => 2,
+                ],
+                [
+                    'name' => 'Data Kartu Keluarga',
+                    'route' => 'penduduk-management/keluarga',
+                    'permission_name' => 'keluarga.index',
+                    'menu_group_id' => 2,
+                ],
+                [
+                    'name' => 'Data Bantuan Sosial',
+                    'route' => 'penduduk-management/bantuan',
+                    'permission_name' => 'bantuan.index',
                     'menu_group_id' => 2,
                 ],
                 [

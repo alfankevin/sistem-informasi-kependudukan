@@ -258,7 +258,7 @@
       text-align: right; }
       .chat-box .chat-content .chat-item.chat-right .chat-details .chat-text {
         text-align: left;
-        background-color: #007bff;
+        background-color: rgb(64, 81, 137);
         color: #fff; }
     .chat-box .chat-content .chat-item > img {
       float: left;
@@ -333,10 +333,10 @@ table.dataTable {
   border-collapse: collapse !important; }
   table.dataTable thead th, table.dataTable thead td {
     /* border-bottom: 1px solid #ddd !important; } */
-    border-bottom: 1px solid #f6f6f6 !important; }
+    border-bottom: 1px solid #e4e6fc !important; }
   table.dataTable.no-footer {
     /* border-bottom: 1px solid #ddd !important; } */
-    border-bottom: 1px solid #f6f6f6 !important; }
+    border-bottom: 1px solid #e4e6fc !important; }
 
 .dataTables_wrapper {
   padding: 0 !important;
@@ -373,16 +373,16 @@ div.dataTables_wrapper div.dataTables_processing {
   font-size: 12px; }
 
 .ranges li {
-  color: #007bff; }
+  color: rgb(64, 81, 137); }
   .ranges li:hover, .ranges li.active {
-    background-color: #007bff; }
+    background-color: rgb(64, 81, 137); }
 
 .daterangepicker td.active, .daterangepicker td.active:hover {
-  background-color: #007bff; }
+  background-color: rgb(64, 81, 137); }
 
 /* 1.10 Dropzone */
 .dropzone {
-  border: 2px dashed #007bff;
+  border: 2px dashed rgb(64, 81, 137);
   min-height: 240px;
   text-align: center; }
   .dropzone .dz-message {
@@ -472,7 +472,7 @@ tr:first-child > td > .fc-day-grid-event {
   text-shadow: none;
   border-radius: 0; }
   .fc button.fc-state-active {
-    background-color: #007bff;
+    background-color: rgb(64, 81, 137);
     color: #fff; }
 
 /* 1.13 Gallery */
@@ -615,7 +615,7 @@ tr:first-child > td > .fc-day-grid-event {
   width: 13px;
   height: 13px;
   background-color: #fff;
-  border: 3px solid #007bff;
+  border: 3px solid rgb(64, 81, 137);
   border-radius: 50%; }
 
 .jqvmap-label {
@@ -758,7 +758,7 @@ tr:first-child > td > .fc-day-grid-event {
 .select2-container--default .select2-selection--multiple .select2-selection__choice,
 .select2-container--default .select2-results__option[aria-selected=true],
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background-color: #007bff;
+  background-color: rgb(64, 81, 137);
   color: #fff; }
 
 .select2-results__option {
@@ -789,7 +789,7 @@ tr:first-child > td > .fc-day-grid-event {
     min-height: 42px; }
 
 .selectric-open .selectric {
-  border-color: #007bff; }
+  border-color: rgb(64, 81, 137); }
 
 .selectric-above .selectric-items, .selectric-below .selectric-items {
   margin-bottom: 10px; }
@@ -805,7 +805,7 @@ tr:first-child > td > .fc-day-grid-event {
     .selectric-items li:hover {
       background-color: #f2f2f2; }
     .selectric-items li.selected, .selectric-items li.highlighted {
-      background-color: #007bff;
+      background-color: rgb(64, 81, 137);
       color: #fff; }
 
 /* 1.20 Slider */
@@ -932,7 +932,7 @@ tr:first-child > td > .fc-day-grid-event {
     box-shadow: none; }
   .swal-button.swal-button--confirm {
     box-shadow: 0 2px 6px #acb5f6;
-    background-color: #007bff; }
+    background-color: rgb(64, 81, 137); }
     .swal-button.swal-button--confirm:focus {
       opacity: .8; }
 
@@ -956,7 +956,7 @@ tr:first-child > td > .fc-day-grid-event {
     height: 100%;
     padding: 0 8px; }
   .bootstrap-tagsinput .tag {
-    background-color: #007bff;
+    background-color: rgb(64, 81, 137);
     border-radius: 3px;
     padding: 5px 10px; }
     .bootstrap-tagsinput .tag:first-child {
@@ -1000,10 +1000,10 @@ tr:first-child > td > .fc-day-grid-event {
   content: "\f121"; }
 
 .toast.toast-error {
-  background-color: #fc544b; }
+  background-color: #FF0000; }
 
 .toast.toast-warning {
-  background-color: #ffa426; }
+  background-color: #FFA500; }
 
 .toast.toast-success {
   background-color: #47c363; }
@@ -1096,10 +1096,10 @@ tr:first-child > td > .fc-day-grid-event {
   padding: 10px;
   line-height: 1;
   border-radius: 3px;
-  border: 2px solid #007bff;
+  border: 2px solid rgb(64, 81, 137);
   font-size: 10px;
   font-weight: 500;
-  color: #007bff;
+  color: rgb(64, 81, 137);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 10px; }
@@ -1202,7 +1202,7 @@ tr:first-child > td > .fc-day-grid-event {
     font-weight: 700;
     margin-bottom: 3px; }
   .product-item .product-review {
-    color: #ffa426;
+    color: #FFA500;
     margin-bottom: 3px; }
   .product-item .product-cta {
     margin-top: 5px; }
@@ -1250,11 +1250,11 @@ tr:first-child > td > .fc-day-grid-event {
       .tickets .ticket-items .ticket-item:hover {
         background-color: rgba(63, 82, 227, 0.03); }
         .tickets .ticket-items .ticket-item:hover .ticket-title {
-          color: #007bff; }
+          color: rgb(64, 81, 137); }
       .tickets .ticket-items .ticket-item.active {
         box-shadow: 0 2px 6px #acb5f6;
         border-radius: 3px;
-        background-color: #007bff;
+        background-color: rgb(64, 81, 137);
         border-bottom: none; }
         .tickets .ticket-items .ticket-item.active .ticket-title, .tickets .ticket-items .ticket-item.active .ticket-desc {
           color: #fff !important; }
@@ -1353,7 +1353,7 @@ tr:first-child > td > .fc-day-grid-event {
 .owl-theme .owl-dots {
   margin-top: 20px !important; }
   .owl-theme .owl-dots .owl-dot.active span {
-    background-color: #007bff; }
+    background-color: rgb(64, 81, 137); }
 
 /* 1.36 Activities */
 .activities {
@@ -1370,7 +1370,7 @@ tr:first-child > td > .fc-day-grid-event {
       top: 0;
       width: 2px;
       height: 100%;
-      background-color: #007bff; }
+      background-color: rgb(64, 81, 137); }
     .activities .activity:last-child:before {
       display: none; }
     .activities .activity .activity-icon {
@@ -1453,7 +1453,7 @@ tr:first-child > td > .fc-day-grid-event {
   padding: 40px; }
   .empty-state .empty-state-icon {
     position: relative;
-    background-color: #007bff;
+    background-color: rgb(64, 81, 137);
     width: 80px;
     height: 80px;
     line-height: 100px;
@@ -1479,10 +1479,10 @@ tr:first-child > td > .fc-day-grid-event {
   margin-bottom: 30px;
   text-align: center; }
   .pricing.pricing-highlight .pricing-title {
-    background-color: #007bff;
+    background-color: rgb(64, 81, 137);
     color: #fff; }
   .pricing.pricing-highlight .pricing-cta a {
-    background-color: #007bff;
+    background-color: rgb(64, 81, 137);
     color: #fff; }
     .pricing.pricing-highlight .pricing-cta a:hover {
       background-color: #394eea !important; }
@@ -1494,7 +1494,7 @@ tr:first-child > td > .fc-day-grid-event {
     text-transform: uppercase;
     letter-spacing: 2.5px;
     background-color: #f3f6f8;
-    color: #007bff;
+    color: rgb(64, 81, 137);
     border-radius: 0 0 3px 3px;
     display: inline-block;
     padding: 5px 15px; }
@@ -1575,7 +1575,7 @@ tr:first-child > td > .fc-day-grid-event {
  * Thanks to Spectre.css
  */
 .avatar {
-  background: #007bff;
+  background: rgb(64, 81, 137);
   border-radius: 50%;
   color: #e3eaef;
   display: inline-block;
@@ -1637,9 +1637,9 @@ tr:first-child > td > .fc-day-grid-event {
     .avatar .avatar-presence.online {
       background: #47c363; }
     .avatar .avatar-presence.busy {
-      background: #fc544b; }
+      background: #FF0000; }
     .avatar .avatar-presence.away {
-      background: #ffa426; }
+      background: #FFA500; }
   .avatar[data-initial]::before {
     color: currentColor;
     content: attr(data-initial);
@@ -1684,10 +1684,10 @@ tr:first-child > td > .fc-day-grid-event {
       background-color: #e3eaef; }
     .wizard-steps .wizard-step.wizard-step-active {
       box-shadow: 0 2px 6px #acb5f6;
-      background-color: #007bff;
+      background-color: rgb(64, 81, 137);
       color: #fff; }
       .wizard-steps .wizard-step.wizard-step-active:before {
-        background-color: #007bff;
+        background-color: rgb(64, 81, 137);
         color: #fff; }
     .wizard-steps .wizard-step.wizard-step-success {
       background-color: #47c363;
@@ -1696,16 +1696,16 @@ tr:first-child > td > .fc-day-grid-event {
         background-color: #47c363;
         color: #fff; }
     .wizard-steps .wizard-step.wizard-step-danger {
-      background-color: #fc544b;
+      background-color: #FF0000;
       color: #fff; }
       .wizard-steps .wizard-step.wizard-step-danger:before {
-        background-color: #fc544b;
+        background-color: #FF0000;
         color: #fff; }
     .wizard-steps .wizard-step.wizard-step-warning {
-      background-color: #ffa426;
+      background-color: #FFA500;
       color: #fff; }
       .wizard-steps .wizard-step.wizard-step-warning:before {
-        background-color: #ffa426;
+        background-color: #FFA500;
         color: #fff; }
     .wizard-steps .wizard-step.wizard-step-info {
       background-color: #3abaf4;

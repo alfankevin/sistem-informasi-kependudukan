@@ -47,7 +47,7 @@
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('galeri.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center">
+                                                            class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center">
                                                             <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>
                                                         <form action="{{ route('galeri.destroy', $item->id) }}"
                                                             method="POST">

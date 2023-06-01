@@ -58,7 +58,7 @@
                                                             <span><i class="fas fa-eye"></i></span>&nbsp;Mark</button>
                                                         @endif
                                                         <a href="{{ route('agenda.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center">
+                                                            class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center">
                                                             <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>
                                                         <form action="{{ route('agenda.destroy', $item->id) }}"
                                                             method="POST">

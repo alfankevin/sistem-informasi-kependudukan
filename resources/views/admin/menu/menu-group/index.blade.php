@@ -84,7 +84,7 @@
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('menu-group.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-primary btn-icon "><i
+                                                            class="btn btn-sm btn-info btn-icon "><i
                                                                 class="fas fa-edit"></i>
                                                             Edit</a>
                                                         <form action="{{ route('menu-group.destroy', $item->id) }}"

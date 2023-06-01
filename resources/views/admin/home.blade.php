@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
-                        <div class="card-icon" style='background-color: #007bff'>
+                        <div class="card-icon" style='background-color: rgb(41, 156, 219)'>
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="card-header">

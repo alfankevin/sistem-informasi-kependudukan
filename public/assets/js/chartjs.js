@@ -14,7 +14,7 @@ var myChart = new Chart(ctx, {
       label: 'Laki-laki',
       data: dataUmurL,
       borderWidth: 2,
-      backgroundColor: 'rgba(0,123,255,.8)',
+      backgroundColor: 'rgba(41,156,219,.8)',
       borderWidth: 0,
       borderColor: 'transparent',
       pointBorderWidth: 0,
@@ -29,7 +29,7 @@ var myChart = new Chart(ctx, {
       backgroundColor: 'rgba(254,86,83,.7)',
       borderWidth: 0,
       borderColor: 'transparent',
-      pointBorderWidth: 0 ,
+      pointBorderWidth: 0,
       pointRadius: 3.5,
       pointBackgroundColor: 'transparent',
       pointHoverBackgroundColor: 'rgba(254,86,83,.8)',
@@ -49,7 +49,7 @@ var myChart = new Chart(ctx, {
         },
         ticks: {
           beginAtZero: true,
-          stepSize: 10,
+          stepSize: 5,
           callback: function(value, index, values) {
             return value;
           }
@@ -76,11 +76,11 @@ var myChart = new Chart(ctx, {
       data: dataAgama,
       backgroundColor: [
         '#191d21',
-        '#6c757d',
-        '#47c363',
-        '#ffa426',
-        '#fc544b',
-        '#007bff',
+        'rgb(64, 81, 137)',
+        'rgb(10, 179, 156)',
+        'rgb(247, 184, 75)',
+        'rgb(240, 101, 72)',
+        'rgb(41, 156, 219)',
       ],
       label: 'Agama'
     }],
@@ -104,10 +104,10 @@ var myChart = new Chart(ctx, {
     datasets: [{
       data: dataGolDarah,
       backgroundColor: [
-        '#47c363',
-        '#ffa426',
-        '#fc544b',
-        '#007bff',
+        'rgb(10, 179, 156)',
+        'rgb(247, 184, 75)',
+        'rgb(240, 101, 72)',
+        'rgb(41, 156, 219)',
       ],
       label: 'Golongan Darah'
     }],

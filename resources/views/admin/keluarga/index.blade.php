@@ -69,7 +69,7 @@
                                                             data-tempat_lahir="{{ $item->tempat_lahir }}">
                                                             <i class="fas fa-user"></i></button>
                                                         <a href="{{ route('penduduk.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
+                                                            class="btn btn-sm btn-primary btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
                                                             <i class="fas fa-pen"></i></a>
                                                         <form action="{{ route('penduduk.destroy', $item->id) }}"
                                                             method="POST">
