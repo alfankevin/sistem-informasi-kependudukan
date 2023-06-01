@@ -31,7 +31,7 @@ class BantuanController extends Controller
     public function create()
     {
         $penduduk = Penduduk::where('sosial_id', '=', 1)->get();
-        $sosial = Sosial::all();
+        $sosial = Sosial::where('id', '!=', 1)->get();
         return view('admin.bantuan.create', compact('penduduk', 'sosial'));
     }
     
@@ -80,7 +80,7 @@ class BantuanController extends Controller
     public function edit(string $id)
     {
         $penduduk = Penduduk::find($id);
-        $sosial = Sosial::all();
+        $sosial = Sosial::where('id', '!=', 1)->get();
         $nama_sosial = DB::select("SELECT nama_sosial FROM sosial WHERE id = (SELECT sosial_id FROM penduduk WHERE id = ?)", [$id]);
         return view('admin.bantuan.edit', compact('penduduk', 'sosial', 'nama_sosial'));
     }
