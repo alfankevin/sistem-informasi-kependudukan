@@ -18,7 +18,7 @@ class PendudukController extends Controller
      */
     public function index(Request $request)
     {
-        $penduduk = Penduduk::all();
+        $penduduk = Penduduk::orderByDesc('id')->get();
         return view('admin.penduduk.index', compact('penduduk'));
     }
 

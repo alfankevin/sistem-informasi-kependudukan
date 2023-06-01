@@ -11,6 +11,7 @@ use App\Http\Controllers\SosialController;
 use App\Http\Controllers\PotensiController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\Menu\MenuItemController;
@@ -75,7 +76,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //kependudukan
         Route::resource('penduduk', PendudukController::class)->except(['show']);
         Route::resource('keluarga', PendudukController::class)->except(['show']);
-        Route::resource('bantuan', PendudukController::class)->except(['show']);
+        Route::resource('bantuan', BantuanController::class)->except(['show']);
     });
 
     Route::prefix('organisasi-management')->group(function () {

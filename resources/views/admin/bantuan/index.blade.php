@@ -4,15 +4,15 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Data Kependudukan</h1>
+            <h1>Data Bantuan Sosial</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Penduduk</a></div>
+                <div class="breadcrumb-item active"><a href="#">Bantuan</a></div>
                 <div class="breadcrumb-item"><a href="#">Management</a></div>
                 <div class="breadcrumb-item">Table</div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Manajemen Kependudukan</h2>
+            <h2 class="section-title">Manajemen Bantuan Sosial</h2>
 
             <div class="row">
                 <div class="col-12">
@@ -23,55 +23,52 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Daftar Penduduk</h4>
+                            <h4>Daftar Penerima</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Penduduk</a>
+                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('bantuan.create') }}">Tambah Penerima</a>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-md" id="table-1">
+                                <table class="table table-bordered table-md" id="bantuan">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th style="white-space: nowrap">Tempat Lahir</th>
-                                            <th>Tgl Lahir</th>
-                                            <th>Jenis.</th>
-                                            <th>Gol.</th>
+                                            <th>Usia</th>
+                                            <th>L/P</th>
                                             <th>Agama</th>
                                             <th>Pekerjaan</th>
                                             <th>Alamat</th>
                                             <th>RT</th>
+                                            <th>Bantuan</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($penduduk as $key => $item)
+                                        @foreach ($data as $key => $item)
                                             <tr>
                                                 <td>{{ $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->tempat_lahir }}</td>
-                                                <td style="white-space: nowrap">{{ $item->tanggal_lahir }}</td>
+                                                <td>{{ $item->usia }} th</td>
                                                 <td>{{ $item->jenis_kelamin }}</td>
-                                                <td>{{ $item->golongan_darah }}</td>
                                                 <td>{{ $item->agama }}</td>
                                                 <td>{{ $item->pekerjaan }}</td>
                                                 <td>{{ $item->alamat }}</td>
                                                 <td>0{{ $item->rt }}</td>
+                                                <td>{{ $item->nama_sosial }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <button class="btn btn-sm btn-warning btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
                                                             data-toggle="modal"
                                                             data-target="#exampleModalCenter"
-                                                            data-nama="{{ $item->nama }}"
-                                                            data-tempat_lahir="{{ $item->tempat_lahir }}">
+                                                            data-nama="{{ $item->nama }}">
                                                             <i class="fas fa-user"></i></button>
-                                                        <a href="{{ route('penduduk.edit', $item->id) }}"
+                                                        <a href="{{ route('bantuan.edit', $item->id) }}"
                                                             class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
                                                             <i class="fas fa-pen"></i></a>
-                                                        <form action="{{ route('penduduk.destroy', $item->id) }}"
+                                                        <form action="{{ route('bantuan.destroy', $item->id) }}"
                                                             method="POST">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"

@@ -17,6 +17,7 @@ class DashboardController extends Controller
 
         $golDarah = DB::table('penduduk')
             ->select('golongan_darah', DB::raw('count(*) as total'))
+            ->where('golongan_darah','<>','-')
             ->groupBy('golongan_darah')
             ->get();
 
@@ -25,7 +26,7 @@ class DashboardController extends Controller
             ->groupBy('agama')
             ->get();
 
-        $labelGolDarah = $golDarah->pluck('golongan_darah');
+        $labelGolDarah = $golDarah->where('golongan_darah','<>','-')->pluck('golongan_darah');
         $dataGolDarah = $golDarah->pluck('total');
         $labelAgama = $agama->pluck('agama');
         $dataAgama = $agama->pluck('total');

@@ -28,9 +28,23 @@ $("[data-checkboxes]").each(function() {
   });
 });
 
-$("#table-1").dataTable({
+$("#penduduk").dataTable({
   "columnDefs": [
     { "sortable": false, "targets": [10] }
+  ],
+  "pageLength": 25
+});
+
+$("#keluarga").dataTable({
+  "columnDefs": [
+    { "sortable": false, "targets": [10] }
+  ],
+  "pageLength": 25
+});
+
+$("#bantuan").dataTable({
+  "columnDefs": [
+    { "sortable": false, "targets": [9] }
   ],
   "pageLength": 25
 });
