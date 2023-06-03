@@ -9,46 +9,46 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
-                        <div class="card-icon" style='background-color: rgb(41, 156, 219)'>
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="card-header">
-                            <h4>Penduduk</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $countPenduduk }}
-                        </div>
+                      <div class="card-icon bg-info">
+                      <i class="fas fa-users"></i>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
+                    <div class="card-header">
+                      <h4>Penduduk</h4>
+                      </div>
+                        <div class="card-body">
+                          {{ $countPenduduk }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                      <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="card-header">
-                            <h4>Laki-laki</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ $countLaki }}
-                        </div>
+                          <i class="fas fa-user"></i>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-warning">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="card-header">
-                            <h4>Perempuan</h4>
-                        </div>
+                    <div class="card-header">
+                      <h4>Laki-laki</h4>
+                    </div>
                         <div class="card-body">
+                          {{ $countLaki }}
+                        </div>
+                      </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                          <div class="card-icon bg-warning">
+                        <i class="fas fa-user"></i>
+                      </div>
+                      <div class="card-header">
+                        <h4>Perempuan</h4>
+                      </div>
+                      <div class="card-body">
                             {{ $countPerempuan }}
+                          </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-success">
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                          <div class="card-icon bg-success">
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="card-header">

@@ -18,7 +18,7 @@ class BantuanController extends Controller
      */
     public function index()
     {
-        $data = DB::select("SELECT FLOOR(DATEDIFF(CURDATE(), tanggal_lahir) / 365) AS usia, penduduk.id, penduduk.nama, penduduk.jenis_kelamin, penduduk.agama, penduduk.pekerjaan, penduduk.alamat, penduduk.rt, sosial.nama_sosial
+        $data = DB::select("SELECT FLOOR(DATEDIFF(CURDATE(), tanggal_lahir) / 365) AS usia, penduduk.*, sosial.nama_sosial
             FROM penduduk INNER JOIN sosial ON penduduk.sosial_id = sosial.id WHERE sosial.id != 1 ORDER BY penduduk.updated_at DESC");
         return view('admin.bantuan.index', compact('data'));
     }
@@ -30,7 +30,7 @@ class BantuanController extends Controller
      */
     public function create()
     {
-        $penduduk = Penduduk::where('sosial_id', '=', 1)->get();
+        $penduduk = Penduduk::where('sosial_id', '=', 1)->orderByDesc('id')->get();
         $sosial = Sosial::where('id', '!=', 1)->get();
         return view('admin.bantuan.create', compact('penduduk', 'sosial'));
     }

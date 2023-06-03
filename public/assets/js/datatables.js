@@ -37,7 +37,7 @@ $("#penduduk").dataTable({
 
 $("#keluarga").dataTable({
   "columnDefs": [
-    { "sortable": false, "targets": [10] }
+    { "sortable": false, "targets": [6] }
   ],
   "pageLength": 25
 });

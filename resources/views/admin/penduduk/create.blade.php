@@ -170,11 +170,11 @@
                             <label>RT</label>
                             <select class="form-control select2 @error('rt') is-invalid @enderror" name="rt">
                                 <option value=""></option>
-                                <option value="1" @if (old('rt') == "01") {{ 'selected' }} @endif>01</option>
-                                <option value="2" @if (old('rt') == "02") {{ 'selected' }} @endif>02</option>
-                                <option value="3" @if (old('rt') == "03") {{ 'selected' }} @endif>03</option>
-                                <option value="4" @if (old('rt') == "04") {{ 'selected' }} @endif>04</option>
-                                <option value="5" @if (old('rt') == "05") {{ 'selected' }} @endif>05</option>
+                                <option value="1" @if (old('rt') == "1") {{ 'selected' }} @endif>001</option>
+                                <option value="2" @if (old('rt') == "2") {{ 'selected' }} @endif>002</option>
+                                <option value="3" @if (old('rt') == "3") {{ 'selected' }} @endif>003</option>
+                                <option value="4" @if (old('rt') == "4") {{ 'selected' }} @endif>004</option>
+                                <option value="5" @if (old('rt') == "5") {{ 'selected' }} @endif>005</option>
                             </select>
                             @error('rt')
                                 <div class="invalid-feedback">
@@ -195,13 +195,10 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="display: none">
                             <label>Bantuan Sosial</label>
                             <select class="form-control select2" name="sosial_id">
-                                <option value=""></option>
-                                @foreach ($sosial as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama_sosial }}</option>
-                                @endforeach
+                                <option value="1"></option>
                             </select>
                             @error('sosial_id')
                                 <div class="invalid-feedback">

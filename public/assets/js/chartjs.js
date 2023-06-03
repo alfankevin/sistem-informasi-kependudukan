@@ -14,7 +14,7 @@ var myChart = new Chart(ctx, {
       label: 'Laki-laki',
       data: dataUmurL,
       borderWidth: 2,
-      backgroundColor: 'rgba(41,156,219,.8)',
+      backgroundColor: 'rgba(0, 123, 255, .8)',
       borderWidth: 0,
       borderColor: 'transparent',
       pointBorderWidth: 0,
@@ -26,13 +26,13 @@ var myChart = new Chart(ctx, {
       label: 'Perempuan',
       data: dataUmurP,
       borderWidth: 2,
-      backgroundColor: 'rgba(254,86,83,.7)',
+      backgroundColor: 'rgba(252, 84, 75, .7)',
       borderWidth: 0,
       borderColor: 'transparent',
       pointBorderWidth: 0,
       pointRadius: 3.5,
       pointBackgroundColor: 'transparent',
-      pointHoverBackgroundColor: 'rgba(254,86,83,.8)',
+      pointHoverBackgroundColor: 'rgba(254,86,83,.7)',
     }]
   },
   options: {
@@ -74,8 +74,8 @@ var myChart = new Chart(ctx, {
       label: 'Pekerjaan',
       data: [46, 45, 33, 50, 43, 61, 48],
       borderWidth: 1,
-      backgroundColor: 'rgba(41, 156, 219, .8)',
-      borderColor: 'rgba(41, 156, 219, 0)',
+      backgroundColor: '#007bff',
+      borderColor: '#007bff',
       borderWidth: 2.5,
       pointBackgroundColor: '#ffffff',
       pointRadius: 4
@@ -113,15 +113,19 @@ console.log(labelGolDarah);
 
 var ctx = document.getElementById("darah").getContext('2d');
 var myChart = new Chart(ctx, {
-  type: 'pie',
+  type: 'doughnut',
   data: {
     datasets: [{
       data: dataGolDarah,
       backgroundColor: [
-        'rgb(41, 156, 219)',
-        'rgb(240, 101, 72)',
-        'rgb(247, 184, 75)',
-        'rgb(10, 179, 156)',
+        'rgb(31, 59, 179)',
+        'rgb(253, 208, 199)',
+        'rgb(82, 205, 255)',
+        'rgb(129, 218, 218)',
+        // 'rgb(41, 156, 219)',
+        // 'rgb(240, 101, 72)',
+        // 'rgb(247, 184, 75)',
+        // 'rgb(10, 179, 156)',
       ],
       label: 'Golongan Darah'
     }],
@@ -140,17 +144,23 @@ console.log(labelAgama);
 
 var ctx = document.getElementById("agama").getContext('2d');
 var myChart = new Chart(ctx, {
-  type: 'pie',
+  type: 'doughnut',
   data: {
     datasets: [{
       data: dataAgama,
       backgroundColor: [
         '#191d21',
-        'rgb(64, 81, 137)',
-        'rgb(41, 156, 219)',
-        'rgb(240, 101, 72)',
-        'rgb(247, 184, 75)',
-        'rgb(10, 179, 156)',
+        '#34395e',
+        'rgb(31, 59, 179)',
+        'rgb(253, 208, 199)',
+        'rgb(82, 205, 255)',
+        'rgb(129, 218, 218)',
+        // '#191d21',
+        // 'rgb(64, 81, 137)',
+        // 'rgb(41, 156, 219)',
+        // 'rgb(240, 101, 72)',
+        // 'rgb(247, 184, 75)',
+        // 'rgb(10, 179, 156)',
       ],
       label: 'Agama'
     }],

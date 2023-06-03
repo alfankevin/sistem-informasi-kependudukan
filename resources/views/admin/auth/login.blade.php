@@ -57,7 +57,7 @@
                 <a href="/forgot-password" class="float-left mt-3 text-color-blue">
                   Forgot Password?
                 </a>
-                <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
+                <button type="submit" class="btn btn-info btn-lg btn-icon icon-right" tabindex="4">
                   Login
                 </button>
               </div>
