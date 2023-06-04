@@ -31,7 +31,7 @@ class PendudukFactory extends Factory
             'alamat' => $this->faker->address(),
             'rt' => $this->faker->randomElement(['1','2','3','4','5']),
             'keterangan' => $this->faker->randomElement(['Hidup','Meninggal']),
-            'sosial_id' => $this->faker->randomElement(['1']),
+            'id_sosial' => $this->faker->randomElement(['1']),
         ];
     }
 }
