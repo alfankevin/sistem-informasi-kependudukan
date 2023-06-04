@@ -46,5 +46,5 @@ $("#bantuan").dataTable({
   "columnDefs": [
     { "sortable": false, "targets": [9] }
   ],
-  "pageLength": 25
+  "pageLength": 10
 });

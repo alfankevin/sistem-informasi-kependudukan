@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
@@ -111,7 +113,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="/assets/js/stisla.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script> --}}
 
     <!-- JS Libraies -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -128,7 +129,6 @@
     <script src="/assets/js/Chart.min.js"></script>
     <script src="/assets/js/chartjs.js"></script>
     <script src="/assets/js/datatables.js"></script>
-    <script src="/assets/js/owl.carousel.min.js"></script>
     @stack('customScript')
 </body>
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
+use App\Models\Agenda;
+use App\Models\Organisasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,6 +12,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $agenda = Agenda::orderByDesc('id')->get();
+        $organisasi = Organisasi::orderByDesc('id')->get();
+
         $countPenduduk = Penduduk::count();
         $countLaki = Penduduk::where('jenis_kelamin', 'L')->count();
         $countPerempuan = Penduduk::where('jenis_kelamin', 'P')->count();
@@ -90,6 +95,6 @@ class DashboardController extends Controller
         $labelUmurP = $umurP->pluck('age_group');
         $dataUmurP = $umurP->pluck('total');
 
-        return view('admin.home', compact('countPenduduk', 'countLaki', 'countPerempuan', 'countKK', 'labelGolDarah', 'dataGolDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP'));
+        return view('admin.home', compact('agenda', 'organisasi', 'countPenduduk', 'countLaki', 'countPerempuan', 'countKK', 'labelGolDarah', 'dataGolDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP'));
     }
 }

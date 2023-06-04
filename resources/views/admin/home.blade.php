@@ -65,7 +65,7 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 style="color: #6c757d !important">Komposisi Penduduk Berdasarkan Usia</h4>
+                            <h5>Komposisi Penduduk Berdasarkan Usia</h5>
                         </div>
                         <div class="card-body">
                             <canvas id="usia"></canvas>
@@ -73,118 +73,26 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
-                    <div class="card gradient-bottom">
+                    <div class="card gradient-bottom" style="height: 500px">
                         <div class="card-header">
-                          <h4 style="color: #6c757d !important">Agenda Sosial</h4>
-                          <div class="card-header-action dropdown">
-                            <a href="/agenda-management/agenda" data-toggle="" class="btn btn-danger">More</a>
-                            <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                              <li class="dropdown-title">Select Period</li>
-                              <li><a href="#" class="dropdown-item">Today</a></li>
-                              <li><a href="#" class="dropdown-item">Week</a></li>
-                              <li><a href="#" class="dropdown-item active">Month</a></li>
-                              <li><a href="#" class="dropdown-item">This Year</a></li>
-                            </ul>
-                          </div>
+                          <h5>Agenda Sosial</h5>
                         </div>
                         <div class="card-body" id="top-5-scroll">
                           <ul class="list-unstyled list-unstyled-border">
+                            @foreach ($agenda as $key => $item)
                             <li class="media">
-                              <img class="mr-3 rounded" width="55" src="../assets/img/products/product-3-50.png" alt="product">
-                              <div class="media-body">
-                                <div class="float-right"><div class="font-weight-600 text-muted text-small">86 Sales</div></div>
-                                <div class="media-title">oPhone S9 Limited</div>
-                                <div class="mt-1">
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-primary" data-width="64%"></div>
-                                    <div class="budget-price-label">$68,714</div>
-                                  </div>
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-danger" data-width="43%"></div>
-                                    <div class="budget-price-label">$38,700</div>
-                                  </div>
-                                </div>
+                              <span class="agenda mr-3 rounded" style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
+                              <div class="media-body" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                <div class="float-right mt-1"><span class="font-weight-600 text-muted text-small">{{ $item->tanggal_agenda }}</span></div>
+                                <div class="media-title mt-1 mb-1">{{ $item->judul_agenda }}</div>
+                                <span>{{ $item->deskripsi_agenda }}</span>
                               </div>
                             </li>
-                            <li class="media">
-                              <img class="mr-3 rounded" width="55" src="../assets/img/products/product-4-50.png" alt="product">
-                              <div class="media-body">
-                                <div class="float-right"><div class="font-weight-600 text-muted text-small">67 Sales</div></div>
-                                <div class="media-title">iBook Pro 2018</div>
-                                <div class="mt-1">
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-primary" data-width="84%"></div>
-                                    <div class="budget-price-label">$107,133</div>
-                                  </div>
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-danger" data-width="60%"></div>
-                                    <div class="budget-price-label">$91,455</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li class="media">
-                              <img class="mr-3 rounded" width="55" src="../assets/img/products/product-1-50.png" alt="product">
-                              <div class="media-body">
-                                <div class="float-right"><div class="font-weight-600 text-muted text-small">63 Sales</div></div>
-                                <div class="media-title">Headphone Blitz</div>
-                                <div class="mt-1">
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-primary" data-width="34%"></div>
-                                    <div class="budget-price-label">$3,717</div>
-                                  </div>
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-danger" data-width="28%"></div>
-                                    <div class="budget-price-label">$2,835</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li class="media">
-                              <img class="mr-3 rounded" width="55" src="../assets/img/products/product-3-50.png" alt="product">
-                              <div class="media-body">
-                                <div class="float-right"><div class="font-weight-600 text-muted text-small">28 Sales</div></div>
-                                <div class="media-title">oPhone X Lite</div>
-                                <div class="mt-1">
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-primary" data-width="45%"></div>
-                                    <div class="budget-price-label">$13,972</div>
-                                  </div>
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-danger" data-width="30%"></div>
-                                    <div class="budget-price-label">$9,660</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li class="media">
-                              <img class="mr-3 rounded" width="55" src="../assets/img/products/product-5-50.png" alt="product">
-                              <div class="media-body">
-                                <div class="float-right"><div class="font-weight-600 text-muted text-small">19 Sales</div></div>
-                                <div class="media-title">Old Camera</div>
-                                <div class="mt-1">
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-primary" data-width="35%"></div>
-                                    <div class="budget-price-label">$7,391</div>
-                                  </div>
-                                  <div class="budget-price">
-                                    <div class="budget-price-square bg-danger" data-width="28%"></div>
-                                    <div class="budget-price-label">$5,472</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
+                            @endforeach
                           </ul>
                         </div>
                         <div class="card-footer pt-3 d-flex justify-content-center">
-                          <div class="budget-price justify-content-center">
-                            <div class="budget-price-square bg-primary" data-width="20"></div>
-                            <div class="budget-price-label">Selling Price</div>
-                          </div>
-                          <div class="budget-price justify-content-center">
-                            <div class="budget-price-square bg-danger" data-width="20"></div>
-                            <div class="budget-price-label">Budget Price</div>
-                          </div>
+                          <a href="/agenda-management/agenda" class="btn btn-info btn-md btn-round" style="z-index: 1">Details</a>
                         </div>
                     </div>
                 </div>
@@ -195,7 +103,7 @@
                   <div class="col-lg-12 col-md-12" style="padding: 0">
                     <div class="card">
                       <div class="card-header">
-                        <h4 style="color: #6c757d !important">Komposisi Penduduk Berdasarkan Pekerjaan</h4>
+                        <h5>Komposisi Penduduk Berdasarkan Pekerjaan</h5>
                       </div>
                       <div class="card-body">
                         <canvas id="pekerjaan"></canvas>
@@ -205,10 +113,10 @@
                   <div class="col-lg-12 col-md-12" style="padding: 0">
                     <div class="card">
                       <div class="card-header">
-                        <h4>Best Products</h4>
+                        <h5>Organisasi Masyarakat</h5>
                       </div>
                       <div class="card-body">
-                        <div class="owl-carousel owl-theme" id="products-carousel">
+                        <div class="owl-carousel owl-theme" id="organisasi">
                           <div>
                             <div class="product-item pb-3">
                               <div class="product-image">
@@ -225,7 +133,7 @@
                                 </div>
                                 <div class="text-muted text-small">67 Sales</div>
                                 <div class="product-cta">
-                                  <a href="#" class="btn btn-primary">Detail</a>
+                                  <a href="#" class="btn btn-info">Detail</a>
                                 </div>
                               </div>
                             </div>
@@ -246,7 +154,7 @@
                                 </div>
                                 <div class="text-muted text-small">86 Sales</div>
                                 <div class="product-cta">
-                                  <a href="#" class="btn btn-primary">Detail</a>
+                                  <a href="#" class="btn btn-info">Detail</a>
                                 </div>
                               </div>
                             </div>
@@ -267,7 +175,7 @@
                                 </div>
                                 <div class="text-muted text-small">63 Sales</div>
                                 <div class="product-cta">
-                                  <a href="#" class="btn btn-primary">Detail</a>
+                                  <a href="#" class="btn btn-info">Detail</a>
                                 </div>
                               </div>
                             </div>
@@ -279,22 +187,22 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-6 col-md-6">
                         <div class="card">
-                            <div class="card-header" style="overflow: hidden;">
-                                <h4 style="color: #6c757d !important; white-space: nowrap; overflow: hidden;">Penduduk Berdasarkan Gol. Darah</h4>
+                            <div class="card-header">
+                                <h5>Penduduk Berdasarkan Gol. Darah</h5>
                             </div>
-                            <div class="card-body" style="padding: 0 10px 25px 0">
+                            <div class="card-body" style="padding: 0 10px 20px 10px">
                                 <canvas id="darah"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-6 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 style="color: #6c757d !important; white-space: nowrap; overflow: hidden;">Penduduk Berdasarkan Agama</h4>
+                                <h5>Penduduk Berdasarkan Agama</h5>
                             </div>
-                            <div class="card-body" style="padding: 0 10px 25px 0">
+                            <div class="card-body" style="padding: 0 10px 20px 10px">
                                 <canvas id="agama"></canvas>
                             </div>
                         </div>
@@ -302,7 +210,7 @@
                     <div class="col-lg-12 col-md-12">
                       <div class="card">
                         <div class="card-header">
-                          <h4 style="color: #6c757d !important">Komposisi Penduduk Berdasarkan RT</h4>
+                          <h5>Komposisi Penduduk Berdasarkan RT</h5>
                         </div>
                         <div class="card-body">
                           <div class="mb-4">
@@ -362,5 +270,26 @@
         var dataUmurL = <?php echo json_encode($dataUmurL); ?>;
         var labelUmurP = <?php echo json_encode($labelUmurP); ?>;
         var dataUmurP = <?php echo json_encode($dataUmurP); ?>;
+    </script>
+
+    <script>
+      $("#organisasi").owlCarousel({
+        items: 3,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        loop: true,
+        responsive: {
+          0: {
+            items: 2
+          },
+          768: {
+            items: 2
+          },
+          1200: {
+            items: 3
+          }
+        }
+      });
     </script>
 @endsection

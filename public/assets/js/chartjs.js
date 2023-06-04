@@ -43,7 +43,6 @@ var myChart = new Chart(ctx, {
     scales: {
       yAxes: [{
         gridLines: {
-          // display: false,
           drawBorder: false,
           color: '#f2f2f2',
         },
@@ -122,10 +121,6 @@ var myChart = new Chart(ctx, {
         'rgb(253, 208, 199)',
         'rgb(82, 205, 255)',
         'rgb(129, 218, 218)',
-        // 'rgb(41, 156, 219)',
-        // 'rgb(240, 101, 72)',
-        // 'rgb(247, 184, 75)',
-        // 'rgb(10, 179, 156)',
       ],
       label: 'Golongan Darah'
     }],
@@ -149,18 +144,11 @@ var myChart = new Chart(ctx, {
     datasets: [{
       data: dataAgama,
       backgroundColor: [
-        '#191d21',
         '#34395e',
         'rgb(31, 59, 179)',
         'rgb(253, 208, 199)',
         'rgb(82, 205, 255)',
         'rgb(129, 218, 218)',
-        // '#191d21',
-        // 'rgb(64, 81, 137)',
-        // 'rgb(41, 156, 219)',
-        // 'rgb(240, 101, 72)',
-        // 'rgb(247, 184, 75)',
-        // 'rgb(10, 179, 156)',
       ],
       label: 'Agama'
     }],

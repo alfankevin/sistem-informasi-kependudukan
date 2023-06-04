@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreKeluargaRequest;
 use App\Http\Requests\UpdateKeluargaRequest;
 use App\Models\Penduduk;
-use App\Models\Sosial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -104,7 +103,6 @@ class KeluargaController extends Controller
         $newKK = $request->input('no_kk');
         $nik = $request->input('nik');
         $nama = $request->input('nama');
-        $status_keluarga = $request->input('status_keluarga');
         $alamat = $request->input('alamat');
         $rt = $request->input('rt');
 
@@ -119,10 +117,6 @@ class KeluargaController extends Controller
         DB::table('penduduk')
             ->where('id', $id)
             ->update(['nama' => $nama]);
-        
-        DB::table('penduduk')
-            ->where('id', $id)
-            ->update(['status_keluarga' => $status_keluarga]);
         
         DB::table('penduduk')
             ->where('no_kk', $currentKK)

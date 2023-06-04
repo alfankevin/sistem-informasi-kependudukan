@@ -44,26 +44,13 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="nama">Nama</label>
+                            <label for="nama">Kepala Keluarga</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                 id="nama" name="nama" value="{{ old('nama', $penduduk->nama) }}" spellcheck="false" autocomplete="off">
                             @error('nama')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="status_keluarga">
-                                <option value=""></option>
-                                <option value="0" @if (old('status_keluarga', $penduduk->status_keluarga) == "0") {{ 'selected' }} @endif>-</option>
-                                <option value="1" @if (old('status_keluarga', $penduduk->status_keluarga) == "1") {{ 'selected' }} @endif>Kepala Keluarga</option>
-                            </select>
-                            @error('status_keluarga')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
                             @enderror
                         </div>
                         <div class="form-group">
