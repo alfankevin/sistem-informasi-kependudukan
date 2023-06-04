@@ -54,7 +54,7 @@ class PendudukController extends Controller
             'alamat'=>'required',
             'rt'=>'required',
             'keterangan'=>'required',
-            'sosial_id'=>'required',
+            'id_sosial'=>'required',
         ]);
 
         Penduduk::create($request->all());
@@ -110,7 +110,7 @@ class PendudukController extends Controller
             'alamat'=>'required',
             'rt'=>'required',
             'keterangan'=>'required',
-            'sosial_id'=>'required',
+            'id_sosial'=>'required',
         ]);
 
         Penduduk::find($id)->update($request->all());

@@ -197,10 +197,10 @@
                         </div>
                         <div class="form-group" style="display: none">
                             <label>Bantuan Sosial</label>
-                            <select class="form-control select2" name="sosial_id">
+                            <select class="form-control select2" name="id_sosial">
                                 <option value="1"></option>
                             </select>
-                            @error('sosial_id')
+                            @error('id_sosial')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

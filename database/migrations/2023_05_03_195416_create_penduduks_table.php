@@ -29,8 +29,8 @@ return new class extends Migration
             $table->string('alamat', 256);
             $table->integer('rt');
             $table->string('keterangan', 128);
-            $table->unsignedBigInteger('sosial_id')->default(0);
-            $table->foreign('sosial_id')->references('id')->on('sosial')->onDelete('cascade');
+            $table->unsignedBigInteger('id_sosial')->default(0);
+            $table->foreign('id_sosial')->references('id')->on('sosial')->onDelete('cascade');
             $table->timestamps();
         });
     }
