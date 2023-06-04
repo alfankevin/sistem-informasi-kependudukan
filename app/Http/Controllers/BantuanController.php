@@ -19,7 +19,7 @@ class BantuanController extends Controller
     public function index()
     {
         $data = DB::select("SELECT FLOOR(DATEDIFF(CURDATE(), tanggal_lahir) / 365) AS usia, penduduk.*, sosial.nama_sosial
-            FROM penduduk INNER JOIN sosial ON penduduk.sosial_id = sosial.id WHERE sosial.id != 1 ORDER BY penduduk.updated_at DESC");
+            FROM penduduk INNER JOIN sosial ON penduduk.id_sosial = sosial.id WHERE sosial.id != 1 ORDER BY penduduk.updated_at DESC");
         return view('admin.bantuan.index', compact('data'));
     }
 
@@ -30,7 +30,7 @@ class BantuanController extends Controller
      */
     public function create()
     {
-        $penduduk = Penduduk::where('sosial_id', '=', 1)->orderByDesc('id')->get();
+        $penduduk = Penduduk::where('id_sosial', '=', 1)->orderByDesc('id')->get();
         $sosial = Sosial::where('id', '!=', 1)->get();
         return view('admin.bantuan.create', compact('penduduk', 'sosial'));
     }
@@ -49,7 +49,7 @@ class BantuanController extends Controller
         DB::table('penduduk')
         ->where('id', $penduduk)
         ->update([
-            'sosial_id' => $sosial,
+            'id_sosial' => $sosial,
         ]);
 
         $model = Penduduk::find($penduduk);
@@ -81,7 +81,7 @@ class BantuanController extends Controller
     {
         $penduduk = Penduduk::find($id);
         $sosial = Sosial::where('id', '!=', 1)->get();
-        $nama_sosial = DB::select("SELECT nama_sosial FROM sosial WHERE id = (SELECT sosial_id FROM penduduk WHERE id = ?)", [$id]);
+        $nama_sosial = DB::select("SELECT nama_sosial FROM sosial WHERE id = (SELECT id_sosial FROM penduduk WHERE id = ?)", [$id]);
         return view('admin.bantuan.edit', compact('penduduk', 'sosial', 'nama_sosial'));
     }
 
@@ -96,7 +96,7 @@ class BantuanController extends Controller
     {
         $request->validate([
             'nama'=>'required',
-            'sosial_id'=>'required',
+            'id_sosial'=>'required',
         ]);
 
         Penduduk::find($id)->update($request->all());
@@ -116,7 +116,7 @@ class BantuanController extends Controller
         DB::table('penduduk')
         ->where('id', $id)
         ->update([
-            'sosial_id' => '1',
+            'id_sosial' => '1',
         ]);
         
         return redirect()->route('bantuan.index')

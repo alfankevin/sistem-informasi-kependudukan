@@ -81,7 +81,7 @@
                           <ul class="list-unstyled list-unstyled-border">
                             @foreach ($agenda as $key => $item)
                             <li class="media">
-                              <span class="agenda mr-3 rounded" style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
+                              <span class="image mr-3 rounded" style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
                               <div class="media-body" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                 <div class="float-right mt-1"><span class="font-weight-600 text-muted text-small">{{ $item->tanggal_agenda }}</span></div>
                                 <div class="media-title mt-1 mb-1">{{ $item->judul_agenda }}</div>
@@ -117,69 +117,18 @@
                       </div>
                       <div class="card-body">
                         <div class="owl-carousel owl-theme" id="organisasi">
+                          @foreach ($organisasi as $key => $item)
                           <div>
                             <div class="product-item pb-3">
-                              <div class="product-image">
-                                <img alt="image" src="../assets/img/products/product-4-50.png" class="img-fluid">
-                              </div>
+                              <span class="product-image image" style="background-image: url(/assets/img/organisasi/{{ $item->gambar_organisasi }})"></span>
                               <div class="product-details">
-                                <div class="product-name">iBook Pro 2018</div>
-                                <div class="product-review">
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                </div>
-                                <div class="text-muted text-small">67 Sales</div>
-                                <div class="product-cta">
-                                  <a href="#" class="btn btn-info">Detail</a>
-                                </div>
+                                <div class="product-name">{{ $item->nama_organisasi }}</div>
+                                <div class="product-review text-muted">{{ $item->deskripsi_organisasi }}</div>
+                                <div class="product-cta"><a href="/organisasi-management/organisasi" class="btn btn-info">Detail</a></div>
                               </div>
                             </div>
                           </div>
-                          <div>
-                            <div class="product-item">
-                              <div class="product-image">
-                                <img alt="image" src="../assets/img/products/product-3-50.png" class="img-fluid">
-                              </div>
-                              <div class="product-details">
-                                <div class="product-name">oPhone S9 Limited</div>
-                                <div class="product-review">
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star-half"></i>
-                                </div>
-                                <div class="text-muted text-small">86 Sales</div>
-                                <div class="product-cta">
-                                  <a href="#" class="btn btn-info">Detail</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div class="product-item">
-                              <div class="product-image">
-                                <img alt="image" src="../assets/img/products/product-1-50.png" class="img-fluid">
-                              </div>
-                              <div class="product-details">
-                                <div class="product-name">Headphone Blitz</div>
-                                <div class="product-review">
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="fas fa-star"></i>
-                                  <i class="far fa-star"></i>
-                                </div>
-                                <div class="text-muted text-small">63 Sales</div>
-                                <div class="product-cta">
-                                  <a href="#" class="btn btn-info">Detail</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          @endforeach
                         </div>
                       </div>
                     </div>
@@ -255,6 +204,17 @@
                         </div>
                       </div>
                     </div>
+                    <div class="col-lg-12 col-md-12">
+                      <div class="card card-hero">
+                        <div class="card-header">
+                          <div class="card-icon">
+                            <a href="/penduduk-management/bantuan" style="color: inherit"><i class="far fa-handshake"></i></a>
+                          </div>
+                          <h4>{{ $countSosial }}</h4>
+                          <div class="card-description">Penerima Bantuan Sosial</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -279,6 +239,7 @@
         autoplay: true,
         autoplayTimeout: 2000,
         loop: true,
+        dots: false,
         responsive: {
           0: {
             items: 2

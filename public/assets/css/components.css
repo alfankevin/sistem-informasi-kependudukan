@@ -1200,10 +1200,15 @@ tr:first-child > td > .fc-day-grid-event {
   .product-item .product-name {
     color: #34395e;
     font-weight: 700;
-    margin-bottom: 3px; }
+    margin-bottom: 3px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis; }
   .product-item .product-review {
     color: #FFA500;
-    margin-bottom: 3px; }
+    margin-bottom: 3px;
+    height: 45px;
+    overflow: hidden; }
   .product-item .product-cta {
     margin-top: 5px; }
     .product-item .product-cta a {

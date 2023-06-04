@@ -14,6 +14,7 @@ class DashboardController extends Controller
     {
         $agenda = Agenda::orderByDesc('id')->get();
         $organisasi = Organisasi::orderByDesc('id')->get();
+        $countSosial = Penduduk::where('id_sosial', '<>', '1')->count();
 
         $countPenduduk = Penduduk::count();
         $countLaki = Penduduk::where('jenis_kelamin', 'L')->count();
@@ -95,6 +96,6 @@ class DashboardController extends Controller
         $labelUmurP = $umurP->pluck('age_group');
         $dataUmurP = $umurP->pluck('total');
 
-        return view('admin.home', compact('agenda', 'organisasi', 'countPenduduk', 'countLaki', 'countPerempuan', 'countKK', 'labelGolDarah', 'dataGolDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP'));
+        return view('admin.home', compact('agenda', 'organisasi', 'countSosial', 'countPenduduk', 'countLaki', 'countPerempuan', 'countKK', 'labelGolDarah', 'dataGolDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP'));
     }
 }
