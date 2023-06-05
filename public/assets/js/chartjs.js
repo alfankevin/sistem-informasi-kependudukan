@@ -18,9 +18,9 @@ var myChart = new Chart(ctx, {
       borderWidth: 0,
       borderColor: 'transparent',
       pointBorderWidth: 0,
-      pointRadius: 3.5,
-      pointBackgroundColor: 'transparent',
-      pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
+      pointRadius: 0,
+      pointBackgroundColor: 'rgba(0, 123, 255, .8)',
+      pointHoverBackgroundColor: 'rgba(0, 123, 255, .8)',
     },
     {
       label: 'Perempuan',
@@ -30,14 +30,22 @@ var myChart = new Chart(ctx, {
       borderWidth: 0,
       borderColor: 'transparent',
       pointBorderWidth: 0,
-      pointRadius: 3.5,
-      pointBackgroundColor: 'transparent',
-      pointHoverBackgroundColor: 'rgba(254,86,83,.7)',
+      pointRadius: 0,
+      pointBackgroundColor: 'rgba(252, 84, 75, .7)',
+      pointHoverBackgroundColor: 'rgba(252, 84, 75, .7)',
     }]
   },
   options: {
+    tooltips: {
+      mode: 'index',
+      intersect: false,
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true
+    },
     legend: {
-      display: true,
+      display: false,
       position: 'bottom'
     },
     scales: {
