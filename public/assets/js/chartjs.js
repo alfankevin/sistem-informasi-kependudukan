@@ -64,23 +64,26 @@ var myChart = new Chart(ctx, {
   }
 });
 
+console.log(dataPekerjaan);
+console.log(labelPekerjaan);
+
 var ctx = document.getElementById("pekerjaan").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     datasets: [{
       label: 'Pekerjaan',
-      data: [46, 45, 33, 50, 43, 61, 48],
-      borderWidth: 1,
+      data: dataPekerjaan,
       backgroundColor: '#007bff',
       borderColor: '#007bff',
       borderWidth: 2.5,
       pointBackgroundColor: '#ffffff',
       pointRadius: 4
-    }]
+    }],
+    labels: labelPekerjaan
   },
   options: {
+    indexAxis: 'y',
     legend: {
       display: false
     },
@@ -92,7 +95,7 @@ var myChart = new Chart(ctx, {
         },
         ticks: {
           beginAtZero: true,
-          stepSize: 10
+          stepSize: 20
         }
       }],
       xAxes: [{
@@ -107,15 +110,15 @@ var myChart = new Chart(ctx, {
   }
 });
 
-console.log(dataGolDarah);
-console.log(labelGolDarah);
+console.log(dataDarah);
+console.log(labelDarah);
 
 var ctx = document.getElementById("darah").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
     datasets: [{
-      data: dataGolDarah,
+      data: dataDarah,
       backgroundColor: [
         'rgb(31, 59, 179)',
         'rgb(253, 208, 199)',
@@ -124,7 +127,7 @@ var myChart = new Chart(ctx, {
       ],
       label: 'Golongan Darah'
     }],
-    labels: labelGolDarah,
+    labels: labelDarah,
   },
   options: {
     responsive: true,
@@ -144,11 +147,11 @@ var myChart = new Chart(ctx, {
     datasets: [{
       data: dataAgama,
       backgroundColor: [
-        '#34395e',
+        'rgb(129, 218, 218)',
         'rgb(31, 59, 179)',
         'rgb(253, 208, 199)',
         'rgb(82, 205, 255)',
-        'rgb(129, 218, 218)',
+        '#34395e',
       ],
       label: 'Agama'
     }],

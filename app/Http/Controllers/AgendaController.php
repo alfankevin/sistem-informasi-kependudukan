@@ -19,7 +19,7 @@ class AgendaController extends Controller
             $agenda = Agenda::where('judul_agenda','like','%'.$request->search.'%')->paginate(15);
         } else {
             $agenda = Agenda::all();
-            $agenda = Agenda::orderBy('id', 'asc')->paginate(15);
+            $agenda = Agenda::orderBy('id', 'desc')->paginate(15);
         }
 
         return view('admin.agenda.index', compact('agenda'));

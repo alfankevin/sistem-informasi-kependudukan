@@ -19,7 +19,7 @@ class OrganisasiController extends Controller
             $organisasi = Organisasi::where('nama_organisasi','like','%'.$request->search.'%')->paginate(15);
         } else {
             $organisasi = Organisasi::all();
-            $organisasi = Organisasi::orderBy('id', 'asc')->paginate(15);
+            $organisasi = Organisasi::orderBy('id', 'desc')->paginate(15);
         }
 
         return view('admin.organisasi.index', compact('organisasi'));

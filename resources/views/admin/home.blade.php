@@ -222,8 +222,10 @@
     </section>
 
     <script>
-        var dataGolDarah = <?php echo json_encode($dataGolDarah); ?>;
-        var labelGolDarah = <?php echo json_encode($labelGolDarah); ?>;
+        var dataPekerjaan = <?php echo json_encode($dataPekerjaan); ?>;
+        var labelPekerjaan = <?php echo json_encode($labelPekerjaan); ?>;
+        var dataDarah = <?php echo json_encode($dataDarah); ?>;
+        var labelDarah = <?php echo json_encode($labelDarah); ?>;
         var dataAgama = <?php echo json_encode($dataAgama); ?>;
         var labelAgama = <?php echo json_encode($labelAgama); ?>;
         var labelUmurL = <?php echo json_encode($labelUmurL); ?>;

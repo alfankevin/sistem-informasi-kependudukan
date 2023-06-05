@@ -12,7 +12,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $agenda = Agenda::orderByDesc('id')->get();
+        $agenda = Agenda::orderByDesc('id')->get()->map(function($item) {
+            $item->tanggal_agenda = date('d-m-Y', strtotime($item->tanggal_agenda));
+            return $item;
+        });
         $organisasi = Organisasi::orderByDesc('id')->get();
         $countSosial = Penduduk::where('id_sosial', '<>', '1')->count();
 
@@ -21,19 +24,50 @@ class DashboardController extends Controller
         $countPerempuan = Penduduk::where('jenis_kelamin', 'P')->count();
         $countKK = Penduduk::where('status_keluarga', true)->count();
 
-        $golDarah = DB::table('penduduk')
-            ->select('golongan_darah', DB::raw('count(*) as total'))
+        $pekerjaan = DB::table('penduduk')
+            ->select('pekerjaan', DB::raw('count(*) as total'))
+            ->where('pekerjaan', 'NOT LIKE', '%belum%')
+            ->where('pekerjaan', 'NOT LIKE', '%bekerja%')
+            ->where('pekerjaan', 'NOT LIKE', '%pelajar%')
+            ->where('pekerjaan', 'NOT LIKE', '%mahasiswa%')
+            ->where('pekerjaan', 'NOT LIKE', '%pensiunan%')
+            ->where('pekerjaan', 'NOT LIKE', '%purnawirawan%')
+            ->where('pekerjaan', '<>', ' ')
+            ->groupBy('pekerjaan')
+            ->get();
+            
+        $darah = DB::table('penduduk')
+            ->select(
+                DB::raw('CASE
+                        WHEN golongan_darah = "A+" THEN "A"
+                        WHEN golongan_darah = "B+" THEN "B"
+                        WHEN golongan_darah = "Ab" THEN "AB"
+                        WHEN golongan_darah = "O+" THEN "O"
+                        ELSE golongan_darah
+                    END AS golongan_darah'),
+                DB::raw('COUNT(*) AS total')
+            )
             ->where('golongan_darah','<>','-')
-            ->groupBy('golongan_darah')
+            ->groupBy(
+                DB::raw('CASE
+                        WHEN golongan_darah = "A+" THEN "A"
+                        WHEN golongan_darah = "B+" THEN "B"
+                        WHEN golongan_darah = "Ab" THEN "AB"
+                        WHEN golongan_darah = "O+" THEN "O"
+                        ELSE golongan_darah
+                    END')
+            )
             ->get();
 
         $agama = DB::table('penduduk')
             ->select('agama', DB::raw('count(*) as total'))
             ->groupBy('agama')
             ->get();
-
-        $labelGolDarah = $golDarah->where('golongan_darah','<>','-')->pluck('golongan_darah');
-        $dataGolDarah = $golDarah->pluck('total');
+        
+        $labelPekerjaan = $pekerjaan->pluck('pekerjaan');
+        $dataPekerjaan = $pekerjaan->pluck('total');
+        $labelDarah = $darah->where('golongan_darah','<>','-')->pluck('golongan_darah');
+        $dataDarah = $darah->pluck('total');
         $labelAgama = $agama->pluck('agama');
         $dataAgama = $agama->pluck('total');
 
@@ -96,6 +130,6 @@ class DashboardController extends Controller
         $labelUmurP = $umurP->pluck('age_group');
         $dataUmurP = $umurP->pluck('total');
 
-        return view('admin.home', compact('agenda', 'organisasi', 'countSosial', 'countPenduduk', 'countLaki', 'countPerempuan', 'countKK', 'labelGolDarah', 'dataGolDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP'));
+        return view('admin.home', compact('agenda', 'organisasi', 'countSosial', 'countPenduduk', 'countLaki', 'countPerempuan', 'countKK', 'labelPekerjaan', 'dataPekerjaan', 'labelDarah', 'dataDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP'));
     }
 }

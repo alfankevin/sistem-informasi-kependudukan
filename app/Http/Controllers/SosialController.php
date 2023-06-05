@@ -18,7 +18,7 @@ class SosialController extends Controller
             $sosial = Sosial::where('nama_sosial','like','%'.$request->search.'%')->paginate(15);
         } else {
             $sosial = Sosial::all();
-            $sosial = Sosial::orderBy('id', 'asc')->paginate(15);
+            $sosial = Sosial::orderBy('id', 'desc')->paginate(15);
         }
         
         return view('admin.sosial.index', compact('sosial'));

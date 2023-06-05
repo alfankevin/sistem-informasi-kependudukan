@@ -20,7 +20,7 @@ class PotensiController extends Controller
             ->orWhere('alamat_umkm','like','%'.$request->search.'%')->paginate(15);
         } else {
             $potensi = Potensi::all();
-            $potensi = Potensi::orderBy('id', 'asc')->paginate(15);
+            $potensi = Potensi::orderBy('id', 'desc')->paginate(15);
         }
 
         return view('admin.potensi.index', compact('potensi'));

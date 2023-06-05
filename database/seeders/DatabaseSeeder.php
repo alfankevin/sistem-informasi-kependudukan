@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             RoleAndPermissionSeeder::class,
             MenuGroupSeeder::class,
             MenuItemSeeder::class,
-            CategorySeeder::class,
             SosialSeeder::class,
             PendudukSeeder::class,
             OrganisasiSeeder::class,
