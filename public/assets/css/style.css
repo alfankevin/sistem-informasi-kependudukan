@@ -4163,6 +4163,10 @@ body:not(.sidebar-mini)
     text-decoration: underline;
 }
 
+.openKTP:hover {
+    cursor: pointer;
+}
+
 .detailKTP {
     padding: 15px 20px;
     color: #333;

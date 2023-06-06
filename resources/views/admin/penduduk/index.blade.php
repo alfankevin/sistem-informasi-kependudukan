@@ -49,7 +49,21 @@
                                     <tbody>
                                         @foreach ($penduduk as $key => $item)
                                             <tr>
-                                                <td>{{ $key + 1 }}
+                                                <td class="openKTP"
+                                                    data-toggle="modal"
+                                                    data-target="#ktp"
+                                                    data-nik="{{ $item->nik }}"
+                                                    data-nama="{{ $item->nama }}"
+                                                    data-tempat_lahir="{{ $item->tempat_lahir }}"
+                                                    data-tanggal_lahir="{{ $item->tanggal_lahir }}"
+                                                    data-jenis_kelamin="{{ $item->jenis_kelamin }}"
+                                                    data-golongan_darah="{{ $item->golongan_darah }}"
+                                                    data-alamat="{{ $item->alamat }}"
+                                                    data-rt="{{ $item->rt }}"
+                                                    data-agama="{{ $item->agama }}"
+                                                    data-status_perkawinan="{{ $item->status_perkawinan }}"
+                                                    data-pekerjaan="{{ $item->pekerjaan }}">
+                                                    {{ $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->tempat_lahir }}</td>

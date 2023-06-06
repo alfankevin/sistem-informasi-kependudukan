@@ -129,8 +129,11 @@
                                 <option value="Belum Kawin" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Belum Kawin") {{ 'selected' }} @endif>Belum Kawin</option>
                                 <option value="Kawin Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Kawin Tercatat") {{ 'selected' }} @endif>Kawin Tercatat</option>
                                 <option value="Kawin Belum Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Kawin Belum Tercatat") {{ 'selected' }} @endif>Kawin Belum Tercatat</option>
-                                <option value="Cerai Hidup Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Hidup Tercatat") {{ 'selected' }} @endif>Cerai Hidup Tercatat</option>
+                                <option value="Cerai" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai") {{ 'selected' }} @endif>Cerai</option>
                                 <option value="Cerai Mati" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Mati") {{ 'selected' }} @endif>Cerai Mati</option>
+                                <option value="Cerai Hidup" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Hidup") {{ 'selected' }} @endif>Cerai Hidup</option>
+                                <option value="Cerai Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Tercatat") {{ 'selected' }} @endif>Cerai Tercatat</option>
+                                <option value="Cerai Hidup Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Hidup Tercatat") {{ 'selected' }} @endif>Cerai Hidup Tercatat</option>
                             </select>
                             @error('status_perkawinan')
                                 <div class="invalid-feedback">

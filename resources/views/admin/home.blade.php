@@ -29,7 +29,7 @@
                       <h4>Laki-laki</h4>
                     </div>
                         <div class="card-body">
-                          {{ $countLaki }}
+                          {{ $countL }}
                         </div>
                       </div>
                       </div>
@@ -42,7 +42,7 @@
                         <h4>Perempuan</h4>
                       </div>
                       <div class="card-body">
-                            {{ $countPerempuan }}
+                            {{ $countP }}
                           </div>
                         </div>
                       </div>
@@ -81,7 +81,7 @@
                           <ul class="list-unstyled list-unstyled-border">
                             @foreach ($agenda as $key => $item)
                             <li class="media">
-                              <span class="image mr-3 rounded" style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
+                              <span class="image mr-3 rounded" style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/gambar.jpeg{{ $item->gambar_agenda }})"></span>
                               <div class="media-body" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                 <div class="float-right mt-1"><span class="font-weight-600 text-muted text-small">{{ $item->tanggal_agenda }}</span></div>
                                 <div class="media-title mt-1 mb-1">{{ $item->judul_agenda }}</div>
@@ -163,42 +163,42 @@
                         </div>
                         <div class="card-body">
                           <div class="mb-4">
-                            <div class="text-small float-right font-weight-bold text-muted">2,100</div>
+                            <div class="text-small float-right font-weight-bold text-muted">{{ $jumlahRt1 }}</div>
                             <div class="font-weight-bold mb-1">RT 01</div>
                             <div class="progress" data-height="3">
-                              <div class="progress-bar" role="progressbar" data-width="80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                              <div class="progress-bar" role="progressbar" data-width="{{ $persenRt1 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
   
                           <div class="mb-4">
-                            <div class="text-small float-right font-weight-bold text-muted">1,880</div>
+                            <div class="text-small float-right font-weight-bold text-muted">{{ $jumlahRt2 }}</div>
                             <div class="font-weight-bold mb-1">RT 02</div>
                             <div class="progress" data-height="3">
-                              <div class="progress-bar" role="progressbar" data-width="67%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              <div class="progress-bar" role="progressbar" data-width="{{ $persenRt2 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
   
                           <div class="mb-4">
-                            <div class="text-small float-right font-weight-bold text-muted">1,521</div>
+                            <div class="text-small float-right font-weight-bold text-muted">{{ $jumlahRt3 }}</div>
                             <div class="font-weight-bold mb-1">RT 03</div>
                             <div class="progress" data-height="3">
-                              <div class="progress-bar" role="progressbar" data-width="58%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              <div class="progress-bar" role="progressbar" data-width="{{ $persenRt3 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
   
                           <div class="mb-4">
-                            <div class="text-small float-right font-weight-bold text-muted">884</div>
+                            <div class="text-small float-right font-weight-bold text-muted">{{ $jumlahRt4 }}</div>
                             <div class="font-weight-bold mb-1">RT 04</div>
                             <div class="progress" data-height="3">
-                              <div class="progress-bar" role="progressbar" data-width="36%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              <div class="progress-bar" role="progressbar" data-width="{{ $persenRt4 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
   
                           <div class="mb-4">
-                            <div class="text-small float-right font-weight-bold text-muted">473</div>
+                            <div class="text-small float-right font-weight-bold text-muted">{{ $jumlahRt5 }}</div>
                             <div class="font-weight-bold mb-1">RT 05</div>
                             <div class="progress" data-height="3">
-                              <div class="progress-bar" role="progressbar" data-width="28%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              <div class="progress-bar" role="progressbar" data-width="{{ $persenRt5 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
                         </div>

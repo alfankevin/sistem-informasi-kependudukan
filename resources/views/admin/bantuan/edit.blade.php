@@ -33,13 +33,13 @@
                         </div>
                         <div class="form-group">
                             <label>Bantuan Sosial</label>
-                            <select class="form-control select2" name="sosial_id">
-                                <option value="{{ old('sosial_id', $penduduk->sosial_id) }}">{{ $nama_sosial[0]->nama_sosial }}</option>
+                            <select class="form-control select2" name="id_sosial">
+                                <option value="{{ old('id_sosial', $penduduk->id_sosial) }}">{{ $nama_sosial[0]->nama_sosial }}</option>
                                 @foreach ($sosial as $item)
                                     <option value="{{ $item->id }}">{{ $item->nama_sosial }}</option>
                                 @endforeach
                             </select>
-                            @error('sosial_id')
+                            @error('id_sosial')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

@@ -20,19 +20,19 @@ class DashboardController extends Controller
         $countSosial = Penduduk::where('id_sosial', '<>', '1')->count();
 
         $countPenduduk = Penduduk::count();
-        $countLaki = Penduduk::where('jenis_kelamin', 'L')->count();
-        $countPerempuan = Penduduk::where('jenis_kelamin', 'P')->count();
+        $countL = Penduduk::where('jenis_kelamin', 'L')->count();
+        $countP = Penduduk::where('jenis_kelamin', 'P')->count();
         $countKK = Penduduk::where('status_keluarga', true)->count();
 
         $pekerjaan = DB::table('penduduk')
             ->select('pekerjaan', DB::raw('count(*) as total'))
+            ->where('pekerjaan', 'NOT LIKE', '%tidak%')
             ->where('pekerjaan', 'NOT LIKE', '%belum%')
             ->where('pekerjaan', 'NOT LIKE', '%bekerja%')
             ->where('pekerjaan', 'NOT LIKE', '%pelajar%')
             ->where('pekerjaan', 'NOT LIKE', '%mahasiswa%')
             ->where('pekerjaan', 'NOT LIKE', '%pensiunan%')
             ->where('pekerjaan', 'NOT LIKE', '%purnawirawan%')
-            ->where('pekerjaan', '<>', ' ')
             ->groupBy('pekerjaan')
             ->get();
             
@@ -63,13 +63,34 @@ class DashboardController extends Controller
             ->select('agama', DB::raw('count(*) as total'))
             ->groupBy('agama')
             ->get();
-        
+
+        $query = "
+        SELECT rt, jumlah, (jumlah / total) * 300 AS persentase
+        FROM (
+            SELECT rt, COUNT(*) AS jumlah, (SELECT COUNT(*) FROM penduduk) AS total
+            FROM penduduk
+            GROUP BY rt
+        ) AS subquery;
+        ";
+
         $labelPekerjaan = $pekerjaan->pluck('pekerjaan');
         $dataPekerjaan = $pekerjaan->pluck('total');
         $labelDarah = $darah->where('golongan_darah','<>','-')->pluck('golongan_darah');
         $dataDarah = $darah->pluck('total');
         $labelAgama = $agama->pluck('agama');
         $dataAgama = $agama->pluck('total');
+
+        $results = DB::select(DB::raw($query));
+        $jumlahRt1 = collect($results)->where('rt', 1)->pluck('jumlah')->first();
+        $jumlahRt2 = collect($results)->where('rt', 2)->pluck('jumlah')->first();
+        $jumlahRt3 = collect($results)->where('rt', 3)->pluck('jumlah')->first();
+        $jumlahRt4 = collect($results)->where('rt', 4)->pluck('jumlah')->first();
+        $jumlahRt5 = collect($results)->where('rt', 5)->pluck('jumlah')->first();
+        $persenRt1 = collect($results)->where('rt', 1)->pluck('persentase')->first();
+        $persenRt2 = collect($results)->where('rt', 2)->pluck('persentase')->first();
+        $persenRt3 = collect($results)->where('rt', 3)->pluck('persentase')->first();
+        $persenRt4 = collect($results)->where('rt', 4)->pluck('persentase')->first();
+        $persenRt5 = collect($results)->where('rt', 5)->pluck('persentase')->first();
 
         $umurL = Penduduk::select(DB::raw('CASE
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 0 AND 5 THEN "0-5"
@@ -130,6 +151,6 @@ class DashboardController extends Controller
         $labelUmurP = $umurP->pluck('age_group');
         $dataUmurP = $umurP->pluck('total');
 
-        return view('admin.home', compact('agenda', 'organisasi', 'countSosial', 'countPenduduk', 'countLaki', 'countPerempuan', 'countKK', 'labelPekerjaan', 'dataPekerjaan', 'labelDarah', 'dataDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP'));
+        return view('admin.home', compact('agenda', 'organisasi', 'countSosial', 'countPenduduk', 'countL', 'countP', 'countKK', 'labelPekerjaan', 'dataPekerjaan', 'labelDarah', 'dataDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP', 'jumlahRt1', 'jumlahRt2', 'jumlahRt3', 'jumlahRt4', 'jumlahRt5', 'persenRt1', 'persenRt2', 'persenRt3', 'persenRt4', 'persenRt5'));
     }
 }
