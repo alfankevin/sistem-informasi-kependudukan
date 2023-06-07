@@ -22,8 +22,7 @@ class OrganisasiController extends Controller
             $organisasi = Organisasi::orderBy('id', 'desc')->paginate(15);
         }
 
-        return view('admin.organisasi.index', compact('organisasi'));
-        with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.organisasi.index', compact('organisasi'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
