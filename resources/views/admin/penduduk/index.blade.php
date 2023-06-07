@@ -23,17 +23,13 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <a href="{{ route('penduduk.export') }}" class="btn btn-success">Export</a>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#importModal">Import</a>
-                        </div>
-                        <div class="card-header">
                             <h4>Daftar Penduduk</h4>
                             <div class="card-header-action">
                                 <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Penduduk</a>
-                                <a class="btn btn-primary btn-color-blue text-white import">
+                                <a class="btn btn-primary btn-color-blue text-white" data-toggle="modal" data-target="#importModal">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                     Import Data</a>
-                                <a class="btn btn-primary btn-color-blue" href="{{ route('user.export') }}">
+                                <a class="btn btn-primary btn-color-blue" href="{{ route('penduduk.export') }}">
                                     <i class="fa fa-upload" aria-hidden="true"></i>
                                     Export Data</a>
                             </div>
@@ -257,7 +253,7 @@
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="importModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="importModalLabel">Import Data</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
