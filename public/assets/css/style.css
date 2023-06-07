@@ -1877,6 +1877,7 @@ h6 .badge {
 .btn-primary.disabled:active,
 .btn-primary.disabled:hover {
     background-color: #2a5788 !important;
+    cursor: pointer;
 }
 
 .btn-outline-primary,
@@ -3470,7 +3471,7 @@ body.sidebar-mini .main-sidebar .sidebar-menu > li ul.dropdown-menu {
     left: 65px;
     top: 10px;
     width: 200px;
-    display: none;
+    display: none !important;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
 }
 body.sidebar-mini
@@ -3937,6 +3938,7 @@ body.layout-3 .main-footer {
     height: 35px;
     padding-left: 65px;
     font-weight: 400;
+    white-space: nowrap;
 }
 .main-sidebar .sidebar-menu li ul.dropdown-menu li a:hover {
     color: #2a5788;
