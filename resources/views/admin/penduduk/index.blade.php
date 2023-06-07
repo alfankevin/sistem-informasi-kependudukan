@@ -23,6 +23,10 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
+                            <a href="{{ route('penduduk.export') }}" class="btn btn-success">Export</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#importModal">Import</a>
+                        </div>
+                        <div class="card-header">
                             <h4>Daftar Penduduk</h4>
                             <div class="card-header-action">
                                 <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Penduduk</a>
@@ -239,6 +243,32 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="importModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form action="{{ route('penduduk.import') }}" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <input type="file" name="file" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Import</button>
+                </div>
+            </form>
+        </div>
         </div>
     </div>
 @endsection
