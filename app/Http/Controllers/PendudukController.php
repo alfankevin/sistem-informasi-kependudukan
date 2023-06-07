@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePendudukRequest;
-use App\Http\Requests\UpdatePendudukRequest;
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use App\Exports\pendudukExport;
+use App\Imports\pendudukImport;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\StorePendudukRequest;
+use App\Http\Requests\UpdatePendudukRequest;
 
 class PendudukController extends Controller
 {
@@ -134,5 +137,18 @@ class PendudukController extends Controller
 
         return redirect()->route('penduduk.index')
             ->with('success', 'Penduduk berhasil dihapus');
+    }
+
+    public function pendudukExport()
+    {
+        return Excel::download(new pendudukExport, 'penduduk.xlsx');
+    }
+
+    public function pendudukImport()
+    {
+        Excel::import(new pendudukImport, request()->file('file'));
+
+        return redirect()->route('penduduk.index')
+            ->with('success', 'Penduduk berhasil diimport');
     }
 }

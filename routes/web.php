@@ -60,6 +60,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
+    Route::get('/pendudukExport', [PendudukController::class, 'pendudukExport'])->name('penduduk.export');
+    Route::post('/pendudukImport', [PendudukController::class, 'pendudukImport'])->name('penduduk.import');
+
     //user list
     Route::prefix('user-management')->group(function () {
         Route::resource('user', UserController::class);
