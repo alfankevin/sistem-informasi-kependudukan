@@ -26,6 +26,12 @@
                             <h4>Daftar Penduduk</h4>
                             <div class="card-header-action">
                                 <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Penduduk</a>
+                                <a class="btn btn-primary btn-color-blue text-white import">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    Import Data</a>
+                                <a class="btn btn-primary btn-color-blue" href="{{ route('user.export') }}">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                    Export Data</a>
                             </div>
                         </div>
                         <div class="card-body">

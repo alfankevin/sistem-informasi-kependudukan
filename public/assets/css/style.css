@@ -1877,6 +1877,7 @@ h6 .badge {
 .btn-primary.disabled:active,
 .btn-primary.disabled:hover {
     background-color: #2a5788 !important;
+    cursor: pointer;
 }
 
 .btn-outline-primary,
