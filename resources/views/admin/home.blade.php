@@ -63,7 +63,7 @@
 
             <div class="row">
                 <div class="col-lg-8 col-md-12">
-                    <div class="card">
+                    <div class="card card-usia" style="height: 500px">
                         <div class="card-header">
                             <h5>Komposisi Penduduk Berdasarkan Usia</h5>
                         </div>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
-                    <div class="card gradient-bottom" style="height: 500px">
+                    <div class="card card-agenda gradient-bottom" style="height: 500px">
                         <div class="card-header">
                           <h5>Agenda Sosial</h5>
                         </div>
@@ -83,7 +83,7 @@
                             <li class="media">
                               <span class="image mr-3 rounded" style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/gambar.jpeg{{ $item->gambar_agenda }})"></span>
                               <div class="media-body" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                <div class="float-right mt-1"><span class="font-weight-600 text-muted text-small">{{ $item->tanggal_agenda }}</span></div>
+                                <div class="float-right mt-1"><span class="tanggal-agenda font-weight-600 text-muted text-small">{{ $item->tanggal_agenda }}</span></div>
                                 <div class="media-title mt-1 mb-1">{{ $item->judul_agenda }}</div>
                                 <span>{{ $item->deskripsi_agenda }}</span>
                               </div>
@@ -101,7 +101,7 @@
             <div class="row">
                 <div class="col-lg-6">
                   <div class="col-lg-12 col-md-12" style="padding: 0">
-                    <div class="card">
+                    <div class="card card-pekerjaan" style="height: 450px">
                       <div class="card-header">
                         <h5>Komposisi Penduduk Berdasarkan Pekerjaan</h5>
                       </div>
@@ -111,7 +111,7 @@
                     </div>
                   </div>
                   <div class="col-lg-12 col-md-12" style="padding: 0">
-                    <div class="card">
+                    <div class="card card-ormas" style="height: 350px">
                       <div class="card-header">
                         <h5>Organisasi Masyarakat</h5>
                       </div>
@@ -137,7 +137,7 @@
                 <div class="col-lg-6">
                   <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <div class="card">
+                        <div class="card card-darah" style="height: 250px">
                             <div class="card-header">
                                 <h5>Penduduk Berdasarkan Gol. Darah</h5>
                             </div>
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <div class="card">
+                        <div class="card card-agama" style="height: 250px">
                             <div class="card-header">
                                 <h5>Penduduk Berdasarkan Agama</h5>
                             </div>
@@ -157,7 +157,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-12">
-                      <div class="card">
+                      <div class="card card-rt" style="height: 370px">
                         <div class="card-header">
                           <h5>Komposisi Penduduk Berdasarkan RT</h5>
                         </div>
@@ -205,7 +205,7 @@
                       </div>
                     </div>
                     <div class="col-lg-12 col-md-12">
-                      <div class="card card-hero">
+                      <div class="card card-sosial card-hero" style="height: 150px">
                         <div class="card-header">
                           <div class="card-icon">
                             <a href="/penduduk-management/bantuan" style="color: inherit"><i class="far fa-handshake"></i></a>

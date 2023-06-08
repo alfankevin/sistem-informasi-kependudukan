@@ -1229,6 +1229,16 @@ select.form-control:not([size]):not([multiple]) {
         width: 100%;
         margin-top: 10px;
     }
+    .card-usia,
+    .card-agenda {
+        height: 315px !important;
+    }
+    .card-pekerjaan {
+        height: 420px !important;
+    }
+    .tanggal-agenda {
+        display: none;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {

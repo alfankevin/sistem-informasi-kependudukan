@@ -36,6 +36,7 @@ var myChart = new Chart(ctx, {
     }]
   },
   options: {
+    maintainAspectRatio: false,
     tooltips: {
       mode: 'index',
       intersect: false,
@@ -91,6 +92,7 @@ var myChart = new Chart(ctx, {
     labels: labelPekerjaan
   },
   options: {
+    maintainAspectRatio: false,
     indexAxis: 'y',
     legend: {
       display: false
@@ -138,6 +140,7 @@ var myChart = new Chart(ctx, {
     labels: labelDarah,
   },
   options: {
+    maintainAspectRatio: false,
     responsive: true,
     legend: {
       position: 'right',
@@ -166,6 +169,7 @@ var myChart = new Chart(ctx, {
     labels: labelAgama,
   },
   options: {
+    maintainAspectRatio: false,
     responsive: true,
     legend: {
       position: 'right',
