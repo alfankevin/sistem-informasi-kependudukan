@@ -8,13 +8,14 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\SosialController;
+use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\PotensiController;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\KeluargaController;
-use App\Http\Controllers\BantuanController;
+use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Menu\MenuGroupController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -38,9 +39,7 @@ use App\Http\Controllers\RoleAndPermission\ImportPermissionController;
 |
 */
 
-Route::get('/', function () {
-    return view('main.index');
-});
+Route::get('/', [LandingPageController::class, 'index']);
 
 Route::get('/agenda', function () {
     return view('main.page.agenda');
@@ -48,6 +47,10 @@ Route::get('/agenda', function () {
 
 Route::get('/potensi', function () {
     return view('main.page.potensi');
+});
+
+Route::get('/galeri', function () {
+    return view('main.page.galeri');
 });
 
 Route::get('/admin', function () {

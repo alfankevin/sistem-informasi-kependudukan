@@ -15,10 +15,10 @@
           <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
               <p>
                 <i class="fab fa-instagram me-3 text-white" style="color: blue"></i>
-                <a href="https://instagram.com/rukunwarga05tanjungrejo/" style="text-decoration: none;" class="text-white">rukunwarga05tanjungrejo</a></p>
+                <a href="https://instagram.com/rukunwarga05tanjungrejo/" target="_blank" style="text-decoration: none;" class="text-white">rukunwarga05tanjungrejo</a></p>
           </div>
           <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <p><i class="fas fa-phone me-3 text-white"></i><a href="https://wa.me/628111615533?text='Permisi, saya mau tanya :)'" style="text-decoration: none;" class="text-white">Contact Person</a></p>
+              <p><i class="fas fa-phone me-3 text-white"></i><a href="https://wa.me/628111615533?text='Permisi, saya mau tanya :)'" target="_blank" style="text-decoration: none;" class="text-white">Contact Person</a></p>
           </div>
           <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
               <p><i class="fas fa-envelope me-3 text-white"></i><a href="mailto:rw05tanjungrejo@gmail.com" style="text-decoration: none;" class="text-white">rw05tanjungrejo@gmail.com</a></p>

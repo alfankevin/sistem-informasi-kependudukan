@@ -8,7 +8,18 @@
         <div id="carouselExampleRide" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
 
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                @foreach ($agenda as $item)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                        <img src="{{ asset('assets/img/agenda/'. $item->gambar_agenda) }}" class="d-block w-100" alt="..."
+                            style="height:600px; object-fit: cover;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ $item->judul }}</h5>
+                            <p>{{ $item->deskripsi }}</p>
+                        </div>
+                    </div>
+
+                @endforeach
+                {{-- <div class="carousel-item active">
                     <img src="https://images.unsplash.com/photo-1613395940640-9c2d79562bf7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                         class="d-block w-100" alt="..." style="height:600px; object-fit: cover;">
                 </div>
@@ -19,7 +30,7 @@
                 <div class="carousel-item">
                     <img src="https://images.unsplash.com/photo-1582156307922-c6cd3584b6bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                         class="d-block w-100" alt="..." style="height:600px; object-fit: cover;">
-                </div>
+                </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -65,7 +76,7 @@
             <div class=" p-1">
                 <div class=" text-center p-4">
                     <i class="fa fa-mobile-screen fa-2x mb-2"></i>
-                    <h2 class="mb-1" data-val="10" id="num">00</h2>
+                    <h2 class="mb-1" data-val="{{ $countL }}" id="num">00</h2>
                     <p class="mb-0">Laki-laki</p>
                 </div>
             </div>
@@ -74,7 +85,7 @@
             <div class=" p-1">
                 <div class=" text-center p-4">
                     <i class="fa fa-users-cog fa-2x mb-2"></i>
-                    <h2 class="mb-1" data-val="80" id="num">00</h2>
+                    <h2 class="mb-1" data-val="{{ $countP }}" id="num">0</h2>
                     <p class="mb-0">Perempuan</p>
                 </div>
             </div>
@@ -83,7 +94,7 @@
             <div class="p-1">
                 <div class="text-center p-4">
                     <i class="fa fa-users fa-2x mb-2"></i>
-                    <h2 class="mb-1" data-val="500" id="num">000</h2>
+                    <h2 class="mb-1" data-val="{{ $countPenduduk }}" id="num">0</h2>
 
                     <p class="mb-0">Jiwa</p>
                 </div>
@@ -93,7 +104,7 @@
             <div class=" p-1">
                 <div class=" text-center p-4">
                     <i class="fa fa-users fa-2x mb-2"></i>
-                    <h2 class="mb-1" data-val="500" id="num">000</h2>
+                    <h2 class="mb-1" data-val="{{ $countKK }}" id="num">0</h2>
                     <p class="mb-0">Kepala Keluarga</p>
                 </div>
             </div>
