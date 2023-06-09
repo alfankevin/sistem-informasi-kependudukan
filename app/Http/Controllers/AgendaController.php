@@ -20,6 +20,10 @@ class AgendaController extends Controller
         } else {
             $agenda = Agenda::all();
             $agenda = Agenda::orderBy('id', 'desc')->paginate(15);
+            $agenda->getCollection()->transform(function ($item) {
+                $item->tanggal_agenda = date('d-m-Y', strtotime($item->tanggal_agenda));
+                return $item;
+            });
         }
 
         return view('admin.agenda.index', compact('agenda'));

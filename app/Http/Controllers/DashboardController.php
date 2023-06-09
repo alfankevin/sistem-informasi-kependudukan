@@ -65,7 +65,7 @@ class DashboardController extends Controller
             ->get();
 
         $query = "
-        SELECT rt, jumlah, (jumlah / total) * 300 AS persentase
+        SELECT rt, jumlah, (jumlah / total) * 300 AS persen
         FROM (
             SELECT rt, COUNT(*) AS jumlah, (SELECT COUNT(*) FROM penduduk) AS total
             FROM penduduk
@@ -86,11 +86,11 @@ class DashboardController extends Controller
         $jumlahRt3 = collect($results)->where('rt', 3)->pluck('jumlah')->first();
         $jumlahRt4 = collect($results)->where('rt', 4)->pluck('jumlah')->first();
         $jumlahRt5 = collect($results)->where('rt', 5)->pluck('jumlah')->first();
-        $persenRt1 = collect($results)->where('rt', 1)->pluck('persentase')->first();
-        $persenRt2 = collect($results)->where('rt', 2)->pluck('persentase')->first();
-        $persenRt3 = collect($results)->where('rt', 3)->pluck('persentase')->first();
-        $persenRt4 = collect($results)->where('rt', 4)->pluck('persentase')->first();
-        $persenRt5 = collect($results)->where('rt', 5)->pluck('persentase')->first();
+        $persenRt1 = collect($results)->where('rt', 1)->pluck('persen')->first();
+        $persenRt2 = collect($results)->where('rt', 2)->pluck('persen')->first();
+        $persenRt3 = collect($results)->where('rt', 3)->pluck('persen')->first();
+        $persenRt4 = collect($results)->where('rt', 4)->pluck('persen')->first();
+        $persenRt5 = collect($results)->where('rt', 5)->pluck('persen')->first();
 
         $umurL = Penduduk::select(DB::raw('CASE
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 0 AND 5 THEN "0-5"

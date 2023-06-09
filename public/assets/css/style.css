@@ -1229,6 +1229,16 @@ select.form-control:not([size]):not([multiple]) {
         width: 100%;
         margin-top: 10px;
     }
+    .card-usia,
+    .card-agenda {
+        height: 315px !important;
+    }
+    .card-pekerjaan {
+        height: 420px !important;
+    }
+    .tanggal-agenda {
+        display: none;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -1876,7 +1886,7 @@ h6 .badge {
 .btn-primary:hover,
 .btn-primary.disabled:active,
 .btn-primary.disabled:hover {
-    background-color: #2a5788 !important;
+    background-color: #204065 !important;
     cursor: pointer;
 }
 

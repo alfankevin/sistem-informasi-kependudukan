@@ -247,8 +247,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
     <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -262,7 +260,7 @@
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
-                        <input type="file" name="file" required>
+                        <input type="file" name="file" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">
