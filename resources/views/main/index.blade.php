@@ -74,7 +74,7 @@
             <div class=" p-1">
                 <div class=" text-center p-4">
                     <i class="fa fa-users-cog fa-2x mb-2"></i>
-                    <h2 class="mb-1" data-val="80" id="num">00</h2>
+                    <h2 class="mb-1" data-val="80" id="num">0</h2>
                     <p class="mb-0">Perempuan</p>
                 </div>
             </div>
@@ -83,7 +83,7 @@
             <div class="p-1">
                 <div class="text-center p-4">
                     <i class="fa fa-users fa-2x mb-2"></i>
-                    <h2 class="mb-1" data-val="500" id="num">000</h2>
+                    <h2 class="mb-1" data-val="500" id="num">0</h2>
 
                     <p class="mb-0">Jiwa</p>
                 </div>
@@ -93,7 +93,7 @@
             <div class=" p-1">
                 <div class=" text-center p-4">
                     <i class="fa fa-users fa-2x mb-2"></i>
-                    <h2 class="mb-1" data-val="500" id="num">000</h2>
+                    <h2 class="mb-1" data-val="500" id="num">0</h2>
                     <p class="mb-0">Kepala Keluarga</p>
                 </div>
             </div>
