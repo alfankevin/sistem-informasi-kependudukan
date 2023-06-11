@@ -772,6 +772,9 @@ select.form-control:not([size]):not([multiple]) {
 .alert.alert-dark {
     background-color: #191d21;
 }
+.close {
+    height: 100%;
+}
 
 /* 3.5 Card */
 .card {
