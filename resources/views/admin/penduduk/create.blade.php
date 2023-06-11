@@ -128,7 +128,6 @@
                                 <option value="Cerai Mati">Cerai Mati</option>
                                 <option value="Cerai Hidup">Cerai Hidup</option>
                                 <option value="Cerai Tercatat">Cerai Tercatat</option>
-                                <option value="Cerai Hidup Tercatat">Cerai Hidup Tercatat</option>
                             </select>
                             @error('status_perkawinan')
                                 <div class="invalid-feedback">

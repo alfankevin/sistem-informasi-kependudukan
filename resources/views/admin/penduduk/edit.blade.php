@@ -133,7 +133,6 @@
                                 <option value="Cerai Mati" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Mati") {{ 'selected' }} @endif>Cerai Mati</option>
                                 <option value="Cerai Hidup" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Hidup") {{ 'selected' }} @endif>Cerai Hidup</option>
                                 <option value="Cerai Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Tercatat") {{ 'selected' }} @endif>Cerai Tercatat</option>
-                                <option value="Cerai Hidup Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Hidup Tercatat") {{ 'selected' }} @endif>Cerai Hidup Tercatat</option>
                             </select>
                             @error('status_perkawinan')
                                 <div class="invalid-feedback">
