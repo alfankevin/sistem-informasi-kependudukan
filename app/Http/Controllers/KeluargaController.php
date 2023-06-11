@@ -101,7 +101,6 @@ class KeluargaController extends Controller
         $penduduk = DB::table('penduduk')->where('id', $id)->first();
         $currentKK = $penduduk->no_kk;
         $newKK = $request->input('no_kk');
-        $nik = $request->input('nik');
         $nama = $request->input('nama');
         $alamat = $request->input('alamat');
         $rt = $request->input('rt');
@@ -109,10 +108,6 @@ class KeluargaController extends Controller
         DB::table('penduduk')
             ->where('no_kk', $currentKK)
             ->update(['no_kk' => $newKK]);
-
-        DB::table('penduduk')
-            ->where('id', $id)
-            ->update(['nik' => $nik]);
 
         DB::table('penduduk')
             ->where('id', $id)

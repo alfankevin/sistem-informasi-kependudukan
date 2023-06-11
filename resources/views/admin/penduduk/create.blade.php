@@ -136,7 +136,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Status Hubungan Dalam Keluarga</label>
+                            <label>Status Keluarga</label>
                             <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="status_keluarga">
                                 <option value=""></option>
                                 <option value="0">-</option>

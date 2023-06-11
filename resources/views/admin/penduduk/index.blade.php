@@ -26,11 +26,11 @@
                             <div class="card-header-action">
                                 <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Penduduk</a>
                                 <a class="btn btn-primary btn-color-blue text-white" data-toggle="modal" data-target="#importModal">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                    Import Data</a>
+                                    <i class="fa fa-download" aria-hidden="true"></i> Import Data
+                                </a>
                                 <a class="btn btn-primary btn-color-blue" href="{{ route('penduduk.export') }}">
-                                    <i class="fa fa-upload" aria-hidden="true"></i>
-                                    Export Data</a>
+                                    <i class="fa fa-upload" aria-hidden="true"></i> Export Data
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -54,9 +54,7 @@
                                     <tbody>
                                         @foreach ($penduduk as $key => $item)
                                             <tr>
-                                                <td class="openKTP"
-                                                    data-toggle="modal"
-                                                    data-target="#ktp"
+                                                <td class="openKTP" data-toggle="modal" data-target="#ktp"
                                                     data-nik="{{ $item->nik }}"
                                                     data-nama="{{ $item->nama }}"
                                                     data-tempat_lahir="{{ $item->tempat_lahir }}"
@@ -91,17 +89,16 @@
                                                             data-rt="{{ $item->rt }}">
                                                             <i class="fas fa-user"></i>
                                                         </button>
-                                                        <a href="{{ route('penduduk.edit', $item->id) }}"
-                                                            class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
+                                                        <a href="{{ route('penduduk.edit', $item->id) }}" class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
                                                             <i class="fas fa-pen"></i>
                                                         </a>
                                                         <form action="{{ route('penduduk.destroy', $item->id) }}"
                                                             method="POST">
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token"
-                                                                value="{{ csrf_token() }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                             <button class="btn btn-sm btn-danger btn-icon confirm-delete d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
-                                                            <i class="fas fa-trash"></i></button>
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -313,7 +310,6 @@
                 $(".show-search").slideToggle("fast");
                 $(".show-import").hide();
             });
-            //ganti label berdasarkan nama file
             $('#file-upload').change(function() {
                 var i = $(this).prev('label').clone();
                 var file = $('#file-upload')[0].files[0].name;
@@ -321,7 +317,7 @@
             });
         });
 
-        $(document).on("click", ".openKTP", function () {
+        $(document).on("click", ".openKTP", function() {
             var nik = $(this).data('nik');
             var nama = $(this).data('nama');
             var tempat_lahir = $(this).data('tempat_lahir');
@@ -353,7 +349,7 @@
             $(".modal-content #pekerjaan").text(pekerjaan);
         });
 
-        $(document).on("click", ".openKK", function () {
+        $(document).on("click", ".openKK", function() {
             var no_kk = $(this).data('no_kk');
             var nama = $(this).data('nama');
             var alamat = $(this).data('alamat');

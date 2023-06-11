@@ -33,17 +33,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="nik">NIK</label>
-                            <input id="nik" name="nik" type="text" spellcheck="false" autocomplete="off"
-                            class="form-control @error('nik') is-invalid @enderror"
-                            value="{{ old('nik', $penduduk->nik) }}">
-                            @error('nik')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="nama">Kepala Keluarga</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                 id="nama" name="nama" value="{{ old('nama', $penduduk->nama) }}" spellcheck="false" autocomplete="off">

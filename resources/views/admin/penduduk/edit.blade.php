@@ -141,7 +141,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Status Hubungan Dalam Keluarga</label>
+                            <label>Status Keluarga</label>
                             <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="status_keluarga">
                                 <option value=""></option>
                                 <option value="0" @if (old('status_keluarga', $penduduk->status_keluarga) == "0") {{ 'selected' }} @endif>-</option>
