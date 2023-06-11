@@ -20,7 +20,7 @@ class PendudukController extends Controller
      */
     public function index(Request $request)
     {
-        $penduduk = Penduduk::orderByDesc('id')->get()->map(function($item) {
+        $penduduk = Penduduk::orderByDesc('updated_at')->get()->map(function($item) {
             $item->tanggal_lahir = date('d-m-Y', strtotime($item->tanggal_lahir));
             return $item;
         });
