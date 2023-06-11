@@ -62,9 +62,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
-
-    Route::get('/pendudukExport', [PendudukController::class, 'pendudukExport'])->name('penduduk.export');
-    Route::post('/pendudukImport', [PendudukController::class, 'pendudukImport'])->name('penduduk.import');
+    Route::post('/penduduk', [PendudukController::class, 'show'])->name('penduduk.show');
+    Route::post('/import', [PendudukController::class, 'import'])->name('penduduk.import');
+    Route::get('/export', [PendudukController::class, 'export'])->name('penduduk.export');
 
     //user list
     Route::prefix('user-management')->group(function () {

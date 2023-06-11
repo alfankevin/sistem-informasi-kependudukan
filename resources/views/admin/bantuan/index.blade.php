@@ -60,7 +60,7 @@
                                                 <td>{{ $item->nama_sosial }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <button class="btn btn-sm btn-warning btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
+                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
                                                             data-toggle="modal"
                                                             data-target="#ktp"
                                                             data-nik="{{ $item->nik }}"
@@ -109,7 +109,7 @@
                     </div>
                     <div class="bodyKTP" style="overflow: hidden;">
                         <div>
-                            <h5>NIK&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&nbsp;</h5><span id="nik" class="openKTP" data-toggle="modal" data-target="#kk"></span>
+                            <h5>NIK&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&nbsp;</h5><span id="nik" data-toggle="modal"></span>
                         </div>
                         <table>
                             <tr>
@@ -196,6 +196,12 @@
             var agama = $(this).data('agama');
             var status_perkawinan = $(this).data('status_perkawinan');
             var pekerjaan = $(this).data('pekerjaan');
+
+            if (jenis_kelamin === 'L') {
+                jenis_kelamin = 'Laki-laki';
+            } else {
+                jenis_kelamin = 'Perempuan';
+            }
 
             $(".modal-content #nik").text(nik);
             $(".modal-content #nama").text(nama);

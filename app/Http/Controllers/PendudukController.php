@@ -24,9 +24,10 @@ class PendudukController extends Controller
             $item->tanggal_lahir = date('d-m-Y', strtotime($item->tanggal_lahir));
             return $item;
         });
+
         return view('admin.penduduk.index', compact('penduduk'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -75,9 +76,27 @@ class PendudukController extends Controller
      * @param  \App\Models\Penduduk  $penduduk
      * @return \Illuminate\Http\Response
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+        $no_kk = $request->input('no_kk');
+
+        $result = DB::select('
+            SELECT *, DATE_FORMAT(tanggal_lahir, "%d-%m-%Y") AS tanggal_lahir,
+            CASE 
+                WHEN jenis_kelamin = "L" THEN "Laki-laki"
+                WHEN jenis_kelamin = "P" THEN "Perempuan"
+                ELSE jenis_kelamin
+            END AS jenis_kelamin,
+            CASE
+            WHEN status_keluarga = "1" THEN "Kepala Keluarga"
+                ELSE "-"
+            END AS status_keluarga
+            FROM penduduk WHERE no_kk = ?
+            ORDER BY YEAR(tanggal_lahir)',
+            [$no_kk]
+        );
+        
+        return response()->json($result);
     }
 
     /**
@@ -89,6 +108,7 @@ class PendudukController extends Controller
     public function edit(string $id)
     {
         $penduduk = Penduduk::find($id);
+        
         return view('admin.penduduk.edit', compact('penduduk'));
     }
 
@@ -138,17 +158,17 @@ class PendudukController extends Controller
         return redirect()->route('penduduk.index')
             ->with('success', 'Penduduk berhasil dihapus');
     }
-
-    public function pendudukExport()
-    {
-        return Excel::download(new pendudukExport, 'penduduk.xlsx');
-    }
-
-    public function pendudukImport()
+    
+    public function import()
     {
         Excel::import(new pendudukImport, request()->file('file'));
 
         return redirect()->route('penduduk.index')
             ->with('success', 'Penduduk berhasil diimport');
+    }
+    
+    public function export()
+    {
+        return Excel::download(new pendudukExport, 'penduduk.xlsx');
     }
 }

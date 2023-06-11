@@ -1359,6 +1359,7 @@ table tr:hover .table-links {
 .modal-content {
     max-width: 100%;
     border: none;
+    background-color: rgb(243, 246, 249);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -4175,6 +4176,7 @@ body:not(.sidebar-mini)
     text-decoration: underline;
 }
 
+/* KTP */
 .openKTP:hover {
     cursor: pointer;
 }
@@ -4197,14 +4199,13 @@ body:not(.sidebar-mini)
     justify-content: center;
 }
 
+.bodyKTP {
+    overflow: hidden;
+}
+
 .bodyKTP div {
     display: flex;
     align-items: center;
-}
-
-.bodyKTP div span:hover {
-    cursor: pointer;
-    text-decoration: underline;
 }
 
 .bodyKTP div h5,
@@ -4223,6 +4224,82 @@ body:not(.sidebar-mini)
     white-space: nowrap;
 }
 
-.bodyKTP table tr td span {
+.bodyKTP table tr td span,
+.bodyKK table tr td span {
     text-transform: uppercase;
+}
+
+/* KK */
+.detailKK {
+    padding: 20px 20px 5px 20px;
+    color: #333;
+    overflow: hidden;
+}
+
+.headerKK {
+    margin-bottom: 15px;
+}
+
+.headerKK h4,
+.headerKK h5 {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Arial;
+    letter-spacing: .1rem;
+    line-height: .8;
+    display: flex;
+    justify-content: center;
+}
+
+.headerKK h5 {
+    font-size: 18px;
+    font-family: monospace;
+    letter-spacing: normal;
+}
+
+.bodyKK {
+    overflow: hidden;
+}
+
+.bodyKK .row:first-child {
+    margin-bottom: 10px;
+}
+
+.bodyKK .row:first-child .col:first-child {
+    padding-left: 40px;
+}
+
+.bodyKK table tr td {
+    font-size: 13px;
+    font-family: Arial;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.bodyKK table tr td:first-child {
+    width: 140px;
+}
+
+.bodyKK .table.table-bordered {
+    margin-bottom: 15px;
+}
+
+.bodyKK .table.table-bordered th:first-child,
+.bodyKK .table.table-bordered td:first-child {
+    width: 0;
+}
+
+.bodyKK .table.table-bordered th,
+.bodyKK .table.table-bordered td {
+    font-size: 12px;
+    border: 1px solid #333;
+}
+
+@media (max-width: 991.98px) {
+    .bodyKK .row:first-child .col:last-child {
+        display: none;
+    }
+    .bodyKK .row:first-child .col:first-child {
+        padding-left: 15px;
+    }
 }
