@@ -82,13 +82,13 @@
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center data-link openKK" style="height: 30px; width: 30px"
+                                                            data-toggle="modal"
+                                                            data-target="#kk"
+                                                            data-value="{{ $item->no_kk }}"
                                                             data-no_kk="{{ $item->no_kk }}"
                                                             data-nama="{{ $item->nama }}"
                                                             data-alamat="{{ $item->alamat }}"
-                                                            data-rt="{{ $item->rt }}"
-                                                            data-value="{{ $item->no_kk }}"
-                                                            data-toggle="modal"
-                                                            data-target="#kk">
+                                                            data-rt="{{ $item->rt }}">
                                                             <i class="fas fa-user"></i>
                                                         </button>
                                                         <a href="{{ route('penduduk.edit', $item->id) }}"
@@ -127,7 +127,7 @@
                     </div>
                     <div class="bodyKTP">
                         <div>
-                            <h5>NIK&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&nbsp;</h5><span id="nik" data-toggle="modal"></span>
+                            <h5>NIK&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&nbsp;</h5><span id="nik"></span>
                         </div>
                         <table>
                             <tr>
