@@ -107,9 +107,10 @@
                         <h5>PROVINSI JAWA TIMUR</h5>
                         <h5>KOTA MALANG</h5>
                     </div>
-                    <div class="bodyKTP" style="overflow: hidden;">
+                    <div class="bodyKTP">
                         <div>
-                            <h5>NIK&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&nbsp;</h5><span id="nik" data-toggle="modal"></span>
+                            <h5>NIK<span class="mr-2" style="margin-left: 70px">:</span></h5>
+                            <span id="nik"></span>
                         </div>
                         <table>
                             <tr>
@@ -129,15 +130,15 @@
                                 <td>: <span id="alamat"></span></td>
                             </tr>
                             <tr>
-                                <td>&emsp;&emsp;&ensp;RT/RW</td>
+                                <td class="pl-4">RT/RW</td>
                                 <td>: 00<span id="rt"></span>/005</td>
                             </tr>
                             <tr>
-                                <td>&emsp;&emsp;&ensp;Kel/Desa</td>
+                                <td class="pl-4">Kel/Desa</td>
                                 <td>: TANJUNGREJO</td>
                             </tr>
                             <tr>
-                                <td>&emsp;&emsp;&ensp;Kecamatan</td>
+                                <td class="pl-4">Kecamatan</td>
                                 <td>: SUKUN</td>
                             </tr>
                             <tr>
