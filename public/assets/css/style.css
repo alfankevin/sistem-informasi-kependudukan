@@ -4295,6 +4295,10 @@ body:not(.sidebar-mini)
     border: 1px solid #333;
 }
 
+.col {
+    overflow: hidden;
+}
+
 @media (max-width: 991.98px) {
     .bodyKK .row:first-child .col:last-child {
         display: none;
