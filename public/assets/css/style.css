@@ -218,7 +218,7 @@ ol {
 .custom-select,
 .custom-file-label {
     background-color: #fdfdff;
-    border-color: #e4e6fc;
+    border-color: #ddd;
 }
 .form-control:focus,
 .input-group-text:focus,
@@ -335,7 +335,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::before,
 .custom-control-input:checked ~ .custom-control-label::before {
-    background-color: #2a5788 !important;
+    background-color: #007bff !important;
 }
 
 .custom-file-label {
@@ -1293,7 +1293,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .table.table-bordered td,
 .table.table-bordered th {
-    border-color: #e4e6fc;
+    border-color: #ddd;
 }
 
 .table-links {
@@ -1362,7 +1362,6 @@ table tr:hover .table-links {
 .modal-content {
     max-width: 100%;
     border: none;
-    background-color: rgb(243, 246, 249);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -2726,7 +2725,7 @@ body {
     font-size: 14px;
     font-weight: 400;
     font-family: "Nunito", "Segoe UI", arial;
-    color: #6c757d;
+    color: #333;
 }
 
 a.bb {
@@ -4186,7 +4185,6 @@ body:not(.sidebar-mini)
 
 .detailKTP {
     padding: 15px 20px;
-    color: #333;
 }
 
 .headerKTP {
@@ -4235,8 +4233,6 @@ body:not(.sidebar-mini)
 /* KK */
 .detailKK {
     padding: 20px 20px 5px 20px;
-    color: #333;
-    overflow: hidden;
 }
 
 .headerKK {
@@ -4302,11 +4298,19 @@ body:not(.sidebar-mini)
     overflow: hidden;
 }
 
+.login {
+    background-size: cover;
+    background-position: 40% 100%;
+}
+
 @media (max-width: 991.98px) {
     .bodyKK .row:first-child .col:last-child {
         display: none;
     }
     .bodyKK .row:first-child .col:first-child {
         padding-left: 15px;
+    }
+    .login {
+        background-position: 45% 100%;
     }
 }

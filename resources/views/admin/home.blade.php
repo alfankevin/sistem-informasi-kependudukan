@@ -89,7 +89,7 @@
                                                     class="tanggal-agenda font-weight-600 text-muted text-small">{{ $item->tanggal_agenda }}</span>
                                             </div>
                                             <div class="media-title mt-1 mb-1">{{ $item->judul_agenda }}</div>
-                                            <span>{{ $item->deskripsi_agenda }}</span>
+                                            <span style="color: #6c757d">{{ $item->deskripsi_agenda }}</span>
                                         </div>
                                     </li>
                                 @endforeach

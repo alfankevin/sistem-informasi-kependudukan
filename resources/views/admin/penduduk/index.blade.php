@@ -130,47 +130,58 @@
                         <table>
                             <tr>
                                 <td>Nama</td>
-                                <td>: <span id="nama"></span></td>
+                                <td>:</td>
+                                <td><span id="nama"></span></td>
                             </tr>
                             <tr>
                                 <td>Tempat/Tgl Lahir</td>
-                                <td>: <span id="tempat_lahir"></span>, <span id="tanggal_lahir"></span></td>
+                                <td>:</td>
+                                <td><span id="tempat_lahir"></span>, <span id="tanggal_lahir"></span></td>
                             </tr>
                             <tr>
                                 <td>Jenis Kelamin</td>
-                                <td>: <span id="jenis_kelamin" class="mr-4"></span>Gol. Darah : <span id="golongan_darah"></span></td>
+                                <td>:</td>
+                                <td><span id="jenis_kelamin" class="mr-4"></span>Gol. Darah : <span id="golongan_darah"></span></td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>
-                                <td>: <span id="alamat"></span></td>
+                                <td>:</td>
+                                <td><span id="alamat"></span></td>
                             </tr>
                             <tr>
                                 <td class="pl-4">RT/RW</td>
-                                <td>: 00<span id="rt"></span>/005</td>
+                                <td>:</td>
+                                <td>00<span id="rt"></span>/005</td>
                             </tr>
                             <tr>
                                 <td class="pl-4">Kel/Desa</td>
-                                <td>: TANJUNGREJO</td>
+                                <td>:</td>
+                                <td>TANJUNGREJO</td>
                             </tr>
                             <tr>
                                 <td class="pl-4">Kecamatan</td>
-                                <td>: SUKUN</td>
+                                <td>:</td>
+                                <td>SUKUN</td>
                             </tr>
                             <tr>
                                 <td>Agama</td>
-                                <td>: <span id="agama"></span></td>
+                                <td>:</td>
+                                <td><span id="agama"></span></td>
                             </tr>
                             <tr>
                                 <td>Status Perkawinan</td>
-                                <td>: <span id="status_perkawinan"></span></td>
+                                <td>:</td>
+                                <td><span id="status_perkawinan"></span></td>
                             </tr>
                             <tr>
                                 <td>Pekerjaan</td>
-                                <td>: <span id="pekerjaan"></span></td>
+                                <td>:</td>
+                                <td><span id="pekerjaan"></span></td>
                             </tr>
                             <tr>
                                 <td>Kewarganegaraan</td>
-                                <td>: WNI</td>
+                                <td>:</td>
+                                <td>WNI</td>
                             </tr>
                         </table>
                     </div>
@@ -193,19 +204,23 @@
                                 <table>
                                     <tr>
                                         <td>Nama Anggota Keluarga</td>
-                                        <td>: <b><span id="nama"></span></b></td>
+                                        <td>:</td>
+                                        <td><b><span id="nama"></span></b></td>
                                     </tr>
                                     <tr>
                                         <td>Alamat</td>
-                                        <td>: <span id="alamat"></span></td>
+                                        <td>:</td>
+                                        <td><span id="alamat"></span></td>
                                     </tr>
                                     <tr>
                                         <td>RT/RW</td>
-                                        <td>: 00<span id="rt"></span>/005</td>
+                                        <td>:</td>
+                                        <td>00<span id="rt"></span>/005</td>
                                     </tr>
                                     <tr>
                                         <td>Desa/Kelurahan</td>
-                                        <td>: TANJUNGREJO</td>
+                                        <td>:</td>
+                                        <td>TANJUNGREJO</td>
                                     </tr>
                                 </table>
                             </div>
@@ -213,19 +228,23 @@
                                 <table>
                                     <tr>
                                         <td>Kecamatan</td>
-                                        <td>: SUKUN</td>
+                                        <td>:</td>
+                                        <td>SUKUN</td>
                                     </tr>
                                     <tr>
                                         <td>Kabupaten/Kota</td>
-                                        <td>: MALANG</td>
+                                        <td>:</td>
+                                        <td>MALANG</td>
                                     </tr>
                                     <tr>
                                         <td>Kode Pos</td>
-                                        <td>: 65147</td>
+                                        <td>:</td>
+                                        <td>65147</td>
                                     </tr>
                                     <tr>
                                         <td>Provinsi</td>
-                                        <td>: JAWA TIMUR</td>
+                                        <td>:</td>
+                                        <td>JAWA TIMUR</td>
                                     </tr>
                                 </table>
                             </div>
