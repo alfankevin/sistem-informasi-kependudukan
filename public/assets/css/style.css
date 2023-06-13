@@ -4167,7 +4167,7 @@ body:not(.sidebar-mini)
     max-width: 800px;
 }
 
-.editGambar {
+.prevGambar {
     max-height: 180px;
     max-width: 100%;
     border-radius: .25rem;

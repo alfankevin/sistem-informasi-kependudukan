@@ -61,7 +61,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="gambar_umkm">Gambar UMKM</label>
+                            <label for="gambar_umkm">Gambar UMKM</label><br>
+                            <img src="/assets/img/news/placeholder-image.jpg" class="prevGambar img-preview img-fluid mb-2" id="image-preview" style="height: 180px; width: 320px">
                             <input id="gambar_umkm" name="gambar_umkm" type="file" spellcheck="false" autocomplete="off"
                                 class="form-control @error('gambar_umkm') is-invalid @enderror"
                                 value="{{ old('gambar_umkm') }}">
@@ -80,4 +81,26 @@
             </div>
         </div>
     </section>
+
+    <script>
+		const inputImage = document.querySelector("#gambar_umkm");
+		const previewImage = document.querySelector("#image-preview.img-preview");
+
+		const displayInputImage = () => {	
+			previewImage.style.height = "180px";
+			previewImage.style.aspectRatio = "9/16";
+			const oFReader = new FileReader();
+			oFReader.readAsDataURL(inputImage.files[0]);
+
+			oFReader.onload = function (oFREvent) {
+				previewImage.src = oFREvent.target.result;
+			}
+		}
+
+		if (inputImage.files[0] != null) {	
+			displayInputImage()
+		}
+
+		inputImage.addEventListener("change", displayInputImage) 
+	</script>
 @endsection
