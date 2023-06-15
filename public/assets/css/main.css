@@ -177,6 +177,10 @@ line-height: 1.5;
   font-size: 12px;
 }
 
+.owl-nav {
+  margin: 0 !important;
+}
+
   /* gallery modal */
   .lightbox-modal .modal-content {
     background: var(--lightbox);

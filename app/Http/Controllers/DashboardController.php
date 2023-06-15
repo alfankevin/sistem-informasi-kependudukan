@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $agenda = Agenda::orderByDesc('id')->get()->map(function($item) {
+        $agenda = Agenda::orderByDesc('id')->get()->map(function ($item) {
             $item->tanggal_agenda = date('d-m-Y', strtotime($item->tanggal_agenda));
             return $item;
         });
@@ -35,7 +35,7 @@ class DashboardController extends Controller
             ->where('pekerjaan', 'NOT LIKE', '%purnawirawan%')
             ->groupBy('pekerjaan')
             ->get();
-            
+
         $darah = DB::table('penduduk')
             ->select(
                 DB::raw('CASE
@@ -47,7 +47,7 @@ class DashboardController extends Controller
                     END AS golongan_darah'),
                 DB::raw('COUNT(*) AS total')
             )
-            ->where('golongan_darah','<>','-')
+            ->where('golongan_darah', '<>', '-')
             ->groupBy(
                 DB::raw('CASE
                         WHEN golongan_darah = "A+" THEN "A"
@@ -75,7 +75,7 @@ class DashboardController extends Controller
 
         $labelPekerjaan = $pekerjaan->pluck('pekerjaan');
         $dataPekerjaan = $pekerjaan->pluck('total');
-        $labelDarah = $darah->where('golongan_darah','<>','-')->pluck('golongan_darah');
+        $labelDarah = $darah->where('golongan_darah', '<>', '-')->pluck('golongan_darah');
         $dataDarah = $darah->pluck('total');
         $labelAgama = $agama->pluck('agama');
         $dataAgama = $agama->pluck('total');
@@ -119,8 +119,8 @@ class DashboardController extends Controller
             ->where('jenis_kelamin', 'L')
             ->where('keterangan', 'Hidup')
             ->get();
-            
-            $umurP = Penduduk::select(DB::raw('CASE
+
+        $umurP = Penduduk::select(DB::raw('CASE
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 0 AND 5 THEN "0-5"
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 6 AND 10 THEN "06-10"
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 11 AND 15 THEN "11-15"
@@ -147,11 +147,11 @@ class DashboardController extends Controller
             ->where('jenis_kelamin', 'P')
             ->where('keterangan', 'Hidup')
             ->get();
-            
-            $labelUmurL = $umurL->pluck('age_group');
-            $dataUmurL = $umurL->pluck('total');
-            $labelUmurP = $umurP->pluck('age_group');
-            $dataUmurP = $umurP->pluck('total');
+
+        $labelUmurL = $umurL->pluck('age_group');
+        $dataUmurL = $umurL->pluck('total');
+        $labelUmurP = $umurP->pluck('age_group');
+        $dataUmurP = $umurP->pluck('total');
 
         return view('admin.home', compact('agenda', 'organisasi', 'countSosial', 'countPenduduk', 'countL', 'countP', 'countKK', 'labelPekerjaan', 'dataPekerjaan', 'labelDarah', 'dataDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP', 'jumlahRt1', 'jumlahRt2', 'jumlahRt3', 'jumlahRt4', 'jumlahRt5', 'persenRt1', 'persenRt2', 'persenRt3', 'persenRt4', 'persenRt5'));
     }
