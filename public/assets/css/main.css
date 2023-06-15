@@ -147,16 +147,13 @@ line-height: 1.5;
 .bg-dark-blue{
     background: #002147;
 }
-.text-dark-blue{
-    color : #002147;
-}
 
 #ormas img{
   max-width: 140px;
   max-height: 140px;
 }
 
-.owl-carousel .nav-button {
+.nav-button {
   position: absolute;
   top: 25%;
   border-radius: 100% !important;

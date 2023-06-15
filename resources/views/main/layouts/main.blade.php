@@ -27,74 +27,141 @@
 </head>
 
 <body class="overflow-x-hidden">
-  @include('main.utils.navbar')
-  @yield('content')
-  @include('main.utils.footer')
+    @include('main.utils.navbar')
+    @yield('content')
+    @include('main.utils.footer')
 
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!--Jquery -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
-   <!-- Owl Carousel -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!--Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"></script>
+    <!-- Owl Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-  <script>
-      let valueDisplays = document.querySelectorAll("#num");
-      let interval = 5000;
+    <script>
+        let valueDisplays = document.querySelectorAll("#num");
+        let interval = 5000;
 
-      valueDisplays.forEach((valueDisplays) => {
-          let startValue = 0;
-          let endValue = parseInt(valueDisplays.getAttribute("data-val"));
-          let duration = Math.floor(interval / endValue);
-          let counter = setInterval(function() {
-              startValue += 1;
-              valueDisplays.textContent = startValue;
-              if (startValue == endValue) {
-                  clearInterval(counter);
-              }
-          }, duration);
-      })
+        valueDisplays.forEach((valueDisplays) => {
+            let startValue = 0;
+            let endValue = parseInt(valueDisplays.getAttribute("data-val"));
+            let duration = Math.floor(interval / endValue);
+            let counter = setInterval(function() {
+                startValue += 1;
+                valueDisplays.textContent = startValue;
+                if (startValue == endValue) {
+                    clearInterval(counter);
+                }
+            }, duration);
+        })
 
-      //read more javascript
-      let agendaDescs = document.querySelectorAll(".agenda-desc");
-      agendaDescs.forEach((agendaDesc) => {
-         agendaDesc.addEventListener("click", function(){
-              var element = this;
-              if(element.classList.contains('line-clamp-2')){
-                  element.classList.remove('line-clamp-2');
-              }else{
-                  element.classList.add('line-clamp-2');
-              }
-          });
-      });
+        //read more javascript
+        let agendaDescs = document.querySelectorAll(".agenda-desc");
+        agendaDescs.forEach((agendaDesc) => {
+            agendaDesc.addEventListener("click", function() {
+                var element = this;
+                if (element.classList.contains('line-clamp-2')) {
+                    element.classList.remove('line-clamp-2');
+                } else {
+                    element.classList.add('line-clamp-2');
+                }
+            });
+        });
 
-  // ormas
-  $(document).ready(function() {
-          $(".owl-carousel").owlCarousel();
-      });
+        // ormas
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel();
+        });
 
-      $('.owl-carousel').owlCarousel({
-          loop: true,
-          margin: 10,
-          nav: true,
-          navText: ["<div class='nav-button owl-prev'><i class='fa fa-chevron-left'></i></div>", "<div class='nav-button owl-next'><i class='fa fa-chevron-right'></i></div>"],
-          autoplay: true,
-          autoplayhoverpause: true,
-          autoplayTimeout: 3000,
-          responsive: {
-              0: {
-                  items: 1
-              },
-              600: {
-                  items: 3
-              },
-              1000: {
-                  items: 5
-              }
-          }
-      });
-  </script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: ["<div class='nav-button owl-prev'><i class='fa fa-chevron-left'></i></div>",
+                "<div class='nav-button owl-next'><i class='fa fa-chevron-right'></i></div>"
+            ],
+            autoplay: true,
+            autoplayhoverpause: true,
+            autoplayTimeout: 3000,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        });
+
+                  // Event listener for window resize
+                  window.addEventListener('resize', handleResponsive);
+          // Initial call to handle responsive behavior
+          handleResponsive();
+        //   gallery modal
+        const imageGrid = document.querySelector("#gallery");
+        const links = imageGrid.querySelectorAll("a");
+        const imgs = imageGrid.querySelectorAll("img");
+        const lightboxModal = document.getElementById("lightbox-modal");
+        const bsModal = new bootstrap.Modal(lightboxModal);
+        const modalBody = document.querySelector(".modal-body .container-fluid");
+        const modal = document.querySelector("#lightboxCarousel");
+        for (const link of links) {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const currentImg = link.querySelector("img");
+            const lightboxCarousel = document.getElementById("lightboxCarousel");
+            if (lightboxCarousel) {
+            const parentCol = link.parentElement.parentElement;
+            const index = [...parentCol.parentElement.children].indexOf(parentCol);
+            const bsCarousel = new bootstrap.Carousel(lightboxCarousel);
+            bsCarousel.to(index);
+            } else {
+            createCarousel(currentImg);
+            }
+            bsModal.show();
+        });
+        }
+        function createCarousel(img) {
+        const markup = `
+                <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
+                <div class="carousel-inner" data-bs-dismiss="modal" aria-label="Close">
+                    ${createSlides(img)}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev" style="margin-left: 100px;">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next" style="margin-right: 100px;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                </div>
+            `;
+        modalBody.innerHTML = markup;
+        }
+        function createSlides(img) {
+        let markup = "";
+        const currentImgSrc = img.getAttribute("src");
+        for (const img of imgs) {
+            const imgSrc = img.getAttribute("src");
+            const imgAlt = img.getAttribute("alt");
+            const imgCaption = img.getAttribute("data-caption");
+            markup += `
+            <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
+            <img src=${imgSrc} alt=${imgAlt} width="600" height="400">
+            ${imgCaption ? createCaption(imgCaption) : ""}
+            </div>
+            `;
+        }
+        return markup;
+        }
+    </script>
 </body>
 
 </html>

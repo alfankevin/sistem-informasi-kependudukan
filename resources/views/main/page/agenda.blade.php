@@ -5,7 +5,7 @@
         <h2 class="text-center mb-5 blue-title text-capitalize display-4">Agenda</h2>
         @foreach ($agenda as $item)
             <div class="item">
-                <div class="card mb-4 mx-auto shadow border-white" style="max-width: 90%;">
+                <div class="card card-agenda mb-4 mx-auto border-white" style="max-width: 90%;">
                     <div class="row rounded-2 g-0" style="background: #fff">
                         <div class="col-md-4 p-2">
                             <img src="/assets/img/agenda/{{ $item->gambar_agenda }}" class="img-fluid rounded-2"
