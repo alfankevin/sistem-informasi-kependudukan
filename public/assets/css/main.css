@@ -156,22 +156,21 @@ line-height: 1.5;
   max-height: 140px;
 }
 
-.owl-prev {
+.owl-carousel .nav-button {
   position: absolute;
   top: 25%;
-  left: -35px;
-  padding: 7.5px 17.5px 10px 15px !important;
   border-radius: 100% !important;
   transition: all 0.2s;
 }
 
+.owl-prev {
+  left: -50px;
+  padding: 7.5px 17.5px 10px 15px !important;
+}
+
 .owl-next {
-  position: absolute;
-  top: 25%;
-  right: -35px;
+  right: -50px;
   padding: 7.5px 15px 10px 17.5px !important;
-  border-radius: 100% !important;
-  transition: all 0.2s;
 }
 
 .nav-button i {
