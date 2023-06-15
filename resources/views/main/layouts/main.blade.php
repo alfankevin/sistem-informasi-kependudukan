@@ -99,11 +99,7 @@
             }
         });
 
-                  // Event listener for window resize
-                  window.addEventListener('resize', handleResponsive);
-          // Initial call to handle responsive behavior
-          handleResponsive();
-        //   gallery modal
+        // gallery modal
         const imageGrid = document.querySelector("#gallery");
         const links = imageGrid.querySelectorAll("a");
         const imgs = imageGrid.querySelectorAll("img");
@@ -112,23 +108,24 @@
         const modalBody = document.querySelector(".modal-body .container-fluid");
         const modal = document.querySelector("#lightboxCarousel");
         for (const link of links) {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const currentImg = link.querySelector("img");
-            const lightboxCarousel = document.getElementById("lightboxCarousel");
-            if (lightboxCarousel) {
-            const parentCol = link.parentElement.parentElement;
-            const index = [...parentCol.parentElement.children].indexOf(parentCol);
-            const bsCarousel = new bootstrap.Carousel(lightboxCarousel);
-            bsCarousel.to(index);
-            } else {
-            createCarousel(currentImg);
-            }
-            bsModal.show();
-        });
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                const currentImg = link.querySelector("img");
+                const lightboxCarousel = document.getElementById("lightboxCarousel");
+                if (lightboxCarousel) {
+                    const parentCol = link.parentElement.parentElement;
+                    const index = [...parentCol.parentElement.children].indexOf(parentCol);
+                    const bsCarousel = new bootstrap.Carousel(lightboxCarousel);
+                    bsCarousel.to(index);
+                } else {
+                    createCarousel(currentImg);
+                }
+                bsModal.show();
+            });
         }
+
         function createCarousel(img) {
-        const markup = `
+            const markup = `
                 <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
                 <div class="carousel-inner" data-bs-dismiss="modal" aria-label="Close">
                     ${createSlides(img)}
@@ -143,23 +140,24 @@
                 </button>
                 </div>
             `;
-        modalBody.innerHTML = markup;
+            modalBody.innerHTML = markup;
         }
+
         function createSlides(img) {
-        let markup = "";
-        const currentImgSrc = img.getAttribute("src");
-        for (const img of imgs) {
-            const imgSrc = img.getAttribute("src");
-            const imgAlt = img.getAttribute("alt");
-            const imgCaption = img.getAttribute("data-caption");
-            markup += `
+            let markup = "";
+            const currentImgSrc = img.getAttribute("src");
+            for (const img of imgs) {
+                const imgSrc = img.getAttribute("src");
+                const imgAlt = img.getAttribute("alt");
+                const imgCaption = img.getAttribute("data-caption");
+                markup += `
             <div class="carousel-item${currentImgSrc === imgSrc ? " active" : ""}">
             <img src=${imgSrc} alt=${imgAlt} width="600" height="400">
             ${imgCaption ? createCaption(imgCaption) : ""}
             </div>
             `;
-        }
-        return markup;
+            }
+            return markup;
         }
     </script>
 </body>
