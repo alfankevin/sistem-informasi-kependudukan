@@ -298,7 +298,7 @@ line-height: 1.5;
   .count-penduduk div p {
     margin: 0;
   }
-  .nav-button {
+  .owl-nav {
     display: none;
   }
 }
