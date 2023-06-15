@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
+use App\Models\Sosial;
 use Illuminate\Http\Request;
 use App\Exports\pendudukExport;
 use App\Imports\pendudukImport;
@@ -20,11 +21,12 @@ class PendudukController extends Controller
      */
     public function index(Request $request)
     {
-        $penduduk = Penduduk::orderByDesc('updated_at')->get()->map(function($item) {
-            $item->tanggal_lahir = date('d-m-Y', strtotime($item->tanggal_lahir));
-            return $item;
-        });
-
+        $penduduk = DB::select("SELECT penduduk.*, sosial.nama_sosial
+            FROM penduduk INNER JOIN sosial ON penduduk.id_sosial = sosial.id
+            ORDER BY penduduk.updated_at DESC");
+        foreach ($penduduk as $item) {
+            $item->tanggal_lahir = date_format(date_create($item->tanggal_lahir), 'd-m-Y');
+        }
         return view('admin.penduduk.index', compact('penduduk'));
     }
     

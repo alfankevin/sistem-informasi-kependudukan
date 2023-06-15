@@ -4179,8 +4179,13 @@ body:not(.sidebar-mini)
 }
 
 /* KTP */
+#ktp div div {
+    background-color: rgb(243, 246, 249);
+}
+
 .openKTP:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 .detailKTP {
@@ -4231,6 +4236,10 @@ body:not(.sidebar-mini)
 }
 
 /* KK */
+#kk div div {
+    background-color: rgb(243, 246, 249);
+}
+
 .detailKK {
     padding: 20px 20px 5px 20px;
 }

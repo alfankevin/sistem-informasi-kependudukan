@@ -35,7 +35,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th>Alamat</th>
                                             <th>Deskripsi</th>
                                             <th>Sosial Media</th>
                                             <th>Gambar</th>
@@ -46,9 +45,8 @@
                                                 <td>{{ ($potensi->currentPage() - 1) * $potensi->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama_umkm }}</td>
-                                                <td>{{ $item->alamat_umkm }}</td>
                                                 <td>{{ $item->deskripsi_umkm }}</td>
-                                                <td>{{ $item->sosial_media }}</td>
+                                                <td><a href="{{ $item->sosial_media }}" target="_blank">{{ $item->sosial_media }}</a></td>
                                                 <td class="openGambar" data-toggle="modal" data-target="#exampleModalCenter" data-gambar="/assets/img/potensi/{{ $item->gambar_umkm }}">{{ $item->gambar_umkm }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">

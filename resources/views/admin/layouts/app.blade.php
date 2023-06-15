@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/assets/css/select.bootstrap4.min.css">
     @stack('customStyle')
+    
     <!-- Template CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/components.css">

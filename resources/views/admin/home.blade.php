@@ -82,7 +82,7 @@
                                 @foreach ($agenda as $key => $item)
                                     <li class="media">
                                         <span class="image mr-3 rounded"
-                                            style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/gambar.jpeg{{ $item->gambar_agenda }})"></span>
+                                            style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
                                         <div class="media-body"
                                             style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                             <div class="float-right mt-1"><span
@@ -123,17 +123,15 @@
                             <div class="card-body">
                                 <div class="owl-carousel owl-theme" id="organisasi">
                                     @foreach ($organisasi as $key => $item)
-                                        <div>
-                                            <div class="product-item pb-3">
-                                                <span class="product-image image"
-                                                    style="background-image: url(/assets/img/organisasi/{{ $item->gambar_organisasi }})"></span>
-                                                <div class="product-details">
-                                                    <div class="product-name">{{ $item->nama_organisasi }}</div>
-                                                    <div class="product-review text-muted">
-                                                        {{ $item->deskripsi_organisasi }}</div>
-                                                    <div class="product-cta"><a href="/organisasi-management/organisasi"
-                                                            class="btn btn-info">Detail</a></div>
-                                                </div>
+                                        <div class="product-item pb-3">
+                                            <span class="product-image image"
+                                                style="background-image: url(/assets/img/organisasi/{{ $item->gambar_organisasi }})"></span>
+                                            <div class="product-details">
+                                                <div class="product-name">{{ $item->nama_organisasi }}</div>
+                                                <div class="product-review text-muted">
+                                                    {{ $item->deskripsi_organisasi }}</div>
+                                                <div class="product-cta"><a href="/organisasi-management/organisasi"
+                                                        class="btn btn-info">Detail</a></div>
                                             </div>
                                         </div>
                                     @endforeach

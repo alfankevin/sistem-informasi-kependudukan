@@ -31,16 +31,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="alamat_umkm">Alamat UMKM</label>
-                            <input type="text" class="form-control @error('alamat_umkm') is-invalid @enderror" id="alamat_umkm"
-                                name="alamat_umkm" value="{{ old('alamat_umkm') }}" spellcheck="false" autocomplete="off">
-                            @error('alamat_umkm')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="deskripsi_umkm">Deskripsi UMKM</label>
                             <input id="deskripsi_umkm" name="deskripsi_umkm" type="text" spellcheck="false" autocomplete="off"
                                 class="form-control @error('deskripsi_umkm') is-invalid @enderror" value="{{ old('deskripsi_umkm') }}">

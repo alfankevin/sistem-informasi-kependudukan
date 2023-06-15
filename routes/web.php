@@ -40,18 +40,9 @@ use App\Http\Controllers\RoleAndPermission\ImportPermissionController;
 */
 
 Route::get('/', [LandingPageController::class, 'index']);
-
-Route::get('/agenda', function () {
-    return view('main.page.agenda');
-});
-
-Route::get('/potensi', function () {
-    return view('main.page.potensi');
-});
-
-Route::get('/galeri', function () {
-    return view('main.page.galeri');
-});
+Route::get('/agenda', [LandingPageController::class, 'agenda']);
+Route::get('/potensi', [LandingPageController::class, 'potensi']);
+Route::get('/galeri', [LandingPageController::class, 'galeri']);
 
 Route::get('/admin', function () {
     return view('admin.auth/login');

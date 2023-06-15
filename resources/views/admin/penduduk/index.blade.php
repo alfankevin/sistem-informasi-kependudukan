@@ -42,18 +42,20 @@
                                             <th>Nama</th>
                                             <th style="white-space: nowrap">Tempat Lahir</th>
                                             <th>Tgl Lahir</th>
-                                            <th>Jenis.</th>
+                                            <th>L/P</th>
                                             <th>Gol.</th>
                                             <th>Agama</th>
                                             <th>Pekerjaan</th>
                                             <th>Alamat</th>
                                             <th>RT</th>
+                                            <th>Ket.</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($penduduk as $key => $item)
                                             <tr>
+                                                <td>{{ $key + 1 }}</td>
                                                 <td class="openKTP" data-toggle="modal" data-target="#ktp"
                                                     data-nik="{{ $item->nik }}"
                                                     data-nama="{{ $item->nama }}"
@@ -65,10 +67,11 @@
                                                     data-rt="{{ $item->rt }}"
                                                     data-agama="{{ $item->agama }}"
                                                     data-status_perkawinan="{{ $item->status_perkawinan }}"
-                                                    data-pekerjaan="{{ $item->pekerjaan }}">
-                                                    {{ $key + 1 }}
+                                                    data-pekerjaan="{{ $item->pekerjaan }}"
+                                                    data-keterangan="{{ $item->keterangan }}"
+                                                    data-sosial="{{ $item->nama_sosial }}">
+                                                    {{ $item->nama }}
                                                 </td>
-                                                <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->tempat_lahir }}</td>
                                                 <td style="white-space: nowrap">{{ $item->tanggal_lahir }}</td>
                                                 <td>{{ $item->jenis_kelamin }}</td>
@@ -77,6 +80,7 @@
                                                 <td>{{ $item->pekerjaan }}</td>
                                                 <td>{{ $item->alamat }}</td>
                                                 <td>00{{ $item->rt }}</td>
+                                                <td>{{ $item->keterangan }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center data-link openKK" style="height: 30px; width: 30px"
@@ -179,9 +183,14 @@
                                 <td><span id="pekerjaan"></span></td>
                             </tr>
                             <tr>
-                                <td>Kewarganegaraan</td>
+                                <td>Keterangan</td>
                                 <td>:</td>
-                                <td>WNI</td>
+                                <td><span id="keterangan"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Bantuan Sosial</td>
+                                <td>:</td>
+                                <td><span id="sosial"></span></td>
                             </tr>
                         </table>
                     </div>
@@ -277,7 +286,7 @@
                                                 <th>Pendidikan/Pekerjaan</th>
                                                 <th>Status Perkawinan</th>
                                                 <th>Status Keluarga</th>
-                                                <th>Kewarganegaraan</th>
+                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody id="detail2"></tbody>
@@ -348,6 +357,8 @@
             var agama = $(this).data('agama');
             var status_perkawinan = $(this).data('status_perkawinan');
             var pekerjaan = $(this).data('pekerjaan');
+            var keterangan = $(this).data('keterangan');
+            var sosial = $(this).data('sosial');
 
             if (jenis_kelamin === 'L') {
                 jenis_kelamin = 'Laki-laki';
@@ -366,6 +377,8 @@
             $(".modal-content #agama").text(agama);
             $(".modal-content #status_perkawinan").text(status_perkawinan);
             $(".modal-content #pekerjaan").text(pekerjaan);
+            $(".modal-content #keterangan").text(keterangan);
+            $(".modal-content #sosial").text(sosial);
         });
 
         $(document).on("click", ".openKK", function() {
@@ -404,9 +417,10 @@
                     var pekerjaan = response[i].pekerjaan;
                     var status_perkawinan = response[i].status_perkawinan;
                     var status_keluarga = response[i].status_keluarga;
+                    var keterangan = response[i].keterangan;
 
                     detailElement1.append('<tr><td>' + (i+1) + '</td><td>' + nama + '</td><td>' + nik + '</td><td>' + jenis_kelamin + '</td><td>' + tempat_lahir + '</td><td>' + tanggal_lahir + '</td></tr>');
-                    detailElement2.append('<tr><td>' + (i+1) + '</td><td>' + agama + '</td><td>' + pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' + status_keluarga + '</td><td>WNI</td></tr>');
+                    detailElement2.append('<tr><td>' + (i+1) + '</td><td>' + agama + '</td><td>' + pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' + status_keluarga + '</td><td>' + keterangan + '</td></tr>');
                 }
             },
             error: function(xhr, status, error) {

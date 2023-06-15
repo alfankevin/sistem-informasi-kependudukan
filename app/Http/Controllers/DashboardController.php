@@ -117,9 +117,10 @@ class DashboardController extends Controller
                 END AS age_group, COUNT(*) as total'))
             ->groupBy('age_group')
             ->where('jenis_kelamin', 'L')
+            ->where('keterangan', 'Hidup')
             ->get();
-
-        $umurP = Penduduk::select(DB::raw('CASE
+            
+            $umurP = Penduduk::select(DB::raw('CASE
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 0 AND 5 THEN "0-5"
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 6 AND 10 THEN "06-10"
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 11 AND 15 THEN "11-15"
@@ -141,15 +142,16 @@ class DashboardController extends Controller
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 91 AND 95 THEN "91-95"
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 96 AND 100 THEN "96-100"
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) >100 THEN "100+"
-                END AS age_group, COUNT(*) as total'))
+            END AS age_group, COUNT(*) as total'))
             ->groupBy('age_group')
             ->where('jenis_kelamin', 'P')
+            ->where('keterangan', 'Hidup')
             ->get();
-
-        $labelUmurL = $umurL->pluck('age_group');
-        $dataUmurL = $umurL->pluck('total');
-        $labelUmurP = $umurP->pluck('age_group');
-        $dataUmurP = $umurP->pluck('total');
+            
+            $labelUmurL = $umurL->pluck('age_group');
+            $dataUmurL = $umurL->pluck('total');
+            $labelUmurP = $umurP->pluck('age_group');
+            $dataUmurP = $umurP->pluck('total');
 
         return view('admin.home', compact('agenda', 'organisasi', 'countSosial', 'countPenduduk', 'countL', 'countP', 'countKK', 'labelPekerjaan', 'dataPekerjaan', 'labelDarah', 'dataDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP', 'jumlahRt1', 'jumlahRt2', 'jumlahRt3', 'jumlahRt4', 'jumlahRt5', 'persenRt1', 'persenRt2', 'persenRt3', 'persenRt4', 'persenRt5'));
     }
