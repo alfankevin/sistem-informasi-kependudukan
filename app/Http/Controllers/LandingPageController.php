@@ -27,7 +27,7 @@ class LandingPageController extends Controller
     }
     
     public function agenda() {
-        $agenda = Agenda::where('prioritas', 1)->get();
+        $agenda = Agenda::orderBy('id', 'desc')->get();
         return view('main.page.agenda', compact('agenda'));
     }
     
