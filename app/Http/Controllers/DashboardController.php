@@ -33,6 +33,7 @@ class DashboardController extends Controller
             ->where('pekerjaan', 'NOT LIKE', '%mahasiswa%')
             ->where('pekerjaan', 'NOT LIKE', '%pensiunan%')
             ->where('pekerjaan', 'NOT LIKE', '%purnawirawan%')
+            ->where('keterangan', 'Hidup')
             ->groupBy('pekerjaan')
             ->get();
 
@@ -48,6 +49,7 @@ class DashboardController extends Controller
                 DB::raw('COUNT(*) AS total')
             )
             ->where('golongan_darah', '<>', '-')
+            ->where('keterangan', 'Hidup')
             ->groupBy(
                 DB::raw('CASE
                         WHEN golongan_darah = "A+" THEN "A"
@@ -61,6 +63,7 @@ class DashboardController extends Controller
 
         $agama = DB::table('penduduk')
             ->select('agama', DB::raw('count(*) as total'))
+            ->where('keterangan', 'Hidup')
             ->groupBy('agama')
             ->get();
 
@@ -68,7 +71,7 @@ class DashboardController extends Controller
         SELECT rt, jumlah, (jumlah / total) * 300 AS persen
         FROM (
             SELECT rt, COUNT(*) AS jumlah, (SELECT COUNT(*) FROM penduduk) AS total
-            FROM penduduk
+            FROM penduduk WHERE keterangan = 'Hidup'
             GROUP BY rt
         ) AS subquery;
         ";

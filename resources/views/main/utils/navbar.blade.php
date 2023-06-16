@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg z-3 fixed-top">
     <div class="container">
-        <img src="/assets/img/malang.png" alt="Logo" height="30px" style="margin: 0 10px 2.5px 0">
+        <a href="/"><img src="/assets/img/malang.png" alt="Logo" height="30px" style="margin: 0 10px 2.5px 0"></a>
         <a class="navbar-brand fw-bold" href="/">ERWE LIMO Tanjungrejo</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

@@ -17,30 +17,36 @@ body {
     background-color:  #002147;
     backdrop-filter: blur(5px);
     border-bottom: 2px solid #002147;
-    color: white;
     transition: all 0.25s ease 0s;
   }
 
-.navbar a{
-    color: white;
+.navbar a {
+    color: #ddd;
+}
+
+.navbar a:focus {
+    color: #ddd;
+}
+
+.active {
+  color: orange !important;
 }
 
 .navbar.scrolled {
-  background-color: rgba(255, 255, 255, .75);
+  background-color: rgba(255, 255, 255, .87);
   color: #333;
 }
 
-.navbar.scrolled a{
+.navbar.scrolled a {
     color: #333;
 }
 
 .navbar-brand {
     font-family: 'Cormorant';
-
 }
 
 .navbar-brand:hover {
-    color: #333;
+    color: #ddd;
     text-decoration: none;
 }
 
@@ -86,6 +92,18 @@ body {
   position: relative;
   top: -60px;
   margin-bottom: -60px;
+}
+
+.hero__items {
+	height: 90vh;
+	width: 100vw;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.hero__slider .owl-nav {
+  display: none;
 }
 
 .b-example-divider {
@@ -158,7 +176,7 @@ line-height: 1.5;
     background: #002147;
 }
 
-#ormas img{
+#ormas img {
   max-width: 140px;
   max-height: 140px;
 }
@@ -237,13 +255,6 @@ line-height: 1.5;
     right: 10%;
   }
 
-.sambutan {
-    background-image: url(/assets/img/main/bg-pantai.jpg) !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-}
-
 .badge {
   background: rgba(0, 33, 71, 0.9);
 }
@@ -253,7 +264,6 @@ line-height: 1.5;
     width: 400px;
     object-fit: cover;
     object-position: 100% 40%;
-    background-color: rgb(243, 246, 249);
 }
 
 .agenda, .galeri, .bg {
@@ -304,6 +314,9 @@ line-height: 1.5;
   }
   .count-penduduk div p {
     margin: 0;
+  }
+  .hero__items {
+    height: 75vh;
   }
   .owl-nav {
     display: none;

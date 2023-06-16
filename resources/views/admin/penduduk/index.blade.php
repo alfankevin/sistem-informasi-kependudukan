@@ -40,9 +40,9 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th style="white-space: nowrap">Tempat Lahir</th>
+                                            <th class="text-nowrap">Tempat Lahir</th>
                                             <th>Tgl Lahir</th>
-                                            <th>L/P</th>
+                                            <th>JK</th>
                                             <th>Gol.</th>
                                             <th>Agama</th>
                                             <th>Pekerjaan</th>
@@ -73,7 +73,7 @@
                                                     {{ $item->nama }}
                                                 </td>
                                                 <td>{{ $item->tempat_lahir }}</td>
-                                                <td style="white-space: nowrap">{{ $item->tanggal_lahir }}</td>
+                                                <td class="text-nowrap">{{ $item->tanggal_lahir }}</td>
                                                 <td>{{ $item->jenis_kelamin }}</td>
                                                 <td>{{ $item->golongan_darah }}</td>
                                                 <td>{{ $item->agama }}</td>
