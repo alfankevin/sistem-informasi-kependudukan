@@ -14,19 +14,29 @@ body {
 .navbar {
     height: 60px;
     position: sticky;
-    background-color: rgba(255, 255, 255, .0);
+    background-color:  #002147;
     backdrop-filter: blur(5px);
     border-bottom: 2px solid #002147;
+    color: white;
     transition: all 0.25s ease 0s;
   }
-  
+
+.navbar a{
+    color: white;
+}
+
 .navbar.scrolled {
   background-color: rgba(255, 255, 255, .75);
+  color: #333;
+}
+
+.navbar.scrolled a{
+    color: #333;
 }
 
 .navbar-brand {
     font-family: 'Cormorant';
-    color: #333;
+
 }
 
 .navbar-brand:hover {
