@@ -4181,11 +4181,13 @@ body:not(.sidebar-mini)
 .gambar {
     max-height: 450px;
     max-width: 800px;
+    object-fit: cover;
 }
 
 .prevGambar {
     max-height: 180px;
     max-width: 100%;
+    object-fit: cover;
     border-radius: .25rem;
     background-color: rgb(243, 246, 249);
 }
