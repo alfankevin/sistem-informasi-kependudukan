@@ -19,10 +19,10 @@ class DashboardController extends Controller
         $organisasi = Organisasi::orderByDesc('id')->get();
         $countSosial = Penduduk::where('id_sosial', '<>', '1')->count();
 
-        $countPenduduk = Penduduk::count();
-        $countL = Penduduk::where('jenis_kelamin', 'L')->count();
-        $countP = Penduduk::where('jenis_kelamin', 'P')->count();
-        $countKK = Penduduk::where('status_keluarga', true)->count();
+        $countPenduduk = Penduduk::where('keterangan', 'Hidup')->count();
+        $countL = Penduduk::where('jenis_kelamin', 'L')->where('keterangan', 'Hidup')->count();
+        $countP = Penduduk::where('jenis_kelamin', 'P')->where('keterangan', 'Hidup')->count();
+        $countKK = Penduduk::where('status_keluarga', true)->where('keterangan', 'Hidup')->count();
 
         $pekerjaan = DB::table('penduduk')
             ->select('pekerjaan', DB::raw('count(*) as total'))
