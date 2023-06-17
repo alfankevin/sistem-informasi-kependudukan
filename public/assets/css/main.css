@@ -213,12 +213,12 @@ body {
 
 .owl-prev {
     left: -50px;
-    padding: 7.5px 15px 10px 15px !important;
+    padding: 7.5px 16px 10px 14px !important;
 }
 
 .owl-next {
     right: -50px;
-    padding: 7.5px 15px 10px 15px !important;
+    padding: 7.5px 14px 10px 16px !important;
 }
 
 .nav-button i {
