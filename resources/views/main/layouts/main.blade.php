@@ -44,6 +44,38 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
         <script>
+            // navbar
+            document.addEventListener('scroll', () =>  {
+                const nav = document.querySelector('nav');
+
+                if(window.scrollY > 0) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            })
+
+            // hero
+            var hero = $(".hero__slider");
+            hero.owlCarousel({
+                loop: true,
+                margin: 0,
+                items: 1,
+                dots: false,
+                nav: true,
+                navText: ["<div class='hero-button hero-prev'><span class='carousel-control-prev-icon' aria-hidden='true'></span></div>",
+                    "<div class='hero-button hero-next'><span class='carousel-control-next-icon' aria-hidden='true'></span></div>"
+                ],
+                animateOut: 'fadeOut',
+                animateIn: 'fadeIn',
+                autoplayTimeout: 4000,
+                smartSpeed: 1200,
+                autoHeight: false,
+                autoplay: true,
+                mouseDrag: false
+            });
+
+            // count
             let valueDisplays = document.querySelectorAll("#num");
             let interval = 5000;
 
@@ -60,39 +92,8 @@
                 }, duration);
             })
 
-            //read more javascript
-            let agendaDescs = document.querySelectorAll(".agenda-desc");
-            agendaDescs.forEach((agendaDesc) => {
-                agendaDesc.addEventListener("click", function() {
-                    var element = this;
-                    if (element.classList.contains('line-clamp-2')) {
-                        element.classList.remove('line-clamp-2');
-                    } else {
-                        element.classList.add('line-clamp-2');
-                    }
-                });
-            });
-
-            // hero
-            var hero = $(".hero__slider");
-            hero.owlCarousel({
-                loop: true,
-                margin: 0,
-                items: 1,
-                dots: false,
-                nav: true,
-                navText: ["<span class='arrow_carrot-left'></span>", "<span class='arrow_carrot-right'></span>"],
-                animateOut: 'fadeOut',
-                animateIn: 'fadeIn',
-                autoplayTimeout: 4000,
-                smartSpeed: 1200,
-                autoHeight: false,
-                autoplay: true,
-                mouseDrag: false
-            });
-
             // ormas
-            var ormas = $(".ormas");
+            var ormas = $("#ormas");
             ormas.owlCarousel({
                 loop: true,
                 margin: 10,
@@ -114,6 +115,19 @@
                         items: 5
                     }
                 }
+            });
+
+            // read more
+            let agendaDescs = document.querySelectorAll(".agenda-desc");
+            agendaDescs.forEach((agendaDesc) => {
+                agendaDesc.addEventListener("click", function() {
+                    var element = this;
+                    if (element.classList.contains('line-clamp-2')) {
+                        element.classList.remove('line-clamp-2');
+                    } else {
+                        element.classList.add('line-clamp-2');
+                    }
+                });
             });
 
             // gallery

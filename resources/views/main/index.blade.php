@@ -8,19 +8,11 @@
             <div class="hero__items set-bg" data-setbg="/assets/img/agenda/patrol.jpg"></div>
             <div class="hero__items set-bg" data-setbg="/assets/img/agenda/vaksin.jpg"></div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </section>
 
-    <!-- Sambutan -->
+    {{-- Sambutan --}}
     <section class="sambutan">
-        <div class="container-xxl" style="padding: 75px 15px">
+        <div class="container-xxl">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-4">
                     <img class="img-fluid rounded-4 shadow profile" src="{{ asset('assets/img/main/profile2.png') }}">
@@ -101,11 +93,11 @@
         </div>
     </div>
 
-    <!-- Ormas -->
-    <section class="flex justify-content-center align-content-center my-4 mb-5" id="ormas">
-        <h2 class="text-center my-5 text-capitalize">Organisasi Masyarakat</h2>
+    {{-- Ormas --}}
+    <section class="ormas flex justify-content-center align-content-center">
+        <h2 class="text-center mb-5 text-capitalize">Organisasi Masyarakat</h2>
         <div class="container">
-            <div class="owl-carousel owl-theme ormas">
+            <div class="owl-carousel owl-theme" id="ormas">
                 @foreach ($ormas as $key => $item)
                     <div class="item ms-2 me-2">
                         <div class="card border-0 m-auto">
@@ -186,7 +178,7 @@
         </div>
     </div>
 
-    <!-- Galeri -->
+    {{-- Galeri --}}
     <div class="galeri">
         <section class="container">
             <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4 mx-auto">

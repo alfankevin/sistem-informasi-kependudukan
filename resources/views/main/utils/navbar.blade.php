@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg z-3 fixed-top">
     <div class="container">
         <a href="/"><img src="/assets/img/malang.png" alt="Logo" height="30px" style="margin: 0 10px 2.5px 0"></a>
-        <a class="navbar-brand fw-bold" href="/">ERWE LIMO Tanjungrejo</a>
+        <a class="navbar-brand fw-bold m-0" href="/">ERWE LIMO Tanjungrejo</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,15 +29,3 @@
         </div>
     </div>
 </nav>
-
-<script>
-    document.addEventListener('scroll', () =>  {
-        const nav = document.querySelector('nav');
-
-        if(window.scrollY > 0) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    })
-</script>
