@@ -31,10 +31,10 @@
                         positif. Terima kasih. </p>
 
                     <p class="m-0">
-                        <span class="badge rounded-pill">#tonggoKuiseduLurPalingCede'k</span>
-                        <span class="badge rounded-pill">#RW05PeduliLingkungan</span>
-                        <span class="badge rounded-pill">#TanjungrejoDisiniAja</span>
-                        <span class="badge rounded-pill">#TidakKemana-ManaAdaDimana-Mana</span>
+                        <span class="badge shadow rounded-pill">#tonggoKuiseduLurPalingCede'k</span>
+                        <span class="badge shadow rounded-pill">#RW05PeduliLingkungan</span>
+                        <span class="badge shadow rounded-pill">#TanjungrejoDisiniAja</span>
+                        <span class="badge shadow rounded-pill">#TidakKemana-ManaAdaDimana-Mana</span>
                     </p>
                 </div>
             </div>

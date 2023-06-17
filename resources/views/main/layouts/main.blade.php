@@ -14,34 +14,19 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" href="/assets/css/main.css">
-        <link rel="stylesheet" href="/assets/css/main/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="/assets/css/main/elegant-icons.css" type="text/css">    
-        <link rel="stylesheet" href="/assets/css/main/plyr.css" type="text/css">
-        <link rel="stylesheet" href="/assets/css/main/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="/assets/css/main/slicknav.min.css" type="text/css">    
-        <link rel="stylesheet" href="/assets/css/main/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="/assets/css/main/owl.theme.default.min.css">
+        <link rel="stylesheet" href="/assets/css/main/owl.carousel.min.css" type="text/css">
     </head>
 
     <body class="overflow-x-hidden">
         @include('main.utils.navbar')
         @yield('content')
         @include('main.utils.footer')
-
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-
-        <!--Jquery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-            crossorigin="anonymous"></script>
-        <!-- Owl Carousel -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
         <script>
             // navbar
@@ -191,6 +176,13 @@
                 return markup;
             }
         </script>
+
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
         <script src="assets/js/main/jquery-3.3.1.min.js"></script>
         <script src="assets/js/main/bootstrap.min.js"></script>
