@@ -44,7 +44,7 @@
     {{-- Penduduk --}}
     <div class="penduduk">
         <div class="container">
-            <div class="row text-white" style="min-height: 200px">
+            <div class="row text-white">
                 <div class="count col-sm-3 wow fadeIn d-flex justify-content-center" data-wow-delay="0s">
                     <div class="count-penduduk text-center">
                         <div class="d-flex align-items-center">
