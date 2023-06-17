@@ -44,7 +44,7 @@ class SosialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_sosial'=>'required',
+            'nama_sosial'=>'required|max:128',
         ]);
 
         Sosial::create($request->all());
@@ -86,7 +86,7 @@ class SosialController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nama_sosial'=>'required',
+            'nama_sosial'=>'required|max:128',
         ]);
 
         Sosial::find($id)->update($request->all());

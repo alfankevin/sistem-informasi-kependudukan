@@ -46,8 +46,6 @@
 		const previewImage = document.querySelector("#image-preview.img-preview");
 
 		const displayInputImage = () => {	
-			previewImage.style.height = "180px";
-			previewImage.style.aspectRatio = "9/16";
 			const oFReader = new FileReader();
 			oFReader.readAsDataURL(inputImage.files[0]);
 

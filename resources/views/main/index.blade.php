@@ -184,7 +184,7 @@
             <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4 mx-auto">
                 @foreach ($galeri as $item)
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <figure><img class="img-fluid img-thumbnail" src="/assets/img/galeri/{{ $item->foto }}"></figure>
+                        <figure><img class="img-fluid img-thumbnail img-galeri" src="/assets/img/galeri/{{ $item->foto }}"></figure>
                     </div>
                 @endforeach
             </div>

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sosial', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_sosial', 32);
+            $table->string('nama_sosial', 128);
             $table->timestamps();
         });
     }

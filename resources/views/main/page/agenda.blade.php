@@ -8,7 +8,7 @@
                 <div class="card card-agenda mb-4 mx-auto border-0" style="max-width: 90%;">
                     <div class="row rounded-2 g-0" style="background: #fff">
                         <div class="col-md-4 p-2">
-                            <img src="/assets/img/agenda/{{ $item->gambar_agenda }}" class="img-fluid rounded-2"
+                            <img src="/assets/img/agenda/{{ $item->gambar_agenda }}" class="img-fluid img-agenda rounded-2"
                                 alt="...">
                         </div>
                         <div class="col-md-8 p-2">

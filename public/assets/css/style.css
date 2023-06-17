@@ -4185,10 +4185,11 @@ body:not(.sidebar-mini)
 }
 
 .prevGambar {
-    max-height: 180px;
+    max-height: 100%;
     max-width: 100%;
     object-fit: cover;
     border-radius: .25rem;
+    aspect-ratio: 16 / 9;
     background-color: rgb(243, 246, 249);
 }
 

@@ -49,20 +49,20 @@ class PendudukController extends Controller
     public function store(StorePendudukRequest $request)
     {
         $request->validate([
-            'no_kk'=>'required',
-            'nik'=>'required',
-            'nama'=>'required',
-            'tempat_lahir'=>'required',
+            'no_kk'=>'required|max:16',
+            'nik'=>'required|max:16',
+            'nama'=>'required|max:128',
+            'tempat_lahir'=>'required|max:128',
             'tanggal_lahir'=>'required',
             'jenis_kelamin'=>'required',
-            'golongan_darah'=>'required',
-            'agama'=>'required',
-            'status_perkawinan'=>'required',
+            'golongan_darah'=>'required|max:3',
+            'agama'=>'required|max:16',
+            'status_perkawinan'=>'required|max:32',
             'status_keluarga'=>'required',
-            'pekerjaan'=>'required',
-            'alamat'=>'required',
-            'rt'=>'required',
-            'keterangan'=>'required',
+            'pekerjaan'=>'required|max:128',
+            'alamat'=>'required|max:256',
+            'rt'=>'required|integer',
+            'keterangan'=>'required|max:128',
             'id_sosial'=>'required',
         ]);
 
@@ -124,20 +124,20 @@ class PendudukController extends Controller
     public function update(UpdatePendudukRequest $request, string $id)
     {
         $request->validate([
-            'no_kk'=>'required',
-            'nik'=>'required',
-            'nama'=>'required',
-            'tempat_lahir'=>'required',
+            'no_kk'=>'required|max:16',
+            'nik'=>'required|max:16',
+            'nama'=>'required|max:128',
+            'tempat_lahir'=>'required|max:128',
             'tanggal_lahir'=>'required',
             'jenis_kelamin'=>'required',
-            'golongan_darah'=>'required',
-            'agama'=>'required',
-            'status_perkawinan'=>'required',
+            'golongan_darah'=>'required|max:3',
+            'agama'=>'required|max:16',
+            'status_perkawinan'=>'required|max:32',
             'status_keluarga'=>'required',
-            'pekerjaan'=>'required',
-            'alamat'=>'required',
-            'rt'=>'required',
-            'keterangan'=>'required',
+            'pekerjaan'=>'required|max:128',
+            'alamat'=>'required|max:256',
+            'rt'=>'required|integer',
+            'keterangan'=>'required|max:128',
             'id_sosial'=>'required',
         ]);
 
