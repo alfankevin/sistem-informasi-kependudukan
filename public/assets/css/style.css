@@ -1232,16 +1232,6 @@ select.form-control:not([size]):not([multiple]) {
         width: 100%;
         margin-top: 10px;
     }
-    .card-usia,
-    .card-agenda {
-        height: 315px !important;
-    }
-    .card-pekerjaan {
-        height: 420px !important;
-    }
-    .tanggal-agenda {
-        display: none;
-    }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -2363,7 +2353,7 @@ h6 .badge {
 .btn-search {
     position: absolute !important;
     top: 1px !important;
-    right: 0 !important;
+    right: 1px !important;
 }
 
 .input-search {
@@ -4332,7 +4322,23 @@ body:not(.sidebar-mini)
     background-position: 40% 100%;
 }
 
+.tanggal-agenda {
+    margin-top: 5px;
+    position: relative;
+    background: #fff;
+    z-index: 1;
+}
+
 @media (max-width: 991.98px) {
+    .card-usia {
+        height: 360px !important;
+    }
+    .card-agenda {
+        height: 315px !important;
+    }
+    .card-pekerjaan {
+        height: 405px !important;
+    }
     .bodyKK .row:first-child .col:last-child {
         display: none;
     }

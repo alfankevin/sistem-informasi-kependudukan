@@ -9,6 +9,7 @@ html {
 body {
     font-family: "Lato";
     color: #333;
+    overflow-x: hidden !important;
 }
 
 .navbar,
@@ -217,18 +218,29 @@ body {
 .nav-button {
     position: absolute;
     top: 25%;
+    height: 35px;
+    width: 35px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
     border-radius: 100% !important;
     transition: all 0.2s;
 }
 
 .owl-prev {
     left: -50px;
-    padding: 7.5px 16px 9px 14px !important;
 }
 
 .owl-next {
     right: -50px;
-    padding: 7.5px 14px 9px 16px !important;
+}
+
+.owl-prev i {
+    margin-right: 2px;
+}
+
+.owl-next i {
+    margin-left: 2px;
 }
 
 .nav-button i {
@@ -344,6 +356,17 @@ body {
 }
 
 @media (max-width: 767.98px) {
+    body {
+        overflow-x: hidden !important;
+    }
+    .container-profile {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .profile {
+        width: 100%;
+        object-position: 100% 35%;
+    }
     .count-penduduk {
         padding: 15px 0;
     }

@@ -39,8 +39,12 @@
 
                 if(window.scrollY > 0) {
                     nav.classList.add('scrolled');
+                    nav.classList.remove('navbar-dark');
+                    nav.classList.add('navbar-light');
                 } else {
                     nav.classList.remove('scrolled');
+                    nav.classList.remove('navbar-light');
+                    nav.classList.add('navbar-dark');
                 }
             })
 

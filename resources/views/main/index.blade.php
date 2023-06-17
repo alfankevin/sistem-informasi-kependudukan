@@ -12,7 +12,7 @@
 
     {{-- Sambutan --}}
     <section class="sambutan">
-        <div class="container-xxl">
+        <div class="container-xxl container-profile">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-4">
                     <img class="img-fluid rounded-4 shadow profile" src="{{ asset('assets/img/main/profile2.png') }}">

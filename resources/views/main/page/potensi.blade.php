@@ -15,7 +15,7 @@
                                         alt="..." width="200" height="200">
                                 </div>
                                 <div class="card-body mt-3 text-center">
-                                    <h5 class="card-title text-capitalize mb-1">{{ $item->nama_umkm }}</h5>
+                                    <h5 class="card-title text-capitalize fw-bold mb-1">{{ $item->nama_umkm }}</h5>
                                     <p class="card-text mb-1">{{ $item->deskripsi_umkm }}</p>
                                     <a href="{{ $item->sosial_media }}" class="text-decoration-none fw-bold" id="custom-text-link">beli
                                         sekarang

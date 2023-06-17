@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="gambar_agenda">Gambar Agenda</label><br>
-                            <img src="/assets/img/news/img.png" class="prevGambar img-preview img-fluid mb-2" id="image-preview" style="height: 180px; width: 320px">
+                            <img src="/assets/img/news/img.png" class="prevGambar img-preview img-fluid mb-2" id="image-preview" style="max-height: 180px; width: 320px">
                             <input type="file" class="form-control @error('gambar_agenda') is-invalid @enderror" id="gambar_agenda"
                                 name="gambar_agenda" value="{{ old('gambar_agenda') }}" spellcheck="false" autocomplete="off">
                             @error('gambar_agenda')

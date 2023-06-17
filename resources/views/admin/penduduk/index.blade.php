@@ -145,7 +145,7 @@
                             <tr>
                                 <td>Jenis Kelamin</td>
                                 <td>:</td>
-                                <td><span id="jenis_kelamin" class="mr-4"></span>Gol. Darah : <span id="golongan_darah"></span></td>
+                                <td><span id="jenis_kelamin" class="mr-5"></span>Gol. Darah : <span id="golongan_darah"></span></td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>

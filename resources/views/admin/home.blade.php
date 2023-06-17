@@ -85,9 +85,7 @@
                                             style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
                                         <div class="media-body"
                                             style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                            <div class="float-right mt-1"><span
-                                                    class="tanggal-agenda font-weight-600 text-muted text-small">{{ $item->tanggal_agenda }}</span>
-                                            </div>
+                                            <span class="tanggal-agenda float-right font-weight-600 text-muted text-small pl-1">{{ $item->tanggal_agenda }}</span>
                                             <div class="media-title mt-1 mb-1">{{ $item->judul_agenda }}</div>
                                             <span style="color: #6c757d">{{ $item->deskripsi_agenda }}</span>
                                         </div>
