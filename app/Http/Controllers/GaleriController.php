@@ -89,6 +89,7 @@ class GaleriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -101,7 +102,7 @@ class GaleriController extends Controller
 
             $destination = 'assets/img/galeri/'.$galeri->foto;
             if (file_exists($destination)) {
-                File::delete($destination);
+                unlink(public_path($destination)); // Menghapus file dari direktori
             }
 
             $file = $request->file('foto');
@@ -116,6 +117,7 @@ class GaleriController extends Controller
         return redirect()->route('galeri.index')
             ->with('success', 'Gambar berhasil diupdate');
     }
+
 
     /**
      * Remove the specified resource from storage.
