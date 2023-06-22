@@ -39,7 +39,7 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'foto'=>'required',
+            'foto'=>'required|mimes:jpeg,png,jpg',
         ]);
 
         if($request->hasFile('foto')) {
@@ -92,7 +92,7 @@ class GaleriController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'foto'=>'required',
+            'foto'=>'required|mimes:jpeg,png,jpg',
         ]);
 
         $galeri = Galeri::findorfail($id);

@@ -51,7 +51,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="gambar_agenda">Gambar Agenda</label>
+                            <label for="gambar_agenda">Gambar Agenda</label><br>
+                            <img src="/assets/img/news/img.png" class="prevGambar img-preview img-fluid mb-2" id="image-preview" style="max-height: 180px; width: 320px">
                             <input type="file" class="form-control @error('gambar_agenda') is-invalid @enderror" id="gambar_agenda"
                                 name="gambar_agenda" value="{{ old('gambar_agenda') }}" spellcheck="false" autocomplete="off">
                             @error('gambar_agenda')
@@ -69,4 +70,24 @@
             </div>
         </div>
     </section>
+
+    <script>
+		const inputImage = document.querySelector("#gambar_agenda");
+		const previewImage = document.querySelector("#image-preview.img-preview");
+
+		const displayInputImage = () => {	
+			const oFReader = new FileReader();
+			oFReader.readAsDataURL(inputImage.files[0]);
+
+			oFReader.onload = function (oFREvent) {
+				previewImage.src = oFREvent.target.result;
+			}
+		}
+
+		if (inputImage.files[0] != null) {	
+			displayInputImage()
+		}
+
+		inputImage.addEventListener("change", displayInputImage) 
+	</script>
 @endsection

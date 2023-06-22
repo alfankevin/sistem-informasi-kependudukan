@@ -12,17 +12,17 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $agenda = Agenda::orderByDesc('id')->get()->map(function($item) {
+        $agenda = Agenda::orderByDesc('id')->get()->map(function ($item) {
             $item->tanggal_agenda = date('d-m-Y', strtotime($item->tanggal_agenda));
             return $item;
         });
         $organisasi = Organisasi::orderByDesc('id')->get();
         $countSosial = Penduduk::where('id_sosial', '<>', '1')->count();
 
-        $countPenduduk = Penduduk::count();
-        $countL = Penduduk::where('jenis_kelamin', 'L')->count();
-        $countP = Penduduk::where('jenis_kelamin', 'P')->count();
-        $countKK = Penduduk::where('status_keluarga', true)->count();
+        $countPenduduk = Penduduk::where('keterangan', 'Hidup')->count();
+        $countL = Penduduk::where('jenis_kelamin', 'L')->where('keterangan', 'Hidup')->count();
+        $countP = Penduduk::where('jenis_kelamin', 'P')->where('keterangan', 'Hidup')->count();
+        $countKK = Penduduk::where('status_keluarga', true)->where('keterangan', 'Hidup')->count();
 
         $pekerjaan = DB::table('penduduk')
             ->select('pekerjaan', DB::raw('count(*) as total'))
@@ -33,9 +33,10 @@ class DashboardController extends Controller
             ->where('pekerjaan', 'NOT LIKE', '%mahasiswa%')
             ->where('pekerjaan', 'NOT LIKE', '%pensiunan%')
             ->where('pekerjaan', 'NOT LIKE', '%purnawirawan%')
+            ->where('keterangan', 'Hidup')
             ->groupBy('pekerjaan')
             ->get();
-            
+
         $darah = DB::table('penduduk')
             ->select(
                 DB::raw('CASE
@@ -47,7 +48,8 @@ class DashboardController extends Controller
                     END AS golongan_darah'),
                 DB::raw('COUNT(*) AS total')
             )
-            ->where('golongan_darah','<>','-')
+            ->where('golongan_darah', '<>', '-')
+            ->where('keterangan', 'Hidup')
             ->groupBy(
                 DB::raw('CASE
                         WHEN golongan_darah = "A+" THEN "A"
@@ -61,6 +63,7 @@ class DashboardController extends Controller
 
         $agama = DB::table('penduduk')
             ->select('agama', DB::raw('count(*) as total'))
+            ->where('keterangan', 'Hidup')
             ->groupBy('agama')
             ->get();
 
@@ -68,14 +71,14 @@ class DashboardController extends Controller
         SELECT rt, jumlah, (jumlah / total) * 300 AS persen
         FROM (
             SELECT rt, COUNT(*) AS jumlah, (SELECT COUNT(*) FROM penduduk) AS total
-            FROM penduduk
+            FROM penduduk WHERE keterangan = 'Hidup'
             GROUP BY rt
         ) AS subquery;
         ";
 
         $labelPekerjaan = $pekerjaan->pluck('pekerjaan');
         $dataPekerjaan = $pekerjaan->pluck('total');
-        $labelDarah = $darah->where('golongan_darah','<>','-')->pluck('golongan_darah');
+        $labelDarah = $darah->where('golongan_darah', '<>', '-')->pluck('golongan_darah');
         $dataDarah = $darah->pluck('total');
         $labelAgama = $agama->pluck('agama');
         $dataAgama = $agama->pluck('total');
@@ -117,6 +120,7 @@ class DashboardController extends Controller
                 END AS age_group, COUNT(*) as total'))
             ->groupBy('age_group')
             ->where('jenis_kelamin', 'L')
+            ->where('keterangan', 'Hidup')
             ->get();
 
         $umurP = Penduduk::select(DB::raw('CASE
@@ -141,9 +145,10 @@ class DashboardController extends Controller
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 91 AND 95 THEN "91-95"
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 96 AND 100 THEN "96-100"
             WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) >100 THEN "100+"
-                END AS age_group, COUNT(*) as total'))
+            END AS age_group, COUNT(*) as total'))
             ->groupBy('age_group')
             ->where('jenis_kelamin', 'P')
+            ->where('keterangan', 'Hidup')
             ->get();
 
         $labelUmurL = $umurL->pluck('age_group');

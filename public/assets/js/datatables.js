@@ -30,7 +30,7 @@ $("[data-checkboxes]").each(function() {
 
 $("#penduduk").dataTable({
   "columnDefs": [
-    { "sortable": false, "targets": [10] }
+    { "sortable": false, "targets": [11] }
   ],
   "pageLength": 25
 });

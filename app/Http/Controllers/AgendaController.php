@@ -49,10 +49,10 @@ class AgendaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul_agenda'=>'required',
+            'judul_agenda'=>'required|max:128',
             'tanggal_agenda'=>'required',
-            'deskripsi_agenda'=>'required',
-            'gambar_agenda'=>'required',
+            'deskripsi_agenda'=>'required|max:512',
+            'gambar_agenda'=>'required|mimes:jpeg,png,jpg',
         ]);
 
         if($request->hasFile('gambar_agenda')) {
@@ -108,9 +108,9 @@ class AgendaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul_agenda'=>'required',
+            'judul_agenda'=>'required|max:128',
             'tanggal_agenda'=>'required',
-            'deskripsi_agenda'=>'required',
+            'deskripsi_agenda'=>'required|max:512',
         ]);
 
         $agenda = Agenda::findorfail($id);

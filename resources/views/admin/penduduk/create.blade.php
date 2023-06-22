@@ -128,7 +128,6 @@
                                 <option value="Cerai Mati">Cerai Mati</option>
                                 <option value="Cerai Hidup">Cerai Hidup</option>
                                 <option value="Cerai Tercatat">Cerai Tercatat</option>
-                                <option value="Cerai Hidup Tercatat">Cerai Hidup Tercatat</option>
                             </select>
                             @error('status_perkawinan')
                                 <div class="invalid-feedback">
@@ -137,7 +136,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Status Hubungan Dalam Keluarga</label>
+                            <label>Status Keluarga</label>
                             <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="status_keluarga">
                                 <option value=""></option>
                                 <option value="0">-</option>

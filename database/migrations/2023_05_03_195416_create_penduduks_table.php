@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tempat_lahir', 128);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L','P']);
-            $table->string('golongan_darah', 2);
+            $table->string('golongan_darah', 3);
             $table->string('agama', 16);
             $table->string('status_perkawinan', 32);
             $table->boolean('status_keluarga')->default(false);

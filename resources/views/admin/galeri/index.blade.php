@@ -42,7 +42,7 @@
                                                 <td>{{ ($galeri->currentPage() - 1) * $galeri->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>
-                                                    <img src="/assets/img/galeri/{{ $item->foto }}" alt="Foto" class="editGambar">
+                                                    <img src="/assets/img/galeri/{{ $item->foto }}" alt="Foto" class="prevGambar" style="height: 180px; width: 320px">
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">

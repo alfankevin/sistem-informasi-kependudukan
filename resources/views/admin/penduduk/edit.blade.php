@@ -133,7 +133,6 @@
                                 <option value="Cerai Mati" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Mati") {{ 'selected' }} @endif>Cerai Mati</option>
                                 <option value="Cerai Hidup" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Hidup") {{ 'selected' }} @endif>Cerai Hidup</option>
                                 <option value="Cerai Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Tercatat") {{ 'selected' }} @endif>Cerai Tercatat</option>
-                                <option value="Cerai Hidup Tercatat" @if (old('status_perkawinan', $penduduk->status_perkawinan) == "Cerai Hidup Tercatat") {{ 'selected' }} @endif>Cerai Hidup Tercatat</option>
                             </select>
                             @error('status_perkawinan')
                                 <div class="invalid-feedback">
@@ -142,7 +141,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Status Hubungan Dalam Keluarga</label>
+                            <label>Status Keluarga</label>
                             <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="status_keluarga">
                                 <option value=""></option>
                                 <option value="0" @if (old('status_keluarga', $penduduk->status_keluarga) == "0") {{ 'selected' }} @endif>-</option>

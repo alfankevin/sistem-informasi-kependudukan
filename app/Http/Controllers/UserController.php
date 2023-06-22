@@ -68,6 +68,7 @@ class UserController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'email_verified_at' => now(),
         ]);
         return redirect(route('user.index'))->with('success', 'Data Berhasil Ditambahkan');;
     }

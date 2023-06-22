@@ -45,9 +45,9 @@ class OrganisasiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_organisasi'=>'required',
-            'deskripsi_organisasi'=>'required',
-            'gambar_organisasi'=>'required',
+            'nama_organisasi'=>'required|max:128',
+            'deskripsi_organisasi'=>'required|max:512',
+            'gambar_organisasi'=>'required|mimes:jpeg,png,jpg',
         ]);
 
         if($request->hasFile('gambar_organisasi')) {
@@ -102,8 +102,8 @@ class OrganisasiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_organisasi'=>'required',
-            'deskripsi_organisasi'=>'required',
+            'nama_organisasi'=>'required|max:128',
+            'deskripsi_organisasi'=>'required|max:512',
         ]);
 
         $organisasi = Organisasi::findorfail($id);

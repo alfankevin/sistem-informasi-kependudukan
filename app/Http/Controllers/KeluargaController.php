@@ -99,33 +99,28 @@ class KeluargaController extends Controller
     public function update(UpdateKeluargaRequest $request, string $id)
     {
         $penduduk = DB::table('penduduk')->where('id', $id)->first();
-        $currentKK = $penduduk->no_kk;
-        $newKK = $request->input('no_kk');
-        $nik = $request->input('nik');
+        $kkLama = $penduduk->no_kk;
+        $kkBaru = $request->input('no_kk');
         $nama = $request->input('nama');
         $alamat = $request->input('alamat');
         $rt = $request->input('rt');
-
-        DB::table('penduduk')
-            ->where('no_kk', $currentKK)
-            ->update(['no_kk' => $newKK]);
-
-        DB::table('penduduk')
-            ->where('id', $id)
-            ->update(['nik' => $nik]);
-
+        
         DB::table('penduduk')
             ->where('id', $id)
             ->update(['nama' => $nama]);
         
         DB::table('penduduk')
-            ->where('no_kk', $currentKK)
+            ->where('no_kk', $kkLama)
             ->update(['alamat' => $alamat]);
         
         DB::table('penduduk')
-            ->where('no_kk', $currentKK)
+            ->where('no_kk', $kkLama)
             ->update(['rt' => $rt]);
-
+        
+        DB::table('penduduk')
+            ->where('no_kk', $kkLama)
+            ->update(['no_kk' => $kkBaru]);
+        
         return redirect()->route('keluarga.index')
             ->with('success', 'Kartu berhasil diupdate');
     }

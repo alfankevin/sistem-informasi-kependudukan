@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul_agenda', 128);
             $table->date('tanggal_agenda');
-            $table->string('deskripsi_agenda', 256);
+            $table->string('deskripsi_agenda', 512);
             $table->string('gambar_agenda');
             $table->boolean('prioritas')->default(false);
             $table->timestamps();

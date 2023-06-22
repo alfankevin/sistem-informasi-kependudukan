@@ -25,7 +25,7 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-chart-pie"></i>
                 <span>Dashboard</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('dashboard') ? 'active' : '' }}"><a class="nav-link " href="/dashboard">Dashboard</a></li>
+                <li class="{{ request()->is('dashboard') ? 'active' : '' }}"><a class="nav-link" href="/dashboard">Dashboard</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {{ request()->is('penduduk-management/penduduk') ? 'active' : '' }} ||
@@ -40,9 +40,9 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-users"></i>
                 <span>Kependudukan</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('penduduk-management/penduduk') ? 'active' : '' }}"><a class="nav-link " href="/penduduk-management/penduduk">Data Penduduk</a></li>
-                <li class="{{ request()->is('penduduk-management/keluarga') ? 'active' : '' }}"><a class="nav-link " href="/penduduk-management/keluarga">Data Kartu Keluarga</a></li>
-                <li class="{{ request()->is('penduduk-management/bantuan') ? 'active' : '' }}"><a class="nav-link " href="/penduduk-management/bantuan">Data Bantuan Sosial</a></li>
+                <li class="{{ request()->is('penduduk-management/penduduk') ? 'active' : '' }}"><a class="nav-link" href="/penduduk-management/penduduk">Data Penduduk</a></li>
+                <li class="{{ request()->is('penduduk-management/keluarga') ? 'active' : '' }}"><a class="nav-link" href="/penduduk-management/keluarga">Data Kartu Keluarga</a></li>
+                <li class="{{ request()->is('penduduk-management/bantuan') ? 'active' : '' }}"><a class="nav-link" href="/penduduk-management/bantuan">Data Bantuan Sosial</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {{ request()->is('organisasi-management/organisasi') ? 'active' : '' }} ||
@@ -51,7 +51,7 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-sitemap"></i>
                 <span>Organisasi</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('organisasi-management/organisasi') ? 'active' : '' }}"><a class="nav-link " href="/organisasi-management/organisasi">Organisasi Masyarakat</a></li>
+                <li class="{{ request()->is('organisasi-management/organisasi') ? 'active' : '' }}"><a class="nav-link" href="/organisasi-management/organisasi">Organisasi Masyarakat</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {{ request()->is('sosial-management/sosial') ? 'active' : '' }} ||
@@ -60,7 +60,7 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-handshake"></i>
                 <span>Bantuan</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('sosial-management/sosial') ? 'active' : '' }}"><a class="nav-link " href="/sosial-management/sosial">Bantuan Sosial</a></li>
+                <li class="{{ request()->is('sosial-management/sosial') ? 'active' : '' }}"><a class="nav-link" href="/sosial-management/sosial">Bantuan Sosial</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {{ request()->is('agenda-management/agenda') ? 'active' : '' }} ||
@@ -69,7 +69,7 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-book"></i>
                 <span>Agenda</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('agenda-management/agenda') ? 'active' : '' }}"><a class="nav-link " href="/agenda-management/agenda">Agenda Sosial</a></li>
+                <li class="{{ request()->is('agenda-management/agenda') ? 'active' : '' }}"><a class="nav-link" href="/agenda-management/agenda">Agenda Sosial</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {{ request()->is('potensi-management/potensi') ? 'active' : '' }} ||
@@ -78,7 +78,7 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-store"></i>
                 <span>Potensi</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('potensi-management/potensi') ? 'active' : '' }}"><a class="nav-link " href="/potensi-management/potensi">Potensi UMKM</a></li>
+                <li class="{{ request()->is('potensi-management/potensi') ? 'active' : '' }}"><a class="nav-link" href="/potensi-management/potensi">Potensi UMKM</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {{ request()->is('galeri-management/galeri') ? 'active' : '' }} ||
@@ -87,7 +87,7 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-image"></i>
                 <span>Galeri</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('galeri-management/galeri') ? 'active' : '' }}"><a class="nav-link " href="/galeri-management/galeri">Galeri Halaman</a></li>
+                <li class="{{ request()->is('galeri-management/galeri') ? 'active' : '' }}"><a class="nav-link" href="/galeri-management/galeri">Galeri Halaman</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {{ request()->is('user-management/user') ? 'active' : '' }} ||
@@ -96,7 +96,7 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-user-tag"></i>
                 <span>Users</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('user-management/user') ? 'active' : '' }}"><a class="nav-link " href="/user-management/user">User List</a></li>
+                <li class="{{ request()->is('user-management/user') ? 'active' : '' }}"><a class="nav-link" href="/user-management/user">User List</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown {{ request()->is('menu-management/menu-group') ? 'active' : '' }} ||
@@ -108,8 +108,8 @@
             <a href="" class="nav-link has-dropdown"><i class="fas fa-bars"></i>
                 <span>Menu</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('menu-management/menu-group') ? 'active' : '' }}"><a class="nav-link " href="/menu-management/menu-group">Menu Group</a></li>
-                <li class="{{ request()->is('menu-management/menu-item') ? 'active' : '' }}"><a class="nav-link " href="/menu-management/menu-item">Menu Item</a></li>
+                <li class="{{ request()->is('menu-management/menu-group') ? 'active' : '' }}"><a class="nav-link" href="/menu-management/menu-group">Menu Group</a></li>
+                <li class="{{ request()->is('menu-management/menu-item') ? 'active' : '' }}"><a class="nav-link" href="/menu-management/menu-item">Menu Item</a></li>
             </ul>
         </li>
     </ul>

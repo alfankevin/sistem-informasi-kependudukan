@@ -46,11 +46,11 @@ class PotensiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_umkm'=>'required',
-            'alamat_umkm'=>'required',
-            'deskripsi_umkm'=>'required',
-            'sosial_media'=>'required',
-            'gambar_umkm'=>'required',
+            'nama_umkm'=>'required|max:128',
+            'alamat_umkm'=>'required|max:128',
+            'deskripsi_umkm'=>'required|max:512',
+            'sosial_media'=>'required|max:128',
+            'gambar_umkm'=>'required|mimes:jpeg,png,jpg',
         ]);
 
         if($request->hasFile('gambar_umkm')) {
@@ -107,10 +107,10 @@ class PotensiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_umkm'=>'required',
-            'alamat_umkm'=>'required',
-            'deskripsi_umkm'=>'required',
-            'sosial_media'=>'required',
+            'nama_umkm'=>'required|max:128',
+            'alamat_umkm'=>'required|max:128',
+            'deskripsi_umkm'=>'required|max:512',
+            'sosial_media'=>'required|max:128',
         ]);
 
         $potensi = Potensi::findorfail($id);

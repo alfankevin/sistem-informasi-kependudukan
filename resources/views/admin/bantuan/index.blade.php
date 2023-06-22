@@ -36,7 +36,7 @@
                                             <th>#</th>
                                             <th>Nama</th>
                                             <th>Usia</th>
-                                            <th>L/P</th>
+                                            <th>Gender</th>
                                             <th>Agama</th>
                                             <th>Pekerjaan</th>
                                             <th>Alamat</th>
@@ -51,8 +51,8 @@
                                                 <td>{{ $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama }}</td>
-                                                <td style="white-space: nowrap">{{ $item->usia }} th</td>
-                                                <td>{{ $item->jenis_kelamin }}</td>
+                                                <td class="text-nowrap">{{ $item->usia }} th</td>
+                                                <td>{{ $item->gender }}</td>
                                                 <td>{{ $item->agama }}</td>
                                                 <td>{{ $item->pekerjaan }}</td>
                                                 <td>{{ $item->alamat }}</td>
@@ -60,20 +60,22 @@
                                                 <td>{{ $item->nama_sosial }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
-                                                        <button class="btn btn-sm btn-warning btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
+                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
                                                             data-toggle="modal"
                                                             data-target="#ktp"
                                                             data-nik="{{ $item->nik }}"
                                                             data-nama="{{ $item->nama }}"
                                                             data-tempat_lahir="{{ $item->tempat_lahir }}"
                                                             data-tanggal_lahir="{{ $item->tanggal_lahir }}"
-                                                            data-jenis_kelamin="{{ $item->jenis_kelamin }}"
+                                                            data-gender="{{ $item->gender }}"
                                                             data-golongan_darah="{{ $item->golongan_darah }}"
                                                             data-alamat="{{ $item->alamat }}"
                                                             data-rt="{{ $item->rt }}"
                                                             data-agama="{{ $item->agama }}"
                                                             data-status_perkawinan="{{ $item->status_perkawinan }}"
-                                                            data-pekerjaan="{{ $item->pekerjaan }}">
+                                                            data-pekerjaan="{{ $item->pekerjaan }}"
+                                                            data-keterangan="{{ $item->keterangan }}"
+                                                            data-sosial="{{ $item->nama_sosial }}">
                                                             <i class="fas fa-user"></i></button>
                                                         <a href="{{ route('bantuan.edit', $item->id) }}"
                                                             class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
@@ -107,54 +109,71 @@
                         <h5>PROVINSI JAWA TIMUR</h5>
                         <h5>KOTA MALANG</h5>
                     </div>
-                    <div class="bodyKTP" style="overflow: hidden;">
+                    <div class="bodyKTP">
                         <div>
-                            <h5>NIK&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:&nbsp;</h5><span id="nik" class="openKTP" data-toggle="modal" data-target="#kk"></span>
+                            <h5>NIK<span class="mr-2" style="margin-left: 70px">:</span></h5>
+                            <span id="nik"></span>
                         </div>
                         <table>
                             <tr>
                                 <td>Nama</td>
-                                <td>: <span id="nama"></span></td>
+                                <td>:</td>
+                                <td><span id="nama"></span></td>
                             </tr>
                             <tr>
                                 <td>Tempat/Tgl Lahir</td>
-                                <td>: <span id="tempat_lahir"></span>, <span id="tanggal_lahir"></span></td>
+                                <td>:</td>
+                                <td><span id="tempat_lahir"></span>, <span id="tanggal_lahir"></span></td>
                             </tr>
                             <tr>
                                 <td>Jenis Kelamin</td>
-                                <td>: <span id="jenis_kelamin"></span>&emsp;&emsp;&ensp;Gol. Darah&emsp;: <span id="golongan_darah"></span></td>
+                                <td>:</td>
+                                <td><span id="gender" class="mr-4"></span>Gol. Darah : <span id="golongan_darah"></span></td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>
-                                <td>: <span id="alamat"></span></td>
+                                <td>:</td>
+                                <td><span id="alamat"></span></td>
                             </tr>
                             <tr>
-                                <td>&emsp;&emsp;&ensp;RT/RW</td>
-                                <td>: 00<span id="rt"></span>/005</td>
+                                <td class="pl-4">RT/RW</td>
+                                <td>:</td>
+                                <td>00<span id="rt"></span>/005</td>
                             </tr>
                             <tr>
-                                <td>&emsp;&emsp;&ensp;Kel/Desa</td>
-                                <td>: TANJUNGREJO</td>
+                                <td class="pl-4">Kel/Desa</td>
+                                <td>:</td>
+                                <td>TANJUNGREJO</td>
                             </tr>
                             <tr>
-                                <td>&emsp;&emsp;&ensp;Kecamatan</td>
-                                <td>: SUKUN</td>
+                                <td class="pl-4">Kecamatan</td>
+                                <td>:</td>
+                                <td>SUKUN</td>
                             </tr>
                             <tr>
                                 <td>Agama</td>
-                                <td>: <span id="agama"></span></td>
+                                <td>:</td>
+                                <td><span id="agama"></span></td>
                             </tr>
                             <tr>
                                 <td>Status Perkawinan</td>
-                                <td>: <span id="status_perkawinan"></span></td>
+                                <td>:</td>
+                                <td><span id="status_perkawinan"></span></td>
                             </tr>
                             <tr>
                                 <td>Pekerjaan</td>
-                                <td>: <span id="pekerjaan"></span></td>
+                                <td>:</td>
+                                <td><span id="pekerjaan"></span></td>
                             </tr>
                             <tr>
-                                <td>Kewarganegaraan</td>
-                                <td>: WNI</td>
+                                <td>Keterangan</td>
+                                <td>:</td>
+                                <td><span id="keterangan"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Bantuan Sosial</td>
+                                <td>:</td>
+                                <td><span id="sosial"></span></td>
                             </tr>
                         </table>
                     </div>
@@ -184,30 +203,34 @@
             });
         });
 
-        $(document).on("click", ".openKTP", function () {
+        $(document).on("click", ".openKTP", function() {
             var nik = $(this).data('nik');
             var nama = $(this).data('nama');
             var tempat_lahir = $(this).data('tempat_lahir');
             var tanggal_lahir = $(this).data('tanggal_lahir');
-            var jenis_kelamin = $(this).data('jenis_kelamin');
+            var gender = $(this).data('gender');
             var golongan_darah = $(this).data('golongan_darah');
             var alamat = $(this).data('alamat');
             var rt = $(this).data('rt');
             var agama = $(this).data('agama');
             var status_perkawinan = $(this).data('status_perkawinan');
             var pekerjaan = $(this).data('pekerjaan');
+            var keterangan = $(this).data('keterangan');
+            var sosial = $(this).data('sosial');
 
             $(".modal-content #nik").text(nik);
             $(".modal-content #nama").text(nama);
             $(".modal-content #tempat_lahir").text(tempat_lahir);
             $(".modal-content #tanggal_lahir").text(tanggal_lahir);
-            $(".modal-content #jenis_kelamin").text(jenis_kelamin);
+            $(".modal-content #gender").text(gender);
             $(".modal-content #golongan_darah").text(golongan_darah);
             $(".modal-content #alamat").text(alamat);
             $(".modal-content #rt").text(rt);
             $(".modal-content #agama").text(agama);
             $(".modal-content #status_perkawinan").text(status_perkawinan);
             $(".modal-content #pekerjaan").text(pekerjaan);
+            $(".modal-content #keterangan").text(keterangan);
+            $(".modal-content #sosial").text(sosial);
         });
     </script>
 @endpush

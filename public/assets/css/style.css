@@ -218,7 +218,7 @@ ol {
 .custom-select,
 .custom-file-label {
     background-color: #fdfdff;
-    border-color: #e4e6fc;
+    border-color: #ddd;
 }
 .form-control:focus,
 .input-group-text:focus,
@@ -335,7 +335,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::before,
 .custom-control-input:checked ~ .custom-control-label::before {
-    background-color: #2a5788 !important;
+    background-color: #007bff !important;
 }
 
 .custom-file-label {
@@ -771,6 +771,9 @@ select.form-control:not([size]):not([multiple]) {
 }
 .alert.alert-dark {
     background-color: #191d21;
+}
+.close {
+    height: 100%;
 }
 
 /* 3.5 Card */
@@ -1229,16 +1232,6 @@ select.form-control:not([size]):not([multiple]) {
         width: 100%;
         margin-top: 10px;
     }
-    .card-usia,
-    .card-agenda {
-        height: 315px !important;
-    }
-    .card-pekerjaan {
-        height: 420px !important;
-    }
-    .tanggal-agenda {
-        display: none;
-    }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -1290,7 +1283,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .table.table-bordered td,
 .table.table-bordered th {
-    border-color: #e4e6fc;
+    border-color: #ddd;
 }
 
 .table-links {
@@ -2353,12 +2346,26 @@ h6 .badge {
     display: flex;
 }
 
+.search-element {
+    position: relative !important;
+}
+
+.btn-search {
+    position: absolute !important;
+    top: 1px !important;
+    right: 1px !important;
+}
+
+.input-search {
+    border-radius: 3px !important;
+}
+
 @media (max-width: 575.98px) {
     body.search-show .navbar .form-inline .search-element {
         display: block;
     }
     .navbar .form-inline .search-element {
-        position: absolute;
+        position: absolute !important;
         top: 10px;
         left: 10px;
         right: 10px;
@@ -2367,12 +2374,13 @@ h6 .badge {
     }
     .navbar .form-inline .search-element .form-control {
         float: left;
-        border-radius: 3px 0 0 3px;
-        width: calc(100% - 43px) !important;
+        border-radius: 3px;
+        width: 100% !important;
     }
     .navbar .form-inline .search-element .btn {
-        margin-top: 1px;
-        border-radius: 0 3px 3px 0;
+        position: absolute;
+        top: 1px;
+        right: 0;
     }
     .navbar .form-inline .search-result {
         width: 100%;
@@ -2722,7 +2730,7 @@ body {
     font-size: 14px;
     font-weight: 400;
     font-family: "Nunito", "Segoe UI", arial;
-    color: #6c757d;
+    color: #333;
 }
 
 a.bb {
@@ -4145,6 +4153,7 @@ body:not(.sidebar-mini)
     }
 }
 
+/* System */
 .text-color-blue {
     color: #007bff !important;
 }
@@ -4162,12 +4171,16 @@ body:not(.sidebar-mini)
 .gambar {
     max-height: 450px;
     max-width: 800px;
+    object-fit: cover;
 }
 
-.editGambar {
-    max-height: 180px;
+.prevGambar {
+    max-height: 100%;
     max-width: 100%;
+    object-fit: cover;
     border-radius: .25rem;
+    aspect-ratio: 16 / 9;
+    background-color: rgb(243, 246, 249);
 }
 
 .openGambar:hover {
@@ -4175,13 +4188,18 @@ body:not(.sidebar-mini)
     text-decoration: underline;
 }
 
+/* KTP */
+#ktp div div {
+    background-color: rgb(243, 246, 249);
+}
+
 .openKTP:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 .detailKTP {
     padding: 15px 20px;
-    color: #333;
 }
 
 .headerKTP {
@@ -4197,14 +4215,13 @@ body:not(.sidebar-mini)
     justify-content: center;
 }
 
+.bodyKTP {
+    overflow: hidden;
+}
+
 .bodyKTP div {
     display: flex;
     align-items: center;
-}
-
-.bodyKTP div span:hover {
-    cursor: pointer;
-    text-decoration: underline;
 }
 
 .bodyKTP div h5,
@@ -4223,6 +4240,112 @@ body:not(.sidebar-mini)
     white-space: nowrap;
 }
 
-.bodyKTP table tr td span {
+.bodyKTP table tr td span,
+.bodyKK table tr td span {
     text-transform: uppercase;
+}
+
+/* KK */
+#kk div div {
+    background-color: rgb(243, 246, 249);
+}
+
+.detailKK {
+    padding: 20px 20px 5px 20px;
+}
+
+.headerKK {
+    margin-bottom: 15px;
+}
+
+.headerKK h4,
+.headerKK h5 {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Arial;
+    letter-spacing: .1rem;
+    line-height: .8;
+    display: flex;
+    justify-content: center;
+}
+
+.headerKK h5 {
+    font-size: 18px;
+    font-family: monospace;
+    letter-spacing: normal;
+}
+
+.bodyKK {
+    overflow: hidden;
+}
+
+.bodyKK .row:first-child {
+    margin-bottom: 10px;
+}
+
+.bodyKK .row:first-child .col:first-child {
+    padding-left: 40px;
+}
+
+.bodyKK table tr td {
+    font-size: 13px;
+    font-family: Arial;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.bodyKK table tr td:first-child {
+    width: 145px;
+}
+
+.bodyKK .table.table-bordered {
+    margin-bottom: 15px;
+}
+
+.bodyKK .table.table-bordered th:first-child,
+.bodyKK .table.table-bordered td:first-child {
+    width: 0;
+}
+
+.bodyKK .table.table-bordered th,
+.bodyKK .table.table-bordered td {
+    font-size: 12px;
+    border: 1px solid #333;
+}
+
+.col {
+    overflow: hidden;
+}
+
+.login {
+    background-size: cover;
+    background-position: 40% 100%;
+}
+
+.tanggal-agenda {
+    margin-top: 5px;
+    position: relative;
+    background: #fff;
+    z-index: 1;
+}
+
+@media (max-width: 991.98px) {
+    .card-usia {
+        height: 360px !important;
+    }
+    .card-agenda {
+        height: 315px !important;
+    }
+    .card-pekerjaan {
+        height: 405px !important;
+    }
+    .bodyKK .row:first-child .col:last-child {
+        display: none;
+    }
+    .bodyKK .row:first-child .col:first-child {
+        padding-left: 15px;
+    }
+    .login {
+        background-position: 45% 100%;
+    }
 }

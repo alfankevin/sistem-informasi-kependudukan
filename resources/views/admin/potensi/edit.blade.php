@@ -33,16 +33,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="alamat_umkm">Alamat UMKM</label>
-                            <input type="text" class="form-control @error('alamat_umkm') is-invalid @enderror" id="alamat_umkm"
-                            name="alamat_umkm" value="{{ old('alamat_umkm', $potensi->alamat_umkm) }}" spellcheck="false" autocomplete="off">
-                            @error('alamat_umkm')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="deskripsi_umkm">Deskripsi UMKM</label>
                             <input id="deskripsi_umkm" name="deskripsi_umkm" type="text" spellcheck="false" autocomplete="off"
                                 class="form-control @error('deskripsi_umkm') is-invalid @enderror"
@@ -66,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label for="gambar_umkm">Gambar UMKM</label><br>
-                            <img src="/assets/img/potensi/{{ $potensi->gambar_umkm }}" alt="{{ $potensi->gambar_umkm }}" class="editGambar mb-2">
+                            <img src="/assets/img/potensi/{{ $potensi->gambar_umkm }}" alt="{{ $potensi->gambar_umkm }}" class="prevGambar img-preview mb-2" id="image-preview" style="height: 180px; width: 320px">
                             <input id="gambar_umkm" name="gambar_umkm" type="file" spellcheck="false" autocomplete="off"
                                 class="form-control @error('gambar_umkm') is-invalid @enderror"
                                 value="{{ old('gambar_umkm', $potensi->gambar_umkm) }}">
@@ -85,4 +75,24 @@
             </div>
         </div>
     </section>
+
+    <script>
+		const inputImage = document.querySelector("#gambar_umkm");
+		const previewImage = document.querySelector("#image-preview.img-preview");
+
+		const displayInputImage = () => {	
+			const oFReader = new FileReader();
+			oFReader.readAsDataURL(inputImage.files[0]);
+
+			oFReader.onload = function (oFREvent) {
+				previewImage.src = oFREvent.target.result;
+			}
+		}
+
+		if (inputImage.files[0] != null) {	
+			displayInputImage()
+		}
+
+		inputImage.addEventListener("change", displayInputImage) 
+	</script>
 @endsection

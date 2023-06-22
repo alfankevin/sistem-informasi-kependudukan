@@ -21,7 +21,8 @@
                     <form action="{{ route('galeri.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="foto">Foto</label>
+                            <label for="foto">Foto</label><br>
+                            <img src="/assets/img/news/img.png" class="prevGambar img-preview img-fluid mb-2" id="image-preview" style="height: 180px; width: 320px">
                             <input id="foto" name="foto" type="file" spellcheck="false" autocomplete="off"
                             class="form-control @error('foto') is-invalid @enderror" value="{{ old('foto') }}">
                             @error('foto')
@@ -39,4 +40,24 @@
             </div>
         </div>
     </section>
+
+    <script>
+		const inputImage = document.querySelector("#foto");
+		const previewImage = document.querySelector("#image-preview.img-preview");
+
+		const displayInputImage = () => {	
+			const oFReader = new FileReader();
+			oFReader.readAsDataURL(inputImage.files[0]);
+
+			oFReader.onload = function (oFREvent) {
+				previewImage.src = oFREvent.target.result;
+			}
+		}
+
+		if (inputImage.files[0] != null) {	
+			displayInputImage()
+		}
+
+		inputImage.addEventListener("change", displayInputImage) 
+	</script>
 @endsection

@@ -82,14 +82,12 @@
                                 @foreach ($agenda as $key => $item)
                                     <li class="media">
                                         <span class="image mr-3 rounded"
-                                            style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/gambar.jpeg{{ $item->gambar_agenda }})"></span>
+                                            style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
                                         <div class="media-body"
                                             style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                            <div class="float-right mt-1"><span
-                                                    class="tanggal-agenda font-weight-600 text-muted text-small">{{ $item->tanggal_agenda }}</span>
-                                            </div>
+                                            <span class="tanggal-agenda float-right font-weight-600 text-muted text-small pl-1">{{ $item->tanggal_agenda }}</span>
                                             <div class="media-title mt-1 mb-1">{{ $item->judul_agenda }}</div>
-                                            <span>{{ $item->deskripsi_agenda }}</span>
+                                            <span style="color: #6c757d">{{ $item->deskripsi_agenda }}</span>
                                         </div>
                                     </li>
                                 @endforeach
@@ -123,17 +121,15 @@
                             <div class="card-body">
                                 <div class="owl-carousel owl-theme" id="organisasi">
                                     @foreach ($organisasi as $key => $item)
-                                        <div>
-                                            <div class="product-item pb-3">
-                                                <span class="product-image image"
-                                                    style="background-image: url(/assets/img/organisasi/{{ $item->gambar_organisasi }})"></span>
-                                                <div class="product-details">
-                                                    <div class="product-name">{{ $item->nama_organisasi }}</div>
-                                                    <div class="product-review text-muted">
-                                                        {{ $item->deskripsi_organisasi }}</div>
-                                                    <div class="product-cta"><a href="/organisasi-management/organisasi"
-                                                            class="btn btn-info">Detail</a></div>
-                                                </div>
+                                        <div class="product-item pb-3">
+                                            <span class="product-image image"
+                                                style="background-image: url(/assets/img/organisasi/{{ $item->gambar_organisasi }})"></span>
+                                            <div class="product-details">
+                                                <div class="product-name">{{ $item->nama_organisasi }}</div>
+                                                <div class="product-review text-muted">
+                                                    {{ $item->deskripsi_organisasi }}</div>
+                                                <div class="product-cta"><a href="/organisasi-management/organisasi"
+                                                        class="btn btn-info">Detail</a></div>
                                             </div>
                                         </div>
                                     @endforeach
@@ -229,7 +225,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="card card-sosial card-hero" style="height: 150px">
-                                <div class="card-header">
+                                <div class="card-header border-0" style="height: 100%; border-radius: calc(.25rem - 1px);">
                                     <div class="card-icon">
                                         <a href="/penduduk-management/bantuan" style="color: inherit"><i
                                                 class="far fa-handshake"></i></a>

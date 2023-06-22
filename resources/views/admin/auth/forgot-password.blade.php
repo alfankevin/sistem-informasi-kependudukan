@@ -30,9 +30,9 @@
                             <img src="../assets/img/malang.png" alt="logo" width="100">
                         </div>
 
-                        <div class="card card-primary">
+                        <div class="card card-info">
                             <div class="card-header">
-                                <h4>Forgot Password</h4>
+                                <h4 class="text-info">Forgot Password</h4>
                             </div>
                             <div class="card-body">
                                 <p>We will send a link to reset your password</p>
@@ -59,7 +59,7 @@
                                         @enderror
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary btn-block">Send Password Reset
+                                    <button type="submit" class="btn btn-info btn-block">Send Password Reset
                                         Link</button>
                                 </form>
                             </div>
