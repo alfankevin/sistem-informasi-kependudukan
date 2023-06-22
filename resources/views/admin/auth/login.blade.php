@@ -39,7 +39,7 @@
 
               <div class="form-group">
                 <div class="d-block">
-                  <label for="password" class="control-label">Password</label>
+                  <label for="password" class="control-label">Kata Sandi</label>
                 </div>
                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password" tabindex="2" required>
                 <div class="invalid-feedback">
@@ -50,13 +50,13 @@
               <div class="form-group">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                  <label class="custom-control-label" for="remember-me">Remember Me</label>
+                  <label class="custom-control-label" for="remember-me">Ingat Saya</label>
                 </div>
               </div>
 
               <div class="form-group text-right">
                 <a href="/forgot-password" class="float-left mt-3 text-color-blue">
-                  Forgot Password?
+                  Lupa Kata Sandi?
                 </a>
                 <button type="submit" class="btn btn-info btn-lg btn-icon icon-right" tabindex="4">
                   Login
@@ -64,7 +64,7 @@
               </div>
 
               <div class="mt-5 text-center">
-                Don't have an account? <a href="#" class="text-color-blue">Create new one</a>
+                Tidak punya akun? <a href="#" class="text-color-blue">Buat akun baru</a>
               </div>
             </form>
 

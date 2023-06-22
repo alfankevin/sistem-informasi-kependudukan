@@ -4,8 +4,8 @@ $(".confirm-delete").click(function (event) {
     let form = $(this).closest("form");
     event.preventDefault();
     swal({
-        title: `Are you sure you want to delete this record?`,
-        text: "If you delete this, it will be gone forever.",
+        title: `Apakah Anda yakin ingin meng-hapus data ini?`,
+        text: "Jika Anda hapus, data akan hilang selamanya.",
         icon: "warning",
         buttons: true,
         dangerMode: true,

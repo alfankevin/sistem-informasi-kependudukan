@@ -7,8 +7,8 @@
             <h1>Galeri Halaman</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Galeri</a></div>
-                <div class="breadcrumb-item"><a href="#">Management</a></div>
-                <div class="breadcrumb-item">Table</div>
+                <div class="breadcrumb-item"><a href="#">Manajemen</a></div>
+                <div class="breadcrumb-item">Tabel</div>
             </div>
         </div>
         <div class="section-body">
@@ -48,14 +48,14 @@
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('galeri.edit', $item->id) }}"
                                                             class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center">
-                                                            <span><i class="fas fa-edit"></i></span>&nbsp;Edit</a>
+                                                            <span><i class="fas fa-edit"></i></span>&nbsp;Ubah</a>
                                                         <form action="{{ route('galeri.destroy', $item->id) }}"
                                                             method="POST">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
                                                             <button class="btn btn-sm btn-danger btn-icon confirm-delete d-flex align-items-center">
-                                                            <span><i class="fas fa-times"></i></span>&nbsp;Delete</button>
+                                                            <span><i class="fas fa-times"></i></span>&nbsp;Hapus</button>
                                                         </form>
                                                     </div>
                                                 </td>

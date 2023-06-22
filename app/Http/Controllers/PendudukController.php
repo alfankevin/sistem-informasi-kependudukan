@@ -21,12 +21,12 @@ class PendudukController extends Controller
      */
     public function index(Request $request)
     {
-        $penduduk = DB::select("SELECT penduduk.*, sosial.nama_sosial
+        $penduduk = DB::select('
+            SELECT penduduk.*, DATE_FORMAT(tanggal_lahir, "%d-%m-%Y") AS tanggal_lahir, sosial.nama_sosial
             FROM penduduk INNER JOIN sosial ON penduduk.id_sosial = sosial.id
-            ORDER BY penduduk.updated_at DESC");
-        foreach ($penduduk as $item) {
-            $item->tanggal_lahir = date_format(date_create($item->tanggal_lahir), 'd-m-Y');
-        }
+            ORDER BY penduduk.updated_at DESC
+        ');
+
         return view('admin.penduduk.index', compact('penduduk'));
     }
     

@@ -112,14 +112,8 @@ body {
 }
 
 /* Hero */
-.hero {
-    position: relative;
-    top: -60px;
-    margin-bottom: -60px;
-}
-
 .hero__items {
-    height: 90vh;
+    height: 82.5vh;
     width: 100vw;
     background-size: cover;
     background-position: center;

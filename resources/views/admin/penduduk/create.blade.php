@@ -6,8 +6,8 @@
             <h1>Kependudukan</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('penduduk.index') }}">Penduduk</a></div>
-                <div class="breadcrumb-item"><a href="#">Management</a></div>
-                <div class="breadcrumb-item">Create</div>
+                <div class="breadcrumb-item"><a href="#">Manajemen</a></div>
+                <div class="breadcrumb-item">Tambah</div>
             </div>
         </div>
         <div class="section-body">
@@ -210,8 +210,8 @@
                         </div>
                 </div>
                 <div class="card-footer text-right">
-                    <button class="btn btn-primary">Submit</button>
-                    <a class="btn btn-secondary" href="{{ route('penduduk.index') }}">Cancel</a>
+                    <button class="btn btn-primary">Simpan</button>
+                    <a class="btn btn-secondary" href="{{ route('penduduk.index') }}">Batal</a>
                 </div>
                 </form>
             </div>
