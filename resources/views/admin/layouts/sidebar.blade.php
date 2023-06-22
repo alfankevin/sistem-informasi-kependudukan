@@ -1,4 +1,4 @@
-<aside id="sidebar-wrapper">
+{{-- <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
         <a href="/dashboard"><img src="/assets/img/malang.png" width="25px" alt=""></a>
     </div>
@@ -24,4 +24,4 @@
             @endcan
         @endforeach
     </ul>
-</aside>
+</aside> --}}

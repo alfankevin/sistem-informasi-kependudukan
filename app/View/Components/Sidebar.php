@@ -26,7 +26,7 @@ class Sidebar extends Component
      */
     public function render()
     {
-        $menuGroups = MenuGroup::with('menuItems')->get();
-        return view('admin.components.sidebar', compact('menuGroups'));
+        // $menuGroups = MenuGroup::with('menuItems')->get();
+        return view('admin.components.sidebar');
     }
 }
