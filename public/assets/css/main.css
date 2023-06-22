@@ -208,16 +208,54 @@ body {
 .btn-more:hover {
     background-color: rgb(13, 110, 253);
 }
+.potensi {
+    padding: 20px;
+  }
 
-.potensi .potensi-img {
+  .potensi .row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .potensi .col-md-4 {
+    position: relative;
+    width: 40%;
+    overflow: hidden;
+    /* padding: 5px; */
+    /* margin: 0px 6px 30px 20px; */
+
+  }
+
+  .potensi .potensi-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 175px;
+    height: 170px;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .potensi .potensi-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .potensi .col-md-4 {
+    border: none;
 }
 
-.potensi img {
-    max-width: 200px;
-    max-height: 200px;
-}
+  .potensi .card-body {
+    padding: 10px;
+  }
+
+  .potensi .card-body .text-decoration-none {
+    position: absolute;
+    bottom: 5px;
+ }
+
+
 
 .ormas img {
     max-width: 140px;
