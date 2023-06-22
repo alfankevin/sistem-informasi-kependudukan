@@ -78,8 +78,17 @@ body {
     box-shadow: none;
 }
 
-.navbar-toggler:focus .navbarSupportedContent {
-    background-color: black;
+#navbarSupportedContent.show {
+    margin-top: 12px;
+    transition: all, 0.1s;
+}
+
+#navbarSupportedContent.show {
+    background-color: #002147;
+}
+
+.navbar.scrolled #navbarSupportedContent.show {
+    background-color: rgba(255, 255, 255, 0.87);
 }
 
 .logo {
