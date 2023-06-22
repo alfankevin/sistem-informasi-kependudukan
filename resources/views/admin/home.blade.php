@@ -81,7 +81,7 @@
                             <ul class="list-unstyled list-unstyled-border">
                                 @foreach ($agenda as $key => $item)
                                     <li class="media">
-                                        <span class="image mr-3 rounded"
+                                        <span class="image mr-3 rounded shadow"
                                             style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
                                         <div class="media-body"
                                             style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
@@ -122,7 +122,7 @@
                                 <div class="owl-carousel owl-theme" id="organisasi">
                                     @foreach ($organisasi as $key => $item)
                                         <div class="product-item pb-3">
-                                            <span class="product-image image"
+                                            <span class="product-image image rounded-circle shadow"
                                                 style="background-image: url(/assets/img/organisasi/{{ $item->gambar_organisasi }})"></span>
                                             <div class="product-details">
                                                 <div class="product-name">{{ $item->nama_organisasi }}</div>
