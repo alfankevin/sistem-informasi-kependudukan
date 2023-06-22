@@ -94,22 +94,9 @@
             {{ request()->is('user-management/user/create') ? 'active' : '' }} ||
             {{ $user ? 'active' : '' }}">
             <a href="" class="nav-link has-dropdown"><i class="fas fa-user-tag"></i>
-                <span>Users</span></a>
+                <span>Pengguna</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('user-management/user') ? 'active' : '' }}"><a class="nav-link" href="/user-management/user">User List</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown {{ request()->is('menu-management/menu-group') ? 'active' : '' }} ||
-            {{ request()->is('menu-management/menu-item') ? 'active' : '' }} ||
-            {{ request()->is('menu-management/menu-group/create') ? 'active' : '' }} ||
-            {{ request()->is('menu-management/menu-item/create') ? 'active' : '' }} ||
-            {{ $group ? 'active' : '' }} ||
-            {{ $item ? 'active' : '' }}">
-            <a href="" class="nav-link has-dropdown"><i class="fas fa-bars"></i>
-                <span>Menu</span></a>
-            <ul class="dropdown-menu">
-                <li class="{{ request()->is('menu-management/menu-group') ? 'active' : '' }}"><a class="nav-link" href="/menu-management/menu-group">Menu Group</a></li>
-                <li class="{{ request()->is('menu-management/menu-item') ? 'active' : '' }}"><a class="nav-link" href="/menu-management/menu-item">Menu Item</a></li>
+                <li class="{{ request()->is('user-management/user') ? 'active' : '' }}"><a class="nav-link" href="/user-management/user">Daftar Pengguna</a></li>
             </ul>
         </li>
     </ul>

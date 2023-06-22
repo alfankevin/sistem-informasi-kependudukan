@@ -7,8 +7,8 @@
             <h1>Data Bantuan Sosial</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Bantuan</a></div>
-                <div class="breadcrumb-item"><a href="#">Management</a></div>
-                <div class="breadcrumb-item">Table</div>
+                <div class="breadcrumb-item"><a href="#">Manajemen</a></div>
+                <div class="breadcrumb-item">Tabel</div>
             </div>
         </div>
         <div class="section-body">

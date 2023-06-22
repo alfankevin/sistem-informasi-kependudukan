@@ -7,8 +7,8 @@
             <h1>Data Kependudukan</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Penduduk</a></div>
-                <div class="breadcrumb-item"><a href="#">Management</a></div>
-                <div class="breadcrumb-item">Table</div>
+                <div class="breadcrumb-item"><a href="#">Manajemen</a></div>
+                <div class="breadcrumb-item">Tabel</div>
             </div>
         </div>
         <div class="section-body">
@@ -317,7 +317,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Import</button>
                     </div>
                 </form>
@@ -397,35 +397,35 @@
             var no_kk = $(this).data('value');
             
             $.ajax({
-            url: '/penduduk',
-            method: 'POST',
-            data: { no_kk: no_kk },
-            success: function(response) {
-                var detailElement1 = $('#detail1');
-                var detailElement2 = $('#detail2');
+                url: '/penduduk',
+                method: 'POST',
+                data: { no_kk: no_kk },
+                success: function(response) {
+                    var detailElement1 = $('#detail1');
+                    var detailElement2 = $('#detail2');
 
-                detailElement1.empty();
-                detailElement2.empty();
+                    detailElement1.empty();
+                    detailElement2.empty();
 
-                for (var i = 0; i < response.length; i++) {
-                    var nama = response[i].nama;
-                    var nik = response[i].nik;
-                    var jenis_kelamin = response[i].jenis_kelamin;
-                    var tempat_lahir = response[i].tempat_lahir;
-                    var tanggal_lahir = response[i].tanggal_lahir;
-                    var agama = response[i].agama;
-                    var pekerjaan = response[i].pekerjaan;
-                    var status_perkawinan = response[i].status_perkawinan;
-                    var status_keluarga = response[i].status_keluarga;
-                    var keterangan = response[i].keterangan;
+                    for (var i = 0; i < response.length; i++) {
+                        var nama = response[i].nama;
+                        var nik = response[i].nik;
+                        var jenis_kelamin = response[i].jenis_kelamin;
+                        var tempat_lahir = response[i].tempat_lahir;
+                        var tanggal_lahir = response[i].tanggal_lahir;
+                        var agama = response[i].agama;
+                        var pekerjaan = response[i].pekerjaan;
+                        var status_perkawinan = response[i].status_perkawinan;
+                        var status_keluarga = response[i].status_keluarga;
+                        var keterangan = response[i].keterangan;
 
-                    detailElement1.append('<tr><td>' + (i+1) + '</td><td>' + nama + '</td><td>' + nik + '</td><td>' + jenis_kelamin + '</td><td>' + tempat_lahir + '</td><td>' + tanggal_lahir + '</td></tr>');
-                    detailElement2.append('<tr><td>' + (i+1) + '</td><td>' + agama + '</td><td>' + pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' + status_keluarga + '</td><td>' + keterangan + '</td></tr>');
+                        detailElement1.append('<tr><td>' + (i+1) + '</td><td>' + nama + '</td><td>' + nik + '</td><td>' + jenis_kelamin + '</td><td>' + tempat_lahir + '</td><td>' + tanggal_lahir + '</td></tr>');
+                        detailElement2.append('<tr><td>' + (i+1) + '</td><td>' + agama + '</td><td>' + pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' + status_keluarga + '</td><td>' + keterangan + '</td></tr>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
                 }
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
-            }
             });
         });
     </script>

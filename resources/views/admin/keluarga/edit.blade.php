@@ -6,8 +6,8 @@
             <h1>Kartu Keluarga</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('keluarga.index') }}">Keluarga</a></div>
-                <div class="breadcrumb-item"><a href="#">Management</a></div>
-                <div class="breadcrumb-item">Edit</div>
+                <div class="breadcrumb-item"><a href="#">Manajemen</a></div>
+                <div class="breadcrumb-item">Ubah</div>
             </div>
         </div>
         <div class="section-body">
@@ -15,7 +15,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Validasi Edit Kartu</h4>
+                    <h4>Validasi Ubah Kartu</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('keluarga.update', $penduduk) }}" method="POST">
@@ -82,8 +82,8 @@
                         </div>
                 </div>
                 <div class="card-footer text-right">
-                    <button class="btn btn-primary">Submit</button>
-                    <a class="btn btn-secondary" href="{{ route('keluarga.index') }}">Cancel</a>
+                    <button class="btn btn-primary">Simpan</button>
+                    <a class="btn btn-secondary" href="{{ route('keluarga.index') }}">Batal</a>
                 </div>
                 </form>
             </div>

@@ -4,27 +4,27 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>User</h1>
+            <h1>Pengguna</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">User</a></div>
-                <div class="breadcrumb-item"><a href="#">Management</a></div>
-                <div class="breadcrumb-item">Create</div>
+                <div class="breadcrumb-item active"><a href="{{ route('user.index') }}">Pengguna</a></div>
+                <div class="breadcrumb-item"><a href="#">Manajemen</a></div>
+                <div class="breadcrumb-item">Tambah</div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">User Management</h2>
+            <h2 class="section-title">Manajemen Pengguna</h2>
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Create User</h4>
+                    <h4>Validasi Tambah Pengguna</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('user.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Your Name</label>
+                            <label for="name">Nama</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" placeholder="Enter User Name" spellcheck="false" autocomplete="off">
+                                name="name" placeholder="Masukkan Nama Pengguna" spellcheck="false" autocomplete="off">
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
-                                name="email" placeholder="Enter User Email" value="{{ old('email') }}" spellcheck="false" autocomplete="off">
+                                name="email" placeholder="Masukkan Email Pengguna" value="{{ old('email') }}" spellcheck="false" autocomplete="off">
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                id="password" name="password" placeholder="Enter User Password" spellcheck="false" autocomplete="off">
+                                id="password" name="password" placeholder="Masukkan Password Pengguna" spellcheck="false" autocomplete="off">
                             @error('password')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -53,8 +53,8 @@
                         </div>
                 </div>
                 <div class="card-footer text-right">
-                    <button class="btn btn-primary">Submit</button>
-                    <a class="btn btn-secondary" href="{{ route('user.index') }}">Cancel</a>
+                    <button class="btn btn-primary">Simpan</button>
+                    <a class="btn btn-secondary" href="{{ route('user.index') }}">Batal</a>
                 </div>
                 </form>
             </div>

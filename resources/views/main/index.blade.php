@@ -150,7 +150,7 @@
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 mx-auto">
                 @foreach ($potensi as $item)
-                <a href="{{ $item->sosial_media }}" class="text-decoration-none fw-bold" id="custom-text-link">
+                <span href="{{ $item->sosial_media }}" class="text-decoration-none fw-bold" id="custom-text-link">
                     <div class="col">
                         <div class="mx-auto" style="width: 80%;">
                             <div class="potensi-img">
@@ -173,7 +173,7 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </span>
                 @endforeach
             </div>
             <div class="pt-5 text-center">
