@@ -17,10 +17,13 @@ body {
 #agenda h2,
 #potensi h2,
 #agenda h5,
-#potensi h5 {
+#potensi h5,
+#potensi .see-more {
     font-family: "Lato", sans-serif;
     color: #002147;
+    font-style: normal;
 }
+
 .navbar {
     height: 60px;
     position: sticky;
@@ -175,7 +178,7 @@ body {
     max-height: 500;
 }
 
-.line-clamp-2 {
+.line-clamp.dua {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -183,32 +186,39 @@ body {
     cursor: pointer;
 }
 
-.btn-more {
-    width: 200px;
-    padding: 5px;
-    border: none;
+.line-clamp.satu {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-buy, .btn-more{
     background: rgb(10, 88, 202);
     color: white;
-    height: 40px;
     border-radius: 30px;
-    font-size: 13pt;
-    margin-bottom: 0px;
+    padding: 5px;
+    border: none;
     transition: all, 0.2s;
 }
 
-.btn-more:hover {
+.btn-more {
+    width: 200px;
+    height: 40px;
+    font-size: 13pt;
+    margin-bottom: 0px;
+}
+
+.btn-buy{
+    width: 150px;
+}
+
+.btn-more:hover, .btn-buy:hover{
     background-color: rgb(13, 110, 253);
+    color: white;
 }
 
-.potensi .potensi-img {
-    display: flex;
-    justify-content: center;
-}
-
-.potensi img {
-    max-width: 200px;
-    max-height: 200px;
-}
 
 .ormas img {
     max-width: 140px;
@@ -338,6 +348,11 @@ body {
 .agenda,
 .potensi {
     padding: 40px 0 50px;
+}
+
+.see-more:hover{
+    color: rgb(13, 110, 253);
+    text-decoration: underline;
 }
 
 .galeri {
