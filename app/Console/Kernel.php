@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            Cache::forget('dashboard_query');
+            Cache::forget('dashboard_query', 'count_penduduk');
         })->dailyAt('00:00');
     }
 
