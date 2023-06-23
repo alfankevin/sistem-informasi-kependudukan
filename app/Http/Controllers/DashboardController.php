@@ -171,8 +171,8 @@ class DashboardController extends Controller
                 'labelPekerjaan' => $labelPekerjaan,
                 'dataPekerjaan' => $dataPekerjaan,
                 'labelDarah' => $labelDarah,
-                'dataDarah' => $dataDarah,
                 'labelAgama' => $labelAgama,
+                'dataDarah' => $dataDarah,
                 'dataAgama' => $dataAgama,
                 'jumlahRt1' => $jumlahRt1,
                 'jumlahRt2' => $jumlahRt2,
@@ -184,10 +184,10 @@ class DashboardController extends Controller
                 'persenRt3' => $persenRt3,
                 'persenRt4' => $persenRt4,
                 'persenRt5' => $persenRt5,
-                'labelUmurL' => $labelUmurL,
                 'dataUmurL' => $dataUmurL,
-                'labelUmurP' => $labelUmurP,
                 'dataUmurP' => $dataUmurP,
+                'labelUmurL' => $labelUmurL,
+                'labelUmurP' => $labelUmurP,
             ];
         });
 
@@ -201,8 +201,8 @@ class DashboardController extends Controller
         $labelPekerjaan = $data['labelPekerjaan'];
         $dataPekerjaan = $data['dataPekerjaan'];
         $labelDarah = $data['labelDarah'];
-        $dataDarah = $data['dataDarah'];
         $labelAgama = $data['labelAgama'];
+        $dataDarah = $data['dataDarah'];
         $dataAgama = $data['dataAgama'];
         $jumlahRt1 = $data['jumlahRt1'];
         $jumlahRt2 = $data['jumlahRt2'];
@@ -214,10 +214,10 @@ class DashboardController extends Controller
         $persenRt3 = $data['persenRt3'];
         $persenRt4 = $data['persenRt4'];
         $persenRt5 = $data['persenRt5'];
-        $labelUmurL = $data['labelUmurL'];
         $dataUmurL = $data['dataUmurL'];
-        $labelUmurP = $data['labelUmurP'];
         $dataUmurP = $data['dataUmurP'];
+        $labelUmurL = $data['labelUmurL'];
+        $labelUmurP = $data['labelUmurP'];
 
         return view('admin.home', compact('agenda', 'organisasi', 'countSosial', 'countPenduduk', 'countL', 'countP', 'countKK', 'labelPekerjaan', 'dataPekerjaan', 'labelDarah', 'dataDarah', 'labelAgama', 'dataAgama', 'labelUmurL', 'dataUmurL', 'labelUmurP', 'dataUmurP', 'jumlahRt1', 'jumlahRt2', 'jumlahRt3', 'jumlahRt4', 'jumlahRt5', 'persenRt1', 'persenRt2', 'persenRt3', 'persenRt4', 'persenRt5'));
     }
