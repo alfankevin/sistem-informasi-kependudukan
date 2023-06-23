@@ -212,6 +212,68 @@ body {
     font-size: 13pt;
     margin-bottom: 0px;
 }
+.potensi {
+    padding: 20px;
+  }
+
+  .potensi .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .potensi .col-md-4 {
+    position: relative;
+    width: 40%;
+    height: auto;
+    overflow: hidden;
+
+  }
+
+  .potensi .potensi-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 175px;
+    height: 170px;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .potensi .potensi-img img {
+    width: 175px;
+    height: 170px;
+    object-fit: cover;
+  }
+  .potensi .col-md-4 {
+    border: none;
+  }
+
+  .potensi .card-body {
+    padding: 10px;
+  }
+
+  .potensi .card-body .text-decoration-none {
+    position: absolute;
+    bottom: 5px;
+ }
+ @media (max-width: 767px) {
+    .potensi.row-cols-1.justify-content-center {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .potensi.row-cols-1.justify-content-center .col-md-4 {
+        width: 100%;
+        max-width: 400px;
+    }
+    .potensi .card-body .text-decoration-none {
+        position: relative;
+        bottom: 5px;
+     }
+    .potensi a{
+        position: block;
+    }
 
 .btn-buy{
     width: 150px;
