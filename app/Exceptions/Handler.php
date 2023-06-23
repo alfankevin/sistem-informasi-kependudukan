@@ -2,10 +2,11 @@
 
 namespace App\Exceptions;
 
+use Throwable;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -42,7 +43,8 @@ class Handler extends ExceptionHandler
         });
         $this->renderable(function (AuthenticationException $e) {
             //
-            return response()->json(['message' => 'Unauthenticated or Token Expired'], 429);
+            // return response()->json(['message' => 'Unauthenticated or Token Expired'], 429);
+            return Redirect::route('auth.login')->with('error', 'Unauthenticated or Token Expired');
         });
     }
 }

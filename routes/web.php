@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\UserController;
@@ -18,7 +16,6 @@ use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Menu\MenuGroupController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use App\Http\Controllers\RoleAndPermission\ExportRoleController;
 use App\Http\Controllers\RoleAndPermission\ImportRoleController;
@@ -48,6 +45,7 @@ Route::get('/admin', function () {
     return view('admin.auth/login');
 })->middleware('guest');
 
+Route::post('/admin', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
