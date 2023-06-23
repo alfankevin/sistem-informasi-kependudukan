@@ -21,7 +21,7 @@
                     <h1 class="mb-4">SAMBUTAN KETUA RW 05</h1>
                     <p class="mb-4">Assalamualaikum Wr. Wb.</p>
 
-                    <p class="mb-4" style="line-height: 2">
+                    <p class="sambutan-text mb-4">
                         Kemanusiaan Yang Adil dan Beradab adalah sebaik-baik barometer kita sebagai Warga Negara yang baik
                         dalam memberikan pelayanan dan sebagai wakil pemerintah di tengah-tengah masyarakat, karena kemajuan
                         sebuah lingkungan terutama sosial ekonomi bukan hanya menjadi tanggung jawab perorangan. Melainkan

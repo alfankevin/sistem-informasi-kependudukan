@@ -46,7 +46,7 @@ Route::get('/galeri', [LandingPageController::class, 'galeri']);
 
 Route::get('/admin', function () {
     return view('admin.auth/login');
-});
+})->middleware('guest');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
