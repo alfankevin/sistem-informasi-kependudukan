@@ -111,14 +111,14 @@
             });
 
             // read more
-            let agendaDescs = document.querySelectorAll(".agenda-desc");
+            let agendaDescs = document.querySelectorAll(".content-desc");
             agendaDescs.forEach((agendaDesc) => {
                 agendaDesc.addEventListener("click", function() {
                     var element = this;
-                    if (element.classList.contains('line-clamp-2')) {
-                        element.classList.remove('line-clamp-2');
+                    if (element.classList.contains('line-clamp')) {
+                        element.classList.remove('line-clamp');
                     } else {
-                        element.classList.add('line-clamp-2');
+                        element.classList.add('line-clamp');
                     }
                 });
             });

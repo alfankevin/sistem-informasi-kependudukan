@@ -6,8 +6,8 @@
             <h1>Bantuan Sosial</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('sosial.index') }}">Sosial</a></div>
-                <div class="breadcrumb-item"><a href="#">Management</a></div>
-                <div class="breadcrumb-item">Edit</div>
+                <div class="breadcrumb-item"><a href="#">Manajemen</a></div>
+                <div class="breadcrumb-item">Ubah</div>
             </div>
         </div>
         <div class="section-body">
@@ -15,7 +15,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Validasi Edit Bantuan</h4>
+                    <h4>Validasi Ubah Bantuan</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('sosial.update', $sosial) }}" method="POST">

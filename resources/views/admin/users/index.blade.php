@@ -4,15 +4,15 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>User List</h1>
+            <h1>Data Pengguna</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">User</a></div>
-                <div class="breadcrumb-item"><a href="#">Management</a></div>
-                <div class="breadcrumb-item">Table</div>
+                <div class="breadcrumb-item active"><a href="#">Pengguna</a></div>
+                <div class="breadcrumb-item"><a href="#">Manajemen</a></div>
+                <div class="breadcrumb-item">Tabel</div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">User Management</h2>
+            <h2 class="section-title">Manajemen Pengguna</h2>
 
             <div class="row">
                 <div class="col-12">
@@ -23,27 +23,27 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>User List</h4>
+                            <h4>Daftar Pengguna</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('user.create') }}">Create New
-                                    User</a>
+                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('user.create') }}">Tambah
+                                    Pengguna</a>
                                 <a class="btn btn-primary btn-color-blue text-white import">
                                     <i class="fa fa-download" aria-hidden="true"></i>
-                                    Import User</a>
+                                    Import Pengguna</a>
                                 <a class="btn btn-primary btn-color-blue" href="{{ route('user.export') }}">
                                     <i class="fa fa-upload" aria-hidden="true"></i>
-                                    Export User</a>
+                                    Export Pengguna</a>
                                 <a class="btn btn-primary btn-color-blue text-white search">
                                     <i class="fa fa-search" aria-hidden="true"></i>
-                                    Search User</a>
+                                    Cari Pengguna</a>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="show-import" style="display: none">
+                            <div class="show-import mb-4" style="display: none">
                                 <div class="custom-file">
                                     <form action="{{ route('user.import') }}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
-                                        <label class="custom-file-label" for="file-upload">Choose File</label>
+                                        <label class="custom-file-label" for="file-upload">Pilih File</label>
                                         <input type="file" id="file-upload" class="custom-file-input" name="import_file">
                                         <br /> <br />
                                         <div class="footer text-right">
@@ -56,14 +56,14 @@
                                 <form id="search" method="GET" action="{{ route('user.index') }}">
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
-                                            <label for="role">User</label>
+                                            <label for="role">Pengguna</label>
                                             <input type="text" name="name" class="form-control" id="name"
-                                                placeholder="User Name" spellcheck="false" autocomplete="off">
+                                                placeholder="Nama Pengguna" spellcheck="false" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                        <a class="btn btn-secondary" href="{{ route('user.index') }}">Reset</a>
+                                        <button class="btn btn-primary mr-1" type="submit">Simpan</button>
+                                        <a class="btn btn-secondary" href="{{ route('user.index') }}">Ulang</a>
                                     </div>
                                 </form>
                             </div>
@@ -74,7 +74,7 @@
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Created At</th>
+                                            <th>Tanggal</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                         @foreach ($users as $key => $user)
@@ -88,14 +88,14 @@
                                                         <a href="{{ route('user.edit', $user->id) }}"
                                                             class="btn btn-sm btn-info btn-icon "><i
                                                                 class="fas fa-edit"></i>
-                                                            Edit</a>
+                                                            Ubah</a>
                                                         <form action="{{ route('user.destroy', $user->id) }}"
                                                             method="POST" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
                                                             <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                                <i class="fas fa-times"></i> Delete </button>
+                                                                <i class="fas fa-times"></i> Hapus </button>
                                                         </form>
                                                     </div>
                                                 </td>
