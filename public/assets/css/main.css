@@ -372,11 +372,11 @@ body {
 }
 
 .lightbox-modal .carousel-control-prev {
-    left: 10%;
+    left: 20%;
 }
 
 .lightbox-modal .carousel-control-next {
-    right: 10%;
+    right: 20%;
 }
 
 .badge {
@@ -476,5 +476,11 @@ body {
     }
     .owl-nav {
         display: none;
+    }
+    .lightbox-modal .carousel-control-prev {
+        left: 0;
+    }
+    .lightbox-modal .carousel-control-next {
+        right: 0;
     }
 }
