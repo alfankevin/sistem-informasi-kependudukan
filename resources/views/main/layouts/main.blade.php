@@ -179,15 +179,15 @@
 
             function createCarousel(img) {
                 const markup = `
-                    <div id="lightboxCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
-                    <div class="carousel-inner" data-bs-dismiss="modal" aria-label="Close">
+                    <div id="lightboxCarousel" class="carousel slide carousel-fade d-flex align-items-center" data-bs-ride="carousel" data-bs-interval="false" style="height: 100%; width: 100%">
+                    <div class="carousel-inner d-flex align-items-center" data-bs-dismiss="modal" aria-label="Close" style="height: 100%">
                         ${createSlides(img)}
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev" style="margin-left: 100px;">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next" style="margin-right: 100px;">
+                    <button class="carousel-control-next" type="button" data-bs-target="#lightboxCarousel" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>

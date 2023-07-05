@@ -7,7 +7,10 @@ $(".confirm-delete").click(function (event) {
         title: `Apakah Anda yakin ingin meng-hapus data ini?`,
         text: "Jika Anda hapus, data akan hilang selamanya.",
         icon: "warning",
-        buttons: true,
+        buttons: {
+            cancel: 'Batal',
+            confirm: 'Ya',
+        },
         dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {

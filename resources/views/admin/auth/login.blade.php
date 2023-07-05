@@ -62,13 +62,9 @@
                   Login
                 </button>
               </div>
-
-              <div class="mt-5 text-center">
-                Tidak punya akun? <a href="#" class="text-color-blue">Buat akun baru</a>
-              </div>
             </form>
 
-            <div class="text-center mt-5 text-small">
+            <div class="text-center mt-5 pt-4 text-small">
               Copyright &copy; {{ now()->year }}. Kelurahan Tanjungrejo
               <div class="mt-2">
                 <a href="#" class="text-color-blue">Privacy Policy</a>

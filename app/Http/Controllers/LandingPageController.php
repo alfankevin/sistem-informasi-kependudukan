@@ -7,16 +7,34 @@ use App\Models\Organisasi;
 use App\Models\Agenda;
 use App\Models\Potensi;
 use App\Models\Galeri;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
-        $countPenduduk = Penduduk::where('keterangan', 'Hidup')->count();
-        $countL = Penduduk::where('jenis_kelamin', 'L')->where('keterangan', 'Hidup')->count();
-        $countP = Penduduk::where('jenis_kelamin', 'P')->where('keterangan', 'Hidup')->count();
-        $countKK = Penduduk::where('status_keluarga', true)->where('keterangan', 'Hidup')->count();
+        $cacheKey = 'count_penduduk';
+        $durationInMinutes = 1440;
+
+        $data = Cache::remember($cacheKey, $durationInMinutes, function () {
+            $countPenduduk = Penduduk::where('keterangan', 'Hidup')->count();
+            $countL = Penduduk::where('jenis_kelamin', 'L')->where('keterangan', 'Hidup')->count();
+            $countP = Penduduk::where('jenis_kelamin', 'P')->where('keterangan', 'Hidup')->count();
+            $countKK = Penduduk::where('status_keluarga', true)->where('keterangan', 'Hidup')->count();
+
+            return [
+                'countPenduduk' => $countPenduduk,
+                'countL' => $countL,
+                'countP' => $countP,
+                'countKK' => $countKK,
+            ];
+        });
+
+        $countPenduduk = $data['countPenduduk'];
+        $countL = $data['countL'];
+        $countP = $data['countP'];
+        $countKK = $data['countKK'];
+
         $ormas = Organisasi::orderByDesc('id')->get();
         $agenda = Agenda::where('prioritas', 1)->get();
         $potensi = Potensi::orderBy('id', 'desc')->get();
