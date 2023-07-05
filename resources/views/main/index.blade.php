@@ -97,7 +97,7 @@
     <section class="ormas flex justify-content-center align-content-center">
         <h2 class="text-center mb-5 text-capitalize">Organisasi Masyarakat</h2>
         <div class="container">
-            <div class="owl-carousel owl-theme" id="ormas">
+            <div class="owl-carousel owl-theme" id="ormas-carousel">
                 @foreach ($ormas as $key => $item)
                     <div class="item ms-2 me-2">
                         <div class="card border-0 m-auto">
@@ -127,7 +127,7 @@
                             <img src="/assets/img/agenda/{{ $item->gambar_agenda }}" class="card-img-top object-fit-cover" height="200">
                             <div class="card-body">
                                 <h5 class="card-title text-capitalize">{{ $item->judul_agenda }}</h5>
-                                <p class="card-text thumbnail read-toggle" data-id='0'>
+                                <p class="card-text thumbnail read-toggle text-start-end" data-id='0'>
                                     <span id=""
                                         class="content-desc line-clamp dua">{{ $item->deskripsi_agenda }}</span>
                                 </p>
@@ -143,51 +143,50 @@
     </div>
 
     {{-- Potensi --}}
-    <div class="potensi album" id="potensi" style="padding-top: 40px">
-        <div class="container">
-            <div class="row justify-content-between pb-5 mx-1">
-                <div class="col-4 w-50">
-                  <h2 class="text-left m-0">Potensi UMKM</h2>
-                </div>
-                <div class="col-4 d-flex justify-content-end w-50">
-                  <a href="/potensi" class="see-more fw-bold mt-2" style="text-decoration: none; font-size: 13pt" >Lihat lainnya
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                      </svg>
-                </a>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-4 mx-auto">
-                @foreach ($potensi as $item)
-                <div class="col mb-4">
-                    <div class="">
-                        <img src="/assets/img/potensi/{{ $item->gambar_umkm }}" class="card-img-top object-fit-cover w-100" height="180">
-                        <div class="card-body mt-3">
-                            <h5 class="card-title text-capitalize">{{ $item->nama_umkm }}</h5>
-                            <p class="card-text thumbnail read-toggle" data-id='0'>
-                                <span id="" class="content-desc line-clamp satu">{{ $item->deskripsi_umkm }}</span>
-                            </p>
-                        </div>
-                        <div>
-                            <div class="row justify-content-center align-content-center">
-                                <div class="col pt-3 w-50">
-                                    <span class="font-weight-bold">Rp 25000</span>
-                                </div>
-                                <div class="col d-flex justify-content-end w-50">
-                                    <a href="{{ $item->sosial_media }}" class="text-decoration-none btn btn-buy m-3" id="custom-text-link">beli sekarang</a>
-                                </div>
-                            </div>
-
-                        </div>
+    <section class="flex justify-content-center align-content-center">
+        <div class="potensi album" id="potensi" style="padding-top: 40px;">
+            <div class="container" style="width: 90%">
+                <div class="row justify-content-between pb-5 mx-1">
+                    <div class="col-4 w-50">
+                      <h2 class="text-left m-0">Potensi UMKM</h2>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end w-50">
+                      <a href="/potensi" class="see-more fw-bold mt-2" style="text-decoration: none; font-size: 13pt" >Lihat lainnya
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                          </svg>
+                    </a>
                     </div>
                 </div>
-                @endforeach
+                <div class="owl-carousel owl-theme" id="potensi-carousel">
+                    @foreach ($potensi as $item)
+                    <div class="item ms-2 me-2">
+                        <div class="col mb-4">
+                            <img src="/assets/img/potensi/{{ $item->gambar_umkm }}" class="card-img-top object-fit-cover w-100" height="180">
+                            <div class="card-body mt-3">
+                                <h5 class="card-title text-capitalize">{{ $item->nama_umkm }}</h5>
+                                <p class="card-text thumbnail read-toggle" data-id='0' style="text-align: justify">
+                                    <span id="" class="content-desc line-clamp satu">{{ $item->deskripsi_umkm }}</span>
+                                </p>
+                                <div class="row justify-content-between align-content-center">
+                                    <div class="col pt-3 w-50">
+                                        <span class="font-weight-bold text-black">Rp</span>
+                                    </div>
+                                    <div class="col d-flex justify-content-end w-50">
+                                        <a href="{{ $item->sosial_media }}" class="text-decoration-none btn btn-buy mt-3 mb-4" id="custom-text-link">beli sekarang</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                {{-- <div class="pt-5 text-center">
+                    <a href="/potensi"><button class="btn-more">Lihat lagi</button></a>
+                </div> --}}
             </div>
-            {{-- <div class="pt-5 text-center">
-                <a href="/potensi"><button class="btn-more">Lihat lagi</button></a>
-            </div> --}}
         </div>
-    </div>
+    </section>
 
     {{-- Galeri --}}
     <div class="galeri">

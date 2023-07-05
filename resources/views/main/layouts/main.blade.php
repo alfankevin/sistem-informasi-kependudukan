@@ -86,7 +86,7 @@
             })
 
             // ormas
-            var ormas = $("#ormas");
+            var ormas = $("#ormas-carousel");
             ormas.owlCarousel({
                 loop: true,
                 margin: 10,
@@ -122,6 +122,35 @@
                     }
                 });
             });
+
+            // potensi
+            var potensiCarousel = $("#potensi-carousel");
+            console.log("Initializing Potensi Carousel");
+            potensiCarousel.owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                navText: ["<div class='nav-button owl-prev'><i class='fa fa-chevron-left'></i></div>",
+                        "<div class='nav-button owl-next'><i class='fa fa-chevron-right'></i></div>"],
+                autoplay: true,
+                autoplayHoverPause: true,
+                autoplayTimeout: 2000,
+                responsive: {
+                    0: {
+                        items: 1,
+                        dots: false
+                    },
+                    600: {
+                        items: 1,
+                        dots: false
+                    },
+                    1000: {
+                        items: 3,
+
+                    }
+                }
+            });
+
 
             // gallery
             const imageGrid = document.querySelector("#gallery");

@@ -19,7 +19,7 @@ class LandingPageController extends Controller
         $countKK = Penduduk::where('status_keluarga', true)->where('keterangan', 'Hidup')->count();
         $ormas = Organisasi::orderByDesc('id')->get();
         $agenda = Agenda::where('prioritas', 1)->get();
-        $potensi = Potensi::orderBy('id', 'desc')->take(3)->get();
+        $potensi = Potensi::orderBy('id', 'desc')->get();
         $galeri = Galeri::orderBy('id', 'desc')->take(8)->get();
 
         return view('main.index', compact('countPenduduk', 'countL', 'countP', 'countKK', 'ormas', 'agenda', 'potensi', 'galeri'));
