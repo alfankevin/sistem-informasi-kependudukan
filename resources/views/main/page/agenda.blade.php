@@ -14,7 +14,7 @@
                         <div class="col-md-8 p-2">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">{{ $item->judul_agenda }}</h5>
-                                <p class="card-text">{{ $item->deskripsi_agenda }}</p>
+                                <p class="card-text"  style="text-align: justify">{{ $item->deskripsi_agenda }}</p>
                             </div>
                         </div>
                     </div>
