@@ -2,7 +2,7 @@
 
 @section('content')
     <section id="agenda" class="py-5 bg">
-        <h2 class="text-center mb-5 blue-title text-capitalize display-4">Agenda</h2>
+        <h2 class="text-center mb-5 blue-title text-capitalize display-4">Agenda Sosial</h2>
         @foreach ($agenda as $item)
             <div class="item">
                 <div class="card card-agenda mb-4 mx-auto border-0" style="max-width: 90%;">

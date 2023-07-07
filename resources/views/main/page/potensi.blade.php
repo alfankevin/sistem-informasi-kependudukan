@@ -3,8 +3,8 @@
 @section('content')
     <section id="potensi" class="container mx-auto flex justify-center align-content-center">
         <h2 class="text-center my-5 blue-title text-capitalize display-4">Potensi UMKM</h2>
-        <div class="album my-4" id="potensi">
-            <div class="row potensi row-cols-1 row-cols-md-2 d-flex justify-content-center">
+        <div class="album" id="potensi">
+            <div class="row potensi row-cols-1 row-cols-md-2 d-flex justify-content-center" style="padding-top: 0">
                 @foreach ($potensi as $item)
                 <div class="card border-0 col-md-4 mb-4 mx-1">
                     <img src="/assets/img/potensi/{{ $item->gambar_umkm }}" class="card-img-top object-fit-cover w-100" height="180">
