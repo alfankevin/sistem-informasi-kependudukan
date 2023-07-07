@@ -135,7 +135,7 @@
                         "<div class='potensi-nav nav-button owl-next'><i class='fa fa-arrow-right'></i></div>"],
                 autoplay: true,
                 autoplayHoverPause: true,
-                autoplayTimeout: 2000,
+                autoplayTimeout: 3000,
                 responsive: {
                     0: {
                         items: 1,
