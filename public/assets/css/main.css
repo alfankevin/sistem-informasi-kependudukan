@@ -63,6 +63,10 @@ body {
     text-decoration: none;
 }
 
+.navbar-nav {
+    padding-left: 10px;
+}
+
 .navbar-nav .nav-link {
     font-family: "Lato";
 }
@@ -269,10 +273,6 @@ body {
         width: 100%;
         max-width: 400px;
     }
-    .potensi .card-body .text-decoration-none {
-        position: relative;
-        bottom: 5px;
-    }
     .potensi a {
         position: block;
     }
@@ -295,13 +295,13 @@ body {
 
 .nav-button {
     position: absolute;
-    top: 25%;
-    height: 35px;
-    width: 35px;
+    top: 40%;
     display: flex !important;
     align-items: center;
     justify-content: center;
+    color: #333 !important;
     border-radius: 100% !important;
+    background-color: transparent !important;
     transition: all 0.2s;
 }
 
@@ -313,16 +313,8 @@ body {
     right: -50px;
 }
 
-.owl-prev i {
-    margin-right: 2px;
-}
-
-.owl-next i {
-    margin-left: 2px;
-}
-
 .nav-button i {
-    font-size: 12px;
+    font-size: 20px;
 }
 
 .owl-nav {
@@ -412,10 +404,13 @@ body {
 }
 
 .sambutan,
-.ormas,
-.agenda,
-.potensi {
+.agenda {
     padding: 40px 0 50px;
+}
+
+.ormas,
+.potensi {
+    padding: 40px 0;
 }
 
 .sambutan-text {

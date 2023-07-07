@@ -17,42 +17,42 @@ class PotensiSeeder extends Seeder
     {
         Potensi::create([
             'nama_umkm' => "UMKM Indah",
-            'alamat_umkm' => "Jl. Saturn No. 256",
+            'harga_umkm' => "25000",
             'deskripsi_umkm' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto.",
             'sosial_media' => "Sosial Media",
             'gambar_umkm' => "gambar.jpeg"
         ]);
         Potensi::create([
             'nama_umkm' => "UMKM Rujak",
-            'alamat_umkm' => "Jl. Saturn No. 256",
+            'harga_umkm' => "25000",
             'deskripsi_umkm' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto.",
             'sosial_media' => "Sosial Media",
             'gambar_umkm' => "gambar.jpeg"
         ]);
         Potensi::create([
             'nama_umkm' => "UMKM Bakso",
-            'alamat_umkm' => "Jl. Saturn No. 256",
+            'harga_umkm' => "25000",
             'deskripsi_umkm' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto.",
             'sosial_media' => "Sosial Media",
             'gambar_umkm' => "gambar.jpeg"
         ]);
         Potensi::create([
             'nama_umkm' => "UMKM Cooey",
-            'alamat_umkm' => "Jl. Saturn No. 256",
+            'harga_umkm' => "25000",
             'deskripsi_umkm' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto.",
             'sosial_media' => "Sosial Media",
             'gambar_umkm' => "gambar.jpeg"
         ]);
         Potensi::create([
             'nama_umkm' => "UMKM Bakery",
-            'alamat_umkm' => "Jl. Saturn No. 256",
+            'harga_umkm' => "25000",
             'deskripsi_umkm' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto.",
             'sosial_media' => "Sosial Media",
             'gambar_umkm' => "gambar.jpeg"
         ]);
         Potensi::create([
             'nama_umkm' => "UMKM Cakeiz",
-            'alamat_umkm' => "Jl. Saturn No. 256",
+            'harga_umkm' => "25000",
             'deskripsi_umkm' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto.",
             'sosial_media' => "Sosial Media",
             'gambar_umkm' => "gambar.jpeg"

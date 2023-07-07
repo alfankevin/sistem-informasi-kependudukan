@@ -40,6 +40,11 @@ class LandingPageController extends Controller
         $potensi = Potensi::orderBy('id', 'desc')->get();
         $galeri = Galeri::orderBy('id', 'desc')->take(8)->get();
 
+        foreach($potensi as $item) {
+            $hargaFormat = number_format($item->harga_umkm, 0, ',', '.');
+            $item->harga_umkm = $hargaFormat;
+        }
+
         return view('main.index', compact('countPenduduk', 'countL', 'countP', 'countKK', 'ormas', 'agenda', 'potensi', 'galeri'));
     }
 
@@ -50,6 +55,10 @@ class LandingPageController extends Controller
 
     public function potensi() {
         $potensi = Potensi::orderBy('id', 'desc')->get();
+        foreach($potensi as $item) {
+            $hargaFormat = number_format($item->harga_umkm, 0, ',', '.');
+            $item->harga_umkm = $hargaFormat;
+        }
         return view('main.page.potensi', compact('potensi'));
     }
 

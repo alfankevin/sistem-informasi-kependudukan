@@ -35,9 +35,10 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
+                                            <th>Harga</th>
                                             <th>Deskripsi</th>
-                                            <th>Sosial Media</th>
                                             <th>Gambar</th>
+                                            <th>Sosial Media</th>
                                             <th class="text-right">Action</th>
                                         </tr>
                                         @foreach ($potensi as $key => $item)
@@ -45,9 +46,10 @@
                                                 <td>{{ ($potensi->currentPage() - 1) * $potensi->perPage() + $key + 1 }}
                                                 </td>
                                                 <td>{{ $item->nama_umkm }}</td>
+                                                <td>Rp{{ $item->harga_umkm }},00</td>
                                                 <td>{{ $item->deskripsi_umkm }}</td>
-                                                <td><a href="{{ $item->sosial_media }}" target="_blank">{{ $item->sosial_media }}</a></td>
                                                 <td class="openGambar" data-toggle="modal" data-target="#exampleModalCenter" data-gambar="/assets/img/potensi/{{ $item->gambar_umkm }}">{{ $item->gambar_umkm }}</td>
+                                                <td><a href="{{ $item->sosial_media }}" target="_blank">{{ $item->sosial_media }}</a></td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <a href="{{ route('potensi.edit', $item->id) }}"

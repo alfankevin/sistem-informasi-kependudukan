@@ -17,10 +17,19 @@ class PotensiController extends Controller
     {
         if($request->has('search')) {
             $potensi = Potensi::where('nama_umkm','like','%'.$request->search.'%')
-            ->orWhere('alamat_umkm','like','%'.$request->search.'%')->paginate(15);
+            ->orWhere('deskripsi_umkm','like','%'.$request->search.'%')->paginate(15);
+            
+            foreach($potensi as $item) {
+                $hargaFormat = number_format($item->harga_umkm, 0, ',', '.');
+                $item->harga_umkm = $hargaFormat;
+            }
         } else {
-            $potensi = Potensi::all();
             $potensi = Potensi::orderBy('id', 'desc')->paginate(15);
+            
+            foreach($potensi as $item) {
+                $hargaFormat = number_format($item->harga_umkm, 0, ',', '.');
+                $item->harga_umkm = $hargaFormat;
+            }
         }
 
         return view('admin.potensi.index', compact('potensi'));
@@ -47,7 +56,7 @@ class PotensiController extends Controller
     {
         $request->validate([
             'nama_umkm'=>'required|max:128',
-            'alamat_umkm'=>'required|max:128',
+            'harga_umkm'=>'required|integer|min:100',
             'deskripsi_umkm'=>'required|max:512',
             'sosial_media'=>'required|max:128',
             'gambar_umkm'=>'required|mimes:jpeg,png,jpg',
@@ -62,7 +71,7 @@ class PotensiController extends Controller
 
         $potensi = new Potensi(array(
             'nama_umkm' => $request->get('nama_umkm'),
-            'alamat_umkm' => $request->get('alamat_umkm'),
+            'harga_umkm' => $request->get('harga_umkm'),
             'deskripsi_umkm' => $request->get('deskripsi_umkm'),
             'sosial_media' => $request->get('sosial_media'),
             'gambar_umkm' => $fileName,
@@ -108,7 +117,7 @@ class PotensiController extends Controller
     {
         $request->validate([
             'nama_umkm'=>'required|max:128',
-            'alamat_umkm'=>'required|max:128',
+            'harga_umkm'=>'required|integer|min:100',
             'deskripsi_umkm'=>'required|max:512',
             'sosial_media'=>'required|max:128',
         ]);
@@ -119,7 +128,7 @@ class PotensiController extends Controller
         if($request->hasFile('gambar_umkm')) {
 
             $destination = 'assets/img/potensi/'.$potensi->gambar_umkm;
-            if (file_exists($destination)) {
+            if(file_exists($destination)) {
                 File::delete($destination);
             }
 

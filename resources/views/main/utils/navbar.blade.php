@@ -9,7 +9,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent" class="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto" style="padding: 0 10px;">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="/">Home</a>
                 </li>

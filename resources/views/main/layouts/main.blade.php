@@ -90,9 +90,10 @@
             ormas.owlCarousel({
                 loop: true,
                 margin: 10,
-                nav: true,
+                nav: false,
+                dots: false,
                 navText: ["<div class='nav-button owl-prev'><i class='fa fa-chevron-left'></i></div>",
-                    "<div class='nav-button owl-next'><i class='fa fa-chevron-right'></i></div>"
+                        "<div class='nav-button owl-next'><i class='fa fa-chevron-right'></i></div>"
                 ],
                 autoplay: true,
                 autoplayhoverpause: true,
@@ -130,8 +131,8 @@
                 loop: true,
                 margin: 10,
                 nav: true,
-                navText: ["<div class='nav-button owl-prev'><i class='fa fa-chevron-left'></i></div>",
-                        "<div class='nav-button owl-next'><i class='fa fa-chevron-right'></i></div>"],
+                navText: ["<div class='potensi-nav nav-button owl-prev'><i class='fa fa-arrow-left'></i></div>",
+                        "<div class='potensi-nav nav-button owl-next'><i class='fa fa-arrow-right'></i></div>"],
                 autoplay: true,
                 autoplayHoverPause: true,
                 autoplayTimeout: 2000,
@@ -150,7 +151,6 @@
                     }
                 }
             });
-
 
             // gallery
             const imageGrid = document.querySelector("#gallery");
