@@ -16,9 +16,9 @@ class OrganisasiController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')) {
-            $organisasi = Organisasi::where('nama_organisasi','like','%'.$request->search.'%')->paginate(15);
+            $organisasi = Organisasi::where('nama_organisasi','like','%'.$request->search.'%')
+            ->orWhere('deskripsi_organisasi','like','%'.$request->search.'%')->paginate(15);
         } else {
-            $organisasi = Organisasi::all();
             $organisasi = Organisasi::orderBy('id', 'desc')->paginate(15);
         }
 

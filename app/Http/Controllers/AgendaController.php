@@ -16,9 +16,9 @@ class AgendaController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')) {
-            $agenda = Agenda::where('judul_agenda','like','%'.$request->search.'%')->paginate(15);
+            $agenda = Agenda::where('judul_agenda','like','%'.$request->search.'%')
+            ->orWhere('deskripsi_agenda','like','%'.$request->search.'%')->paginate(15);
         } else {
-            $agenda = Agenda::all();
             $agenda = Agenda::orderBy('id', 'desc')->paginate(15);
             $agenda->getCollection()->transform(function ($item) {
                 $item->tanggal_agenda = date('d-m-Y', strtotime($item->tanggal_agenda));

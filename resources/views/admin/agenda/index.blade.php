@@ -52,10 +52,10 @@
                                                     <div class="d-flex justify-content-end">
                                                         @if ($item->prioritas)
                                                         <button class="unmark-btn btn btn-sm btn-success btn-icon d-flex align-items-center" data-id="{{ $item->id }}">
-                                                            <span><i class="fas fa-eye"></i></span>&nbsp;Tampil</button>
+                                                            <span><i class="fas fa-eye"></i></span>&nbsp;Tandai</button>
                                                         @else
                                                         <button class="mark-btn btn btn-sm btn-warning btn-icon d-flex align-items-center" data-id="{{ $item->id }}">
-                                                            <span><i class="fas fa-eye"></i></span>&nbsp;Tampil</button>
+                                                            <span><i class="fas fa-eye"></i></span>&nbsp;Tandai</button>
                                                         @endif
                                                         <a href="{{ route('agenda.edit', $item->id) }}"
                                                             class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center">
