@@ -16,8 +16,8 @@
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div>
                                         <h5 class="card-title text-capitalize fw-bold mb-1">{{ $item->nama_umkm }}</h5>
-                                        <p class="card-text mb-1">{{ $item->deskripsi_umkm }}</p>
-                                        <p class="card-text mb-1">Rp. 10.0000</p>
+                                        <p class="card-text mb-1" style="text-align: justify">{{ $item->deskripsi_umkm }}</p>
+                                        <p class="card-text mb-1">Rp </p>
                                     </div>
                                     <a href="{{ $item->sosial_media }}" class="text-decoration-none fw-bold" id="custom-text-link">beli sekarang</a>
                                 </div>
