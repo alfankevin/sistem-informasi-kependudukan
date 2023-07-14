@@ -116,6 +116,11 @@ body {
 }
 
 /* Hero */
+.hero {
+    height: 82.5vh;
+    width: 100vw;
+}
+
 .hero__items {
     height: 82.5vh;
     width: 100vw;
