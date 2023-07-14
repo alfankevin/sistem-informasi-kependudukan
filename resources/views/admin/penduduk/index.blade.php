@@ -397,7 +397,7 @@
             var no_kk = $(this).data('value');
             
             $.ajax({
-                url: '/penduduk',
+                url: '{{ route('penduduk.detail') }}',
                 method: 'POST',
                 data: { no_kk: no_kk },
                 success: function(response) {
