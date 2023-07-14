@@ -4,9 +4,9 @@
     {{-- Hero --}}
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="/assets/img/agenda/maulid.jpg"></div>
-            <div class="hero__items set-bg" data-setbg="/assets/img/agenda/patrol.jpg"></div>
-            <div class="hero__items set-bg" data-setbg="/assets/img/agenda/vaksin.jpg"></div>
+            <div class="hero__items set-bg" data-setbg="/assets/img/main/hero1.jpg"></div>
+            <div class="hero__items set-bg" data-setbg="/assets/img/main/hero2.jpg"></div>
+            <div class="hero__items set-bg" data-setbg="/assets/img/main/hero3.jpg"></div>
         </div>
     </section>
 
