@@ -127,7 +127,7 @@
                             <img src="/assets/img/agenda/{{ $item->gambar_agenda }}" class="card-img-top object-fit-cover" height="200">
                             <div class="card-body">
                                 <h5 class="card-title text-capitalize">{{ $item->judul_agenda }}</h5>
-                                <p class="card-text thumbnail read-toggle text-start-end content-desc line-clamp dua cursor-pointer" data-id='0'>
+                                <p class="card-text thumbnail read-toggle text-start-end content-desc line-clamp dua cursor-pointer" data-id='0'  style="text-align: justify">
                                     <span class="cursor-pointer">{{ $item->deskripsi_agenda }}</span>
                                 </p>
                             </div>

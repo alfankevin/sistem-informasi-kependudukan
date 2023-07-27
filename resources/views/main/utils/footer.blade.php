@@ -39,7 +39,7 @@
             <!--Grid column-->
             <div class="col-lg-4 col-md-6 mb-6 mb-md-0">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7902.203939200117!2d112.61045780732552!3d-7.988405393243297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78837616f5f4b7%3A0xc258114edc305fd3!2sBalai%20RW%205%20Kelurahan%20Sukun%20Malang!5e0!3m2!1sid!2sid!4v1683680772912!5m2!1sid!2sid"
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3951.147221575118!2d112.61623!3d-7.983728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwNTknMDEuNCJTIDExMsKwMzYnNTguNCJF!5e0!3m2!1sen!2sid!4v1690446243286!5m2!1sen!2sid"
                     class="w-100 h-100 border-0" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
