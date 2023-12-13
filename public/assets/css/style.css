@@ -854,7 +854,7 @@ select.form-control:not([size]):not([multiple]) {
     padding-right: 10px;
     margin-bottom: 0;
     overflow: hidden;
-    white-space: nowrap; 
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 .card .card-header h4 + .card-header-action,
@@ -1321,6 +1321,10 @@ table tr:hover .table-links {
 }
 
 /* 3.8 Modal */
+.modal-open[style] {
+    padding-right: 0px !important;
+}
+
 .modal-header,
 .modal-body,
 .modal-footer {
