@@ -28,19 +28,19 @@ $("[data-checkboxes]").each(function() {
   });
 });
 
-$("#penduduk").dataTable({
-  "columnDefs": [
-    { "sortable": false, "targets": [11] }
-  ],
-  "language": {
-    "lengthMenu": "Tampilkan _MENU_ data",
-    "zeroRecords": "Tidak ada data pada tabel",
-    "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
-    "infoEmpty": "Menampilkan 0 data",
-    "infoFiltered": "(difilter dari _MAX_ total data)"
-  },
-  "pageLength": 25
-});
+// $("#penduduk").dataTable({
+//   "columnDefs": [
+//     { "sortable": false, "targets": [11] }
+//   ],
+//   "language": {
+//     "lengthMenu": "Tampilkan _MENU_ data",
+//     "zeroRecords": "Tidak ada data pada tabel",
+//     "info": "Menampilkan halaman _PAGE_ dari _PAGES_",
+//     "infoEmpty": "Menampilkan 0 data",
+//     "infoFiltered": "(difilter dari _MAX_ total data)"
+//   },
+//   "pageLength": 25
+// });
 
 $("#keluarga").dataTable({
   "columnDefs": [

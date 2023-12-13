@@ -24,8 +24,10 @@
                         <div class="card-header">
                             <h4>Daftar Penduduk</h4>
                             <div class="card-header-action">
-                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah Penduduk</a>
-                                <a class="btn btn-primary btn-color-blue text-white" data-toggle="modal" data-target="#importModal">
+                                <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah
+                                    Penduduk</a>
+                                <a class="btn btn-primary btn-color-blue text-white" data-toggle="modal"
+                                    data-target="#importModal">
                                     <i class="fa fa-download" aria-hidden="true"></i> Import Data
                                 </a>
                                 <a class="btn btn-primary btn-color-blue" href="{{ route('penduduk.export') }}">
@@ -41,7 +43,7 @@
                                             <th>#</th>
                                             <th>Nama</th>
                                             <th class="text-nowrap">Tempat Lahir</th>
-                                            <th>Tgl Lahir</th>
+                                            <th width=65px>Tgl Lahir</th>
                                             <th>JK</th>
                                             <th>Gol.</th>
                                             <th>Agama</th>
@@ -49,11 +51,11 @@
                                             <th>Alamat</th>
                                             <th>RT</th>
                                             <th>Ket.</th>
-                                            <th class="text-right">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($penduduk as $key => $item)
+                                        {{-- @foreach ($penduduk as $key => $item)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td class="openKTP" data-toggle="modal" data-target="#ktp"
@@ -107,7 +109,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -118,7 +120,8 @@
         </div>
     </section>
     {{-- KTP --}}
-    <div id="ktp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div id="ktp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="detailKTP">
@@ -145,7 +148,8 @@
                             <tr>
                                 <td>Jenis Kelamin</td>
                                 <td>:</td>
-                                <td><span id="jenis_kelamin" class="mr-5"></span>Gol. Darah : <span id="golongan_darah"></span></td>
+                                <td><span id="jenis_kelamin" class="mr-5"></span>Gol. Darah : <span
+                                        id="golongan_darah"></span></td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>
@@ -199,7 +203,8 @@
         </div>
     </div>
     {{-- KK --}}
-    <div id="kk" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div id="kk" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="detailKK">
@@ -300,7 +305,8 @@
         </div>
     </div>
     {{-- Import --}}
-    <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+    <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -326,6 +332,73 @@
     </div>
 @endsection
 @push('customScript')
+    <script>
+        $(document).ready(function() {
+            $('#penduduk').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "{{ route('penduduk.index') }}",
+                    "dataType": "json",
+                    "type": "GET",
+                    "data": {
+                        _token: "{{ csrf_token() }}"
+                    }
+                },
+                "pageLength": 25,
+                "columns": [{
+                        "data": "id",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "nama",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "tempat_lahir",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "tanggal_lahir",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "jenis_kelamin",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "golongan_darah",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "agama",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "pekerjaan",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "alamat",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "rt",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "keterangan",
+                        "orderable": true,
+                    },
+                    {
+                        "data": "action",
+                        "orderable": false,
+                        "searchable": false
+                    }
+                ]
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('.import').click(function(event) {
@@ -395,11 +468,13 @@
 
         $(document).on("click", ".data-link", function() {
             var no_kk = $(this).data('value');
-            
+
             $.ajax({
                 url: '{{ route('penduduk.detail') }}',
                 method: 'POST',
-                data: { no_kk: no_kk },
+                data: {
+                    no_kk: no_kk
+                },
                 success: function(response) {
                     var detailElement1 = $('#detail1');
                     var detailElement2 = $('#detail2');
@@ -419,8 +494,12 @@
                         var status_keluarga = response[i].status_keluarga;
                         var keterangan = response[i].keterangan;
 
-                        detailElement1.append('<tr><td>' + (i+1) + '</td><td>' + nama + '</td><td>' + nik + '</td><td>' + jenis_kelamin + '</td><td>' + tempat_lahir + '</td><td>' + tanggal_lahir + '</td></tr>');
-                        detailElement2.append('<tr><td>' + (i+1) + '</td><td>' + agama + '</td><td>' + pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' + status_keluarga + '</td><td>' + keterangan + '</td></tr>');
+                        detailElement1.append('<tr><td>' + (i + 1) + '</td><td>' + nama + '</td><td>' +
+                            nik + '</td><td>' + jenis_kelamin + '</td><td>' + tempat_lahir +
+                            '</td><td>' + tanggal_lahir + '</td></tr>');
+                        detailElement2.append('<tr><td>' + (i + 1) + '</td><td>' + agama + '</td><td>' +
+                            pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' +
+                            status_keluarga + '</td><td>' + keterangan + '</td></tr>');
                     }
                 },
                 error: function(xhr, status, error) {
