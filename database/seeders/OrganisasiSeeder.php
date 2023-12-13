@@ -17,37 +17,32 @@ class OrganisasiSeeder extends Seeder
     {
         Organisasi::create([
             'nama_organisasi' => "RT (Rukun Tetangga)",
-            'gambar_organisasi' => "gambar.jpeg",
+            'gambar_organisasi' => "rt.png",
             'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
             'nama_organisasi' => "RW (Rukun Warga)",
-            'gambar_organisasi' => "gambar.jpeg",
+            'gambar_organisasi' => "rw.jpg",
             'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
             'nama_organisasi' => "Karang Taruna",
-            'gambar_organisasi' => "gambar.jpeg",
+            'gambar_organisasi' => "karangtaruna.jpeg",
             'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
             'nama_organisasi' => "Posyandu",
-            'gambar_organisasi' => "gambar.jpeg",
+            'gambar_organisasi' => "posyandu.png",
             'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
             'nama_organisasi' => "PKK (Pembina Kesejahteraan Keluarga)",
-            'gambar_organisasi' => "gambar.jpeg",
-            'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
-        ]);
-        Organisasi::create([
-            'nama_organisasi' => "Sistem Keamanan Lingkungan",
-            'gambar_organisasi' => "gambar.jpeg",
+            'gambar_organisasi' => "pkk.png",
             'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
         Organisasi::create([
             'nama_organisasi' => "Ketakmiran Masjid",
-            'gambar_organisasi' => "gambar.jpeg",
+            'gambar_organisasi' => "ketakmiran.png",
             'deskripsi_organisasi' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, architecto."
         ]);
     }
