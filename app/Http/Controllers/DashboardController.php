@@ -13,14 +13,14 @@ class DashboardController extends Controller
     public function index()
     {
         $cacheKey = 'dashboard_query';
-        $durationInMinutes = 1440;
+        // $durationInMinutes = 1440;
 
-        $data = Cache::remember($cacheKey, $durationInMinutes, function () {
+        $data = Cache::remember($cacheKey, 300, function () {
             $countPenduduk = Penduduk::where('keterangan', 'Hidup')->count();
             $countL = Penduduk::where('jenis_kelamin', 'L')->where('keterangan', 'Hidup')->count();
             $countP = Penduduk::where('jenis_kelamin', 'P')->where('keterangan', 'Hidup')->count();
             $countKK = Penduduk::where('status_keluarga', true)->where('keterangan', 'Hidup')->count();
-            
+
             $agenda = Agenda::orderByDesc('id')->get()->map(function ($item) {
                 $item->tanggal_agenda = date('d-m-Y', strtotime($item->tanggal_agenda));
                 return $item;
@@ -40,7 +40,7 @@ class DashboardController extends Controller
                 ->where('keterangan', 'Hidup')
                 ->groupBy('pekerjaan')
                 ->get();
-        
+
             $darah = DB::table('penduduk')
                 ->select(
                     DB::raw('CASE
@@ -64,13 +64,13 @@ class DashboardController extends Controller
                         END')
                 )
                 ->get();
-        
+
             $agama = DB::table('penduduk')
                 ->select('agama', DB::raw('count(*) as total'))
                 ->where('keterangan', 'Hidup')
                 ->groupBy('agama')
                 ->get();
-        
+
             $query = "
             SELECT rt, jumlah, (jumlah / total) * 300 AS persen
             FROM (
@@ -79,14 +79,14 @@ class DashboardController extends Controller
                 GROUP BY rt
             ) AS subquery;
             ";
-        
+
             $labelPekerjaan = $pekerjaan->pluck('pekerjaan');
             $dataPekerjaan = $pekerjaan->pluck('total');
             $labelDarah = $darah->where('golongan_darah', '<>', '-')->pluck('golongan_darah');
             $dataDarah = $darah->pluck('total');
             $labelAgama = $agama->pluck('agama');
             $dataAgama = $agama->pluck('total');
-        
+
             $results = DB::select(DB::raw($query));
             $jumlahRt1 = collect($results)->where('rt', 1)->pluck('jumlah')->first();
             $jumlahRt2 = collect($results)->where('rt', 2)->pluck('jumlah')->first();
@@ -98,7 +98,7 @@ class DashboardController extends Controller
             $persenRt3 = collect($results)->where('rt', 3)->pluck('persen')->first();
             $persenRt4 = collect($results)->where('rt', 4)->pluck('persen')->first();
             $persenRt5 = collect($results)->where('rt', 5)->pluck('persen')->first();
-        
+
             $umurL = Penduduk::select(DB::raw('CASE
                 WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 0 AND 5 THEN "0-5"
                 WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 6 AND 10 THEN "06-10"
@@ -125,8 +125,9 @@ class DashboardController extends Controller
                 ->groupBy('age_group')
                 ->where('jenis_kelamin', 'L')
                 ->where('keterangan', 'Hidup')
+                ->orderBy('age_group', 'asc')
                 ->get();
-        
+
             $umurP = Penduduk::select(DB::raw('CASE
                 WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 0 AND 5 THEN "0-5"
                 WHEN FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir) / 365) BETWEEN 6 AND 10 THEN "06-10"
@@ -153,8 +154,9 @@ class DashboardController extends Controller
                 ->groupBy('age_group')
                 ->where('jenis_kelamin', 'P')
                 ->where('keterangan', 'Hidup')
+                ->orderBy('age_group', 'asc')
                 ->get();
-        
+
             $labelUmurL = $umurL->pluck('age_group');
             $dataUmurL = $umurL->pluck('total');
             $labelUmurP = $umurP->pluck('age_group');
