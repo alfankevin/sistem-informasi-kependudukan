@@ -176,6 +176,8 @@ class PendudukController extends Controller
             END AS jenis_kelamin,
             CASE
             WHEN status_keluarga = "1" THEN "Kepala Keluarga"
+            WHEN status_keluarga = "2" THEN "Istri"
+            WHEN status_keluarga = "3" THEN "Anak"
                 ELSE "-"
             END AS status_keluarga
             FROM penduduk WHERE no_kk = ?

@@ -36,16 +36,11 @@ use App\Http\Controllers\RoleAndPermission\ImportPermissionController;
 |
 */
 
-Route::get('/', [LandingPageController::class, 'index']);
-Route::get('/agenda', [LandingPageController::class, 'agenda']);
-Route::get('/potensi', [LandingPageController::class, 'potensi']);
-Route::get('/galeri', [LandingPageController::class, 'galeri']);
-
-Route::get('/admin', function () {
+Route::get('/', function () {
     return view('admin.auth/login');
 })->middleware('guest');
 
-Route::post('/admin', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

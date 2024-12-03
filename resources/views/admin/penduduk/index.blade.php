@@ -37,7 +37,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-md" id="penduduk">
+                                <table class="table table-bordered table-md" id="penduduk" style="width: 100%;">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -204,7 +204,7 @@
     </div>
     {{-- KK --}}
     <div id="kk" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
+        aria-hidden="true" style="height: 100vh; width: 100vw; transform: scale(1.2)">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="detailKK">

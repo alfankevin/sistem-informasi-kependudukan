@@ -139,8 +139,10 @@
                             <label>Status Keluarga</label>
                             <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="status_keluarga">
                                 <option value=""></option>
-                                <option value="0">-</option>
                                 <option value="1">Kepala Keluarga</option>
+                                <option value="2">Istri</option>
+                                <option value="3">Anak</option>
+                                <option value="0">-</option>
                             </select>
                             @error('status_keluarga')
                                 <div class="invalid-feedback">
