@@ -131,9 +131,9 @@ var myChart = new Chart(ctx, {
       data: dataDarah,
       backgroundColor: [
         'rgb(31, 59, 179)',
-        'rgb(253, 208, 199)',
         'rgb(82, 205, 255)',
         'rgb(129, 218, 218)',
+        'rgb(253, 208, 199)',
       ],
       label: 'Golongan Darah'
     }],

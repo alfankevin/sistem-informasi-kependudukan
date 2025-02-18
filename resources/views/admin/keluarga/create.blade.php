@@ -15,7 +15,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Validasi Tambah Kartu</h4>
+                    <h4>Validasi Tambah Kartu Keluarga</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('keluarga.store') }}" method="post">
@@ -34,11 +34,11 @@
                                 </div>
                             @enderror
                         </div>
-                </div>
-                <div class="card-footer text-right">
-                    <button class="btn btn-primary">Simpan</button>
-                    <a class="btn btn-secondary" href="{{ route('keluarga.index') }}">Batal</a>
-                </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button class="btn btn-primary">Simpan</button>
+                        <a class="btn btn-secondary" href="{{ route('keluarga.index') }}">Batal</a>
+                    </div>
                 </form>
             </div>
         </div>

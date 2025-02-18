@@ -54,7 +54,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="show-data">
                                         {{-- @foreach ($penduduk as $key => $item)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
@@ -119,89 +119,6 @@
             </div>
         </div>
     </section>
-    {{-- KTP --}}
-    <div id="ktp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="detailKTP">
-                    <div class="headerKTP">
-                        <h5>PROVINSI JAWA TIMUR</h5>
-                        <h5>KOTA MALANG</h5>
-                    </div>
-                    <div class="bodyKTP">
-                        <div>
-                            <h5>NIK<span class="mr-2" style="margin-left: 70px">:</span></h5>
-                            <span id="nik"></span>
-                        </div>
-                        <table>
-                            <tr>
-                                <td>Nama</td>
-                                <td>:</td>
-                                <td><span id="nama"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Tempat/Tgl Lahir</td>
-                                <td>:</td>
-                                <td><span id="tempat_lahir"></span>, <span id="tanggal_lahir"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Jenis Kelamin</td>
-                                <td>:</td>
-                                <td><span id="jenis_kelamin" class="mr-5"></span>Gol. Darah : <span
-                                        id="golongan_darah"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Alamat</td>
-                                <td>:</td>
-                                <td><span id="alamat"></span></td>
-                            </tr>
-                            <tr>
-                                <td class="pl-4">RT/RW</td>
-                                <td>:</td>
-                                <td>00<span id="rt"></span>/005</td>
-                            </tr>
-                            <tr>
-                                <td class="pl-4">Kel/Desa</td>
-                                <td>:</td>
-                                <td>TANJUNGREJO</td>
-                            </tr>
-                            <tr>
-                                <td class="pl-4">Kecamatan</td>
-                                <td>:</td>
-                                <td>SUKUN</td>
-                            </tr>
-                            <tr>
-                                <td>Agama</td>
-                                <td>:</td>
-                                <td><span id="agama"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Status Perkawinan</td>
-                                <td>:</td>
-                                <td><span id="status_perkawinan"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Pekerjaan</td>
-                                <td>:</td>
-                                <td><span id="pekerjaan"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Keterangan</td>
-                                <td>:</td>
-                                <td><span id="keterangan"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Bantuan Sosial</td>
-                                <td>:</td>
-                                <td><span id="sosial"></span></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     {{-- KK --}}
     <div id="kk" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true" style="height: 100vh; width: 100vw; transform: scale(1.2)">
@@ -229,36 +146,36 @@
                                     <tr>
                                         <td>RT/RW</td>
                                         <td>:</td>
-                                        <td>00<span id="rt"></span>/005</td>
+                                        <td><span id="rt"></span>/<span id="rw"></span></td>
                                     </tr>
                                     <tr>
-                                        <td>Desa/Kelurahan</td>
+                                        <td>Kode Pos</td>
                                         <td>:</td>
-                                        <td>TANJUNGREJO</td>
+                                        <td><span id="kode_pos"></span></td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="col col-lg-5 col-sm-12">
                                 <table>
                                     <tr>
+                                        <td>Desa/Kelurahan</td>
+                                        <td>:</td>
+                                        <td><span id="kelurahan"></span></td>
+                                    </tr>
+                                    <tr>
                                         <td>Kecamatan</td>
                                         <td>:</td>
-                                        <td>SUKUN</td>
+                                        <td><span id="kecamatan"></span></td>
                                     </tr>
                                     <tr>
                                         <td>Kabupaten/Kota</td>
                                         <td>:</td>
-                                        <td>MALANG</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kode Pos</td>
-                                        <td>:</td>
-                                        <td>65147</td>
+                                        <td><span id="kabupaten"></span></td>
                                     </tr>
                                     <tr>
                                         <td>Provinsi</td>
                                         <td>:</td>
-                                        <td>JAWA TIMUR</td>
+                                        <td><span id="provinsi"></span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -288,7 +205,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Agama</th>
-                                                <th>Pendidikan/Pekerjaan</th>
+                                                <th>Jenis Pekerjaan</th>
                                                 <th>Status Perkawinan</th>
                                                 <th>Status Keluarga</th>
                                                 <th>Keterangan</th>
@@ -349,6 +266,9 @@
                 "columns": [{
                         "data": "id",
                         "orderable": true,
+                        "render": function (data, type, row, meta) {
+                            return meta.row + 1;
+                        }
                     },
                     {
                         "data": "nama",
@@ -418,52 +338,28 @@
             });
         });
 
-        $(document).on("click", ".openKTP", function() {
-            var nik = $(this).data('nik');
-            var nama = $(this).data('nama');
-            var tempat_lahir = $(this).data('tempat_lahir');
-            var tanggal_lahir = $(this).data('tanggal_lahir');
-            var jenis_kelamin = $(this).data('jenis_kelamin');
-            var golongan_darah = $(this).data('golongan_darah');
-            var alamat = $(this).data('alamat');
-            var rt = $(this).data('rt');
-            var agama = $(this).data('agama');
-            var status_perkawinan = $(this).data('status_perkawinan');
-            var pekerjaan = $(this).data('pekerjaan');
-            var keterangan = $(this).data('keterangan');
-            var sosial = $(this).data('sosial');
-
-            if (jenis_kelamin === 'L') {
-                jenis_kelamin = 'Laki-laki';
-            } else {
-                jenis_kelamin = 'Perempuan';
-            }
-
-            $(".modal-content #nik").text(nik);
-            $(".modal-content #nama").text(nama);
-            $(".modal-content #tempat_lahir").text(tempat_lahir);
-            $(".modal-content #tanggal_lahir").text(tanggal_lahir);
-            $(".modal-content #jenis_kelamin").text(jenis_kelamin);
-            $(".modal-content #golongan_darah").text(golongan_darah);
-            $(".modal-content #alamat").text(alamat);
-            $(".modal-content #rt").text(rt);
-            $(".modal-content #agama").text(agama);
-            $(".modal-content #status_perkawinan").text(status_perkawinan);
-            $(".modal-content #pekerjaan").text(pekerjaan);
-            $(".modal-content #keterangan").text(keterangan);
-            $(".modal-content #sosial").text(sosial);
-        });
-
         $(document).on("click", ".openKK", function() {
             var no_kk = $(this).data('no_kk');
             var nama = $(this).data('nama');
             var alamat = $(this).data('alamat');
             var rt = $(this).data('rt');
+            var rw = $(this).data('rw');
+            var kode_pos = $(this).data('kode_pos');
+            var kelurahan = $(this).data('kelurahan');
+            var kecamatan = $(this).data('kecamatan');
+            var kabupaten = $(this).data('kabupaten');
+            var provinsi = $(this).data('provinsi');
 
             $(".modal-content #no_kk").text(no_kk);
             $(".modal-content #nama").text(nama);
-            $(".modal-content #alamat").text(alamat);
-            $(".modal-content #rt").text(rt);
+            $(".modal-content #alamat").text(alamat ? alamat : '-');
+            $(".modal-content #rt").text(rt ? rt.toString().padStart(3, '0') : '-');
+            $(".modal-content #rw").text(rw ? rw.toString().padStart(3, '0') : '-');
+            $(".modal-content #kode_pos").text(kode_pos ? kode_pos : '-');
+            $(".modal-content #kelurahan").text(kelurahan ? kelurahan : '-');
+            $(".modal-content #kecamatan").text(kecamatan ? kecamatan : '-');
+            $(".modal-content #kabupaten").text(kabupaten ? kabupaten : '-');
+            $(".modal-content #provinsi").text(provinsi ? provinsi : '-');
         });
 
         $(document).on("click", ".data-link", function() {

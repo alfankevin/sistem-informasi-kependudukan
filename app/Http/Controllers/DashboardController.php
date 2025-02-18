@@ -72,12 +72,15 @@ class DashboardController extends Controller
                 ->get();
 
             $query = "
-            SELECT rt, jumlah, (jumlah / total) * 300 AS persen
-            FROM (
-                SELECT rt, COUNT(*) AS jumlah, (SELECT COUNT(*) FROM penduduk) AS total
-                FROM penduduk WHERE keterangan = 'Hidup'
-                GROUP BY rt
-            ) AS subquery;
+                SELECT kartu_keluarga.rt, 
+                    COUNT(penduduk.id) AS jumlah, 
+                    (COUNT(penduduk.id) / total.total_penduduk) * 300 AS persen
+                FROM penduduk
+                JOIN kartu_keluarga ON penduduk.no_kk = kartu_keluarga.no_kk
+                JOIN (SELECT COUNT(*) AS total_penduduk FROM penduduk WHERE keterangan = 'Hidup') AS total
+                ON 1 = 1
+                WHERE penduduk.keterangan = 'Hidup'
+                GROUP BY kartu_keluarga.rt, total.total_penduduk;
             ";
 
             $labelPekerjaan = $pekerjaan->pluck('pekerjaan');

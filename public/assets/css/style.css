@@ -4353,3 +4353,7 @@ body:not(.sidebar-mini)
         background-position: 45% 100%;
     }
 }
+
+.show-data td {
+    vertical-align: middle;
+}

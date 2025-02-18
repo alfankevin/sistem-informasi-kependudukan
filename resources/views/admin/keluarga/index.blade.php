@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>Daftar Kartu</h4>
+                            <h4>Daftar Kartu Keluarga</h4>
                             <div class="card-header-action">
                                 <a class="btn btn-icon icon-left btn-primary" href="{{ route('keluarga.create') }}">Tambah Kartu</a>
                             </div>
@@ -45,13 +45,13 @@
                                     <tbody>
                                         @foreach ($data as $key => $item)
                                             <tr>
-                                                <td>{{ $key + 1 }}
+                                                <td class="align-middle">{{ $key + 1 }}
                                                 </td>
-                                                <td>{{ $item->no_kk }}</td>
-                                                <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->alamat }}</td>
-                                                <td>00{{ $item->rt }}</td>
-                                                <td>005</td>
+                                                <td class="align-middle">{{ $item->no_kk }}</td>
+                                                <td class="align-middle">{{ $item->nama }}</td>
+                                                <td class="align-middle">{{ $item->alamat ? $item->alamat : '-' }}</td>
+                                                <td class="align-middle">{{ $item->rt !== null ? str_pad($item->rt, 3, '0', STR_PAD_LEFT) : '-' }}</td>
+                                                <td class="align-middle">{{ $item->rw !== null ? str_pad($item->rw, 3, '0', STR_PAD_LEFT) : '-' }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center data-link openKK" style="height: 30px; width: 30px"
@@ -59,6 +59,12 @@
                                                             data-nama="{{ $item->nama }}"
                                                             data-alamat="{{ $item->alamat }}"
                                                             data-rt="{{ $item->rt }}"
+                                                            data-rw="{{ $item->rw }}"
+                                                            data-kode_pos="{{ $item->kode_pos }}"
+                                                            data-kelurahan="{{ $item->kelurahan }}"
+                                                            data-kecamatan="{{ $item->kecamatan }}"
+                                                            data-kabupaten="{{ $item->kabupaten }}"
+                                                            data-provinsi="{{ $item->provinsi }}"
                                                             data-value="{{ $item->no_kk }}"
                                                             data-toggle="modal"
                                                             data-target="#kk">
@@ -103,39 +109,47 @@
                                 <table>
                                     <tr>
                                         <td>Nama Anggota Keluarga</td>
-                                        <td>: <b><span id="nama"></span></b></td>
+                                        <td>:</td>
+                                        <td><b><span id="nama"></span></b></td>
                                     </tr>
                                     <tr>
                                         <td>Alamat</td>
-                                        <td>: <span id="alamat"></span></td>
+                                        <td>:</td>
+                                        <td><span id="alamat"></span></td>
                                     </tr>
                                     <tr>
                                         <td>RT/RW</td>
-                                        <td>: 00<span id="rt"></span>/005</td>
+                                        <td>:</td>
+                                        <td><span id="rt"></span>/<span id="rw"></span></td>
                                     </tr>
                                     <tr>
-                                        <td>Desa/Kelurahan</td>
-                                        <td>: TANJUNGREJO</td>
+                                        <td>Kode Pos</td>
+                                        <td>:</td>
+                                        <td><span id="kode_pos"></span></td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="col col-lg-5 col-sm-12">
                                 <table>
                                     <tr>
+                                        <td>Desa/Kelurahan</td>
+                                        <td>:</td>
+                                        <td><span id="kelurahan"></span></td>
+                                    </tr>
+                                    <tr>
                                         <td>Kecamatan</td>
-                                        <td>: SUKUN</td>
+                                        <td>:</td>
+                                        <td><span id="kecamatan"></span></td>
                                     </tr>
                                     <tr>
                                         <td>Kabupaten/Kota</td>
-                                        <td>: MALANG</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kode Pos</td>
-                                        <td>: 65147</td>
+                                        <td>:</td>
+                                        <td><span id="kabupaten"></span></td>
                                     </tr>
                                     <tr>
                                         <td>Provinsi</td>
-                                        <td>: JAWA TIMUR</td>
+                                        <td>:</td>
+                                        <td><span id="provinsi"></span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -165,10 +179,10 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Agama</th>
-                                                <th>Pendidikan/Pekerjaan</th>
+                                                <th>Jenis Pekerjaan</th>
                                                 <th>Status Perkawinan</th>
                                                 <th>Status Keluarga</th>
-                                                <th>Kewarganegaraan</th>
+                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody id="detail2"></tbody>
@@ -203,16 +217,28 @@
             });
         });
 
-        $(document).on("click", ".openKK", function () {
+        $(document).on("click", ".openKK", function() {
             var no_kk = $(this).data('no_kk');
             var nama = $(this).data('nama');
             var alamat = $(this).data('alamat');
             var rt = $(this).data('rt');
+            var rw = $(this).data('rw');
+            var kode_pos = $(this).data('kode_pos');
+            var kelurahan = $(this).data('kelurahan');
+            var kecamatan = $(this).data('kecamatan');
+            var kabupaten = $(this).data('kabupaten');
+            var provinsi = $(this).data('provinsi');
 
             $(".modal-content #no_kk").text(no_kk);
             $(".modal-content #nama").text(nama);
-            $(".modal-content #alamat").text(alamat);
-            $(".modal-content #rt").text(rt);
+            $(".modal-content #alamat").text(alamat ? alamat : '-');
+            $(".modal-content #rt").text(rt ? rt.toString().padStart(3, '0') : '-');
+            $(".modal-content #rw").text(rw ? rw.toString().padStart(3, '0') : '-');
+            $(".modal-content #kode_pos").text(kode_pos ? kode_pos : '-');
+            $(".modal-content #kelurahan").text(kelurahan ? kelurahan : '-');
+            $(".modal-content #kecamatan").text(kecamatan ? kecamatan : '-');
+            $(".modal-content #kabupaten").text(kabupaten ? kabupaten : '-');
+            $(".modal-content #provinsi").text(provinsi ? provinsi : '-');
         });
 
         $(document).on("click", ".data-link", function() {
@@ -239,9 +265,10 @@
                     var pekerjaan = response[i].pekerjaan;
                     var status_perkawinan = response[i].status_perkawinan;
                     var status_keluarga = response[i].status_keluarga;
+                    var keterangan = response[i].keterangan;
 
                     detailElement1.append('<tr><td>' + (i+1) + '</td><td>' + nama + '</td><td>' + nik + '</td><td>' + jenis_kelamin + '</td><td>' + tempat_lahir + '</td><td>' + tanggal_lahir + '</td></tr>');
-                    detailElement2.append('<tr><td>' + (i+1) + '</td><td>' + agama + '</td><td>' + pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' + status_keluarga + '</td><td>WNI</td></tr>');
+                    detailElement2.append('<tr><td>' + (i+1) + '</td><td>' + agama + '</td><td>' + pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' + status_keluarga + '</td><td>' + keterangan + '</td></tr>');
                 }
             },
             error: function(xhr, status, error) {
