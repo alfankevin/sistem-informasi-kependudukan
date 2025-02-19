@@ -17,8 +17,6 @@
                 <div class="card-header">
                     <h4>Validasi Tambah Penduduk</h4>
                     <div class="card-header-action">
-                        <!-- <a class="btn btn-icon icon-left btn-primary" href="{{ route('penduduk.create') }}">Tambah
-                            Penduduk</a> -->
                         <a class="btn btn-primary btn-color-blue text-white" data-toggle="modal"
                             data-target="#importModal">
                             <i class="fa fa-download" aria-hidden="true"></i> Unggah Kartu Keluarga
@@ -27,7 +25,7 @@
                 </div>
                 @if (session('image_data'))
                     <div class="card-header">
-                        <img src="data:image/png;base64,{{ session()->pull('image_data') }}" width="100%" style="margin: auto;">
+                        <img src="data:image/png;base64,{{ session()->pull('image_data') }}" width="100px" style="margin: auto;">
                     </div>
                 @endif
                 <div class="card-body p-0">
@@ -50,7 +48,7 @@
                                                 <div class="col-12 col-md-6">
                                                     <label for="no_kk">No. KK</label>
                                                     <input id="no_kk" name="no_kk" type="text" spellcheck="false" autocomplete="off"
-                                                    class="form-control @error('no_kk') is-invalid @enderror" value="{{ old('no_kk') }}">
+                                                    class="form-control @error('no_kk') is-invalid @enderror" value="{{ htmlspecialchars($text ?? '') }}{{ old('no_kk') }}">
                                                     @error('no_kk')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -558,7 +556,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('penduduk.import') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('penduduk.import_kk') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         @csrf
                         <div class="form-group">

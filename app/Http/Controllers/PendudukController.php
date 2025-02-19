@@ -13,6 +13,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StorePendudukRequest;
 use App\Http\Requests\UpdatePendudukRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 use Exception;
 
 class PendudukController extends Controller
@@ -131,11 +133,6 @@ class PendudukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.penduduk.create');
-    }
-
-    public function create_kk()
     {
         return view('admin.penduduk.create_kk');
     }
@@ -271,8 +268,35 @@ class PendudukController extends Controller
     {
         Excel::import(new pendudukImport, request()->file('file'));
 
-        return redirect()->route('penduduk.index')
-            ->with('success', 'Penduduk berhasil diimport');
+        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil diimport');
+    }
+
+    public function import_kk(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
+        ]);
+
+        // Ambil file dari request
+        $file = $request->file('file');
+
+        // Kirim file ke Flask menggunakan GuzzleHttp
+        $client = new Client();
+        $response = $client->post('http://localhost:5000/ocr', [
+            'multipart' => [
+                [
+                    'name'     => 'file',
+                    'contents' => fopen($file->getPathname(), 'r'),
+                    'filename' => $file->getClientOriginalName(),
+                ],
+            ],
+        ]);
+
+        // Ambil hasil OCR dari response Flask
+        $result = json_decode($response->getBody(), true);
+
+        // Tampilkan hasil OCR ke view
+        return view('admin.penduduk.create_kk', ['text' => $result['text']]);
     }
 
     public function export()
