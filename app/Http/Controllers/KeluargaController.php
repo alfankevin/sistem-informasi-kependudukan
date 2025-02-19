@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreKeluargaRequest;
 use App\Http\Requests\UpdateKeluargaRequest;
 use App\Models\Penduduk;
+use App\Models\KartuKeluarga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,7 @@ class KeluargaController extends Controller
      */
     public function index()
     {
-        $data = DB::select("SELECT DISTINCT no_kk, penduduk.* FROM penduduk WHERE penduduk.status_keluarga = 1 ORDER BY penduduk.updated_at DESC");
+        $data = DB::select("SELECT DISTINCT penduduk.*, kartu_keluarga.*, penduduk.id AS id_2, kartu_keluarga.id AS id, penduduk.no_kk AS no_kk, kartu_keluarga.no_kk AS no_kk_2 FROM penduduk LEFT JOIN kartu_keluarga ON penduduk.no_kk = kartu_keluarga.no_kk WHERE penduduk.status_keluarga = 1 ORDER BY penduduk.updated_at DESC");
         return view('admin.keluarga.index', compact('data'));
     }
 
@@ -85,8 +86,8 @@ class KeluargaController extends Controller
      */
     public function edit($id)
     {
-        $penduduk = Penduduk::find($id);
-        return view('admin.keluarga.edit', compact('penduduk'));
+        $kartu_keluarga = KartuKeluarga::find($id);
+        return view('admin.keluarga.edit', compact('kartu_keluarga'));
     }
 
     /**
@@ -98,28 +99,37 @@ class KeluargaController extends Controller
      */
     public function update(UpdateKeluargaRequest $request, string $id)
     {
-        $penduduk = DB::table('penduduk')->where('id', $id)->first();
-        $kkLama = $penduduk->no_kk;
-        $kkBaru = $request->input('no_kk');
-        $nama = $request->input('nama');
-        $alamat = $request->input('alamat');
-        $rt = $request->input('rt');
+        list($rt, $rw) = explode('/', $request->input('rt_rw'));
+
+        $request->merge([
+            'rt' => $rt,
+            'rw' => $rw,
+        ]);
         
-        DB::table('penduduk')
-            ->where('id', $id)
-            ->update(['nama' => $nama]);
+        KartuKeluarga::find($id)->update($request->all());
+
+        // $penduduk = DB::table('penduduk')->where('id', $id)->first();
+        // $kkLama = $penduduk->no_kk;
+        // $kkBaru = $request->input('no_kk');
+        // $nama = $request->input('nama');
+        // $alamat = $request->input('alamat');
+        // $rt = $request->input('rt');
         
-        DB::table('penduduk')
-            ->where('no_kk', $kkLama)
-            ->update(['alamat' => $alamat]);
+        // DB::table('penduduk')
+        //     ->where('id', $id)
+        //     ->update(['nama' => $nama]);
         
-        DB::table('penduduk')
-            ->where('no_kk', $kkLama)
-            ->update(['rt' => $rt]);
+        // DB::table('penduduk')
+        //     ->where('no_kk', $kkLama)
+        //     ->update(['alamat' => $alamat]);
         
-        DB::table('penduduk')
-            ->where('no_kk', $kkLama)
-            ->update(['no_kk' => $kkBaru]);
+        // DB::table('penduduk')
+        //     ->where('no_kk', $kkLama)
+        //     ->update(['rt' => $rt]);
+        
+        // DB::table('penduduk')
+        //     ->where('no_kk', $kkLama)
+        //     ->update(['no_kk' => $kkBaru]);
         
         return redirect()->route('keluarga.index')
             ->with('success', 'Kartu berhasil diupdate');

@@ -24,7 +24,14 @@ class StoreKeluargaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'no_kk' => ['required', 'string', 'max:16'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'rt_rw' => ['required', 'string', 'max:8'],
+            'kode_pos' => ['required', 'string', 'max:8'],
+            'kabupaten' => ['required', 'string', 'max:50'],
+            'kelurahan' => ['required', 'string', 'max:50'],
+            'kecamatan' => ['required', 'string', 'max:50'],
+            'provinsi' => ['required', 'string', 'max:50'],
         ];
     }
 }

@@ -20,8 +20,8 @@ class BantuanController extends Controller
     {
         $data = DB::select('
             SELECT FLOOR(DATEDIFF(CURDATE(), tanggal_lahir) / 365) AS usia, CASE WHEN jenis_kelamin = "L" THEN "Laki-laki" WHEN jenis_kelamin = "P" THEN "Perempuan"
-            ELSE jenis_kelamin END AS gender, penduduk.*, sosial.nama_sosial
-            FROM penduduk INNER JOIN sosial ON penduduk.id_sosial = sosial.id WHERE sosial.id != 1
+            ELSE jenis_kelamin END AS gender, penduduk.*, kartu_keluarga.alamat, kartu_keluarga.rt, kartu_keluarga.rw, kartu_keluarga.kabupaten, kartu_keluarga.kelurahan, kartu_keluarga.kecamatan, kartu_keluarga.provinsi, sosial.nama_sosial
+            FROM penduduk INNER JOIN sosial ON penduduk.id_sosial = sosial.id LEFT JOIN kartu_keluarga ON penduduk.no_kk = kartu_keluarga.no_kk WHERE sosial.id != 1
             ORDER BY penduduk.updated_at DESC
         ');
         foreach ($data as $item) {

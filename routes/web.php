@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::prefix('penduduk-management')->group(function () {
         //kependudukan
+        Route::get('/penduduk/create-kk', [PendudukController::class, 'create_kk'])->name('penduduk.create_kk');
         Route::resource('penduduk', PendudukController::class)->except(['show']);
         Route::resource('keluarga', KeluargaController::class)->except(['show']);
         Route::resource('bantuan', BantuanController::class)->except(['show']);

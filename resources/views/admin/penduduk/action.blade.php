@@ -1,8 +1,9 @@
 <div class="d-flex justify-content-end">
     <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center data-link openKK"
         style="height: 30px; width: 30px" data-toggle="modal" data-target="#kk" data-value="{{ $item->no_kk }}"
-        data-no_kk="{{ $item->no_kk }}" data-nama="{{ $item->nama }}" data-alamat="{{ $item->alamat }}"
-        data-rt="{{ $item->rt }}">
+        data-no_kk="{{ $item->no_kk }}" data-nama="{{ $item->nama }}" data-alamat="{{ $item->alamat }}" data-rt="{{ $item->rt }}"
+        data-rw="{{ $item->rw }}" data-kode_pos="{{ $item->kode_pos }}" data-kelurahan="{{ $item->kelurahan }}"
+        data-kecamatan="{{ $item->kecamatan }}" data-kabupaten="{{ $item->kabupaten }}" data-provinsi="{{ $item->provinsi }}">
         <i class="fas fa-user"></i>
     </button>
     <a href="{{ route('penduduk.edit', $item->id) }}"

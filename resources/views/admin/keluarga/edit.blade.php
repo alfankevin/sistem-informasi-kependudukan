@@ -15,76 +15,129 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Validasi Ubah Kartu</h4>
+                    <h4>Validasi Ubah Kartu Keluarga</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('keluarga.update', $penduduk) }}" method="POST">
+                    <form action="{{ route('keluarga.update', $kartu_keluarga) }}" method="POST">
                         @method('PUT')
                         @csrf
-                        <div class="form-group">
-                            <label for="no_kk">No. KK</label>
-                            <input id="no_kk" name="no_kk" type="text" spellcheck="false" autocomplete="off"
-                            class="form-control @error('no_kk') is-invalid @enderror"
-                            value="{{ old('no_kk', $penduduk->no_kk) }}">
-                            @error('no_kk')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                        <div class="row">                            
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="no_kk">No. KK</label>
+                                    <input id="no_kk" name="no_kk" type="text" spellcheck="false" autocomplete="off"
+                                    class="form-control @error('no_kk') is-invalid @enderror"
+                                    value="{{ old('no_kk', default: $kartu_keluarga->no_kk) }}">
+                                    @error('no_kk')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="nama">Kepala Keluarga</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                id="nama" name="nama" value="{{ old('nama', $penduduk->nama) }}" spellcheck="false" autocomplete="off">
-                            @error('nama')
-                            <div class="invalid-feedback">
-                                {{ $message }}
                             </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input id="alamat" name="alamat" type="text" spellcheck="false" autocomplete="off"
-                                class="form-control @error('alamat') is-invalid @enderror"
-                                value="{{ old('alamat', $penduduk->alamat) }}">
-                            @error('alamat')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="kelurahan">Desa/Kelurahan</label>
+                                    <input id="kelurahan" name="kelurahan" type="text" spellcheck="false" autocomplete="off"
+                                        class="form-control @error('kelurahan') is-invalid @enderror"
+                                        value="{{ old('kelurahan', $kartu_keluarga->kelurahan) }}">
+                                    @error('kelurahan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            @enderror
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>RT</label>
-                            <select class="form-control select2 @error('rt') is-invalid @enderror" name="rt">
-                                <option value=""></option>
-                                <option value="1" @if (old('rt', $penduduk->rt) == "1") {{ 'selected' }} @endif>001</option>
-                                <option value="2" @if (old('rt', $penduduk->rt) == "2") {{ 'selected' }} @endif>002</option>
-                                <option value="3" @if (old('rt', $penduduk->rt) == "3") {{ 'selected' }} @endif>003</option>
-                                <option value="4" @if (old('rt', $penduduk->rt) == "4") {{ 'selected' }} @endif>004</option>
-                                <option value="5" @if (old('rt', $penduduk->rt) == "5") {{ 'selected' }} @endif>005</option>
-                            </select>
-                            @error('rt')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                        <div class="row">                            
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="alamat">Alamat</label>
+                                    <input id="alamat" name="alamat" type="text" spellcheck="false" autocomplete="off"
+                                        class="form-control @error('alamat') is-invalid @enderror"
+                                        value="{{ old('alamat', $kartu_keluarga->alamat) }}">
+                                    @error('alamat')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>RW</label>
-                            <select class="form-control select2 @error('rw') is-invalid @enderror" name="rw">
-                                <option value="">005</option>
-                            </select>
-                            @error('rw')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="kecamatan">Kecamatan</label>
+                                    <input id="kecamatan" name="kecamatan" type="text" spellcheck="false" autocomplete="off"
+                                        class="form-control @error('kecamatan') is-invalid @enderror"
+                                        value="{{ old('kecamatan', $kartu_keluarga->kecamatan) }}">
+                                    @error('kecamatan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            @enderror
+                            </div>
                         </div>
-                </div>
-                <div class="card-footer text-right">
-                    <button class="btn btn-primary">Simpan</button>
-                    <a class="btn btn-secondary" href="{{ route('keluarga.index') }}">Batal</a>
-                </div>
+                        <div class="row">                            
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="rt_rw">RT/RW</label>
+                                    <input id="rt_rw" name="rt_rw" type="text" spellcheck="false" autocomplete="off"
+                                        class="form-control @error('rt_rw') is-invalid @enderror"
+                                        value="{{ old('rt', $kartu_keluarga->rt) }}/{{ old('rw', $kartu_keluarga->rw) }}">
+                                    @error('rt_rw')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="kabupaten">Kabupaten/Kota</label>
+                                    <input id="kabupaten" name="kabupaten" type="text" spellcheck="false" autocomplete="off"
+                                        class="form-control @error('kabupaten') is-invalid @enderror"
+                                        value="{{ old('kabupaten', $kartu_keluarga->kabupaten) }}">
+                                    @error('kabupaten')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="kode_pos">Kode Pos</label>
+                                    <input id="kode_pos" name="kode_pos" type="text" spellcheck="false" autocomplete="off"
+                                        class="form-control @error('kode_pos') is-invalid @enderror"
+                                        value="{{ old('kode_pos', $kartu_keluarga->kode_pos) }}">
+                                    @error('kode_pos')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="provinsi">Provinsi</label>
+                                    <input id="provinsi" name="provinsi" type="text" spellcheck="false" autocomplete="off"
+                                        class="form-control @error('provinsi') is-invalid @enderror"
+                                        value="{{ old('provinsi', $kartu_keluarga->provinsi) }}">
+                                    @error('provinsi')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button class="btn btn-primary">Simpan</button>
+                        <a class="btn btn-secondary" href="{{ route('keluarga.index') }}">Batal</a>
+                    </div>
                 </form>
             </div>
         </div>

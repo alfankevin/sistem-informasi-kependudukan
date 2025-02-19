@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
+use App\Models\KartuKeluarga;
 use App\Models\Sosial;
 use Illuminate\Http\Request;
 use App\Exports\pendudukExport;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StorePendudukRequest;
 use App\Http\Requests\UpdatePendudukRequest;
+use Illuminate\Support\Facades\Session;
 use Exception;
 
 class PendudukController extends Controller
@@ -54,40 +56,49 @@ class PendudukController extends Controller
                 $dir = $request->input('order.0.dir', 'asc');
 
                 if (empty($request->input('search.value'))) {
-                    $penduduks = Penduduk::offset($start)
+                    $penduduks = Penduduk::leftJoin('kartu_keluarga', 'penduduk.no_kk', '=', 'kartu_keluarga.no_kk')
+                        ->select('penduduk.*', 'kartu_keluarga.alamat', 'kartu_keluarga.rt', 'kartu_keluarga.rw', 'kartu_keluarga.kode_pos', 'kartu_keluarga.kelurahan', 'kartu_keluarga.kecamatan', 'kartu_keluarga.kabupaten', 'kartu_keluarga.provinsi')
+                        ->offset($start)
                         ->limit($limit)
-                        ->orderBy($order, $dir)
+                        ->orderBy('penduduk.updated_at', 'desc')
                         ->get();
                 } else {
                     $search = $request->input('search.value');
 
-                    $penduduks =  Penduduk::where('nama', 'LIKE', "%{$search}%")
-                        ->orWhere('nama', 'LIKE', "%{$search}%")
-                        ->orWhere('tempat_lahir', 'LIKE', "%{$search}%")
-                        ->orWhere('tanggal_lahir', 'LIKE', "%{$search}%")
-                        ->orWhere('jenis_kelamin', 'LIKE', "%{$search}%")
-                        ->orWhere('golongan_darah', 'LIKE', "%{$search}%")
-                        ->orWhere('agama', 'LIKE', "%{$search}%")
-                        ->orWhere('pekerjaan', 'LIKE', "%{$search}%")
-                        ->orWhere('alamat', 'LIKE', "%{$search}%")
-                        ->orWhere('rt', 'LIKE', "%u{$search}%")
-                        ->orWhere('keterangan', 'LIKE', "%{$search}%")
+                    $penduduks =  Penduduk::leftJoin('kartu_keluarga', 'penduduk.no_kk', '=', 'kartu_keluarga.no_kk')
+                        ->where(function ($query) use ($search) {
+                            $query->where('nama', 'LIKE', "%{$search}%")
+                                ->orWhere('tempat_lahir', 'LIKE', "%{$search}%")
+                                ->orWhere('tanggal_lahir', 'LIKE', "%{$search}%")
+                                ->orWhere('jenis_kelamin', 'LIKE', "%{$search}%")
+                                ->orWhere('golongan_darah', 'LIKE', "%{$search}%")
+                                ->orWhere('agama', 'LIKE', "%{$search}%")
+                                ->orWhere('pekerjaan', 'LIKE', "%{$search}%")
+                                ->orWhere('alamat', 'LIKE', "%{$search}%")
+                                ->orWhere('rt', 'LIKE', "%u{$search}%")
+                                ->orWhere('keterangan', 'LIKE', "%{$search}%");
+                        })
+                        ->select('penduduk.*', 'kartu_keluarga.alamat', 'kartu_keluarga.rt', 'kartu_keluarga.rw', 'kartu_keluarga.kode_pos', 'kartu_keluarga.kelurahan', 'kartu_keluarga.kecamatan', 'kartu_keluarga.kabupaten', 'kartu_keluarga.provinsi')
                         ->offset($start)
                         ->limit($limit)
-                        ->orderBy('id', 'asc')
+                        ->orderBy('penduduk.id', 'asc')
                         ->get();
 
-                    $totalFiltered = Penduduk::where('id', 'LIKE', "%{$search}%")
-                        ->orWhere('nama', 'LIKE', "%{$search}%")
-                        ->orWhere('tempat_lahir', 'LIKE', "%{$search}%")
-                        ->orWhere('tanggal_lahir', 'LIKE', "%{$search}%")
-                        ->orWhere('jenis_kelamin', 'LIKE', "%{$search}%")
-                        ->orWhere('golongan_darah', 'LIKE', "%{$search}%")
-                        ->orWhere('agama', 'LIKE', "%{$search}%")
-                        ->orWhere('pekerjaan', 'LIKE', "%{$search}%")
-                        ->orWhere('alamat', 'LIKE', "%{$search}%")
-                        ->orWhere('rt', 'LIKE', "%{$search}%")
-                        ->orWhere('keterangan', 'LIKE', "%{$search}%")
+                    $totalFiltered = Penduduk::leftJoin('kartu_keluarga', 'penduduk.no_kk', '=', 'kartu_keluarga.no_kk')
+                        ->where(function ($query) use ($search) {
+                            $query->where('penduduk.id', 'LIKE', "%{$search}%")
+                                ->orWhere('nama', 'LIKE', "%{$search}%")
+                                ->orWhere('tempat_lahir', 'LIKE', "%{$search}%")
+                                ->orWhere('tanggal_lahir', 'LIKE', "%{$search}%")
+                                ->orWhere('jenis_kelamin', 'LIKE', "%{$search}%")
+                                ->orWhere('golongan_darah', 'LIKE', "%{$search}%")
+                                ->orWhere('agama', 'LIKE', "%{$search}%")
+                                ->orWhere('pekerjaan', 'LIKE', "%{$search}%")
+                                ->orWhere('alamat', 'LIKE', "%{$search}%")
+                                ->orWhere('rt', 'LIKE', "%{$search}%")
+                                ->orWhere('keterangan', 'LIKE', "%{$search}%");
+                        })
+                        ->select('penduduk.*')
                         ->count();
                 }
                 $penduduks = $penduduks->map(function ($penduduk) {
@@ -124,6 +135,11 @@ class PendudukController extends Controller
         return view('admin.penduduk.create');
     }
 
+    public function create_kk()
+    {
+        return view('admin.penduduk.create_kk');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -132,28 +148,48 @@ class PendudukController extends Controller
      */
     public function store(StorePendudukRequest $request)
     {
-        $request->validate([
-            'no_kk' => 'required|max:16',
-            'nik' => 'required|max:16',
-            'nama' => 'required|max:128',
-            'tempat_lahir' => 'required|max:128',
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'golongan_darah' => 'required|max:3',
-            'agama' => 'required|max:16',
-            'status_perkawinan' => 'required|max:32',
-            'status_keluarga' => 'required',
-            'pekerjaan' => 'required|max:128',
-            'alamat' => 'required|max:256',
-            'rt' => 'required|integer',
-            'keterangan' => 'required|max:128',
-            'id_sosial' => 'required',
-        ]);
+        $import_kk = $request->input('import_kk');
 
-        Penduduk::create($request->all());
+        if(!$import_kk) {
+            Penduduk::create($request->all());
+        } else {
+            $penduduk = $request->input('penduduk');
+            list($rt, $rw) = explode('/', $request->input('rt_rw'));
 
-        return redirect()->route('penduduk.index')
-            ->with('success', 'Penduduk berhasil ditambahkan');
+            KartuKeluarga::updateOrCreate(
+                ['no_kk' => $request->input('no_kk')],
+                [
+                    'alamat' => $request->input('alamat'),
+                    'rt' => ltrim($rt, '0'),
+                    'rw' => ltrim($rw, '0'),
+                    'kode_pos' => $request->input('kode_pos'),
+                    'kelurahan' => $request->input('kelurahan'),
+                    'kecamatan' => $request->input('kecamatan'),
+                    'kabupaten' => $request->input('kabupaten'),
+                    'provinsi' => $request->input('provinsi')
+                ]
+            );
+
+            foreach ($penduduk as $data) {
+                Penduduk::create([
+                    'no_kk' => $request->input('no_kk'),
+                    'nik' => $data['nik'],
+                    'nama' => $data['nama'],
+                    'tempat_lahir' => $data['tempat_lahir'],
+                    'tanggal_lahir' => $data['tanggal_lahir'],
+                    'jenis_kelamin' => $data['jenis_kelamin'],
+                    'golongan_darah' => $data['golongan_darah'],
+                    'agama' => $data['agama'],
+                    'status_perkawinan' => $data['status_perkawinan'],
+                    'status_keluarga' => $data['status_keluarga'],
+                    'pekerjaan' => $data['pekerjaan'],
+                    'keterangan' => $data['keterangan'],
+                    'id_sosial' => $data['id_sosial'],
+                ]);
+            }
+        }
+
+        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil ditambahkan');
     }
 
     /**
@@ -181,7 +217,7 @@ class PendudukController extends Controller
                 ELSE "-"
             END AS status_keluarga
             FROM penduduk WHERE no_kk = ?
-            ORDER BY YEAR(tanggal_lahir)
+            ORDER BY CAST(status_keluarga AS UNSIGNED), YEAR(tanggal_lahir)
             ',
             [$no_kk]
         );
@@ -211,28 +247,11 @@ class PendudukController extends Controller
      */
     public function update(UpdatePendudukRequest $request, string $id)
     {
-        $request->validate([
-            'no_kk' => 'required|max:16',
-            'nik' => 'required|max:16',
-            'nama' => 'required|max:128',
-            'tempat_lahir' => 'required|max:128',
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'golongan_darah' => 'required|max:3',
-            'agama' => 'required|max:16',
-            'status_perkawinan' => 'required|max:32',
-            'status_keluarga' => 'required',
-            'pekerjaan' => 'required|max:128',
-            'alamat' => 'required|max:256',
-            'rt' => 'required|integer',
-            'keterangan' => 'required|max:128',
-            'id_sosial' => 'required',
-        ]);
-
         Penduduk::find($id)->update($request->all());
 
-        return redirect()->route('penduduk.index')
-            ->with('success', 'Penduduk berhasil diupdate');
+        KartuKeluarga::firstOrCreate(['no_kk' => $request->input('no_kk')]);
+
+        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil diupdate');
     }
 
     /**
@@ -245,16 +264,33 @@ class PendudukController extends Controller
     {
         $penduduk->delete();
 
-        return redirect()->route('penduduk.index')
-            ->with('success', 'Penduduk berhasil dihapus');
+        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil dihapus');
     }
 
-    public function import()
+    public function import(Request $request)
     {
-        Excel::import(new pendudukImport, request()->file('file'));
+        // Excel::import(new pendudukImport, request()->file('file'));
 
-        return redirect()->route('penduduk.index')
-            ->with('success', 'Penduduk berhasil diimport');
+        $request->validate([
+            'file' => 'required|file|mimes:csv,jpeg,png,jpg|max:2048',
+        ]);
+    
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+    
+        if ($extension === 'csv') {
+            Excel::import(new PendudukImport, $file);
+            return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil diimport');
+        } else {
+            // Simpan file sementara di session
+            $fileData = base64_encode(file_get_contents($file));
+            $fileName = $file->getClientOriginalName();
+            
+            Session::put('image_data', $fileData);
+            Session::put('image_name', $fileName);
+            
+            return redirect()->route('penduduk.create')->with('info', 'Silakan input data pengguna.');
+        }
     }
 
     public function export()

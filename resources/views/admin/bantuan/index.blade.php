@@ -48,16 +48,16 @@
                                     <tbody>
                                         @foreach ($data as $key => $item)
                                             <tr>
-                                                <td>{{ $key + 1 }}
+                                                <td class="align-middle">{{ $key + 1 }}
                                                 </td>
-                                                <td>{{ $item->nama }}</td>
-                                                <td class="text-nowrap">{{ $item->usia }} th</td>
-                                                <td>{{ $item->gender }}</td>
-                                                <td>{{ $item->agama }}</td>
-                                                <td>{{ $item->pekerjaan }}</td>
-                                                <td>{{ $item->alamat }}</td>
-                                                <td>00{{ $item->rt }}</td>
-                                                <td>{{ $item->nama_sosial }}</td>
+                                                <td class="align-middle">{{ $item->nama }}</td>
+                                                <td class="align-middle text-nowrap">{{ $item->usia }} th</td>
+                                                <td class="align-middle">{{ $item->gender }}</td>
+                                                <td class="align-middle">{{ $item->agama }}</td>
+                                                <td class="align-middle">{{ $item->pekerjaan }}</td>
+                                                <td class="align-middle">{{ $item->alamat ? $item->alamat : '-' }}</td>
+                                                <td class="align-middle">{{ $item->rt !== null ? str_pad($item->rt, 3, '0', STR_PAD_LEFT) : '-' }}</td>
+                                                <td class="align-middle">{{ $item->nama_sosial }}</td>
                                                 <td class="text-right">
                                                     <div class="d-flex justify-content-end">
                                                         <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center openKTP" style="height: 30px; width: 30px"
@@ -71,11 +71,14 @@
                                                             data-golongan_darah="{{ $item->golongan_darah }}"
                                                             data-alamat="{{ $item->alamat }}"
                                                             data-rt="{{ $item->rt }}"
+                                                            data-rw="{{ $item->rw }}"
                                                             data-agama="{{ $item->agama }}"
                                                             data-status_perkawinan="{{ $item->status_perkawinan }}"
                                                             data-pekerjaan="{{ $item->pekerjaan }}"
                                                             data-keterangan="{{ $item->keterangan }}"
-                                                            data-sosial="{{ $item->nama_sosial }}">
+                                                            data-sosial="{{ $item->nama_sosial }}"
+                                                            data-kelurahan="{{ $item->kelurahan }}"
+                                                            data-kecamatan="{{ $item->kecamatan }}">
                                                             <i class="fas fa-user"></i></button>
                                                         <a href="{{ route('bantuan.edit', $item->id) }}"
                                                             class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
@@ -138,17 +141,17 @@
                             <tr>
                                 <td class="pl-4">RT/RW</td>
                                 <td>:</td>
-                                <td>00<span id="rt"></span>/005</td>
+                                <td><span id="rt"></span>/<span id="rw"></td>
                             </tr>
                             <tr>
                                 <td class="pl-4">Kel/Desa</td>
                                 <td>:</td>
-                                <td>TANJUNGREJO</td>
+                                <td><span id="kelurahan"></td>
                             </tr>
                             <tr>
                                 <td class="pl-4">Kecamatan</td>
                                 <td>:</td>
-                                <td>SUKUN</td>
+                                <td><span id="kecamatan"></td>
                             </tr>
                             <tr>
                                 <td>Agama</td>
@@ -212,11 +215,14 @@
             var golongan_darah = $(this).data('golongan_darah');
             var alamat = $(this).data('alamat');
             var rt = $(this).data('rt');
+            var rw = $(this).data('rw');
             var agama = $(this).data('agama');
             var status_perkawinan = $(this).data('status_perkawinan');
             var pekerjaan = $(this).data('pekerjaan');
             var keterangan = $(this).data('keterangan');
             var sosial = $(this).data('sosial');
+            var kelurahan = $(this).data('kelurahan');
+            var kecamatan = $(this).data('kecamatan');
 
             $(".modal-content #nik").text(nik);
             $(".modal-content #nama").text(nama);
@@ -224,13 +230,16 @@
             $(".modal-content #tanggal_lahir").text(tanggal_lahir);
             $(".modal-content #gender").text(gender);
             $(".modal-content #golongan_darah").text(golongan_darah);
-            $(".modal-content #alamat").text(alamat);
-            $(".modal-content #rt").text(rt);
+            $(".modal-content #alamat").text(alamat ? alamat : '-');
+            $(".modal-content #rt").text(rt ? rt.toString().padStart(3, '0') : '-');
+            $(".modal-content #rw").text(rw ? rw.toString().padStart(3, '0') : '-');
             $(".modal-content #agama").text(agama);
             $(".modal-content #status_perkawinan").text(status_perkawinan);
             $(".modal-content #pekerjaan").text(pekerjaan);
             $(".modal-content #keterangan").text(keterangan);
             $(".modal-content #sosial").text(sosial);
+            $(".modal-content #kelurahan").text(kelurahan ? kelurahan : '-');
+            $(".modal-content #kecamatan").text(kecamatan ? kecamatan : '-');
         });
     </script>
 @endpush

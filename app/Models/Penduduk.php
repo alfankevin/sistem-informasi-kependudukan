@@ -11,6 +11,11 @@ class Penduduk extends Model
     protected $table = 'penduduk';
     protected $guarded = ['id'];
 
+    public function kartuKeluarga()
+    {
+        return $this->belongsTo(KartuKeluarga::class, 'no_kk', 'no_kk');
+    }
+
     public function sosial()
     {
         return $this->hasMany(Sosial::class);
