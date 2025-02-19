@@ -36,11 +36,16 @@ use App\Http\Controllers\RoleAndPermission\ImportPermissionController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/agenda', [LandingPageController::class, 'agenda']);
+Route::get('/potensi', [LandingPageController::class, 'potensi']);
+Route::get('/galeri', [LandingPageController::class, 'galeri']);
+
+Route::get('/admin', function () {
     return view('admin.auth/login');
 })->middleware('guest');
 
-Route::post('/', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/admin', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -65,7 +70,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::prefix('penduduk-management')->group(function () {
         //kependudukan
-        Route::get('/penduduk/create-kk', [PendudukController::class, 'create_kk'])->name('penduduk.create_kk');
         Route::resource('penduduk', PendudukController::class)->except(['show']);
         Route::resource('keluarga', KeluargaController::class)->except(['show']);
         Route::resource('bantuan', BantuanController::class)->except(['show']);

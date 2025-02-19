@@ -121,7 +121,7 @@
     </section>
     {{-- KK --}}
     <div id="kk" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true" style="height: 100vh; width: 100vw; transform: scale(1.2)">
+        aria-hidden="true" style="height: 100vh; width: 100vw; transform: scale(1)">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="detailKK">

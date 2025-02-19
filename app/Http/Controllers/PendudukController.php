@@ -132,11 +132,6 @@ class PendudukController extends Controller
      */
     public function create()
     {
-        return view('admin.penduduk.create');
-    }
-
-    public function create_kk()
-    {
         return view('admin.penduduk.create_kk');
     }
 
