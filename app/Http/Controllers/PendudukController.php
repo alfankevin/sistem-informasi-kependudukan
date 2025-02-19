@@ -267,30 +267,12 @@ class PendudukController extends Controller
         return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil dihapus');
     }
 
-    public function import(Request $request)
+    public function import()
     {
-        // Excel::import(new pendudukImport, request()->file('file'));
+        Excel::import(new pendudukImport, request()->file('file'));
 
-        $request->validate([
-            'file' => 'required|file|mimes:csv,jpeg,png,jpg|max:2048',
-        ]);
-    
-        $file = $request->file('file');
-        $extension = $file->getClientOriginalExtension();
-    
-        if ($extension === 'csv') {
-            Excel::import(new PendudukImport, $file);
-            return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil diimport');
-        } else {
-            // Simpan file sementara di session
-            $fileData = base64_encode(file_get_contents($file));
-            $fileName = $file->getClientOriginalName();
-            
-            Session::put('image_data', $fileData);
-            Session::put('image_name', $fileName);
-            
-            return redirect()->route('penduduk.create')->with('info', 'Silakan input data pengguna.');
-        }
+        return redirect()->route('penduduk.index')
+            ->with('success', 'Penduduk berhasil diimport');
     }
 
     public function export()
