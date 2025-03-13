@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penduduk;
 use App\Models\KartuKeluarga;
 use App\Models\Sosial;
+use App\Models\OCR;
 use Illuminate\Http\Request;
 use App\Exports\pendudukExport;
 use App\Imports\pendudukImport;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StorePendudukRequest;
 use App\Http\Requests\UpdatePendudukRequest;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -186,6 +188,18 @@ class PendudukController extends Controller
             }
         }
 
+        $process_time = Cache::get('timer');
+        if ($process_time) {
+            $duration = now()->diffInSeconds($process_time);
+            Cache::forget('timer');
+
+            OCR::create([
+                'no_kk' => $request->input('no_kk'),
+                'accuracy' => $duration,
+                'duration' => $duration,
+            ]);
+        }
+
         return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil ditambahkan');
     }
 
@@ -273,14 +287,16 @@ class PendudukController extends Controller
 
     public function import_kk(Request $request)
     {
+        Cache::put('timer', now());
+
         $request->validate([
             'file' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
-        // Ambil file dari request
         $file = $request->file('file');
+        $imageData = base64_encode(file_get_contents($file));
+        Session::put('image_data', $imageData);
 
-        // Kirim file ke Flask menggunakan GuzzleHttp
         $client = new Client();
         $response = $client->post('http://localhost:5000/ocr', [
             'multipart' => [
@@ -292,10 +308,8 @@ class PendudukController extends Controller
             ],
         ]);
 
-        // Ambil hasil OCR dari response Flask
         $result = json_decode($response->getBody(), true);
 
-        // Tampilkan hasil OCR ke view
         return view('admin.penduduk.create_kk', ['text' => $result['text']]);
     }
 

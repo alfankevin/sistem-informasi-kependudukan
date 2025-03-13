@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_kk', 16);
             $table->float('accuracy');
-            $table->float('speed');
+            $table->float('duration');
             $table->timestamps();
         });
     }
