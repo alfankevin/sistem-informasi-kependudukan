@@ -23,9 +23,11 @@
                         </a>
                     </div>
                 </div>
-                @if (session('image_data'))
+                @if (session('image'))
                     <div class="card-header">
-                        <img src="data:image/png;base64,{{ session()->pull('image_data') }}" width="100px" style="margin: auto;">
+                        <div style="width: 100%; min-height: max-content; max-height: 300px; overflow: scroll; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+                            <img src="data:image/png;base64,{{ session()->pull('image') }}" width="100%">
+                        </div>
                     </div>
                 @endif
                 <div class="card-body p-0">
@@ -43,9 +45,9 @@
                                 </div>
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
                                                     <label for="no_kk">No. KK</label>
                                                     <input id="no_kk" name="no_kk" type="text" spellcheck="false" autocomplete="off"
                                                     class="form-control @error('no_kk') is-invalid @enderror" value="{{ $text ?? '' }}{{ old('no_kk') }}">
@@ -55,7 +57,9 @@
                                                         </div>
                                                     @enderror
                                                 </div>
-                                                <div class="col-12 col-md-6">
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
                                                     <label for="kelurahan">Desa/Kelurahan</label>
                                                     <input id="kelurahan" name="kelurahan" type="text" spellcheck="false" autocomplete="off"
                                                         class="form-control @error('kelurahan') is-invalid @enderror" value="{{ old('kelurahan') }}">
@@ -67,19 +71,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
                                                     <label for="alamat">Alamat</label>
                                                     <input id="alamat" name="alamat" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}">
+                                                    class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}">
                                                     @error('alamat')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
-                                                <div class="col-12 col-md-6">
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
                                                     <label for="kecamatan">Kecamatan</label>
                                                     <input id="kecamatan" name="kecamatan" type="text" spellcheck="false" autocomplete="off"
                                                         class="form-control @error('kecamatan') is-invalid @enderror" value="{{ old('kecamatan') }}">
@@ -91,19 +97,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
                                                     <label for="rt_rw">RT/RW</label>
                                                     <input id="rt_rw" name="rt_rw" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('rt_rw') is-invalid @enderror" value="{{ old('rt_rw') }}">
+                                                    class="form-control @error('rt_rw') is-invalid @enderror" value="{{ old('rt_rw') }}">
                                                     @error('rt_rw')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
-                                                <div class="col-12 col-md-6">
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
                                                     <label for="kabupaten">Kabupaten/Kota</label>
                                                     <input id="kabupaten" name="kabupaten" type="text" spellcheck="false" autocomplete="off"
                                                         class="form-control @error('kabupaten') is-invalid @enderror" value="{{ old('kabupaten') }}">
@@ -115,9 +123,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group mb-0">
-                                            <div class="row">
-                                                <div class="col-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group mb-md-0">
                                                     <label for="kode_pos">Kode Pos</label>
                                                     <input id="kode_pos" name="kode_pos" type="text" spellcheck="false" autocomplete="off"
                                                         class="form-control @error('kode_pos') is-invalid @enderror" value="{{ old('kode_pos') }}">
@@ -127,7 +135,9 @@
                                                         </div>
                                                     @enderror
                                                 </div>
-                                                <div class="col-12 col-md-6">
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group mb-0">
                                                     <label for="provinsi">Provinsi</label>
                                                     <input id="provinsi" name="provinsi" type="text" spellcheck="false" autocomplete="off"
                                                         class="form-control @error('provinsi') is-invalid @enderror" value="{{ old('provinsi') }}">
@@ -363,7 +373,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importModalLabel">Unggah Kartu Keluarga</h5>
+                    <h5 class="modal-title" id="importModalLabel">Kartu Keluarga</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

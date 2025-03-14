@@ -136,7 +136,7 @@ class PendudukController extends Controller
      */
     public function create()
     {
-        return view('admin.penduduk.create_kk');
+        return view('admin.penduduk.create');
     }
 
     /**
@@ -294,8 +294,8 @@ class PendudukController extends Controller
         ]);
 
         $file = $request->file('file');
-        $imageData = base64_encode(file_get_contents($file));
-        Session::put('image_data', $imageData);
+        $image = base64_encode(file_get_contents($file));
+        Session::put('image', $image);
 
         $client = new Client();
         $response = $client->post('http://localhost:5000/ocr', [
