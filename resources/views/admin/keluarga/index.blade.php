@@ -108,7 +108,7 @@
                             <div class="col col-lg-7 col-sm-12">
                                 <table>
                                     <tr>
-                                        <td>Nama Anggota Keluarga</td>
+                                        <td>Nama Kepala Keluarga</td>
                                         <td>:</td>
                                         <td><b><span id="nama"></span></b></td>
                                     </tr>

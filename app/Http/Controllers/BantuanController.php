@@ -64,7 +64,7 @@ class BantuanController extends Controller
         $model->save();
         
         return redirect()->route('bantuan.index')
-            ->with('success', 'Penerima berhasil ditambahkan');
+            ->with('success', 'Data penerima berhasil ditambahkan');
     }
 
     /**
@@ -109,7 +109,7 @@ class BantuanController extends Controller
         Penduduk::find($id)->update($request->all());
 
         return redirect()->route('bantuan.index')
-            ->with('success', 'Penerima berhasil diupdate');
+            ->with('success', 'Data penerima berhasil diupdate');
     }
     
     /**
@@ -127,6 +127,6 @@ class BantuanController extends Controller
         ]);
         
         return redirect()->route('bantuan.index')
-            ->with('success', 'Penerima berhasil dihapus');
+            ->with('success', 'Data penerima berhasil dihapus');
     }
 }

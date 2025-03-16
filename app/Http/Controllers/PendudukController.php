@@ -80,7 +80,8 @@ class PendudukController extends Controller
                                 ->orWhere('pekerjaan', 'LIKE', "%{$search}%")
                                 ->orWhere('alamat', 'LIKE', "%{$search}%")
                                 ->orWhere('rt', 'LIKE', "%u{$search}%")
-                                ->orWhere('keterangan', 'LIKE', "%{$search}%");
+                                ->orWhere('keterangan', 'LIKE', "%{$search}%")
+                                ->orWhere('nik', 'LIKE', "%{$search}%");
                         })
                         ->select('penduduk.*', 'kartu_keluarga.alamat', 'kartu_keluarga.rt', 'kartu_keluarga.rw', 'kartu_keluarga.kode_pos', 'kartu_keluarga.kelurahan', 'kartu_keluarga.kecamatan', 'kartu_keluarga.kabupaten', 'kartu_keluarga.provinsi')
                         ->offset($start)
@@ -100,7 +101,8 @@ class PendudukController extends Controller
                                 ->orWhere('pekerjaan', 'LIKE', "%{$search}%")
                                 ->orWhere('alamat', 'LIKE', "%{$search}%")
                                 ->orWhere('rt', 'LIKE', "%{$search}%")
-                                ->orWhere('keterangan', 'LIKE', "%{$search}%");
+                                ->orWhere('keterangan', 'LIKE', "%{$search}%")
+                                ->orWhere('nik', 'LIKE', "%{$search}%");
                         })
                         ->select('penduduk.*')
                         ->count();
@@ -188,11 +190,8 @@ class PendudukController extends Controller
             }
         }
 
-        $process_time = Cache::get('timer');
-        if ($process_time) {
-            $duration = now()->diffInSeconds($process_time);
-            Cache::forget('timer');
-
+        $duration = $this->duration();
+        if ($duration !== null) {
             OCR::create([
                 'no_kk' => $request->input('no_kk'),
                 'accuracy' => $duration,
@@ -200,7 +199,18 @@ class PendudukController extends Controller
             ]);
         }
 
-        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil ditambahkan');
+        return redirect()->route('penduduk.index')->with('success', 'Data penduduk berhasil ditambahkan');
+    }
+
+    public function duration()
+    {
+        $process_time = Cache::get('timer');
+        if ($process_time) {
+            $duration = now()->diffInSeconds($process_time);
+            Cache::forget('timer');
+            return $duration;
+        }
+        return null;
     }
 
     /**
@@ -215,23 +225,25 @@ class PendudukController extends Controller
 
         $result = DB::select(
             '
-            SELECT *, DATE_FORMAT(tanggal_lahir, "%d-%m-%Y") AS tanggal_lahir,
-            CASE
-                WHEN jenis_kelamin = "L" THEN "Laki-laki"
-                WHEN jenis_kelamin = "P" THEN "Perempuan"
-                ELSE jenis_kelamin
-            END AS jenis_kelamin,
-            CASE
-            WHEN status_keluarga = "1" THEN "Kepala Keluarga"
-            WHEN status_keluarga = "2" THEN "Istri"
-            WHEN status_keluarga = "3" THEN "Anak"
-                ELSE "-"
-            END AS status_keluarga
-            FROM penduduk WHERE no_kk = ?
-            ORDER BY CAST(status_keluarga AS UNSIGNED), YEAR(tanggal_lahir)
+            SELECT p.*, DATE_FORMAT(p.tanggal_lahir, "%d-%m-%Y") AS tanggal_lahir,
+                CASE
+                    WHEN p.jenis_kelamin = "L" THEN "Laki-laki"
+                    WHEN p.jenis_kelamin = "P" THEN "Perempuan"
+                    ELSE p.jenis_kelamin
+                END AS jenis_kelamin,
+                CASE
+                    WHEN p.status_keluarga = "1" THEN "Kepala Keluarga"
+                    WHEN p.status_keluarga = "2" THEN "Istri"
+                    WHEN p.status_keluarga = "3" THEN "Anak"
+                    ELSE "-"
+                END AS status_keluarga,
+                (SELECT nama FROM penduduk WHERE no_kk = p.no_kk AND status_keluarga = 1 LIMIT 1) AS kepala_keluarga
+            FROM penduduk p
+            WHERE p.no_kk = ?
+            ORDER BY CAST(p.status_keluarga AS UNSIGNED), YEAR(p.tanggal_lahir)
             ',
             [$no_kk]
-        );
+        );        
 
         return response()->json($result);
     }
@@ -262,7 +274,7 @@ class PendudukController extends Controller
 
         KartuKeluarga::firstOrCreate(['no_kk' => $request->input('no_kk')]);
 
-        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil diupdate');
+        return redirect()->route('penduduk.index')->with('success', 'Data penduduk berhasil diupdate');
     }
 
     /**
@@ -275,14 +287,14 @@ class PendudukController extends Controller
     {
         $penduduk->delete();
 
-        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil dihapus');
+        return redirect()->route('penduduk.index')->with('success', 'Data penduduk berhasil dihapus');
     }
 
     public function import()
     {
         Excel::import(new pendudukImport, request()->file('file'));
 
-        return redirect()->route('penduduk.index')->with('success', 'Penduduk berhasil diimport');
+        return redirect()->route('penduduk.index')->with('success', 'Data penduduk berhasil diimport');
     }
 
     public function import_kk(Request $request)
@@ -297,20 +309,85 @@ class PendudukController extends Controller
         $image = base64_encode(file_get_contents($file));
         Session::put('image', $image);
 
-        $client = new Client();
-        $response = $client->post('http://localhost:5000/ocr', [
-            'multipart' => [
-                [
-                    'name'     => 'file',
-                    'contents' => fopen($file->getPathname(), 'r'),
-                    'filename' => $file->getClientOriginalName(),
-                ],
-            ],
-        ]);
+        // $client = new Client();
+        // $response = $client->post('http://localhost:5000/ocr', [
+        //     'multipart' => [
+        //         [
+        //             'name'     => 'file',
+        //             'contents' => fopen($file->getPathname(), 'r'),
+        //             'filename' => $file->getClientOriginalName(),
+        //         ],
+        //     ],
+        // ]);
 
-        $result = json_decode($response->getBody(), true);
+        // $result = json_decode($response->getBody(), true);
+        // print_r($result);
 
-        return view('admin.penduduk.create_kk', ['text' => $result['text']]);
+        $dummy = [
+            'status' => 'success',
+            'message' => 'OCR processed successfully',
+            'data' => [
+                'nomor_kk' => '3201061503980001',
+                'kepala_keluarga' => 'Budi Santoso',
+                'alamat' => 'Jl. Merdeka No. 10, Jakarta',
+                'rt' => '001',
+                'rw' => '002',
+                'kode_pos' => '12345',
+                'kelurahan' => 'Gambir',
+                'kecamatan' => 'Gambir',
+                'kabupaten' => 'Jakarta Pusat',
+                'provinsi' => 'DKI Jakarta',
+                'anggota_keluarga' => [
+                    [
+                        'nik' => '3201061503980002',
+                        'nama' => 'Budi Santoso',
+                        'tempat_lahir' => 'Jakarta',
+                        'tanggal_lahir' => '1990-05-10',
+                        'jenis_kelamin' => 'Laki-laki',
+                        'golongan_darah' => 'O',
+                        'agama' => 'Islam',
+                        'status_perkawinan' => 'Kawin',
+                        'status_keluarga' => 'Kepala Keluarga',
+                        'pekerjaan' => 'Pegawai Swasta',
+                        'keterangan' => 'Hidup',
+                    ],
+                    [
+                        'nik' => '3201061503980003',
+                        'nama' => 'Siti Aminah',
+                        'tempat_lahir' => 'Jakarta',
+                        'tanggal_lahir' => '1992-07-15',
+                        'jenis_kelamin' => 'Perempuan',
+                        'golongan_darah' => 'O',
+                        'agama' => 'Islam',
+                        'status_perkawinan' => 'Kawin',
+                        'status_keluarga' => 'Istri',
+                        'pekerjaan' => 'Ibu Rumah Tangga',
+                        'keterangan' => 'Hidup',
+                    ],
+                    [
+                        'nik' => '3201061503980004',
+                        'nama' => 'Rizky Santoso',
+                        'tempat_lahir' => 'Jakarta',
+                        'tanggal_lahir' => '2015-08-20',
+                        'jenis_kelamin' => 'Laki-laki',
+                        'golongan_darah' => 'O',
+                        'agama' => 'Islam',
+                        'status_perkawinan' => 'Belum Kawin',
+                        'status_keluarga' => 'Anak',
+                        'pekerjaan' => 'Pelajar',
+                        'keterangan' => 'Hidup',
+                    ]
+                ]
+            ]
+        ];
+        
+        if ($dummy['status'] === 'success') {
+            $data = $dummy['data'];
+        } else {
+            $data = null;
+        }        
+
+        return view('admin.penduduk.create_kk', ['data' => $data]);
     }
 
     public function export()

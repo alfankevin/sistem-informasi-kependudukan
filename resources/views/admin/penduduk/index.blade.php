@@ -55,61 +55,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="show-data">
-                                        {{-- @foreach ($penduduk as $key => $item)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td class="openKTP" data-toggle="modal" data-target="#ktp"
-                                                    data-nik="{{ $item->nik }}"
-                                                    data-nama="{{ $item->nama }}"
-                                                    data-tempat_lahir="{{ $item->tempat_lahir }}"
-                                                    data-tanggal_lahir="{{ $item->tanggal_lahir }}"
-                                                    data-jenis_kelamin="{{ $item->jenis_kelamin }}"
-                                                    data-golongan_darah="{{ $item->golongan_darah }}"
-                                                    data-alamat="{{ $item->alamat }}"
-                                                    data-rt="{{ $item->rt }}"
-                                                    data-agama="{{ $item->agama }}"
-                                                    data-status_perkawinan="{{ $item->status_perkawinan }}"
-                                                    data-pekerjaan="{{ $item->pekerjaan }}"
-                                                    data-keterangan="{{ $item->keterangan }}"
-                                                    data-sosial="{{ $item->nama_sosial }}">
-                                                    {{ $item->nama }}
-                                                </td>
-                                                <td>{{ $item->tempat_lahir }}</td>
-                                                <td class="text-nowrap">{{ $item->tanggal_lahir }}</td>
-                                                <td>{{ $item->jenis_kelamin }}</td>
-                                                <td>{{ $item->golongan_darah }}</td>
-                                                <td>{{ $item->agama }}</td>
-                                                <td>{{ $item->pekerjaan }}</td>
-                                                <td>{{ $item->alamat }}</td>
-                                                <td>00{{ $item->rt }}</td>
-                                                <td>{{ $item->keterangan }}</td>
-                                                <td class="text-right">
-                                                    <div class="d-flex justify-content-end">
-                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center data-link openKK" style="height: 30px; width: 30px"
-                                                            data-toggle="modal"
-                                                            data-target="#kk"
-                                                            data-value="{{ $item->no_kk }}"
-                                                            data-no_kk="{{ $item->no_kk }}"
-                                                            data-nama="{{ $item->nama }}"
-                                                            data-alamat="{{ $item->alamat }}"
-                                                            data-rt="{{ $item->rt }}">
-                                                            <i class="fas fa-user"></i>
-                                                        </button>
-                                                        <a href="{{ route('penduduk.edit', $item->id) }}" class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
-                                                            <i class="fas fa-pen"></i>
-                                                        </a>
-                                                        <form action="{{ route('penduduk.destroy', $item->id) }}"
-                                                            method="POST">
-                                                            <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach --}}
+                                        {{-- Data will be displayed here --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -134,7 +80,7 @@
                             <div class="col col-lg-7 col-sm-12">
                                 <table>
                                     <tr>
-                                        <td>Nama Anggota Keluarga</td>
+                                        <td>Nama Kepala Keluarga</td>
                                         <td>:</td>
                                         <td><b><span id="nama"></span></b></td>
                                     </tr>
@@ -351,7 +297,6 @@
             var provinsi = $(this).data('provinsi');
 
             $(".modal-content #no_kk").text(no_kk);
-            $(".modal-content #nama").text(nama);
             $(".modal-content #alamat").text(alamat ? alamat : '-');
             $(".modal-content #rt").text(rt ? rt.toString().padStart(3, '0') : '-');
             $(".modal-content #rw").text(rw ? rw.toString().padStart(3, '0') : '-');
@@ -377,7 +322,7 @@
 
                     detailElement1.empty();
                     detailElement2.empty();
-
+                    
                     for (var i = 0; i < response.length; i++) {
                         var nama = response[i].nama;
                         var nik = response[i].nik;
@@ -397,6 +342,7 @@
                             pekerjaan + '</td><td>' + status_perkawinan + '</td><td>' +
                             status_keluarga + '</td><td>' + keterangan + '</td></tr>');
                     }
+                    $('#nama').text(response[0].kepala_keluarga || '-');
                 },
                 error: function(xhr, status, error) {
                     console.log(error);

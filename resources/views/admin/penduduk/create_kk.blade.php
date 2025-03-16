@@ -24,6 +24,7 @@
                     </div>
                 </div>
                 @if (session('image'))
+                    <hr class="m-0">
                     <div class="card-header">
                         <div style="width: 100%; min-height: max-content; max-height: 300px; overflow: scroll; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
                             <img src="data:image/png;base64,{{ session()->pull('image') }}" width="100%">
@@ -36,6 +37,7 @@
                         <input type="hidden" name="import_kk" value="1">
                         <div class="accordion mb-0" id="accordionExample">
                             <div class="card mb-0">
+                                <hr class="m-0">
                                 <div class="card-header" id="headingOne">
                                     <h2 class="mb-0 w-100">
                                         <button style="color: #2a5788" class="btn btn-link btn-block text-left p-0 w-100" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -50,7 +52,7 @@
                                                 <div class="form-group">
                                                     <label for="no_kk">No. KK</label>
                                                     <input id="no_kk" name="no_kk" type="text" spellcheck="false" autocomplete="off"
-                                                    class="form-control @error('no_kk') is-invalid @enderror" value="{{ $text ?? '' }}{{ old('no_kk') }}">
+                                                    class="form-control @error('no_kk') is-invalid @enderror" value="{{ old('no_kk', $data['nomor_kk'] ?? '') }}">
                                                     @error('no_kk')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -62,7 +64,7 @@
                                                 <div class="form-group">
                                                     <label for="kelurahan">Desa/Kelurahan</label>
                                                     <input id="kelurahan" name="kelurahan" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('kelurahan') is-invalid @enderror" value="{{ old('kelurahan') }}">
+                                                        class="form-control @error('kelurahan') is-invalid @enderror" value="{{ old('kelurahan', $data['kelurahan'] ?? '') }}">
                                                     @error('kelurahan')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -76,7 +78,7 @@
                                                 <div class="form-group">
                                                     <label for="alamat">Alamat</label>
                                                     <input id="alamat" name="alamat" type="text" spellcheck="false" autocomplete="off"
-                                                    class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}">
+                                                    class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $data['alamat'] ?? '') }}">
                                                     @error('alamat')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -88,7 +90,7 @@
                                                 <div class="form-group">
                                                     <label for="kecamatan">Kecamatan</label>
                                                     <input id="kecamatan" name="kecamatan" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('kecamatan') is-invalid @enderror" value="{{ old('kecamatan') }}">
+                                                        class="form-control @error('kecamatan') is-invalid @enderror" value="{{ old('kecamatan', $data['kecamatan'] ?? '') }}">
                                                     @error('kecamatan')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -102,7 +104,7 @@
                                                 <div class="form-group">
                                                     <label for="rt_rw">RT/RW</label>
                                                     <input id="rt_rw" name="rt_rw" type="text" spellcheck="false" autocomplete="off"
-                                                    class="form-control @error('rt_rw') is-invalid @enderror" value="{{ old('rt_rw') }}">
+                                                    class="form-control @error('rt_rw') is-invalid @enderror" value="{{ old('rt_rw', ($data['rt'] ?? '') . '/' . ($data['rw'] ?? '')) }}">
                                                     @error('rt_rw')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -114,7 +116,7 @@
                                                 <div class="form-group">
                                                     <label for="kabupaten">Kabupaten/Kota</label>
                                                     <input id="kabupaten" name="kabupaten" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('kabupaten') is-invalid @enderror" value="{{ old('kabupaten') }}">
+                                                        class="form-control @error('kabupaten') is-invalid @enderror" value="{{ old('kabupaten', $data['kabupaten'] ?? '') }}">
                                                     @error('kabupaten')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -128,7 +130,7 @@
                                                 <div class="form-group mb-md-0">
                                                     <label for="kode_pos">Kode Pos</label>
                                                     <input id="kode_pos" name="kode_pos" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('kode_pos') is-invalid @enderror" value="{{ old('kode_pos') }}">
+                                                        class="form-control @error('kode_pos') is-invalid @enderror" value="{{ old('kode_pos', $data['kode_pos'] ?? '') }}">
                                                     @error('kode_pos')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -140,7 +142,7 @@
                                                 <div class="form-group mb-0">
                                                     <label for="provinsi">Provinsi</label>
                                                     <input id="provinsi" name="provinsi" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('provinsi') is-invalid @enderror" value="{{ old('provinsi') }}">
+                                                        class="form-control @error('provinsi') is-invalid @enderror" value="{{ old('provinsi', $data['provinsi'] ?? '') }}">
                                                     @error('provinsi')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -152,209 +154,216 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card mb-0">
-                                <div class="card-header" id="headingTwo">
-                                    <h2 class="mb-0 w-100">
-                                        <button style="color: #2a5788" class="btn btn-link btn-block text-left p-0 w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Data Penduduk #1
-                                        </button>
-                                    </h2>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="nama">Nama Lengkap</label>
-                                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                                        id="nama" name="penduduk[0][nama]" value="{{ old('nama') }} " spellcheck="false" autocomplete="off">
-                                                    @error('nama')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                            <input type="hidden" id="accordionCount" value="{{ count($data['anggota_keluarga']) }}">
+                            @foreach ($data['anggota_keluarga'] as $index => $penduduk)
+                                <div class="card mb-0">
+                                    <hr class="m-0">
+                                    <div class="card-header" id="heading{{ $index }}">
+                                        <h2 class="mb-0 w-100 d-flex">
+                                            <button style="color: #2a5788" class="btn btn-link btn-block text-left p-0 w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ $index }}" aria-expanded="false" aria-controls="collapse{{ $index }}">
+                                                Data Penduduk #{{ $index + 1 }}
+                                            </button>
+                                            <button type="button" class="close remove-accordion" aria-label="Close">
+                                                <span aria-hidden="true" style="color: #2a5788">&times;</span>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapse{{ $index }}" class="collapse" aria-labelledby="heading{{ $index }}" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="nama">Nama Lengkap</label>
+                                                        <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                                            id="nama" name="penduduk[{{ $index }}][nama]" value="{{ old('nama', $penduduk['nama'] ?? '') }}" spellcheck="false" autocomplete="off">
+                                                        @error('nama')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="nik">NIK</label>
+                                                        <input id="nik" name="penduduk[{{ $index }}][nik]" type="text" spellcheck="false" autocomplete="off"
+                                                        class="form-control @error('nik') is-invalid @enderror" value="{{ old('nik', $penduduk['nik'] ?? '') }}">
+                                                        @error('nik')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="nik">NIK</label>
-                                                    <input id="nik" name="penduduk[0][nik]" type="text" spellcheck="false" autocomplete="off"
-                                                    class="form-control @error('nik') is-invalid @enderror" value="{{ old('nik') }}">
-                                                    @error('nik')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Jenis Kelamin</label>
+                                                        <select class="form-control select2 @error('jenis_kelamin') is-invalid @enderror" name="penduduk[{{ $index }}][jenis_kelamin]">
+                                                            <option value=""></option>
+                                                            <option value="L">Laki-laki</option>
+                                                            <option value="P" selected>Perempuan</option>
+                                                        </select>
+                                                        @error('jenis_kelamin')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tempat_lahir">Tempat Lahir</label>
+                                                        <input id="tempat_lahir" name="penduduk[{{ $index }}][tempat_lahir]" type="text" spellcheck="false" autocomplete="off"
+                                                            class="form-control @error('tempat_lahir') is-invalid @enderror" value="{{ old('tempat_lahir', $penduduk['tempat_lahir'] ?? '') }}">
+                                                        @error('tempat_lahir')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group">
-                                                    <label>Jenis Kelamin</label>
-                                                    <select class="form-control select2 @error('jenis_kelamin') is-invalid @enderror" name="penduduk[0][jenis_kelamin]">
-                                                        <option value=""></option>
-                                                        <option value="L">Laki-laki</option>
-                                                        <option value="P">Perempuan</option>
-                                                    </select>
-                                                    @error('jenis_kelamin')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                                                        <input id="tanggal_lahir" name="penduduk[{{ $index }}][tanggal_lahir]" type="date" spellcheck="false" autocomplete="off"
+                                                                class="form-control @error('tanggal_lahir') is-invalid @enderror" value={{ old('tanggal_lahir', $penduduk['tanggal_lahir'] ?? '') }}>
+                                                        @error('tanggal_lahir')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Agama</label>
+                                                        <select class="form-control select2 @error('agama') is-invalid @enderror" name="penduduk[{{ $index }}][agama]">
+                                                            <option value=""></option>
+                                                            <option value="Islam" selected>Islam</option>
+                                                            <option value="Katolik">Katolik</option>
+                                                            <option value="Protestan">Protestan</option>
+                                                            <option value="Hindu">Hindu</option>
+                                                            <option value="Budha">Budha</option>
+                                                            <option value="Konghucu">Konghucu</option>
+                                                        </select>
+                                                        @error('agama')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="tempat_lahir">Tempat Lahir</label>
-                                                    <input id="tempat_lahir" name="penduduk[0][tempat_lahir]" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('tempat_lahir') is-invalid @enderror" value="{{ old('tempat_lahir') }}">
-                                                    @error('tempat_lahir')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="pekerjaan">Jenis Pekerjaan</label>
+                                                        <input id="pekerjaan" name="penduduk[{{ $index }}][pekerjaan]" type="text" spellcheck="false" autocomplete="off"
+                                                            class="form-control @error('pekerjaan') is-invalid @enderror" value="{{ old('pekerjaan', $penduduk['pekerjaan'] ?? '') }}">
+                                                        @error('pekerjaan')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Golongan Darah</label>
+                                                        <select class="form-control select2 @error('golongan_darah') is-invalid @enderror" name="penduduk[{{ $index }}][golongan_darah]">
+                                                            <option value=""></option>
+                                                            <option value="A">A</option>
+                                                            <option value="B">B</option>
+                                                            <option value="AB" selected>AB</option>
+                                                            <option value="O">O</option>
+                                                            <option value="-">-</option>
+                                                        </select>
+                                                        @error('golongan_darah')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="tanggal_lahir">Tanggal Lahir</label>
-                                                    <input id="tanggal_lahir" name="penduduk[0][tanggal_lahir]" type="date" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('tanggal_lahir') is-invalid @enderror" value={{ old('tanggal_lahir') }}>
-                                                    @error('tanggal_lahir')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group mb-md-0">
+                                                        <label>Status Perkawinan</label>
+                                                        <select class="form-control select2 @error('status_perkawinan') is-invalid @enderror" name="penduduk[{{ $index }}][status_perkawinan]">
+                                                            <option value=""></option>
+                                                            <option value="Kawin">Kawin</option>
+                                                            <option value="Belum Kawin" selected>Belum Kawin</option>
+                                                            <option value="Kawin Tercatat">Kawin Tercatat</option>
+                                                            <option value="Kawin Belum Tercatat">Kawin Belum Tercatat</option>
+                                                            <option value="Cerai">Cerai</option>
+                                                            <option value="Cerai Mati">Cerai Mati</option>
+                                                            <option value="Cerai Hidup">Cerai Hidup</option>
+                                                            <option value="Cerai Tercatat">Cerai Tercatat</option>
+                                                        </select>
+                                                        @error('status_perkawinan')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group mb-0">
+                                                        <label>Status Keluarga</label>
+                                                        <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="penduduk[{{ $index }}][status_keluarga]">
+                                                            <option value=""></option>
+                                                            <option value="1">Kepala Keluarga</option>
+                                                            <option value="2">Istri</option>
+                                                            <option value="3" selected>Anak</option>
+                                                            <option value="0">-</option>
+                                                        </select>
+                                                        @error('status_keluarga')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group">
-                                                    <label>Agama</label>
-                                                    <select class="form-control select2 @error('agama') is-invalid @enderror" name="penduduk[0][agama]">
-                                                        <option value=""></option>
-                                                        <option value="Islam">Islam</option>
-                                                        <option value="Katolik">Katolik</option>
-                                                        <option value="Protestan">Protestan</option>
-                                                        <option value="Hindu">Hindu</option>
-                                                        <option value="Budha">Budha</option>
-                                                        <option value="Konghucu">Konghucu</option>
-                                                    </select>
-                                                    @error('agama')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group" style="display: none">
+                                                        <label>Keterangan</label>
+                                                        <select class="form-control select2 @error('keterangan') is-invalid @enderror" name="penduduk[{{ $index }}][keterangan]">
+                                                            <option value=""></option>
+                                                            <option value="Hidup" selected>Hidup</option>
+                                                            <option value="Meninggal">Meninggal</option>
+                                                        </select>
+                                                        @error('keterangan')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group">
-                                                    <label for="pekerjaan">Jenis Pekerjaan</label>
-                                                    <input id="pekerjaan" name="penduduk[0][pekerjaan]" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('pekerjaan') is-invalid @enderror" value="{{ old('pekerjaan') }}">
-                                                    @error('pekerjaan')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group">
-                                                    <label>Golongan Darah</label>
-                                                    <select class="form-control select2 @error('golongan_darah') is-invalid @enderror" name="penduduk[0][golongan_darah]">
-                                                        <option value=""></option>
-                                                        <option value="A">A</option>
-                                                        <option value="B">B</option>
-                                                        <option value="AB">AB</option>
-                                                        <option value="O">O</option>
-                                                        <option value="-">-</option>
-                                                    </select>
-                                                    @error('golongan_darah')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group mb-md-0">
-                                                    <label>Status Perkawinan</label>
-                                                    <select class="form-control select2 @error('status_perkawinan') is-invalid @enderror" name="penduduk[0][status_perkawinan]">
-                                                        <option value=""></option>
-                                                        <option value="Kawin">Kawin</option>
-                                                        <option value="Belum Kawin">Belum Kawin</option>
-                                                        <option value="Kawin Tercatat">Kawin Tercatat</option>
-                                                        <option value="Kawin Belum Tercatat">Kawin Belum Tercatat</option>
-                                                        <option value="Cerai">Cerai</option>
-                                                        <option value="Cerai Mati">Cerai Mati</option>
-                                                        <option value="Cerai Hidup">Cerai Hidup</option>
-                                                        <option value="Cerai Tercatat">Cerai Tercatat</option>
-                                                    </select>
-                                                    @error('status_perkawinan')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group mb-0">
-                                                    <label>Status Keluarga</label>
-                                                    <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="penduduk[0][status_keluarga]">
-                                                        <option value=""></option>
-                                                        <option value="1">Kepala Keluarga</option>
-                                                        <option value="2">Istri</option>
-                                                        <option value="3">Anak</option>
-                                                        <option value="0">-</option>
-                                                    </select>
-                                                    @error('status_keluarga')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group" style="display: none">
-                                                    <label>Keterangan</label>
-                                                    <select class="form-control select2 @error('keterangan') is-invalid @enderror" name="penduduk[0][keterangan]">
-                                                        <option value=""></option>
-                                                        <option value="Hidup" selected>Hidup</option>
-                                                        <option value="Meninggal">Meninggal</option>
-                                                    </select>
-                                                    @error('keterangan')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="form-group" style="display: none">
-                                                    <label>Bantuan Sosial</label>
-                                                    <select class="form-control select2" name="penduduk[0][id_sosial]">
-                                                        <option value="1"></option>
-                                                    </select>
-                                                    @error('id_sosial')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
+                                                <div class="col-12 col-md-6">
+                                                    <div class="form-group" style="display: none">
+                                                        <label>Bantuan Sosial</label>
+                                                        <select class="form-control select2" name="penduduk[{{ $index }}][id_sosial]">
+                                                            <option value="1"></option>
+                                                        </select>
+                                                        @error('id_sosial')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
@@ -400,17 +409,21 @@
 
     <script>
         $(document).ready(function() {
-        let accordionCount = 1;
+        let accordionCount = $('#accordionCount').val();
 
         $('#tambahAccordion').click(function() {
             accordionCount++;
 
             const newAccordion = `
                 <div class="card mb-0">
+                    <hr class="m-0">
                     <div class="card-header" id="heading${accordionCount}">
-                        <h2 class="mb-0 w-100">
+                        <h2 class="mb-0 w-100 d-flex">
                             <button style="color: #2a5788" class="btn btn-link btn-block text-left p-0 w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapse${accordionCount}" aria-expanded="false" aria-controls="collapse${accordionCount}">
                                 Data Penduduk #${accordionCount}
+                            </button>
+                            <button type="button" class="close remove-accordion" aria-label="Close">
+                                <span aria-hidden="true" style="color: #2a5788">&times;</span>
                             </button>
                         </h2>
                     </div>
@@ -612,6 +625,10 @@
             `;
 
             $('#accordionExample').append(newAccordion);
+        });
+
+        $(document).on('click', '.remove-accordion', function() {
+            $(this).closest('.card').remove();
         });
     });
     </script>

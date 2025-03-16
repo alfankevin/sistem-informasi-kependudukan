@@ -64,7 +64,7 @@ class KeluargaController extends Controller
         $model->save();
         
         return redirect()->route('keluarga.index')
-            ->with('success', 'Kartu berhasil ditambahkan');
+            ->with('success', 'Kartu Keluarga berhasil ditambahkan');
     }
 
     /**
@@ -98,41 +98,18 @@ class KeluargaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateKeluargaRequest $request, string $id)
-    {
+    {   
+        // Update data penduduk
+        $no_kk = KartuKeluarga::find($id)?->no_kk;
+        Penduduk::where('no_kk', $no_kk)->update(['no_kk' => $request->input('no_kk')]);
+
+        // Update data kartu keluarga
         list($rt, $rw) = explode('/', $request->input('rt_rw'));
-
-        $request->merge([
-            'rt' => $rt,
-            'rw' => $rw,
-        ]);
-        
+        $request->merge(['rt' => $rt, 'rw' => $rw]);
         KartuKeluarga::find($id)->update($request->all());
-
-        // $penduduk = DB::table('penduduk')->where('id', $id)->first();
-        // $kkLama = $penduduk->no_kk;
-        // $kkBaru = $request->input('no_kk');
-        // $nama = $request->input('nama');
-        // $alamat = $request->input('alamat');
-        // $rt = $request->input('rt');
-        
-        // DB::table('penduduk')
-        //     ->where('id', $id)
-        //     ->update(['nama' => $nama]);
-        
-        // DB::table('penduduk')
-        //     ->where('no_kk', $kkLama)
-        //     ->update(['alamat' => $alamat]);
-        
-        // DB::table('penduduk')
-        //     ->where('no_kk', $kkLama)
-        //     ->update(['rt' => $rt]);
-        
-        // DB::table('penduduk')
-        //     ->where('no_kk', $kkLama)
-        //     ->update(['no_kk' => $kkBaru]);
         
         return redirect()->route('keluarga.index')
-            ->with('success', 'Kartu berhasil diupdate');
+            ->with('success', 'Kartu Keluarga berhasil diupdate');
     }
 
     /**
@@ -150,6 +127,6 @@ class KeluargaController extends Controller
         ]);
 
         return redirect()->route('keluarga.index')
-            ->with('success', 'Kartu berhasil dihapus');
+            ->with('success', 'Kartu Keluarga berhasil dihapus');
     }
 }
