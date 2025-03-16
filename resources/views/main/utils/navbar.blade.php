@@ -23,6 +23,9 @@
                     <a class="nav-link {{Request::is('galeri') ? 'active' : ''}}" href="/galeri">Galeri</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{Request::is('pelayanan') ? 'active' : ''}}" href="/pelayanan">Pelayanan</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact Us</a>
                 </li>
             </ul>
