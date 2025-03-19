@@ -308,7 +308,7 @@
         });
 
         $(document).on("click", ".data-link", function() {
-            var no_kk = $(this).data('value');
+            var no_kk = $(this).data('no_kk');
 
             $.ajax({
                 url: '{{ route('penduduk.detail') }}',

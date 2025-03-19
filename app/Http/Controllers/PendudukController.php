@@ -149,14 +149,28 @@ class PendudukController extends Controller
      */
     public function store(StorePendudukRequest $request)
     {
+        $penduduk = $request->input('penduduk');
+        foreach ($penduduk as $data) {
+            Penduduk::create([
+                'no_kk' => $request->input('no_kk'),
+                'nik' => $data['nik'],
+                'nama' => $data['nama'],
+                'tempat_lahir' => $data['tempat_lahir'],
+                'tanggal_lahir' => $data['tanggal_lahir'],
+                'jenis_kelamin' => $data['jenis_kelamin'],
+                'golongan_darah' => $data['golongan_darah'],
+                'agama' => $data['agama'],
+                'status_perkawinan' => $data['status_perkawinan'],
+                'status_keluarga' => $data['status_keluarga'],
+                'pekerjaan' => $data['pekerjaan'],
+                'keterangan' => $data['keterangan'],
+                'id_sosial' => $data['id_sosial'],
+            ]);
+        }
+
         $import_kk = $request->input('import_kk');
-
-        if(!$import_kk) {
-            Penduduk::create($request->all());
-        } else {
-            $penduduk = $request->input('penduduk');
+        if($import_kk) {
             list($rt, $rw) = explode('/', $request->input('rt_rw'));
-
             KartuKeluarga::updateOrCreate(
                 ['no_kk' => $request->input('no_kk')],
                 [
@@ -170,24 +184,6 @@ class PendudukController extends Controller
                     'provinsi' => $request->input('provinsi')
                 ]
             );
-
-            foreach ($penduduk as $data) {
-                Penduduk::create([
-                    'no_kk' => $request->input('no_kk'),
-                    'nik' => $data['nik'],
-                    'nama' => $data['nama'],
-                    'tempat_lahir' => $data['tempat_lahir'],
-                    'tanggal_lahir' => $data['tanggal_lahir'],
-                    'jenis_kelamin' => $data['jenis_kelamin'],
-                    'golongan_darah' => $data['golongan_darah'],
-                    'agama' => $data['agama'],
-                    'status_perkawinan' => $data['status_perkawinan'],
-                    'status_keluarga' => $data['status_keluarga'],
-                    'pekerjaan' => $data['pekerjaan'],
-                    'keterangan' => $data['keterangan'],
-                    'id_sosial' => $data['id_sosial'],
-                ]);
-            }
         }
 
         $duration = $this->duration();
