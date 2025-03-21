@@ -305,87 +305,21 @@ class PendudukController extends Controller
         $image = base64_encode(file_get_contents($file));
         Session::put('image', $image);
 
-        // $client = new Client();
-        // $response = $client->post('http://localhost:5000/ocr', [
-        //     'multipart' => [
-        //         [
-        //             'name'     => 'file',
-        //             'contents' => fopen($file->getPathname(), 'r'),
-        //             'filename' => $file->getClientOriginalName(),
-        //         ],
-        //     ],
-        // ]);
+        $client = new Client();
+        $response = $client->post('http://localhost:5000/ocr', [
+            'multipart' => [
+                [
+                    'name'     => 'file',
+                    'contents' => fopen($file->getPathname(), 'r'),
+                    'filename' => $file->getClientOriginalName(),
+                ],
+            ],
+        ]);
 
-        // $result = json_decode($response->getBody(), true);
-        // print_r($result);
+        $result = json_decode($response->getBody(), true);
 
-        $dummy = [
-            'status' => 'success',
-            'message' => 'OCR processed successfully',
-            'data' => [
-                'nomor_kk' => '3201061503980001',
-                'kepala_keluarga' => 'Budi Santoso',
-                'alamat' => 'Jl. Merdeka No. 10, Jakarta',
-                'rt' => '001',
-                'rw' => '002',
-                'kode_pos' => '12345',
-                'kelurahan' => 'Gambir',
-                'kecamatan' => 'Gambir',
-                'kabupaten' => 'Jakarta Pusat',
-                'provinsi' => 'DKI Jakarta',
-                'anggota_keluarga' => [
-                    [
-                        'nik' => '3201061503980002',
-                        'nama' => 'Budi Santoso',
-                        'tempat_lahir' => 'Jakarta',
-                        'tanggal_lahir' => '1990-05-10',
-                        'jenis_kelamin' => 'Laki-laki',
-                        'golongan_darah' => 'O',
-                        'agama' => 'Islam',
-                        'status_perkawinan' => 'Kawin',
-                        'status_keluarga' => 'Kepala Keluarga',
-                        'pekerjaan' => 'Pegawai Swasta',
-                        'keterangan' => 'Hidup',
-                    ],
-                    [
-                        'nik' => '3201061503980003',
-                        'nama' => 'Siti Aminah',
-                        'tempat_lahir' => 'Jakarta',
-                        'tanggal_lahir' => '1992-07-15',
-                        'jenis_kelamin' => 'Perempuan',
-                        'golongan_darah' => 'O',
-                        'agama' => 'Islam',
-                        'status_perkawinan' => 'Kawin',
-                        'status_keluarga' => 'Istri',
-                        'pekerjaan' => 'Ibu Rumah Tangga',
-                        'keterangan' => 'Hidup',
-                    ],
-                    [
-                        'nik' => '3201061503980004',
-                        'nama' => 'Rizky Santoso',
-                        'tempat_lahir' => 'Jakarta',
-                        'tanggal_lahir' => '2015-08-20',
-                        'jenis_kelamin' => 'Laki-laki',
-                        'golongan_darah' => 'O',
-                        'agama' => 'Islam',
-                        'status_perkawinan' => 'Belum Kawin',
-                        'status_keluarga' => 'Anak',
-                        'pekerjaan' => 'Pelajar',
-                        'keterangan' => 'Hidup',
-                    ]
-                ]
-            ]
-        ];
-        
-        if ($dummy['status'] === 'success') {
-            $data = $dummy['data'];
-        } else {
-            $data = null;
-        }        
-
-        return view('admin.penduduk.create_kk', ['data' => $data]);
+        return view('admin.penduduk.create_kk', ['data' => $result['data']]);
     }
-
     public function export()
     {
         return Excel::download(new pendudukExport, 'penduduk.xlsx');

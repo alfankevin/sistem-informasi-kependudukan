@@ -25,7 +25,7 @@
         <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white" style="zoom: 110%">
           <div class="p-4 m-3">
             <img src="../assets/img/malang.png" alt="logo" width="100" class="mb-5 mt-2">
-            <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">SIAK</span></h4>
+            <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">S.I.A.K</span></h4>
             <p style="color: #6c757d">Sistem Informasi Administrasi Kependudukan</p>
             <form action="{{ route('login') }}" method="POST">
               @csrf

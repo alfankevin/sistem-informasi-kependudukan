@@ -13,4 +13,5 @@ yarn-error.log
 /.idea
 /.vscode
 .history
-/flask/venv/
+/ocr/venv/
+/ocr/helper/__pycache__/

@@ -104,7 +104,7 @@
                                                 <div class="form-group">
                                                     <label for="rt_rw">RT/RW</label>
                                                     <input id="rt_rw" name="rt_rw" type="text" spellcheck="false" autocomplete="off"
-                                                    class="form-control @error('rt_rw') is-invalid @enderror" value="{{ old('rt_rw', ($data['rt'] ?? '') . '/' . ($data['rw'] ?? '')) }}">
+                                                        class="form-control @error('rt_rw') is-invalid @enderror" value="{{ old('rt_rw', $data['rt_rw'] ?? '') }}">
                                                     @error('rt_rw')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
