@@ -153,17 +153,17 @@ class PendudukController extends Controller
         foreach ($penduduk as $data) {
             Penduduk::create([
                 'no_kk' => $request->input('no_kk'),
-                'nik' => $data['nik'],
-                'nama' => $data['nama'],
-                'tempat_lahir' => $data['tempat_lahir'],
-                'tanggal_lahir' => $data['tanggal_lahir'],
-                'jenis_kelamin' => $data['jenis_kelamin'],
-                'golongan_darah' => $data['golongan_darah'],
                 'agama' => $data['agama'],
-                'status_perkawinan' => $data['status_perkawinan'],
-                'status_keluarga' => $data['status_keluarga'],
-                'pekerjaan' => $data['pekerjaan'],
+                'golongan_darah' => $data['golongan_darah'],
+                'jenis_kelamin' => $data['jenis_kelamin'],
                 'keterangan' => $data['keterangan'],
+                'nama' => $data['nama'],
+                'nik' => $data['nik'],
+                'pekerjaan' => $data['pekerjaan'],
+                'status_keluarga' => $data['status_keluarga'],
+                'status_perkawinan' => $data['status_perkawinan'],
+                'tanggal_lahir' => $data['tanggal_lahir'],
+                'tempat_lahir' => $data['tempat_lahir'],
                 'id_sosial' => $data['id_sosial'],
             ]);
         }
@@ -175,25 +175,69 @@ class PendudukController extends Controller
                 ['no_kk' => $request->input('no_kk')],
                 [
                     'alamat' => $request->input('alamat'),
+                    'kabupaten' => $request->input('kabupaten'),
+                    'kecamatan' => $request->input('kecamatan'),
+                    'kelurahan' => $request->input('kelurahan'),
+                    'kode_pos' => $request->input('kode_pos'),
+                    'provinsi' => $request->input('provinsi'),
                     'rt' => ltrim($rt, '0'),
                     'rw' => ltrim($rw, '0'),
-                    'kode_pos' => $request->input('kode_pos'),
-                    'kelurahan' => $request->input('kelurahan'),
-                    'kecamatan' => $request->input('kecamatan'),
-                    'kabupaten' => $request->input('kabupaten'),
-                    'provinsi' => $request->input('provinsi')
                 ]
             );
-        }
 
-        $duration = $this->duration();
-        if ($duration !== null) {
-            OCR::create([
-                'no_kk' => $request->input('no_kk'),
-                'accuracy' => $duration,
-                'duration' => $duration,
-            ]);
+            $anggotaKeluarga = array_map(function ($data) {
+                return [
+                    'agama' => $data['agama'],
+                    'golongan_darah' => $data['golongan_darah'],
+                    'jenis_kelamin' => match ($data['jenis_kelamin']) {
+                        'L' => 'Laki-laki',
+                        'P' => 'Perempuan',
+                        default => $data['jenis_kelamin'],
+                    },
+                    'keterangan' => $data['keterangan'],
+                    'nama' => $data['nama'],
+                    'nik' => $data['nik'],
+                    'pekerjaan' => $data['pekerjaan'],
+                    'status_keluarga' => match ($data['status_keluarga']) {
+                        '1' => 'Kepala Keluarga',
+                        '2' => 'Istri',
+                        '3' => 'Anak',
+                        default => $data['status_keluarga'],
+                    },
+                    'status_perkawinan' => $data['status_perkawinan'],
+                    'tanggal_lahir' => $data['tanggal_lahir'],
+                    'tempat_lahir' => $data['tempat_lahir'],
+                ];
+            }, $penduduk);            
+    
+            $ocr_result = Session::get('ocr_result');
+            $ground_truth = [
+                'alamat' => $request->input('alamat'),
+                'anggota_keluarga' => $anggotaKeluarga,
+                'kabupaten' => $request->input('kabupaten'),
+                'kecamatan' => $request->input('kecamatan'),
+                'kelurahan' => $request->input('kelurahan'),
+                'kode_pos' => $request->input('kode_pos'),
+                'nomor_kk' => $request->input('no_kk'),
+                'provinsi' => $request->input('provinsi'),
+                'rt' => ltrim($rt, '0'),
+                'rw' => ltrim($rw, '0'),
+            ];
+    
+            $duration = $this->duration();
+            $accuracy = $this->accuracy($ocr_result, $ground_truth);
+            
+            if ($duration !== null || $accuracy !== null) {
+                OCR::create([
+                    'no_kk' => $request->input('no_kk'),
+                    'accuracy' => $accuracy,
+                    'duration' => $duration,
+                ]);
+                Session::forget('ocr_result');
+            }
         }
+        
+        // dd($ocr_result, $ground_truth, $duration, $accuracy);
 
         return redirect()->route('penduduk.index')->with('success', 'Data penduduk berhasil ditambahkan');
     }
@@ -207,6 +251,82 @@ class PendudukController extends Controller
             return $duration;
         }
         return null;
+    }
+
+    public function accuracy($ocr_result, $ground_truth): int
+    {
+        // Inisialisasi variabel
+        $totalKarakter = 0;
+        $karakterSalah = 0;
+
+        // Bandingkan field pada level root
+        $rootFields = [
+            'alamat',
+            'kabupaten',
+            'kecamatan',
+            'kelurahan',
+            'kode_pos',
+            'nomor_kk',
+            'provinsi',
+            'rt',
+            'rw',
+        ];
+
+        foreach ($rootFields as $field) {
+            if (isset($ocr_result[$field]) && isset($ground_truth[$field])) {
+                // Hitung total karakter
+                $totalKarakter += strlen($ground_truth[$field]);
+
+                // Hitung karakter yang salah menggunakan Levenshtein
+                $karakterSalah += levenshtein($ocr_result[$field], $ground_truth[$field]);
+            }
+        }
+
+        // Bandingkan field pada anggota_keluarga
+        if (isset($ocr_result['anggota_keluarga']) && isset($ground_truth['anggota_keluarga'])) {
+            $ocrAnggota = $ocr_result['anggota_keluarga'];
+            $groundTruthAnggota = $ground_truth['anggota_keluarga'];
+
+            // Pastikan kedua array memiliki panjang yang sama
+            if (count($ocrAnggota) === count($groundTruthAnggota)) {
+                $anggotaFields = [
+                    'agama',
+                    'golongan_darah',
+                    'jenis_kelamin',
+                    'keterangan',
+                    'nama',
+                    'nik',
+                    'pekerjaan',
+                    'status_keluarga',
+                    'status_perkawinan',
+                    'tanggal_lahir',
+                    'tempat_lahir',
+                ];
+
+                foreach ($ocrAnggota as $index => $ocrData) {
+                    foreach ($anggotaFields as $field) {
+                        if (isset($ocrData[$field]) && isset($groundTruthAnggota[$index][$field])) {
+                            // Hitung total karakter
+                            $totalKarakter += strlen($groundTruthAnggota[$index][$field]);
+
+                            // Hitung karakter yang salah menggunakan Levenshtein
+                            $karakterSalah += levenshtein($ocrData[$field], $groundTruthAnggota[$index][$field]);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Hitung Character Error Rate (CER)
+        if ($totalKarakter === 0) {
+            return 0; // Hindari pembagian oleh nol
+        }
+
+        // Hitung akurasi sebagai 100% - CER
+        $cer = ($karakterSalah / $totalKarakter) * 100;
+        $akurasi = 100 - $cer;
+
+        return (int) $akurasi;
     }
 
     /**
@@ -317,9 +437,11 @@ class PendudukController extends Controller
         ]);
 
         $result = json_decode($response->getBody(), true);
+        Session::put('ocr_result', $result['data']);
 
         return view('admin.penduduk.create_kk', ['data' => $result['data']]);
     }
+
     public function export()
     {
         return Excel::download(new pendudukExport, 'penduduk.xlsx');

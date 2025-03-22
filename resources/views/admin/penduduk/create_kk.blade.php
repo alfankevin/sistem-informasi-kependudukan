@@ -104,8 +104,8 @@
                                                 <div class="form-group">
                                                     <label for="rt_rw">RT/RW</label>
                                                     <input id="rt_rw" name="rt_rw" type="text" spellcheck="false" autocomplete="off"
-                                                        class="form-control @error('rt_rw') is-invalid @enderror" value="{{ old('rt_rw', $data['rt_rw'] ?? '') }}">
-                                                    @error('rt_rw')
+                                                        class="form-control @error('rt_rw') is-invalid @enderror" value="{{ old('rt_rw', ($data['rt'] ?? '') . '/' . ($data['rw'] ?? '')) }}">
+                                                @error('rt_rw')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
@@ -202,8 +202,8 @@
                                                         <label>Jenis Kelamin</label>
                                                         <select class="form-control select2 @error('jenis_kelamin') is-invalid @enderror" name="penduduk[{{ $index }}][jenis_kelamin]">
                                                             <option value=""></option>
-                                                            <option value="L">Laki-laki</option>
-                                                            <option value="P" selected>Perempuan</option>
+                                                            <option value="L" {{ $penduduk['jenis_kelamin'] == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                            <option value="P" {{ $penduduk['jenis_kelamin'] == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                         </select>
                                                         @error('jenis_kelamin')
                                                             <div class="invalid-feedback">
@@ -243,12 +243,12 @@
                                                         <label>Agama</label>
                                                         <select class="form-control select2 @error('agama') is-invalid @enderror" name="penduduk[{{ $index }}][agama]">
                                                             <option value=""></option>
-                                                            <option value="Islam" selected>Islam</option>
-                                                            <option value="Katolik">Katolik</option>
-                                                            <option value="Protestan">Protestan</option>
-                                                            <option value="Hindu">Hindu</option>
-                                                            <option value="Budha">Budha</option>
-                                                            <option value="Konghucu">Konghucu</option>
+                                                            <option value="Islam" {{ $penduduk['agama'] == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                                            <option value="Katolik" {{ $penduduk['agama'] == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                                            <option value="Protestan" {{ $penduduk['agama'] == 'Protestan' ? 'selected' : '' }}>Protestan</option>
+                                                            <option value="Hindu" {{ $penduduk['agama'] == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                                            <option value="Budha" {{ $penduduk['agama'] == 'Budha' ? 'selected' : '' }}>Budha</option>
+                                                            <option value="Konghucu" {{ $penduduk['agama'] == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
                                                         </select>
                                                         @error('agama')
                                                             <div class="invalid-feedback">
@@ -276,11 +276,11 @@
                                                         <label>Golongan Darah</label>
                                                         <select class="form-control select2 @error('golongan_darah') is-invalid @enderror" name="penduduk[{{ $index }}][golongan_darah]">
                                                             <option value=""></option>
-                                                            <option value="A">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="AB" selected>AB</option>
-                                                            <option value="O">O</option>
-                                                            <option value="-">-</option>
+                                                            <option value="A" {{ $penduduk['golongan_darah'] == 'A' ? 'selected' : '' }}>A</option>
+                                                            <option value="B" {{ $penduduk['golongan_darah'] == 'B' ? 'selected' : '' }}>B</option>
+                                                            <option value="AB" {{ $penduduk['golongan_darah'] == 'AB' ? 'selected' : '' }}>AB</option>
+                                                            <option value="O" {{ $penduduk['golongan_darah'] == 'O' ? 'selected' : '' }}>O</option>
+                                                            <option value="-" {{ $penduduk['golongan_darah'] == '-' ? 'selected' : '' }}>-</option>
                                                         </select>
                                                         @error('golongan_darah')
                                                             <div class="invalid-feedback">
@@ -296,14 +296,14 @@
                                                         <label>Status Perkawinan</label>
                                                         <select class="form-control select2 @error('status_perkawinan') is-invalid @enderror" name="penduduk[{{ $index }}][status_perkawinan]">
                                                             <option value=""></option>
-                                                            <option value="Kawin">Kawin</option>
-                                                            <option value="Belum Kawin" selected>Belum Kawin</option>
-                                                            <option value="Kawin Tercatat">Kawin Tercatat</option>
-                                                            <option value="Kawin Belum Tercatat">Kawin Belum Tercatat</option>
-                                                            <option value="Cerai">Cerai</option>
-                                                            <option value="Cerai Mati">Cerai Mati</option>
-                                                            <option value="Cerai Hidup">Cerai Hidup</option>
-                                                            <option value="Cerai Tercatat">Cerai Tercatat</option>
+                                                            <option value="Kawin" {{ $penduduk['status_perkawinan'] == 'Kawin' ? 'selected' : '' }}>Kawin</option>
+                                                            <option value="Belum Kawin" {{ $penduduk['status_perkawinan'] == 'Belum Kawin' ? 'selected' : '' }}>Belum Kawin</option>
+                                                            <option value="Kawin Tercatat" {{ $penduduk['status_perkawinan'] == 'Kawin Tercatat' ? 'selected' : '' }}>Kawin Tercatat</option>
+                                                            <option value="Kawin Belum Tercatat" {{ $penduduk['status_perkawinan'] == 'Kawin Belum Tercatat' ? 'selected' : '' }}>Kawin Belum Tercatat</option>
+                                                            <option value="Cerai" {{ $penduduk['status_perkawinan'] == 'Cerai' ? 'selected' : '' }}>Cerai</option>
+                                                            <option value="Cerai Mati" {{ $penduduk['status_perkawinan'] == 'Cerai Mati' ? 'selected' : '' }}>Cerai Mati</option>
+                                                            <option value="Cerai Hidup" {{ $penduduk['status_perkawinan'] == 'Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup</option>
+                                                            <option value="Cerai Tercatat" {{ $penduduk['status_perkawinan'] == 'Cerai Tercatat' ? 'selected' : '' }}>Cerai Tercatat</option>
                                                         </select>
                                                         @error('status_perkawinan')
                                                             <div class="invalid-feedback">
@@ -317,10 +317,10 @@
                                                         <label>Status Keluarga</label>
                                                         <select class="form-control select2 @error('status_keluarga') is-invalid @enderror" name="penduduk[{{ $index }}][status_keluarga]">
                                                             <option value=""></option>
-                                                            <option value="1">Kepala Keluarga</option>
-                                                            <option value="2">Istri</option>
-                                                            <option value="3" selected>Anak</option>
-                                                            <option value="0">-</option>
+                                                            <option value="1" {{ $penduduk['status_keluarga'] == 'Kepala Keluarga' ? 'selected' : '' }}>Kepala Keluarga</option>
+                                                            <option value="2" {{ $penduduk['status_keluarga'] == 'Istri' ? 'selected' : '' }}>Istri</option>
+                                                            <option value="3" {{ $penduduk['status_keluarga'] == 'Anak' ? 'selected' : '' }}>Anak</option>
+                                                            <option value="0" {{ $penduduk['status_keluarga'] == '-' ? 'selected' : '' }}>-</option>
                                                         </select>
                                                         @error('status_keluarga')
                                                             <div class="invalid-feedback">

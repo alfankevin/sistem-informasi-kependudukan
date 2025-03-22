@@ -95,7 +95,7 @@ def preprocess_image(image):
 
 def formatted_text(text):
     # List of keywords that should be followed by '\n'
-    keywords = ["No", "Nama", "Alamat", "RT", "Kode", "Desa", "Kec", "Kab", "Prov"]
+    keywords = ["No", "Alamat", "RT", "Kode", "Desa", "Kec", "Kab", "Prov"]
 
     # Create regex to detect keywords
     pattern = r'(' + '|'.join(map(re.escape, keywords)) + r')'
@@ -105,14 +105,13 @@ def formatted_text(text):
 
     return formatted_text
 
-def final_text(text):
+def extracted_data(text):
     # Pisahkan teks menjadi baris-baris
     lines = text.strip().split('\n')
 
     # Inisialisasi variabel
     extracted_data = {
         'nomor_kk': None,
-        'kepala_keluarga': None,
         'alamat': None,
         'rt_rw': None,
         'kode_pos': None,
@@ -124,16 +123,7 @@ def final_text(text):
 
     # Proses setiap baris
     for line in lines:
-        # Case-sensitive check for "Nama Kepala Keluarga"
-        if "Nama" in line:
-            try:
-                extracted_data['kepala_keluarga'] = line.split(":")[1].strip()
-            except IndexError:
-                print("Error: Unable to extract 'Nama Kepala Keluarga' information.")
-            continue  # Skip to the next line after processing this one
-
-        # Case-insensitive checks for other keywords
-        line_lower = line.lower()  # Convert line to lowercase for case-insensitive matching
+        line_lower = line.lower()  # Case-insensitive matching
         if "no" in line_lower:
             try:
                 extracted_data['nomor_kk'] = line.split(".")[1].strip()
@@ -154,7 +144,7 @@ def final_text(text):
                 extracted_data['kode_pos'] = line.split(":")[1].strip()
             except IndexError:
                 print("Error: Unable to extract 'Kode Pos' information.")
-        elif "desa" in line_lower:
+        elif "kelurahan" in line_lower:
             try:
                 extracted_data['kelurahan'] = line.split(":")[1].strip()
             except IndexError:
@@ -175,5 +165,53 @@ def final_text(text):
             except IndexError:
                 print("Error: Unable to extract 'Provinsi' information.")
 
-    # Return the extracted data
+    rt_rw = extracted_data['rt_rw']
+    rt, rw = rt_rw.split('/')
+    extracted_data['rt'] = rt
+    extracted_data['rw'] = rw
+    del extracted_data['rt_rw']
+
+    # Append anggota_keluarga dummy data
+    extracted_data['anggota_keluarga'] = [
+        {
+            'nik': '3201061503980002',
+            'nama': 'Budi Santoso',
+            'tempat_lahir': 'Jakarta',
+            'tanggal_lahir': '1990-05-10',
+            'jenis_kelamin': 'Laki-laki',
+            'golongan_darah': 'O',
+            'agama': 'Islam',
+            'status_perkawinan': 'Kawin',
+            'status_keluarga': 'Kepala Keluarga',
+            'pekerjaan': 'Pegawai Swasta',
+            'keterangan': 'Hidup',
+        },
+        {
+            'nik': '3201061503980003',
+            'nama': 'Siti Aminah',
+            'tempat_lahir': 'Jakarta',
+            'tanggal_lahir': '1992-07-15',
+            'jenis_kelamin': 'Perempuan',
+            'golongan_darah': 'O',
+            'agama': 'Katolik',
+            'status_perkawinan': 'Kawin',
+            'status_keluarga': 'Istri',
+            'pekerjaan': 'Ibu Rumah Tangga',
+            'keterangan': 'Hidup',
+        },
+        {
+            'nik': '3201061503980004',
+            'nama': 'Rizky Santoso',
+            'tempat_lahir': 'Jakarta',
+            'tanggal_lahir': '2015-08-20',
+            'jenis_kelamin': 'Laki-laki',
+            'golongan_darah': 'O',
+            'agama': 'Budha',
+            'status_perkawinan': 'Belum Kawin',
+            'status_keluarga': 'Anak',
+            'pekerjaan': 'Pelajar',
+            'keterangan': 'Hidup',
+        }
+    ]
+
     return extracted_data
