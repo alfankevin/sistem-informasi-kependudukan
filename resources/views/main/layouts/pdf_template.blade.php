@@ -36,7 +36,8 @@
             width: 40%;
         }
 
-        .content p.opening, .footer p {
+        .content p.opening,
+        .footer p {
             text-indent: 40px;
         }
 
@@ -52,15 +53,21 @@
             vertical-align: top;
         }
 
+        .ttd {
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
         .footer table.ttd tr td {
             width: 33.3333%
         }
 
         .footer table.ttd tr.ttd-nama td {
             vertical-align: bottom;
-            height: 30%;
+            height: 20%;
         }
-/*
+
+        /*
         .footer table.ttd tr.ttd-nama td:last-child {
             border-bottom: solid 1px black;
         } */
@@ -68,6 +75,7 @@
 </head>
 
 <body class="text-justify">
+    {{-- Halaman 1: Surat Utama  --}}
     <div class="header d-flex justify-content-between">
         <table class="mx-auto">
             <tr>
@@ -78,7 +86,7 @@
                 </td>
                 <td>
                     <div class="text-center">
-                        <p class="text-uppercase h5">rukun tetangga 04 rukun warga 05</p>
+                        <p class="text-uppercase h5">rukun tetangga {{ $dataPenduduk['rt'] }} rukun warga {{ $dataPenduduk['rw'] }}</p>
                         <p class="text-uppercase h5">kelurahan tanjungrejo kecamatan sukun</p>
                         <p class="text-uppercase h5">kota malang</p>
                     </div>
@@ -94,46 +102,47 @@
     <div class="content mb-4">
         <div class="title text-center">
             <p class="text-uppercase h5 mt-3 mx-auto">surat pengantar</p>
-            <p>Nomor: 01/SP/RT.04 RW.05/{{ $date->format('d') }}{{ $date->format('m') }}/{{ $date->format('Y') }}</p>
+            <p>Nomor: 0{{ $nomor_urut + 1 }}/SP/RT.{{ $dataPenduduk['rt'] }} RW.{{ $dataPenduduk['rw'] }}/{{ $date->format('d') }}{{ $date->format('m') }}/{{ $date->format('Y') }}</p>
         </div>
 
-        <p class="opening">Yang bertanda tangan di bawah ini, kami Ketua RT. 04 - RW. 05 Kelurahan Tanjungrejo, Kecamatan Sukun, Kota
+        <p class="opening">Yang bertanda tangan di bawah ini, kami Ketua RT. {{ $dataPenduduk['rt'] }} - RW. {{ $dataPenduduk['rw'] }} Kelurahan Tanjungrejo,
+            Kecamatan Sukun, Kota
             Malang, menerangkan bahwa:</p>
 
         <table class="data">
             <tr>
                 <td class="kolom-name">Nama</td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['nama'] }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['nama'] }}</td>
             </tr>
             <tr>
                 <td class="kolom-name">Jenis Kelamin</td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['jenis_kelamin'] == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['jenis_kelamin'] == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
             </tr>
             <tr>
                 <td class="kolom-name">Tempat / Tgl Lahir</td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['tempat_lahir'] }}, {{ $data['tanggal_lahir'] }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['tempat_lahir'] }}, {{ $dataPenduduk['tanggal_lahir'] }}</td>
             </tr>
             <tr>
                 <td class="kolom-name">Agama</td>
                 <td class="kolom-equals">:</td>
                 <td class="kolom-data">
-                    <span class="{{ $data['agama'] === 'Islam' ? '' : 'text-decoration-line-through' }}">Islam</span> /
+                    <span class="{{ $dataPenduduk['agama'] === 'Islam' ? '' : 'text-decoration-line-through' }}">Islam</span> /
                     <span
-                        class="{{ $data['agama'] === 'Kristen' || $data['agama'] === 'Protestan' ? '' : 'text-decoration-line-through' }}">Kristen</span>
+                        class="{{ $dataPenduduk['agama'] === 'Kristen' || $dataPenduduk['agama'] === 'Protestan' ? '' : 'text-decoration-line-through' }}">Kristen</span>
                     /
                     <span
-                        class="{{ $data['agama'] === 'Katholik' ? '' : 'text-decoration-line-through' }}">Katholik</span>
+                        class="{{ $dataPenduduk['agama'] === 'Katholik' ? '' : 'text-decoration-line-through' }}">Katholik</span>
                     /
-                    <span class="{{ $data['agama'] === 'Hindu' ? '' : 'text-decoration-line-through' }}">Hindu</span> /
-                    <span class="{{ $data['agama'] === 'Budha' ? '' : 'text-decoration-line-through' }}">Budha</span> /
+                    <span class="{{ $dataPenduduk['agama'] === 'Hindu' ? '' : 'text-decoration-line-through' }}">Hindu</span> /
+                    <span class="{{ $dataPenduduk['agama'] === 'Budha' ? '' : 'text-decoration-line-through' }}">Budha</span> /
                     <span
-                        class="{{ $data['agama'] === 'Konghucu' ? '' : 'text-decoration-line-through' }}">Konghucu</span>
+                        class="{{ $dataPenduduk['agama'] === 'Konghucu' ? '' : 'text-decoration-line-through' }}">Konghucu</span>
                     /
                     <span
-                        class="{{ $data['agama'] === 'Kepercayaan Kepada Tuhan Yang Maha Esa' ? '' : 'text-decoration-line-through' }}">Kepercayaan
+                        class="{{ $dataPenduduk['agama'] === 'Kepercayaan Kepada Tuhan Yang Maha Esa' ? '' : 'text-decoration-line-through' }}">Kepercayaan
                         Kepada Tuhan Yang Maha Esa</span>
                 </td>
             </tr>
@@ -142,60 +151,60 @@
                 <td class="kolom-equals">:</td>
                 <td class="kolom-data">
                     <span
-                        class="{{ $data['status_perkawinan'] === 'Kawin' ? '' : 'text-decoration-line-through' }}">Kawin</span>
+                        class="{{ $dataPenduduk['status_perkawinan'] === 'Kawin' ? '' : 'text-decoration-line-through' }}">Kawin</span>
                     /
                     <span
-                        class="{{ $data['status_perkawinan'] === 'Belum Kawin' ? '' : 'text-decoration-line-through' }}">Belum
+                        class="{{ $dataPenduduk['status_perkawinan'] === 'Belum Kawin' ? '' : 'text-decoration-line-through' }}">Belum
                         Kawin</span> /
                     <span
-                        class="{{ $data['status_perkawinan'] === 'Cerai Mati' ? '' : 'text-decoration-line-through' }}">Cerai
+                        class="{{ $dataPenduduk['status_perkawinan'] === 'Cerai Mati' ? '' : 'text-decoration-line-through' }}">Cerai
                         Mati</span> /
                     <span
-                        class="{{ $data['status_perkawinan'] === 'Cerai Hidup' ? '' : 'text-decoration-line-through' }}">Cerai
+                        class="{{ $dataPenduduk['status_perkawinan'] === 'Cerai Hidup' ? '' : 'text-decoration-line-through' }}">Cerai
                         Hidup</span>
                 </td>
             </tr>
             <tr>
                 <td class="kolom-name">No. NIK</td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['nik'] }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['nik'] }}</td>
             </tr>
             <tr>
                 <td class="kolom-name">No. KK</td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['no_kk'] }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['no_kk'] }}</td>
             </tr>
             <tr>
                 <td class="kolom-name">Pekerjaan</td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['pekerjaan'] }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['pekerjaan'] }}</td>
             </tr>
             <tr>
                 <td class="kolom-name">Pendidikan</td>
                 <td class="kolom-equals">:</td>
                 <td class="kolom-data">
-                    <span class="{{ $data['pendidikan'] === 'SD' ? '' : 'text-decoration-line-through' }}">SD</span> /
-                    <span class="{{ $data['pendidikan'] === 'SMP' ? '' : 'text-decoration-line-through' }}">SMP</span>
+                    <span class="{{ $dataPenduduk['pendidikan'] === 'SD' ? '' : 'text-decoration-line-through' }}">SD</span> /
+                    <span class="{{ $dataPenduduk['pendidikan'] === 'SMP' ? '' : 'text-decoration-line-through' }}">SMP</span>
                     /
-                    <span class="{{ $data['pendidikan'] === 'SMA' ? '' : 'text-decoration-line-through' }}">SMA</span>
-                    /
-                    <span
-                        class="{{ $data['pendidikan'] === 'Akademi' ? '' : 'text-decoration-line-through' }}">Akademi</span>
+                    <span class="{{ $dataPenduduk['pendidikan'] === 'SMA' ? '' : 'text-decoration-line-through' }}">SMA</span>
                     /
                     <span
-                        class="{{ $data['pendidikan'] === 'Perguruan Tinggi' ? '' : 'text-decoration-line-through' }}">Perguruan
+                        class="{{ $dataPenduduk['pendidikan'] === 'Akademi' ? '' : 'text-decoration-line-through' }}">Akademi</span>
+                    /
+                    <span
+                        class="{{ $dataPenduduk['pendidikan'] === 'Perguruan Tinggi' ? '' : 'text-decoration-line-through' }}">Perguruan
                         Tinggi</span>
                 </td>
             </tr>
             <tr>
                 <td class="kolom-name">Alamat Rumah</td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['alamat'] }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['alamat'] }}</td>
             </tr>
             <tr>
                 <td class="kolom-name">Keperluan</td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['keperluan'] }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['keperluan'] }}</td>
             </tr>
             <tr>
                 <td class="kolom-name">
@@ -203,13 +212,13 @@
                     (Khusus Pindah)
                 </td>
                 <td class="kolom-equals">:</td>
-                <td class="kolom-data">{{ $data['pengikut'] === null ? '-' : $data['pengikut'] }}</td>
+                <td class="kolom-data">{{ $dataPenduduk['pengikut'] === null ? '-' : $dataPenduduk['pengikut'] }}</td>
             </tr>
         </table>
     </div>
     <div class="ket">
         <p class="mb-1">Keterangan:</p>
-        <p>Bahwa orang tersebut adalah benar-benar penduduk RT. 04 RW. 05 Kelurahan Tanjungrejo, Kecamatan Sukun, Kota
+        <p>Bahwa orang tersebut adalah benar-benar penduduk RT. {{ $dataPenduduk['rt'] }} RW. {{ $dataPenduduk['rw'] }} Kelurahan Tanjungrejo, Kecamatan Sukun, Kota
             Malang dan sepanjang pengetahuan kami selama ini orang tersebut berkelakuan baik dan belum pernah tersangkut
             perkara hukum atau kriminal.
         </p>
@@ -218,24 +227,32 @@
         <p>Demikian Surat Pengantar ini dibuat dipergunakan sebagaimana semestinya.</p>
         <table class="ttd mt-4">
             <tr>
-                <td colspan="2">No.    /     /{{ $date->format('m') }}/{{ $date->format('Y') }}</td>
-                <td>Malang, {{ $date->locale('id')->isoFormat('D MMMM Y') }}</td>
+                <td colspan="2" class="pb-1">No. / /{{ $date->format('m') }}/{{ $date->format('Y') }}</td>
+                <td class="text-end pb-1">Malang, {{ $date->locale('id')->isoFormat('D MMMM Y') }}</td>
             </tr>
-            <tr class="text-center pt-2">
+            <tr class="text-center">
                 <td>
-                    Ketua RW. 05 <br>
+                    Ketua RW. {{ $dataPenduduk['rw'] }} <br>
                     Kelurahan Tanjungrejo
                 </td>
-                <td>Ketua RT. 04</td>
+                <td>Ketua RT. {{ $dataPenduduk['rt'] }}</td>
                 <td>Pemohon</td>
             </tr>
             <tr class="text-center ttd-nama">
                 <td class="fw-bold text-uppercase text-decoration-underline">N. Agung R. Prasetyo</td>
                 <td class="fw-bold text-uppercase text-decoration-underline">Hari Wibisono</td>
-                <td class="fw-bold text-uppercase text-decoration-underline">{{ $data['nama'] }}</td>
+                <td class="fw-bold text-uppercase text-decoration-underline">
+                    <img src="{{ $signature }}" alt="Tanda Tangan" width="200%" style="display: block; margin: -10px auto 0;">
+                    {{ $dataPenduduk['nama'] }}
+                </td>
             </tr>
         </table>
     </div>
+
+    {{-- Halaman 2: Lampiran KTP --}}
+    <img src="{!! $ktp_base64 !!}"
+       alt="Foto KTP"
+       style="width: 100%; max-width: 400px; display: block; margin: 20px auto;">
 </body>
 
 </html>
