@@ -16,6 +16,7 @@ use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Menu\MenuGroupController;
+use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use App\Http\Controllers\RoleAndPermission\ExportRoleController;
 use App\Http\Controllers\RoleAndPermission\ImportRoleController;
@@ -125,5 +126,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::post('assign-user', [AssignUserToRoleController::class, 'store'])->name('assign.user.store');
         Route::get('assing-user/{user}/edit', [AssignUserToRoleController::class, 'edit'])->name('assign.user.edit');
         Route::put('assign-user/{user}', [AssignUserToRoleController::class, 'update'])->name('assign.user.update');
+    });
+
+    Route::prefix('posyandu-management')->group(function () {
+        Route::resource('posyandu', PosyanduController::class)->except(['show']);
+        Route::post('/import', [PosyanduController::class, 'import'])->name('posyandu.import');
     });
 });
