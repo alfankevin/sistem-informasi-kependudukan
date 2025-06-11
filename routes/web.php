@@ -16,6 +16,7 @@ use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Menu\MenuGroupController;
+use App\Http\Controllers\PerankinganRisikoController;
 use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use App\Http\Controllers\RoleAndPermission\ExportRoleController;
@@ -131,5 +132,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('posyandu-management')->group(function () {
         Route::resource('posyandu', PosyanduController::class)->except(['show']);
         Route::post('/import', [PosyanduController::class, 'import'])->name('posyandu.import');
+        
+        Route::get('/risiko-stunting', [PerankinganRisikoController::class, 'index'])->name('perankingan-risiko.index');
     });
 });
