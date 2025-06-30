@@ -6,6 +6,7 @@ use App\Models\Penduduk;
 use App\Models\Posyandu;
 use Illuminate\Http\Request;
 use App\Imports\PosyanduImport;
+use Exception;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -122,6 +123,7 @@ class PosyanduController extends Controller
 
             $penduduk = Penduduk::where('tanggal_lahir', '>=', \Carbon\Carbon::now()->subYears(3)->toDateString())
                 ->where('nama', 'like', '%' . $search . '%')
+                ->whereDoesntHave('posyandu')
                 ->select('id', 'nama')
                 ->limit(10)
                 ->get();

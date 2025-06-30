@@ -20,4 +20,9 @@ class Penduduk extends Model
     {
         return $this->hasMany(Sosial::class);
     }
+
+    public function posyandu()
+    {
+        return $this->hasMany(Posyandu::class, 'id_penduduk', 'id');
+    }
 }
