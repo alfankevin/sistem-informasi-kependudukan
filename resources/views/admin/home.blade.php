@@ -93,10 +93,17 @@
                                 @endforeach
                             </ul>
                         </div>
+                        @if (auth()->check())
                         <div class="card-footer pt-3 d-flex justify-content-center">
                             <a href="{{ route('agenda.index') }}" class="btn btn-info btn-md btn-round"
                                 style="z-index: 1">Details</a>
                         </div>
+                        @else
+                        <div class="card-footer pt-3 d-flex justify-content-center">
+                            <a href="/agenda" class="btn btn-info btn-md btn-round"
+                                style="z-index: 1">Details</a>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -128,8 +135,11 @@
                                                 <div class="product-name">{{ $item->nama_organisasi }}</div>
                                                 <div class="product-review text-muted">
                                                     {{ $item->deskripsi_organisasi }}</div>
-                                                <div class="product-cta"><a href="{{ route('organisasi.index') }}"
-                                                        class="btn btn-info">Detail</a></div>
+                                                @if (auth()->check())
+                                                    <div class="product-cta"><a href="{{ route('organisasi.index') }}"
+                                                            class="btn btn-info">Detail</a></div>
+
+                                                @endif
                                             </div>
                                         </div>
                                     @endforeach
@@ -137,7 +147,29 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-lg-12 col-md-12">
+                            <div class="card card-sosial card-hero" style="height: 150px">
+                                <div class="card-header border-0" style="height: 100%; border-radius: calc(.25rem - 1px);">
+                                    <div class="card-icon">
+                                        <a href="{{ route('bantuan.index') }}" style="color: inherit"><i
+                                                class="far fa-handshake"></i></a>
+                                    </div>
+                                    <h4>{{ $countSosial }}</h4>
+                                    <div class="card-description">Penerima Bantuan Sosial</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card header" style="height: 350px">
+                            <div class="card-header">
+                                <h5>Persebaran Stunting Berdasarkan Kelompok Usia</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="stuntinByAgeGroup"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="col-lg-6 col-md-6" style="padding: 0">
+                    </div> --}}
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
@@ -223,15 +255,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12">
-                            <div class="card card-sosial card-hero" style="height: 150px">
-                                <div class="card-header border-0" style="height: 100%; border-radius: calc(.25rem - 1px);">
-                                    <div class="card-icon">
-                                        <a href="{{ route('bantuan.index') }}" style="color: inherit"><i
-                                                class="far fa-handshake"></i></a>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="card card-stunting" style="height: 330px">
+                                <div class="card-header">
+                                    <h5>Status Risiko Stunting</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="stunting"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="card card-stunting" style="height: 350px">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5>Tren Kasus Stunting</h5>
+                                        <select id="yearFilter" class="form-control" style="width: 100px">
+                                        </select>
                                     </div>
-                                    <h4>{{ $countSosial }}</h4>
-                                    <div class="card-description">Penerima Bantuan Sosial</div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="stuntingMonthlyChart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -241,7 +285,7 @@
         </div>
     </section>
 
-    <script>
+    <script type="text/javascript">
         var labelUmurL = <?php echo json_encode($labelUmurL); ?>;
         var dataUmurL = <?php echo json_encode($dataUmurL); ?>;
         var labelUmurP = <?php echo json_encode($labelUmurP); ?>;
@@ -252,6 +296,11 @@
         var labelAgama = <?php echo json_encode($labelAgama); ?>;
         var dataPekerjaan = <?php echo json_encode($dataPekerjaan); ?>;
         var labelPekerjaan = <?php echo json_encode($labelPekerjaan); ?>;
+        var dataStunting = <?php echo json_encode($dataStunting); ?>;
+        var labelStunting = <?php echo json_encode($labelStunting); ?>;
+        var stuntingByAgeLabels = <?php echo json_encode($stuntingByAgeLabels); ?>;
+        var stuntingByAgeData = <?php echo json_encode($stuntingByAgeData); ?>;
+
     </script>
 
     <script>
@@ -275,4 +324,10 @@
             }
         });
     </script>
+
 @endsection
+
+
+@push('customScript')
+    <script src="/assets/js/chartjs.js"></script>
+@endpush

@@ -42,6 +42,7 @@ Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/agenda', [LandingPageController::class, 'agenda']);
 Route::get('/potensi', [LandingPageController::class, 'potensi']);
 Route::get('/galeri', [LandingPageController::class, 'galeri']);
+Route::get('/statistik', [LandingPageController::class, 'statistik']);
 
 Route::get('/admin', function () {
     return view('admin.auth/login');
@@ -50,9 +51,10 @@ Route::get('/admin', function () {
 Route::post('/admin', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard/stunting-chart-data', [DashboardController::class, 'getStuntingChartData'])->name('dashboard.stunting-chart-data');
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::post('/penduduk', [PendudukController::class, 'show'])->name('penduduk.detail');
     Route::post('/import', [PendudukController::class, 'import'])->name('penduduk.import');
     Route::get('/export', [PendudukController::class, 'export'])->name('penduduk.export');
@@ -132,7 +134,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('posyandu-management')->group(function () {
         Route::resource('posyandu', PosyanduController::class)->except(['show']);
         Route::post('/import', [PosyanduController::class, 'import'])->name('posyandu.import');
-        
+
         Route::get('/risiko-stunting', [PerankinganRisikoController::class, 'index'])->name('perankingan-risiko.index');
         Route::post('/recalculate-risiko', [PerankinganRisikoController::class, 'recalculate'])->name('perankingan-risiko.recalculate');
     });

@@ -222,5 +222,6 @@
         <script src="assets/js/main/jquery.slicknav.js"></script>
         <script src="assets/js/main/owl.carousel.min.js"></script>
         <script src="assets/js/main/main.js"></script>
+        @stack('customScript')
     </body>
 </html>
