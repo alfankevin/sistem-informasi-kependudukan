@@ -60,7 +60,7 @@
                                     <label for="usia">Usia (bulan)</label>
                                     <input id="usia" name="usia" type="number" spellcheck="false"
                                         autocomplete="off" class="form-control @error('usia') is-invalid @enderror"
-                                        value="{{ old('usia') }}">
+                                        value="{{ old('usia') }}" readonly>
                                     @error('usia')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -73,7 +73,7 @@
                                     <input id="berat_badan" name="berat_badan" type="number" step="any"
                                         spellcheck="false" autocomplete="off"
                                         class="form-control @error('berat_badan') is-invalid @enderror"
-                                        value="{{ old('berat_badan') }}">
+                                        value="{{ old('berat_badan') }}" required>
                                     @error('berat_badan')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -86,7 +86,7 @@
                                     <input id="tinggi_badan" name="tinggi_badan" type="number" step="any"
                                         spellcheck="false" autocomplete="off"
                                         class="form-control @error('tinggi_badan') is-invalid @enderror"
-                                        value="{{ old('tinggi_badan') }}">
+                                        value="{{ old('tinggi_badan') }}" required>
                                     @error('tinggi_badan')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -99,7 +99,7 @@
                                     <input id="lingkar_lengan_atas" name="lingkar_lengan_atas" type="number" step="any"
                                         spellcheck="false" autocomplete="off"
                                         class="form-control @error('lingkar_lengan_atas') is-invalid @enderror"
-                                        value="{{ old('lingkar_lengan_atas') }}">
+                                        value="{{ old('lingkar_lengan_atas') }}" required>
                                     @error('lingkar_lengan_atas')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -118,7 +118,7 @@
                                     <input id="lingkar_lengan_bawah" name="lingkar_lengan_bawah" type="number"
                                         step="any" spellcheck="false" autocomplete="off"
                                         class="form-control @error('lingkar_lengan_bawah') is-invalid @enderror"
-                                        value="{{ old('lingkar_lengan_bawah') }}">
+                                        value="{{ old('lingkar_lengan_bawah') }}" required>
                                     @error('lingkar_lengan_bawah')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -131,7 +131,7 @@
                                     <input id="lingkar_dada" name="lingkar_dada" type="number" step="any"
                                         spellcheck="false" autocomplete="off"
                                         class="form-control @error('lingkar_dada') is-invalid @enderror"
-                                        value="{{ old('lingkar_dada') }}">
+                                        value="{{ old('lingkar_dada') }}" required>
                                     @error('lingkar_dada')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -144,7 +144,7 @@
                                     <input id="lingkar_perut" name="lingkar_perut" type="number" step="any"
                                         spellcheck="false" autocomplete="off"
                                         class="form-control @error('lingkar_perut') is-invalid @enderror"
-                                        value="{{ old('lingkar_perut') }}">
+                                        value="{{ old('lingkar_perut') }}" required>
                                     @error('lingkar_perut')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -157,7 +157,7 @@
                                     <input id="lingkar_kepala" name="lingkar_kepala" type="number" step="any"
                                         spellcheck="false" autocomplete="off"
                                         class="form-control @error('lingkar_kepala') is-invalid @enderror"
-                                        value="{{ old('lingkar_kepala') }}">
+                                        value="{{ old('lingkar_kepala') }}" required>
                                     @error('lingkar_kepala')
                                         <div class="invalid-feedback">
                                             {{ $message }}

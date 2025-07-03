@@ -134,5 +134,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::post('/import', [PosyanduController::class, 'import'])->name('posyandu.import');
         
         Route::get('/risiko-stunting', [PerankinganRisikoController::class, 'index'])->name('perankingan-risiko.index');
+        Route::post('/recalculate-risiko', [PerankinganRisikoController::class, 'recalculate'])->name('perankingan-risiko.recalculate');
     });
 });

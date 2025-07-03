@@ -26,8 +26,7 @@ return new class extends Migration
             $table->string('status_perkawinan', 32);
             $table->boolean('status_keluarga')->default(false);
             $table->string('pekerjaan', 128);
-            $table->string('alamat', 256);
-            $table->integer('rt');
+            $table->tinyInteger('rt');
             $table->string('keterangan', 128)->nullable();
             $table->unsignedBigInteger('id_sosial')->default(0);
             $table->foreign('id_sosial')->references('id')->on('sosial')->onDelete('cascade');

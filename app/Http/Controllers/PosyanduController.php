@@ -28,8 +28,8 @@ class PosyanduController extends Controller
                     3 => 'jenis_kelamin',
                     4 => 'alamat',
                     5 => 'usia',
-                    6 => 'tinggi_badan',
-                    7 => 'berat_badan',
+                    6 => 'berat_badan',
+                    7 => 'tinggi_badan',
                     8 => 'lingkar_lengan_atas',
                     9 => 'lingkar_lengan_bawah',
                     10 => 'lingkar_dada',
@@ -123,6 +123,7 @@ class PosyanduController extends Controller
 
             $penduduk = Penduduk::where('tanggal_lahir', '>=', \Carbon\Carbon::now()->subYears(3)->toDateString())
                 ->where('nama', 'like', '%' . $search . '%')
+                ->where('keterangan', '!=', 'Meninggal')
                 ->whereDoesntHave('posyandu')
                 ->select('id', 'nama')
                 ->limit(10)

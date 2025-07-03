@@ -141,11 +141,11 @@
                         "orderable": true,
                     },
                     {
-                        "data": "tinggi_badan",
+                        "data": "berat_badan",
                         "orderable": true,
                     },
                     {
-                        "data": "berat_badan",
+                        "data": "tinggi_badan",
                         "orderable": true,
                     },
                     {
