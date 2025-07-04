@@ -185,6 +185,9 @@
             // Reset filter button
             $('#btn-reset').click(function() {
                 $('#jenisKelamin').val('').trigger('change');
+                $('.dataTables_filter input')
+                    .val('')
+                    .trigger('keyup');
                 table.ajax.reload(function(json) {
                     // Update chart with reset data after table reload
                     if (json.stuntingStats) {

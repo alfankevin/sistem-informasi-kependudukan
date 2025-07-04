@@ -48,6 +48,10 @@ class PerankinganRisikoController extends Controller
                 return DataTables::of($query)
                     ->addIndexColumn() // This will add DT_RowIndex starting from 1
                     ->filter(function ($query) use ($request) {
+                        if ($request->filled('search.value')) {
+                            $query->where('penduduk.nama', 'LIKE', '%' . request('search.value') . '%');
+                        }
+
                         if ($request->has('jenisKelamin') && $request->jenisKelamin != '') {
                             $query->where('penduduk.jenis_kelamin', $request->jenisKelamin);
                         }
