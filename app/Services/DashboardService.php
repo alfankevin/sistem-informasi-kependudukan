@@ -14,43 +14,49 @@ class DashboardService
     {
         $cacheKey = 'dashboard_query';
 
-        return [
-            'countPenduduk' => $this->getCountPenduduk(),
-            'countL' => $this->getCountL(),
-            'countP' => $this->getCountP(),
-            'countKK' => $this->getCountKK(),
-            'agenda' => $this->getAgenda(),
-            'organisasi' => $this->getOrganisasi(),
-            'countSosial' => $this->getCountSosial(),
-            'labelPekerjaan' => $this->getPekerjaanLabels(),
-            'dataPekerjaan' => $this->getPekerjaanData(),
-            'labelDarah' => $this->getDarahLabels(),
-            'labelAgama' => $this->getAgamaLabels(),
-            'dataDarah' => $this->getDarahData(),
-            'dataAgama' => $this->getAgamaData(),
-            'jumlahRt1' => $this->getJumlahRt(1),
-            'jumlahRt2' => $this->getJumlahRt(2),
-            'jumlahRt3' => $this->getJumlahRt(3),
-            'jumlahRt4' => $this->getJumlahRt(4),
-            'jumlahRt5' => $this->getJumlahRt(5),
-            'persenRt1' => $this->getPersenRt(1),
-            'persenRt2' => $this->getPersenRt(2),
-            'persenRt3' => $this->getPersenRt(3),
-            'persenRt4' => $this->getPersenRt(4),
-            'persenRt5' => $this->getPersenRt(5),
-            'dataUmurL' => $this->getDataUmurL(),
-            'dataUmurP' => $this->getDataUmurP(),
-            'labelUmurL' => $this->getLabelUmurL(),
-            'labelUmurP' => $this->getLabelUmurP(),
-            'dataStunting' => $this->getStuntingData(),
-            'labelStunting' => $this->getStuntingLabels(),
-            'stuntingPerMonth' => $this->getStuntingPerMonth($year),
-            'stuntingByAgeLabels' => $this->getStuntingAgeLabels(),
-            'stuntingByAgeData' => $this->getStuntingAgeData(),
-            // 'stuntingByAge' => $this->getStuntingByAge(), //
-        ];
-        // return Cache::remember($cacheKey, 300, function () {
-        // });
+        $stuntingPerMonth = Cache::remember("dashboard_year_data_{$year}", 300, function () use ($year) {
+            return [
+                'stuntingPerMonth' => $this->getStuntingPerMonth($year),
+            ];
+        });
+
+        $data = Cache::remember($cacheKey, 300, function () {
+            return [
+                'countPenduduk' => $this->getCountPenduduk(),
+                'countL' => $this->getCountL(),
+                'countP' => $this->getCountP(),
+                'countKK' => $this->getCountKK(),
+                'agenda' => $this->getAgenda(),
+                'organisasi' => $this->getOrganisasi(),
+                'countSosial' => $this->getCountSosial(),
+                'labelPekerjaan' => $this->getPekerjaanLabels(),
+                'dataPekerjaan' => $this->getPekerjaanData(),
+                'labelDarah' => $this->getDarahLabels(),
+                'labelAgama' => $this->getAgamaLabels(),
+                'dataDarah' => $this->getDarahData(),
+                'dataAgama' => $this->getAgamaData(),
+                'jumlahRt1' => $this->getJumlahRt(1),
+                'jumlahRt2' => $this->getJumlahRt(2),
+                'jumlahRt3' => $this->getJumlahRt(3),
+                'jumlahRt4' => $this->getJumlahRt(4),
+                'jumlahRt5' => $this->getJumlahRt(5),
+                'persenRt1' => $this->getPersenRt(1),
+                'persenRt2' => $this->getPersenRt(2),
+                'persenRt3' => $this->getPersenRt(3),
+                'persenRt4' => $this->getPersenRt(4),
+                'persenRt5' => $this->getPersenRt(5),
+                'dataUmurL' => $this->getDataUmurL(),
+                'dataUmurP' => $this->getDataUmurP(),
+                'labelUmurL' => $this->getLabelUmurL(),
+                'labelUmurP' => $this->getLabelUmurP(),
+                'dataStunting' => $this->getStuntingData(),
+                'labelStunting' => $this->getStuntingLabels(),
+                'stuntingByAgeLabels' => $this->getStuntingAgeLabels(),
+                'stuntingByAgeData' => $this->getStuntingAgeData(),
+            ];
+        });
+
+        return array_merge($data, $stuntingPerMonth);
     }
 
     public function getStatistikData()
