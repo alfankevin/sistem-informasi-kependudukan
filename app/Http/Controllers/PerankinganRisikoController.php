@@ -63,7 +63,7 @@ class PerankinganRisikoController extends Controller
                         return $row->jenis_kelamin ?? 'N/A';
                     })
                     ->editColumn('tanggal_lahir', function ($row) {
-                        return $row->tanggal_lahir ?? 'N/A';
+                        return date('d-m-Y', strtotime($row->tanggal_lahir)) ?? 'N/A';
                     })
                     ->addColumn('usia', function ($row) {
                         return $row->usia;
