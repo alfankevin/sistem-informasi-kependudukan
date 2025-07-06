@@ -6,7 +6,7 @@
         </div>
 
         <div class="section-body">
-            <div class="row">
+            <div class="row {{ auth()->check() ? '' : 'd-none' }}">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-info">
@@ -60,9 +60,8 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
-                <div class="col-lg-8 col-md-12">
+                <div class="col-lg-8 col-md-12 {{ auth()->check() ? '' : 'd-none' }}">
                     <div class="card card-usia" style="height: 500px">
                         <div class="card-header">
                             <h5>Komposisi Penduduk Berdasarkan Usia</h5>
@@ -72,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12">
+                <div class="col-lg-4 col-md-12 {{ auth()->check() ? '' : 'd-none' }}">
                     <div class="card card-agenda gradient-bottom" style="height: 500px">
                         <div class="card-header">
                             <h5>Agenda Sosial</h5>
@@ -85,7 +84,8 @@
                                             style="height: 55px; width: 55px; background-image: url(/assets/img/agenda/{{ $item->gambar_agenda }})"></span>
                                         <div class="media-body"
                                             style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                            <span class="tanggal-agenda float-right font-weight-600 text-muted text-small pl-1">{{ $item->tanggal_agenda }}</span>
+                                            <span
+                                                class="tanggal-agenda float-right font-weight-600 text-muted text-small pl-1">{{ $item->tanggal_agenda }}</span>
                                             <div class="media-title mt-1 mb-1">{{ $item->judul_agenda }}</div>
                                             <span style="color: #6c757d">{{ $item->deskripsi_agenda }}</span>
                                         </div>
@@ -94,15 +94,14 @@
                             </ul>
                         </div>
                         @if (auth()->check())
-                        <div class="card-footer pt-3 d-flex justify-content-center">
-                            <a href="{{ route('agenda.index') }}" class="btn btn-info btn-md btn-round"
-                                style="z-index: 1">Details</a>
-                        </div>
+                            <div class="card-footer pt-3 d-flex justify-content-center">
+                                <a href="{{ route('agenda.index') }}" class="btn btn-info btn-md btn-round"
+                                    style="z-index: 1">Details</a>
+                            </div>
                         @else
-                        <div class="card-footer pt-3 d-flex justify-content-center">
-                            <a href="/agenda" class="btn btn-info btn-md btn-round"
-                                style="z-index: 1">Details</a>
-                        </div>
+                            <div class="card-footer pt-3 d-flex justify-content-center">
+                                <a href="/agenda" class="btn btn-info btn-md btn-round" style="z-index: 1">Details</a>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -110,7 +109,7 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="col-lg-12 col-md-12" style="padding: 0">
+                    <div class="col-lg-12 col-md-12 {{ auth()->check() ? '' : 'd-none' }}" style="padding: 0">
                         <div class="card card-pekerjaan" style="height: 450px">
                             <div class="card-header">
                                 <h5>Komposisi Penduduk Berdasarkan Pekerjaan</h5>
@@ -120,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12" style="padding: 0">
+                    <div class="col-lg-12 col-md-12 {{ auth()->check() ? '' : 'd-none' }}" style="padding: 0">
                         <div class="card card-ormas" style="height: 350px">
                             <div class="card-header">
                                 <h5>Organisasi Masyarakat</h5>
@@ -138,7 +137,6 @@
                                                 @if (auth()->check())
                                                     <div class="product-cta"><a href="{{ route('organisasi.index') }}"
                                                             class="btn btn-info">Detail</a></div>
-
                                                 @endif
                                             </div>
                                         </div>
@@ -147,32 +145,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12">
-                            <div class="card card-sosial card-hero" style="height: 150px">
-                                <div class="card-header border-0" style="height: 100%; border-radius: calc(.25rem - 1px);">
-                                    <div class="card-icon">
-                                        <a href="{{ route('bantuan.index') }}" style="color: inherit"><i
-                                                class="far fa-handshake"></i></a>
-                                    </div>
-                                    <h4>{{ $countSosial }}</h4>
-                                    <div class="card-description">Penerima Bantuan Sosial</div>
+                    <div class="col-lg-12 col-md-12 {{ auth()->check() ? '' : 'd-none' }}">
+                        <div class="card card-sosial card-hero" style="height: 150px">
+                            <div class="card-header border-0" style="height: 100%; border-radius: calc(.25rem - 1px);">
+                                <div class="card-icon">
+                                    <a href="{{ route('bantuan.index') }}" style="color: inherit"><i
+                                            class="far fa-handshake"></i></a>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card header" style="height: 350px">
-                            <div class="card-header">
-                                <h5>Persebaran Stunting Berdasarkan Kelompok Usia</h5>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="stuntinByAgeGroup"></canvas>
+                                <h4>{{ $countSosial }}</h4>
+                                <div class="card-description">Penerima Bantuan Sosial</div>
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-lg-6 col-md-6" style="padding: 0">
+
+                    <div class="card header" style="height: 350px">
+                        <div class="card-header">
+                            <h5>Persebaran Stunting Berdasarkan Kelompok Usia</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="stuntinByAgeGroup"></canvas>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="col-lg-6 col-md-6" style="padding: 0">
                     </div> --}}
                 <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6 {{ auth()->check() ? '' : 'd-none' }}">
                             <div class="card card-darah" style="height: 250px">
                                 <div class="card-header">
                                     <h5>Penduduk Berdasarkan Gol. Darah</h5>
@@ -182,7 +181,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6 {{ auth()->check() ? '' : 'd-none' }}">
                             <div class="card card-agama" style="height: 250px">
                                 <div class="card-header">
                                     <h5>Penduduk Berdasarkan Agama</h5>
@@ -192,7 +191,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12">
+                        <div class="col-lg-12 col-md-12 {{ auth()->check() ? '' : 'd-none' }}">
                             <div class="card card-rt" style="height: 370px">
                                 <div class="card-header">
                                     <h5>Komposisi Penduduk Berdasarkan RT</h5>
@@ -255,8 +254,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="card card-stunting" style="height: 330px">
+                        <div class="col-lg-12 col-md-6 ">
+                            <div class="card card-stunting" style="height: {{ auth()->check() ? '330px' : '350px' }}">
                                 <div class="card-header">
                                     <h5>Status Risiko Stunting</h5>
                                 </div>
@@ -265,7 +264,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-6">
+                        <div class="col-lg-12 col-md-6" id="tren-stunting-auth">
                             <div class="card card-stunting" style="height: 350px">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
@@ -281,6 +280,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 col-md-6" id="tren-stunting-guest"></div>
             </div>
         </div>
     </section>
@@ -301,6 +301,14 @@
         var stuntingByAgeLabels = <?php echo json_encode($stuntingByAgeLabels); ?>;
         var stuntingByAgeData = <?php echo json_encode($stuntingByAgeData); ?>;
 
+        document.addEventListener("DOMContentLoaded", function() {
+            const loggedIn = {{ auth()->check() ? 'true' : 'false' }};
+
+            if (!loggedIn) {
+                const trenCard = document.getElementById("tren-stunting-auth").children[0];
+                document.getElementById("tren-stunting-guest").appendChild(trenCard);
+            }
+        });
     </script>
 
     <script>
@@ -324,7 +332,6 @@
             }
         });
     </script>
-
 @endsection
 
 
