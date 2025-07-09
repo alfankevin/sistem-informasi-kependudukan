@@ -55,7 +55,7 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/dashboard/stunting-chart-data', [DashboardController::class, 'getStuntingChartData'])->name('dashboard.stunting-chart-data');
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::post('/penduduk', [PendudukController::class, 'show'])->name('penduduk.detail');
+    Route::post('/penduduk', [PendudukController::class, 'show'])->name(name: 'penduduk.detail');
     Route::post('/import', [PendudukController::class, 'import'])->name('penduduk.import');
     Route::get('/export', [PendudukController::class, 'export'])->name('penduduk.export');
 
@@ -132,7 +132,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     });
 
     Route::prefix('posyandu-management')->group(function () {
-        Route::resource('posyandu', PosyanduController::class)->except(['show']);
+        Route::resource('posyandu', controller: PosyanduController::class)->except(['show']);
+        Route::post('/posyandu', [PosyanduController::class, 'show'])->name(name: 'posyandu.detail');
+        Route::post('/posyandu/store', [PosyanduController::class, 'store'])->name(name: 'posyandu.store');
         Route::post('/import', [PosyanduController::class, 'import'])->name('posyandu.import');
 
         Route::get('/risiko-stunting', [PerankinganRisikoController::class, 'index'])->name('perankingan-risiko.index');

@@ -26,6 +26,22 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-12">
+                                    <label for="bulan_posyandu">Posyandu Bulan</label>
+                                    <input id="bulan_posyandu" name="bulan_posyandu" type="month" spellcheck="false"
+                                        autocomplete="off"
+                                        class="form-control @error('bulan_posyandu') is-invalid @enderror"
+                                        value="{{ old('bulan_posyandu', isset($posyandu->bulan_posyandu) ? \Carbon\Carbon::parse($posyandu->bulan_posyandu)->format('Y-m') : '') }}">
+                                    @error('bulan_posyandu')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12">
                                     <label for="nik">NIK</label>
                                     <input id="nik" name="nik" type="text" spellcheck="false"
                                         autocomplete="off" class="form-control @error('nik') is-invalid @enderror"
@@ -45,7 +61,8 @@
                                     <select id="nama" name="nama" disabled
                                         class="form-control @error('nama') is-invalid @enderror">
                                         @if ($posyandu)
-                                            <option value="{{ $posyandu->penduduk->nama }}" selected>{{ $posyandu->penduduk->nama }}
+                                            <option value="{{ $posyandu->penduduk->nama }}" selected>
+                                                {{ $posyandu->penduduk->nama }}
                                             </option>
                                         @endif
                                     </select>

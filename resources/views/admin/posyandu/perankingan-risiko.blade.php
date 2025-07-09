@@ -23,7 +23,7 @@
                     @endif
                 </div>
             </div>
-             <div class="row">
+            <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -43,36 +43,54 @@
                         <div class="card-header">
                             <h4>Daftar Risiko Stunting</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="card-header-action">
+                        <div class="card-body pb-2 d-flex gap-3 justify-content-between">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="section-title mt-0 mb-3">Posyandu Bulan</div>
                                 <form method="POST" action="{{ route('perankingan-risiko.recalculate') }}">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-sync-alt"></i> Hitung Ulang Data
-                                    </button>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label text-primary small">Bulan</label>
+                                                <select id="bulan-posyandu" name="bulan_posyandu" class="form-control">
+                                                    @foreach ($monthList as $key => $item)
+                                                        <option value="{{ $key }}">{{ $item }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label text-primary small">&nbsp;</label>
+                                                <button type="submit" class="btn btn-primary btn-block">
+                                                    <i class="fas fa-sync-alt"></i> Hitung Ulang Data
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
-                        </div>
-                         <div class="card-body pb-2">
-                            <div class="section-title mt-0 mb-3">Filter Data</div>
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label text-primary small">Jenis Kelamin</label>
-                                        <select id="jenisKelamin" name="jenisKelamin" class="form-control">
-                                            <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                                            @foreach (\App\Enums\GenderEnum::cases() as $item)
-                                                <option value="{{ $item->value }}">{{ $item->value }}</option>
-                                            @endforeach
-                                        </select>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="section-title mt-0 mb-3">Filter Data</div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label text-primary small">Jenis Kelamin</label>
+                                            <select id="jenisKelamin" name="jenisKelamin" class="form-control">
+                                                <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                                                @foreach (\App\Enums\GenderEnum::cases() as $item)
+                                                    <option value="{{ $item->value }}">{{ $item->value }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2 col-sm-12">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label text-primary small">&nbsp;</label>
-                                        <button id="btn-reset" class="btn btn-primary btn-block">
-                                            <i class="fas fa-undo"></i> Reset Filter
-                                        </button>
+                                    <div class="col-4">
+                                        <div class="form-group mb-3">
+                                            <label class="form-label text-primary small">&nbsp;</label>
+                                            <button id="btn-reset" class="btn btn-primary btn-block">
+                                                <i class="fas fa-undo"></i> Reset Filter
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -120,11 +138,11 @@
                     "type": "GET",
                     "data": function(d) {
                         d.jenisKelamin = $('#jenisKelamin').val();
+                        d.month = $("#bulan-posyandu").val();
                     }
                 },
                 "pageLength": 25,
-                "columns": [
-                    {
+                "columns": [{
                         "data": "DT_RowIndex",
                         "orderable": false,
                         "searchable": false,
@@ -162,22 +180,23 @@
                         "data": "kategori_risiko",
                         "orderable": true,
                         "render": function(data, type, row) {
-                            return '<span class="badge ' + data.class + '">' + data.text + '</span>';
+                            return '<span class="badge ' + data.class + '">' + data.text +
+                                '</span>';
                         }
                     },
                 ],
                 "initComplete": function(settings, json) {
                     if (json.stuntingStats) {
-                        createOrUpdateChart(json.stuntingStats);
+                        createOrUpdateChart(json.stuntingStats, $("#bulan-posyandu").val());
                     }
                 }
             });
 
-            $('#jenisKelamin').change(function() {
+            $('#jenisKelamin, #bulan-posyandu').change(function() {
                 table.ajax.reload(function(json) {
                     // Update chart with filtered data after table reload
                     if (json.stuntingStats) {
-                        createOrUpdateChart(json.stuntingStats);
+                        createOrUpdateChart(json.stuntingStats, $("#bulan-posyandu").val());
                     }
                 }, false);
             });
@@ -191,18 +210,25 @@
                 table.ajax.reload(function(json) {
                     // Update chart with reset data after table reload
                     if (json.stuntingStats) {
-                        createOrUpdateChart(json.stuntingStats);
+                        createOrUpdateChart(json.stuntingStats, $("#bulan-posyandu").val());
                     }
                 }, false);
             });
 
             // Function to create or update chart
-            function createOrUpdateChart(stuntingStats) {
+            function createOrUpdateChart(stuntingStats, bulanPosyandu) {
+                let date = new Date(bulanPosyandu);
+                let bulan = date.toLocaleString('id-ID', {
+                    month: 'long'
+                });
+                let tahun = date.getFullYear();
+
                 if (stuntingChart) {
                     // Update existing chart
                     stuntingChart.data.labels = stuntingStats.labels;
                     stuntingChart.data.datasets[0].data = stuntingStats.data;
                     stuntingChart.data.datasets[0].backgroundColor = stuntingStats.colors;
+                    stuntingChart.options.plugins.title.text = `Distribusi Status Gizi Batita ${bulan} ${tahun}`;
                     stuntingChart.update();
                 } else {
                     // Create new chart
@@ -230,7 +256,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'Distribusi Status Gizi Batita'
+                                    text: `Distribusi Status Gizi Batita ${bulan} ${tahun}`
                                 },
                                 legend: {
                                     display: false
@@ -269,18 +295,20 @@
                         }
 
                         // Show success message
-                        var message = response.message || 'Data stunting berhasil dihitung ulang';
+                        var message = response.message ||
+                            'Data stunting berhasil dihitung ulang';
                         toastr.success(message);
                     },
                     error: function(xhr) {
-                        var errorMsg = xhr.responseJSON && xhr.responseJSON.message
-                            ? xhr.responseJSON.message
-                            : 'Terjadi kesalahan saat menghitung ulang data';
+                        var errorMsg = xhr.responseJSON && xhr.responseJSON.message ?
+                            xhr.responseJSON.message :
+                            'Terjadi kesalahan saat menghitung ulang data';
                         toastr.error(errorMsg);
                     },
                     complete: function() {
                         // Always reset button state regardless of success or error
-                        $button.prop('disabled', false).html('<i class="fas fa-sync-alt"></i> Hitung Ulang Data');
+                        $button.prop('disabled', false).html(
+                            '<i class="fas fa-sync-alt"></i> Hitung Ulang Data');
                     }
                 });
             });

@@ -267,7 +267,7 @@ class PendudukController extends Controller
         // Excel::import(new pendudukImport, request()->file('file'));
 
         $request->validate([
-            'file' => 'required|file|mimes:csv,jpeg,png,jpg|max:2048',
+            'file' => 'required|file',
         ]);
 
         $file = $request->file('file');

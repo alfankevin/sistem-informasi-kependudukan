@@ -6,9 +6,13 @@ use App\Models\Penduduk;
 use App\Models\Posyandu;
 use Illuminate\Http\Request;
 use App\Imports\PosyanduImport;
+use App\Models\Stunting;
 use Exception;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
+
+use Carbon\Carbon;
+Carbon::setLocale('id');
 
 class PosyanduController extends Controller
 {
@@ -38,8 +42,27 @@ class PosyanduController extends Controller
                     13 => 'gizi',
                 );
 
+                $bulanTerakhir = Posyandu::max('bulan_posyandu');
+
+                if (!$bulanTerakhir) {
+                    return response()->json([
+                        "draw" => intval($request->input('draw')),
+                        "recordsTotal" => 0,
+                        "recordsFiltered" => 0,
+                        "data" => [],
+                        "bulan_terakhir" => null,
+                        "message" => 'Data bulan posyandu belum tersedia.'
+                    ]);
+                }
+
+                $parsedMonth = Carbon::parse($bulanTerakhir);
+
                 $totalData = Posyandu::leftJoin('penduduk', 'penduduk.id', '=', 'posyandu.id_penduduk')
-                    ->leftJoin('kartu_keluarga', 'penduduk.no_kk', '=', 'kartu_keluarga.no_kk')->count();
+                    ->leftJoin('kartu_keluarga', 'penduduk.no_kk', '=', 'kartu_keluarga.no_kk')
+                    ->where('penduduk.tanggal_lahir', '>=', Carbon::now()->subYears(3)->toDateString()) // Tambahkan ini
+                    ->whereYear('posyandu.bulan_posyandu', $parsedMonth->year)
+                    ->whereMonth('posyandu.bulan_posyandu', $parsedMonth->month)
+                    ->count();
 
                 $totalFiltered = $totalData;
 
@@ -48,22 +71,49 @@ class PosyanduController extends Controller
                 $order = $columns[$request->input('order.0.column', 'id')];
                 $dir = $request->input('order.0.dir', 'asc');
 
+                $bulanSebelumnya = Carbon::parse($bulanTerakhir)->subMonth();
+                $posyanduBulanSebelumnya = Posyandu::select('id_penduduk', 'tinggi_badan', 'berat_badan', 'bulan_posyandu')
+                    ->whereYear('bulan_posyandu', Carbon::parse($bulanSebelumnya)->year)
+                    ->whereMonth('bulan_posyandu', Carbon::parse($bulanSebelumnya)->month)
+                    ->get();
+
                 if (empty($request->input('search.value'))) {
                     $penduduks = Posyandu::leftJoin('penduduk', 'penduduk.id', '=', 'posyandu.id_penduduk')
                         ->leftJoin('kartu_keluarga', 'penduduk.no_kk', '=', 'kartu_keluarga.no_kk')
                         ->select('penduduk.nama', 'penduduk.tanggal_lahir', 'penduduk.jenis_kelamin', 'kartu_keluarga.alamat', 'posyandu.*')
-                        ->where('penduduk.tanggal_lahir', '>=', \Carbon\Carbon::now()->subYears(3)->toDateString()) // Tambahkan ini
+                        ->where('penduduk.tanggal_lahir', '>=', Carbon::now()->subYears(3)->toDateString()) // Tambahkan ini
+                        ->whereYear('posyandu.bulan_posyandu', $parsedMonth->year)
+                        ->whereMonth('posyandu.bulan_posyandu', $parsedMonth->month)
                         ->offset($start)
                         ->limit($limit)
                         ->orderBy('posyandu.updated_at', 'desc')
                         ->get();
+
+                    $penduduks = $penduduks->map(function ($item) use ($posyanduBulanSebelumnya) {
+                        $bulanSebelumnya = $posyanduBulanSebelumnya->firstWhere('id_penduduk', $item->id_penduduk);
+
+                        if (!$bulanSebelumnya) {
+                            $item->keterangan_berat = '-';
+                        } elseif ($item->berat_badan > $bulanSebelumnya->berat_badan) {
+                            $item->keterangan_berat = 'Naik ' . number_format($item->berat_badan - $bulanSebelumnya->berat_badan, 1) . ' kg';
+                        } elseif ($item->berat_badan < $bulanSebelumnya->berat_badan) {
+                            $item->keterangan_berat = 'Turun ' . number_format($bulanSebelumnya->berat_badan - $item->berat_badan, 1) . ' kg';
+                        } else {
+                            $item->keterangan_berat = 'Tetap';
+                        }
+
+                        return $item;
+                    });
+
                 } else {
                     $search = $request->input('search.value');
 
                     $penduduks = Posyandu::leftJoin('penduduk', 'penduduk.id', '=', 'posyandu.id_penduduk')
                         ->leftJoin('kartu_keluarga', 'penduduk.no_kk', '=', 'kartu_keluarga.no_kk')
                         ->select('penduduk.*', 'kartu_keluarga.alamat', 'posyandu.*')
-                        ->where('penduduk.tanggal_lahir', '>=', \Carbon\Carbon::now()->subYears(3)->toDateString()) // Tambahkan ini
+                        ->where('penduduk.tanggal_lahir', '>=', Carbon::now()->subYears(3)->toDateString()) // Tambahkan ini
+                        ->whereYear('posyandu.bulan_posyandu', $parsedMonth->year)
+                        ->whereMonth('posyandu.bulan_posyandu', $parsedMonth->month)
                         ->where(function ($query) use ($search) {
                             $query->where('penduduk.nama', 'LIKE', "%{$search}%")
                                 ->orWhere('penduduk.jenis_kelamin', 'LIKE', "%{$search}%")
@@ -76,7 +126,7 @@ class PosyanduController extends Controller
 
                     $totalFiltered = Posyandu::leftJoin('penduduk', 'penduduk.id', '=', 'posyandu.id_penduduk')
                         ->leftJoin('kartu_keluarga', 'penduduk.no_kk', '=', 'kartu_keluarga.no_kk')
-                        ->where('penduduk.tanggal_lahir', '>=', \Carbon\Carbon::now()->subYears(3)->toDateString()) // Tambahkan ini
+                        ->where('penduduk.tanggal_lahir', '>=', Carbon::now()->subYears(3)->toDateString()) // Tambahkan ini
                         ->where(function ($query) use ($search) {
                             $query->where('penduduk.nama', 'LIKE', "%{$search}%")
                                 ->orWhere('penduduk.jenis_kelamin', 'LIKE', "%{$search}%")
@@ -86,7 +136,30 @@ class PosyanduController extends Controller
                 }
 
 
-                $penduduks = $penduduks->map(function ($penduduk) {
+                $penduduks = $penduduks->map(function ($penduduk) use ($posyanduBulanSebelumnya) {
+                    $bulanSebelumnya = $posyanduBulanSebelumnya->firstWhere('id_penduduk', $penduduk->id_penduduk);
+
+                    if (!$bulanSebelumnya) {
+                        $keterangan_berat = '-';
+                    } elseif ($penduduk->berat_badan > $bulanSebelumnya->berat_badan) {
+                        $keterangan_berat = 'Naik ' . number_format($penduduk->berat_badan - $bulanSebelumnya->berat_badan, 1) . ' kg';
+                    } elseif ($penduduk->berat_badan < $bulanSebelumnya->berat_badan) {
+                        $keterangan_berat = 'Turun ' . number_format($bulanSebelumnya->berat_badan - $penduduk->berat_badan, 1) . ' kg';
+                    } else {
+                        $keterangan_berat = 'Tetap';
+                    }
+
+                    if (!$bulanSebelumnya) {
+                        $keterangan_tinggi = '-';
+                    } elseif ($penduduk->tinggi_badan > $bulanSebelumnya->tinggi_badan) {
+                        $keterangan_tinggi = 'Naik ' . number_format($penduduk->tinggi_badan - $bulanSebelumnya->tinggi_badan, 1) . ' cm';
+                    } elseif ($penduduk->tinggi_badan < $bulanSebelumnya->tinggi_badan) {
+                        $keterangan_tinggi = 'Turun ' . number_format($bulanSebelumnya->tinggi_badan - $penduduk->tinggi_badan, 1) . ' cm';
+                    } else {
+                        $keterangan_tinggi = 'Tetap';
+                    }
+
+                    $penduduk->keterangan = 'Berat Badan <b>' . $keterangan_berat . '</b><br>Tinggi Badan <b>' . $keterangan_tinggi . '</b>';
                     $penduduk->action = (string) view('admin.posyandu.action', [
                         'item' => $penduduk
                     ]);
@@ -101,7 +174,8 @@ class PosyanduController extends Controller
                 "draw" => intval($request->input('draw')),
                 "recordsTotal" => intval($totalData),
                 "recordsFiltered" => intval($totalFiltered),
-                "data" => $penduduks
+                "data" => $penduduks,
+                'bulan_terakhir' => $bulanTerakhir ? $parsedMonth->translatedFormat('F Y') : ''
             );
 
             return json_encode($json_data);
@@ -121,10 +195,10 @@ class PosyanduController extends Controller
             // Ini dipakai untuk pencarian AJAX dari Select2
             $search = $request->q;
 
-            $penduduk = Penduduk::where('tanggal_lahir', '>=', \Carbon\Carbon::now()->subYears(3)->toDateString())
+            $penduduk = Penduduk::where('tanggal_lahir', '>=', Carbon::now()->subYears(3)->toDateString())
                 ->where('nama', 'like', '%' . $search . '%')
                 ->where('keterangan', '!=', 'Meninggal')
-                ->whereDoesntHave('posyandu')
+                // ->whereDoesntHave('posyandu')
                 ->select('id', 'nama')
                 ->limit(10)
                 ->get();
@@ -132,7 +206,7 @@ class PosyanduController extends Controller
             return response()->json($penduduk);
         }
 
-        $penduduk = Penduduk::where('tanggal_lahir', '>=', \Carbon\Carbon::now()->subYears(3)->toDateString())
+        $penduduk = Penduduk::where('tanggal_lahir', '>=', Carbon::now()->subYears(3)->toDateString())
             ->get();
 
         return view('admin.posyandu.create', compact('penduduk'));
@@ -147,18 +221,23 @@ class PosyanduController extends Controller
     public function store(Request $request)
     {
         $penduduk = Penduduk::where('nik', $request->input('nik'))->firstOrFail();
+        $bulan = Carbon::createFromFormat('Y-m', $request->bulan_posyandu)->startOfMonth()->toDateString();
         Posyandu::updateOrCreate(
-            ['id_penduduk' => $penduduk->id],
+            [
+                'id_penduduk' => $penduduk->id,
+                'bulan_posyandu' => $bulan
+            ],
             [
                 'usia' => $request->input('usia'),
-                'berat_badan' => $request->input('berat_badan'),
-                'tinggi_badan' => $request->input('tinggi_badan'),
-                'lingkar_lengan_atas' => $request->input('lingkar_lengan_atas'),
-                'lingkar_lengan_bawah' => $request->input('lingkar_lengan_bawah'),
-                'lingkar_dada' => $request->input('lingkar_dada'),
-                'lingkar_perut' => $request->input('lingkar_perut'),
-                'lingkar_kepala' => $request->input('lingkar_kepala'),
-                'gizi' => 0
+                'berat_badan' => (float) $request->input('berat_badan'),
+                'tinggi_badan' => (float) $request->input('tinggi_badan'),
+                'lingkar_lengan_atas' => (float) $request->input('lingkar_lengan_atas'),
+                'lingkar_lengan_bawah' => (float) $request->input('lingkar_lengan_bawah'),
+                'lingkar_dada' => (float) $request->input('lingkar_dada'),
+                'lingkar_perut' => (float) $request->input('lingkar_perut'),
+                'lingkar_kepala' => (float) $request->input('lingkar_kepala'),
+                'gizi' => 0,
+                'bulan_posyandu' => $bulan,
             ]
         );
 
@@ -172,9 +251,38 @@ class PosyanduController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         //
+        $statusGizi = Stunting::findOrFail($request->input('id_posyandu'))->kategori;
+        $idPenduduk = Posyandu::findOrFail($request->input('id_posyandu'))->id_penduduk;
+
+        $datas = Posyandu::select('posyandu.*', 'penduduk.tanggal_lahir')
+            ->join('penduduk', 'penduduk.id', 'posyandu.id_penduduk')
+            ->where('id_penduduk', $idPenduduk)
+            ->get();
+
+        $dataBeratBadan = $datas->map(function ($data) {
+            $bulanLahir = Carbon::parse($data->tanggal_lahir);
+            $bulanPosyandu = Carbon::parse($data->bulan_posyandu);
+            $usia = $bulanLahir->diffInMonths($bulanPosyandu);
+
+            return [$usia => $data->berat_badan];
+        });
+
+        $dataTinggiBadan = $datas->map(function ($data) {
+            $bulanLahir = Carbon::parse($data->tanggal_lahir);
+            $bulanPosyandu = Carbon::parse($data->bulan_posyandu);
+            $usia = $bulanLahir->diffInMonths($bulanPosyandu);
+
+            return [$usia => $data->tinggi_badan];
+        });
+
+        return response()->json([
+            'status_gizi' => $statusGizi,
+            'data_berat_badan' => $dataBeratBadan,
+            'data_tinggi_badan' => $dataTinggiBadan
+        ]);
     }
 
     /**
@@ -216,17 +324,17 @@ class PosyanduController extends Controller
 
     public function import(Request $request)
     {
-        // Excel::import(new pendudukImport, request()->file('file'));
 
         $validate = $request->validate([
             'file' => 'required',
+            'bulan_posyandu' => 'required',
         ]);
 
         $file = $request->file('file');
         $extension = $file->getClientOriginalExtension();
 
         if ($extension === 'csv') {
-            Excel::import(new PosyanduImport, $file);
+            Excel::import(new PosyanduImport($request->input('bulan_posyandu')), $file);
             return redirect()->route('posyandu.index')->with('success', 'Posyandu berhasil diimport');
         } else {
             // Simpan file sementara di session

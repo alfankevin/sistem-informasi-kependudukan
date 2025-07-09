@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posyandu;
 use App\Models\Stunting;
+use Carbon\Carbon;
 use DateTime;
 use DB;
 use Exception;
@@ -19,10 +20,11 @@ class PerankinganRisikoController extends Controller
     {
         if ($request->ajax()) {
             try {
-                $stuntingCount = Stunting::count();
+                $stuntingCount = Stunting::join('posyandu', 'posyandu.id', 'stuntings.posyandu_id')
+                    ->where('posyandu.bulan_posyandu', $request->input('month'))->count();
 
                 if ($stuntingCount == 0) {
-                    $this->hitungRanking();
+                    $this->hitungRanking($request->input('month'));
                 }
 
                 $query = DB::table('stuntings')
@@ -43,6 +45,7 @@ class PerankinganRisikoController extends Controller
                         'posyandu.tinggi_badan',
                         'posyandu.berat_badan'
                     )
+                    ->where('bulan_posyandu', $request->input('month'))
                     ->orderBy('stuntings.nilai', 'asc');
 
                 return DataTables::of($query)
@@ -115,20 +118,34 @@ class PerankinganRisikoController extends Controller
             }
         }
 
-        return view('admin.posyandu.perankingan-risiko');
+        $monthList = Posyandu::select('bulan_posyandu')
+            ->distinct()
+            ->orderByDesc('bulan_posyandu')
+            ->get()
+            ->mapWithKeys(function ($item) {
+                $tanggal = $item->bulan_posyandu;
+                return [
+                    $tanggal => Carbon::parse($tanggal)->translatedFormat('F Y')
+                ];
+            })
+            ->toArray();
+
+
+        return view('admin.posyandu.perankingan-risiko', compact(['monthList']));
     }
 
     /**
      * Hitung ranking dan simpan ke tabel stuntings
      */
-    public function hitungRanking()
+    public function hitungRanking($month)
     {
         try {
             DB::beginTransaction();
             // Clear existing data
-            Stunting::truncate();
+            Stunting::join('posyandu', 'posyandu.id', 'stuntings.posyandu_id')
+                ->where('posyandu.bulan_posyandu', $month)->delete();
 
-            $posyandu = Posyandu::with('penduduk.kartuKeluarga')->get();
+            $posyandu = Posyandu::with('penduduk.kartuKeluarga')->where('bulan_posyandu', $month)->get();
 
             if ($posyandu->isEmpty()) {
                 return;
@@ -148,12 +165,12 @@ class PerankinganRisikoController extends Controller
             ]);
 
             // Persiapan data alternatif dengan perhitungan yang diperbaiki
-            $alternatif = $posyandu->map(function ($item) {
+            $alternatif = $posyandu->map(function ($item) use ($month) {
                 if (!$item->penduduk || !$item->penduduk->tanggal_lahir) {
                     return null;
                 }
 
-                $usia = $this->hitungUsiaDalamBulan($item->penduduk->tanggal_lahir);
+                $usia = $this->hitungUsiaDalamBulan($item->penduduk->tanggal_lahir, $month);
                 $gender = strtolower($item->penduduk->jenis_kelamin);
 
                 // Validasi usia (0-60 bulan untuk balita)
@@ -317,8 +334,10 @@ class PerankinganRisikoController extends Controller
      */
     public function recalculate()
     {
+        $month = request('bulan_posyandu');
+
         try {
-            $this->hitungRanking();
+            $this->hitungRanking($month);
             return response()->json([
                 'success' => true,
                 'message' => 'Perhitungan ranking berhasil diperbarui',
@@ -335,18 +354,18 @@ class PerankinganRisikoController extends Controller
     /**
      * Hitung usia dalam bulan dengan validasi
      */
-    private function hitungUsiaDalamBulan($tanggalLahir)
+    private function hitungUsiaDalamBulan($tanggalLahir, $bulanPosyandu)
     {
         try {
             $lahir = new DateTime($tanggalLahir);
-            $sekarang = new DateTime();
+            $posyandu = new DateTime($bulanPosyandu);
 
             // Validasi tanggal lahir tidak boleh di masa depan
-            if ($lahir > $sekarang) {
+            if ($lahir > $posyandu) {
                 throw new InvalidArgumentException('Tanggal lahir tidak boleh di masa depan');
             }
 
-            $interval = $lahir->diff($sekarang);
+            $interval = $lahir->diff($posyandu);
             $usiaBulan = ($interval->y * 12) + $interval->m;
 
             // Jika sudah lewat tanggal dalam bulan tersebut, tambah 1 bulan
@@ -413,15 +432,15 @@ class PerankinganRisikoController extends Controller
     {
         // Filter by gender if specified
         if ($jenisKelamin) {
-            $ranking = array_filter($ranking, function($data) use ($jenisKelamin) {
+            $ranking = array_filter($ranking, function ($data) use ($jenisKelamin) {
                 return ($data['jenis_kelamin'] ?? '') === $jenisKelamin;
             });
         }
 
         // Use array_column and array_count_values for optimal performance
         $kategoris = array_column($ranking, 'kategori_risiko');
-        $kategoriTexts = array_map(function($kategori) {
-            return is_array($kategori) ? ($kategori['text'] ?? '') : (string)$kategori;
+        $kategoriTexts = array_map(function ($kategori) {
+            return is_array($kategori) ? ($kategori['text'] ?? '') : (string) $kategori;
         }, $kategoris);
 
         $kategoriCounts = array_count_values($kategoriTexts);
@@ -447,17 +466,18 @@ class PerankinganRisikoController extends Controller
             ->select(
                 'penduduk.jenis_kelamin',
                 'stuntings.kategori'
-            );
+            )
+            ->where('posyandu.bulan_posyandu', $request->input('month'));
 
         // Apply gender filter if specified
         if ($request->has('jenisKelamin') && $request->jenisKelamin != '') {
             $query->where('penduduk.jenis_kelamin', $request->jenisKelamin);
         }
 
-        $data = $query->get()->map(function($row) {
+        $data = $query->get()->map(function ($row) {
             return [
                 'jenis_kelamin' => $row->jenis_kelamin,
-                'kategori_risiko' => ['text' => $row->kategori]
+                'kategori_risiko' => ['text' => $row->kategori],
             ];
         })->toArray();
 

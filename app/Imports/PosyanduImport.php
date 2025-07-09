@@ -16,41 +16,48 @@ class PosyanduImport implements ToModel, WithHeadingRow, WithUpserts
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
+
+    protected $bulanPosyandu;
+
+    public function __construct($bulanPosyandu)
+    {
+        // Tambahkan -01 supaya cocok untuk tipe DATE
+        $this->bulanPosyandu = $bulanPosyandu . '-01';
+    }
     public function model(array $row)
     {
         $penduduk = Penduduk::whereRaw('LOWER(nama) = ?', [strtolower($row['nama'])])->first();
 
-        if (!$penduduk) {
-            return null;
-        }
 
-        Posyandu::updateOrCreate(
-            ['id_penduduk' => $penduduk->id],
+        Posyandu::updateOrCreate(['id_penduduk' => $penduduk->id,
+            'bulan_posyandu' => $this->bulanPosyandu],
             [
-                'usia' => $this->hitungUsiaDalamBulan($penduduk->tanggal_lahir),
-                'berat_badan' => $row['berat_badan_kg'],
-                'tinggi_badan' => $row['panjang_badan_cm'],
-                'lingkar_lengan_atas' => $row['lingkar_lengan_atas_cm'],
-                'lingkar_lengan_bawah' => $row['lingkar_lengan_bawah_cm'],
-                'lingkar_dada' => $row['lingkar_dada_cm'],
-                'lingkar_perut' => $row['lingkar_perut_cm'],
-                'lingkar_kepala' => $row['lingkar_kepala_cm'],
-                'gizi' => 0
+                'id_penduduk' => $penduduk->id,
+                'usia' => $this->hitungUsiaDalamBulan($penduduk->tanggal_lahir, $this->bulanPosyandu),
+                'berat_badan' => (float) $row['berat_badan_kg'],
+                'tinggi_badan' => (float) $row['panjang_badan_cm'],
+                'lingkar_lengan_atas' => (float) $row['lingkar_lengan_atas_cm'],
+                'lingkar_lengan_bawah' => (float) $row['lingkar_lengan_bawah_cm'],
+                'lingkar_dada' => (float) $row['lingkar_dada_cm'],
+                'lingkar_perut' => (float) $row['lingkar_perut_cm'],
+                'lingkar_kepala' => (float) $row['lingkar_kepala_cm'],
+                'gizi' => 0,
+                'bulan_posyandu' => $this->bulanPosyandu,
             ]
         );
     }
 
-    public function hitungUsiaDalamBulan($tanggalLahir)
+    public function hitungUsiaDalamBulan($tanggalLahir, $bulanPosyandu)
     {
         $lahir = new DateTime($tanggalLahir);
-        $hariIni = new DateTime();
+        $posyandu = new DateTime($bulanPosyandu);
 
-        $tahun = $hariIni->format('Y') - $lahir->format('Y');
-        $bulan = $hariIni->format('m') - $lahir->format('m');
+        $tahun = $posyandu->format('Y') - $lahir->format('Y');
+        $bulan = $posyandu->format('m') - $lahir->format('m');
         $totalBulan = ($tahun * 12) + $bulan;
 
         // Kalau hari ini belum lewat tanggal lahir di bulan ini, kurangi 1
-        if ($hariIni->format('d') < $lahir->format('d')) {
+        if ($posyandu->format('d') < $lahir->format('d')) {
             $totalBulan--;
         }
 

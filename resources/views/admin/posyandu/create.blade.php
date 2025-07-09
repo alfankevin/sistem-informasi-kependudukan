@@ -23,6 +23,22 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-12">
+                                    <label for="bulan_posyandu">Posyandu Bulan</label>
+                                    <input id="bulan-posyandu" name="bulan_posyandu" type="month" spellcheck="false"
+                                        autocomplete="off"
+                                        class="form-control @error('bulan_posyandu') is-invalid @enderror"
+                                        value="{{ old('bulan_posyandu') }}" required>
+                                    @error('bulan_posyandu')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12">
                                     <label for="nik">NIK</label>
                                     <input id="nik" name="nik" type="text" spellcheck="false"
                                         autocomplete="off" class="form-control @error('nik') is-invalid @enderror"
@@ -60,7 +76,7 @@
                                     <label for="usia">Usia (bulan)</label>
                                     <input id="usia" name="usia" type="number" spellcheck="false"
                                         autocomplete="off" class="form-control @error('usia') is-invalid @enderror"
-                                        value="{{ old('usia') }}" readonly>
+                                        value="{{ old('usia') }}">
                                     @error('usia')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -208,26 +224,34 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#nama').on('change', () => {
+            $('#nama, #bulan-posyandu').on('change', function() {
                 const penduduk = {!! json_encode($penduduk) !!}
-                const id_penduduk = $(this).find('option:selected').val();
+                const id_penduduk = $('#nama').val(); // Ambil dari select #nama, bukan this
 
                 const find_penduduk = penduduk.find((item) => item.id == id_penduduk);
 
-                $("#nik").val(find_penduduk.nik);
-                $('#usia').val(hitungUsiaDalamBulan(find_penduduk.tanggal_lahir))
+                $("#nik").val(find_penduduk?.nik || '');
+
+                const bulanPosyandu = $('#bulan-posyandu').val();
+                console.log(hitungUsiaDalamBulan(find_penduduk.tanggal_lahir, bulanPosyandu));
+                console.log(bulanPosyandu);
+                if (bulanPosyandu && find_penduduk) {
+                    $('#usia').val(hitungUsiaDalamBulan(find_penduduk.tanggal_lahir, bulanPosyandu));
+                } else {
+                    $('#usia').val('');
+                }
             });
 
-            function hitungUsiaDalamBulan(tanggalLahir) {
+            function hitungUsiaDalamBulan(tanggalLahir, bulanPosyandu) {
                 const lahir = new Date(tanggalLahir);
-                const hariIni = new Date();
+                const bulanPos = new Date(bulanPosyandu);
 
-                let tahun = hariIni.getFullYear() - lahir.getFullYear();
-                let bulan = hariIni.getMonth() - lahir.getMonth();
+                let tahun = bulanPos.getFullYear() - lahir.getFullYear();
+                let bulan = bulanPos.getMonth() - lahir.getMonth();
                 let totalBulan = tahun * 12 + bulan;
 
                 // Kalau hari ini belum lewat tanggal lahir di bulan ini, kurangi 1
-                if (hariIni.getDate() < lahir.getDate()) {
+                if (bulanPos.getDate() < lahir.getDate()) {
                     totalBulan--;
                 }
 
