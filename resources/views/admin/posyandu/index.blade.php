@@ -36,9 +36,9 @@
                                     data-target="#importModal">
                                     <i class="fa fa-download" aria-hidden="true"></i> Import Data
                                 </a>
-                                <a class="btn btn-primary btn-color-blue" href="{{ route('penduduk.export') }}">
+                                {{-- <a class="btn btn-primary btn-color-blue" href="{{ route('posyandu.export') }}">
                                     <i class="fa fa-upload" aria-hidden="true"></i> Export Data
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                         <div class="card-body">

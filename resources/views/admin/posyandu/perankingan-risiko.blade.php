@@ -42,6 +42,17 @@
                     <div class="card card-primary">
                         <div class="card-header">
                             <h4>Daftar Risiko Stunting</h4>
+                            <div class="card-header-action">
+                                <form id="form-export" method="POST" action="{{ route('posyandu.export') }}"
+                                    target="_blank" style="display:none;">
+                                    @csrf
+                                    <input type="hidden" name="bulan_posyandu" id="export-bulan">
+                                </form>
+
+                                <a class="btn btn-primary btn-color-blue text-white" id="btn-export" type="button">
+                                    <i class="fa fa-upload" aria-hidden="true"></i> Export Data
+                                </a>
+                            </div>
                         </div>
                         <div class="card-body pb-2 d-flex gap-3 justify-content-between">
                             <div class="col-md-6 col-sm-12">
@@ -214,6 +225,13 @@
                     }
                 }, false);
             });
+
+            $("#btn-export").click(function() {
+                let bulan = $("#bulan-posyandu").val();
+                $("#export-bulan").val(bulan);
+
+                $("#form-export").submit();
+            })
 
             // Function to create or update chart
             function createOrUpdateChart(stuntingStats, bulanPosyandu) {

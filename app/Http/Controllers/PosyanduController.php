@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PosyanduExport;
 use App\Models\Penduduk;
 use App\Models\Posyandu;
 use Illuminate\Http\Request;
@@ -346,5 +347,11 @@ class PosyanduController extends Controller
 
             return redirect()->route('posyandu.create')->with('info', 'Silakan input data pengguna.');
         }
+    }
+
+    public function export(Request $request)
+    {
+        $bulan = Carbon::parse($request->input("bulan_posyandu"));
+        return Excel::download(new PosyanduExport($bulan), ('posyandu_' . $bulan->format('F') . $bulan->year . '.xls'));
     }
 }

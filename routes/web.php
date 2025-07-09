@@ -135,7 +135,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::resource('posyandu', controller: PosyanduController::class)->except(['show']);
         Route::post('/posyandu', [PosyanduController::class, 'show'])->name(name: 'posyandu.detail');
         Route::post('/posyandu/store', [PosyanduController::class, 'store'])->name(name: 'posyandu.store');
+
         Route::post('/import', [PosyanduController::class, 'import'])->name('posyandu.import');
+        Route::post('/export', [PosyanduController::class, 'export'])->name('posyandu.export');
 
         Route::get('/risiko-stunting', [PerankinganRisikoController::class, 'index'])->name('perankingan-risiko.index');
         Route::post('/recalculate-risiko', [PerankinganRisikoController::class, 'recalculate'])->name('perankingan-risiko.recalculate');
