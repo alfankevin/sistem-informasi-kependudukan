@@ -173,8 +173,8 @@ class PerankinganRisikoController extends Controller
                 $usia = $this->hitungUsiaDalamBulan($item->penduduk->tanggal_lahir, $month);
                 $gender = strtolower($item->penduduk->jenis_kelamin);
 
-                // Validasi usia (0-60 bulan untuk balita)
-                if ($usia < 0 || $usia > 60) {
+                // Validasi usia (0-36 bulan untuk balita)
+                if ($usia < 0 || $usia > 36) {
                     return null; // Skip data tidak valid
                 }
 
