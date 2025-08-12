@@ -131,8 +131,8 @@
                                     <select class="form-control select2 @error('agama') is-invalid @enderror" name="agama">
                                         <option value=""></option>
                                         <option value="Islam" @if (old('agama', $penduduk->agama) == "Islam") {{ 'selected' }} @endif>Islam</option>
+                                        <option value="Kristen" @if (old('agama', $penduduk->agama) == "Kristen") {{ 'selected' }} @endif>Kristen</option>
                                         <option value="Katolik" @if (old('agama', $penduduk->agama) == "Katolik") {{ 'selected' }} @endif>Katolik</option>
-                                        <option value="Protestan" @if (old('agama', $penduduk->agama) == "Protestan") {{ 'selected' }} @endif>Protestan</option>
                                         <option value="Hindu" @if (old('agama', $penduduk->agama) == "Hindu") {{ 'selected' }} @endif>Hindu</option>
                                         <option value="Budha" @if (old('agama', $penduduk->agama) == "Budha") {{ 'selected' }} @endif>Budha</option>
                                         <option value="Konghucu" @if (old('agama', $penduduk->agama) == "Konghucu") {{ 'selected' }} @endif>Konghucu</option>

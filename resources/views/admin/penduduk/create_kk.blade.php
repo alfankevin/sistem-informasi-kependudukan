@@ -202,7 +202,7 @@
                                                         <label>Jenis Kelamin</label>
                                                         <select class="form-control select2 @error('jenis_kelamin') is-invalid @enderror" name="penduduk[{{ $index }}][jenis_kelamin]">
                                                             <option value=""></option>
-                                                            <option value="L" {{ $penduduk['jenis_kelamin'] == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                            <option value="L" {{ $penduduk['jenis_kelamin'] == 'Laki-Laki' ? 'selected' : '' }}>Laki-laki</option>
                                                             <option value="P" {{ $penduduk['jenis_kelamin'] == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                                         </select>
                                                         @error('jenis_kelamin')
@@ -244,8 +244,8 @@
                                                         <select class="form-control select2 @error('agama') is-invalid @enderror" name="penduduk[{{ $index }}][agama]">
                                                             <option value=""></option>
                                                             <option value="Islam" {{ $penduduk['agama'] == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                                            <option value="Kristen" {{ $penduduk['agama'] == 'Kristen' ? 'selected' : '' }}>Kristen</option>
                                                             <option value="Katolik" {{ $penduduk['agama'] == 'Katolik' ? 'selected' : '' }}>Katolik</option>
-                                                            <option value="Protestan" {{ $penduduk['agama'] == 'Protestan' ? 'selected' : '' }}>Protestan</option>
                                                             <option value="Hindu" {{ $penduduk['agama'] == 'Hindu' ? 'selected' : '' }}>Hindu</option>
                                                             <option value="Budha" {{ $penduduk['agama'] == 'Budha' ? 'selected' : '' }}>Budha</option>
                                                             <option value="Konghucu" {{ $penduduk['agama'] == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
@@ -320,6 +320,7 @@
                                                             <option value="1" {{ $penduduk['status_keluarga'] == 'Kepala Keluarga' ? 'selected' : '' }}>Kepala Keluarga</option>
                                                             <option value="2" {{ $penduduk['status_keluarga'] == 'Istri' ? 'selected' : '' }}>Istri</option>
                                                             <option value="3" {{ $penduduk['status_keluarga'] == 'Anak' ? 'selected' : '' }}>Anak</option>
+                                                            <option value="3" {{ $penduduk['status_keluarga'] == 'Famili Lain' ? 'selected' : '' }}>Famili Lain</option>
                                                             <option value="0" {{ $penduduk['status_keluarga'] == '-' ? 'selected' : '' }}>-</option>
                                                         </select>
                                                         @error('status_keluarga')
@@ -503,8 +504,8 @@
                                         <select class="form-control select2 @error('agama') is-invalid @enderror" name="penduduk[${accordionCount - 1}][agama]">
                                             <option value=""></option>
                                             <option value="Islam">Islam</option>
+                                            <option value="Kristen">Kristen</option>
                                             <option value="Katolik">Katolik</option>
-                                            <option value="Protestan">Protestan</option>
                                             <option value="Hindu">Hindu</option>
                                             <option value="Budha">Budha</option>
                                             <option value="Konghucu">Konghucu</option>
