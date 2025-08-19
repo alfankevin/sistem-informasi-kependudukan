@@ -11,5 +11,7 @@ class HistoriSurat extends Model
     protected $table = 'histori_surat';
     protected $guarded = ['id'];
 
-    
+    public function pengajuanSurat() {
+        return $this->belongsTo(PengajuanSurat::class, 'surat_pengajuan_id');
+    }
 }

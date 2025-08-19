@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PengajuanSuratController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\UserController;
@@ -106,6 +107,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('galeri-management')->group(function () {
         //galeri
         Route::resource('galeri', GaleriController::class)->except(['show']);
+    });
+
+    Route::prefix('pengajuan-surat-management')->group(function () {
+        //galeri
+        Route::resource('pengajuan-surat', controller: PengajuanSuratController::class)->except(['show']);
     });
 
     Route::group(['prefix' => 'role-and-permission'], function () {
