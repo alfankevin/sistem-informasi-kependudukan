@@ -104,7 +104,7 @@
         <div class="content mb-4">
             <div class="title text-center">
                 <p class="text-uppercase h5 mt-3 mx-auto">surat pengantar</p>
-                <p>Nomor: 0{{ $nomor_urut + 1 }}/SP/RT.{{ $dataPenduduk['rt'] }}
+                <p>Nomor: {{ str_pad($nomor_urut + 1, 2, '0', STR_PAD_LEFT) }}/SP/RT.{{ $dataPenduduk['rt'] }}
                     RW.{{ $dataPenduduk['rw'] }}/{{ $date->format('d') }}{{ $date->format('m') }}/{{ $date->format('Y') }}
                 </p>
             </div>
@@ -220,7 +220,62 @@
                 <tr>
                     <td class="kolom-name">Keperluan</td>
                     <td class="kolom-equals">:</td>
-                    <td class="kolom-data">{{ $dataPenduduk['keperluan'] }}</td>
+                    <td class="kolom-data">
+                        @switch($dataPenduduk['jenis_surat'])
+                            @case('sktm')
+                                Surat Keterangan Tidak Mampu
+                            @break
+
+                            @case('sku')
+                                Surat Keterangan Usaha
+                            @break
+
+                            @case('skd')
+                                Surat Keterangan Domisili
+                            @break
+
+                            @case('skck')
+                                Surat Keterangan Catatan Kepolisian (pengantar RT/RW ke Polsek)
+                            @break
+
+                            @case('ska')
+                                Surat Izin Acara/Keramaian
+                            @break
+
+                            @case('sktp')
+                                Surat Pengantar KTP
+                            @break
+
+                            @case('spkk')
+                                Surat Pengantar Kartu Keluarga
+                            @break
+
+                            @case('skk')
+                                Surat Keterangan Kematian
+                            @break
+
+                            @case('spaw')
+                                Surat Pengantar Ahli Waris
+                            @break
+
+                            @case('skp')
+                                Surat Keterangan Pindah
+                            @break
+
+                            @case('skbk')
+                                Surat Keterangan Boro Kerja
+                            @break
+
+                            @default
+                                -
+                        @endswitch
+                    </td>
+                </tr>
+                <tr>
+                    <td class="kolom-name">Deskripsi Keperluan</td>
+                    <td class="kolom-equals">:</td>
+                    <td class="kolom-data">{{ $dataPenduduk['keperluan'] === null ? '-' : $dataPenduduk['keperluan'] }}
+                    </td>
                 </tr>
                 <tr>
                     <td class="kolom-name">
@@ -246,7 +301,9 @@
             <p>Demikian Surat Pengantar ini dibuat dipergunakan sebagaimana semestinya.</p>
             <table class="ttd mt-4">
                 <tr>
-                    <td colspan="2" class="pb-1">No. / /{{ $date->format('m') }}/{{ $date->format('Y') }}</td>
+                    <td colspan="2" class="pb-1">No.
+                        {{ str_pad($nomor_urut + 1, 2, '0', STR_PAD_LEFT) }}/SP/{{ $date->format('m') }}/{{ $date->format('Y') }}
+                    </td>
                     <td class="text-end pb-1">Malang, {{ $date->locale('id')->isoFormat('D MMMM Y') }}</td>
                 </tr>
                 <tr class="text-center">
@@ -254,14 +311,22 @@
                         Ketua RW. {{ $dataPenduduk['rw'] }} <br>
                         Kelurahan Tanjungrejo
                     </td>
-                    <td>Ketua RT. {{ $dataPenduduk['rt'] }}</td>
+                    <td>
+                        @if ($ketua_rt !== null)
+                            Ketua RT. {{ $dataPenduduk['rt'] }}
+                        @endif
+                    </td>
                     <td>Pemohon</td>
                 </tr>
                 <tr class="text-center ttd-nama">
-                    <td class="fw-bold text-uppercase text-decoration-underline">N. Agung R. Prasetyo</td>
-                    <td class="fw-bold text-uppercase text-decoration-underline">Hari Wibisono</td>
+                    <td class="fw-bold text-uppercase text-decoration-underline">{{ $ketua_rw->penduduk->nama }}</td>
                     <td class="fw-bold text-uppercase text-decoration-underline">
-                        <img src="{{ $signature }}" alt="Tanda Tangan" width="200%"
+                        @if ($ketua_rt !== null)
+                            {{ $ketua_rt->penduduk->nama }}
+                        @endif
+                    </td>
+                    <td class="fw-bold text-uppercase text-decoration-underline">
+                        <img src="{{ $signature }}" alt="Tanda Tangan" width="100%"
                             style="display: block; margin: -10px auto 0;">
                         {{ $dataPenduduk['nama'] }}
                     </td>

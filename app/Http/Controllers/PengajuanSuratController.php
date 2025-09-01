@@ -100,7 +100,7 @@ class PengajuanSuratController extends Controller
         //
     }
 
-    public function approve($id)
+    public function approveSurat($id)
     {
         $pengajuan = PengajuanSurat::findOrFail($id);
         $suratPath = public_path('assets/files/form_pengajuan/' . $pengajuan->pdf_path);
@@ -134,7 +134,7 @@ class PengajuanSuratController extends Controller
         ]);
     }
 
-    public function sendEmailKelurahan(Request $request, $id)
+    public function kirimKeKelurahan(Request $request, $id)
     {
         $request->validate([
             'email' => 'required|email:rfc,dns',

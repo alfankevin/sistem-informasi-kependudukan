@@ -11,19 +11,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" class="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="/">Home</a>
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
+                        href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{Request::is('agenda') ? 'active' : ''}}" href="/agenda">Agenda</a>
+                    <a class="nav-link {{ Request::is('agenda') ? 'active' : '' }}" href="/agenda">Agenda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{Request::is('potensi') ? 'active' : ''}}" href="/potensi">Potensi</a>
+                    <a class="nav-link {{ Request::is('potensi') ? 'active' : '' }}" href="/potensi">Potensi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{Request::is('galeri') ? 'active' : ''}}" href="/galeri">Galeri</a>
+                    <a class="nav-link {{ Request::is('galeri') ? 'active' : '' }}" href="/galeri">Galeri</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{Request::is('pelayanan') ? 'active' : ''}}" href="/pelayanan">Pelayanan</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link {{ Request::is('pelayanan/pengajuan-surat') ? 'active' : '' }}"
+                        {{ Request::is('pelayanan/lacak-pengajuan') ? 'active' : '' }} href="#" role="button"
+                        id="dropdownMenuPelayanan" data-bs-toggle="dropdown" aria-expanded="false">Pelayanan <i
+                            class="fa fa-chevron-down ms-1" style="font-size: 11pt"></i></a>
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item {{ Request::is('pelayanan/pengajuan-surat') ? 'active' : '' }}"
+                                href="/pelayanan/pengajuan-surat">Form Persuratan</a></li>
+                        <li><a class="dropdown-item" href="/pelayanan/lacak-pengajuan">Lacak Pengajuan</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact Us</a>

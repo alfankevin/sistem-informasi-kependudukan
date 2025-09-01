@@ -18,7 +18,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Menu\MenuGroupController;
 use App\Http\Controllers\PengurusWilayahController;
-use App\Http\Controllers\PublicServiceController;
+use App\Http\Controllers\Publik\PengajuanSuratController as PengajuanSuratControllerPublik;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use App\Http\Controllers\RoleAndPermission\ExportRoleController;
 use App\Http\Controllers\RoleAndPermission\ImportRoleController;
@@ -44,10 +44,12 @@ Route::get('/agenda', [LandingPageController::class, 'agenda']);
 Route::get('/potensi', [LandingPageController::class, 'potensi']);
 Route::get('/galeri', [LandingPageController::class, 'galeri']);
 
-Route::prefix('pelayanan')->as('persuratan.')->group(function () {
-    Route::get('/', [PublicServiceController::class, 'index'])->name('index');
-    Route::post('/findNik', [PublicServiceController::class, 'findNik'])->name("findNik");
-    Route::post('/generate-pdf', [PublicServiceController::class, 'generatePDF'])->name('generatePDF');
+Route::prefix('pelayanan')->as('pelayanan.')->group(function () {
+    Route::get('/pengajuan-surat',[PengajuanSuratControllerPublik::class, 'create'])->name('pengajuan_surat.form');
+    Route::post('/pengajuan-surat/find-nik', [PengajuanSuratControllerPublik::class, 'findNik'])->name("pengajuan_surat.find_nik");
+    Route::post('/pengajuan-surat/generate-pdf', [PengajuanSuratControllerPublik::class, 'store'])->name('pengajuan_surat.store');
+
+    Route::get('/lacak-pengajuan', [PengajuanSuratControllerPublik::class, 'track'])->name('lacak_pengajuan');
 });
 
 Route::get('/admin', function () {
@@ -113,8 +115,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('pelayanan-management')->group(function () {
         //persuratan
         Route::resource('pengajuan-surat', controller: PengajuanSuratController::class)->except(['show']);
-        Route::get('pengajuan-surat/{id}/approve', [PengajuanSuratController::class, 'approve'])->name('pengajuan-surat.approve');
-        Route::post('pengajuan-surat/{id}/send-email-kelurahan', [PengajuanSuratController::class, 'sendEmailKelurahan'])->name('pengajuan-surat.send-email-kelurahan');
+        Route::get('pengajuan-surat/{id}/approve', [PengajuanSuratController::class, 'approveSurat'])->name('pengajuan-surat.approve');
+        Route::post('pengajuan-surat/{id}/kirim-email-kelurahan', [PengajuanSuratController::class, 'kirimKeKelurahan'])->name('pengajuan-surat.send-email-kelurahan');
 
         Route::resource('pengurus-wilayah', controller: PengurusWilayahController::class)->except(['show']);
     });

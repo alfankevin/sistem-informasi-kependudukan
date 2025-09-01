@@ -16,6 +16,8 @@ body {
 .ormas h2,
 #agenda h2,
 #potensi h2,
+#pengajuan-surat h2,
+#track-pengajuan h2,
 #agenda h5,
 #potensi h5,
 #potensi .see-more {
@@ -33,6 +35,13 @@ body {
     transition: all 0.25s ease 0s;
 }
 
+.navbar .dropdown-menu {
+    background-color: #002147;
+    backdrop-filter: blur(5px);
+    border: 2px solid #002147;
+    transition: all 0.25s ease 0s;
+}
+
 .navbar a {
     color: #ddd;
 }
@@ -41,11 +50,21 @@ body {
     color: #ddd;
 }
 
+.navbar .dropdown-menu .dropdown-item:focus {
+    background-color: #ddd;
+    color: #333;
+}
+
+.navbar .dropdown-menu .dropdown-item.active {
+    background-color: #002147;
+}
+
 .active {
     color: orange !important;
 }
 
-.navbar.scrolled {
+.navbar.scrolled,
+.navbar.scrolled .dropdown-menu {
     background-color: rgba(255, 255, 255, 0.87);
     color: #333;
 }
@@ -256,6 +275,7 @@ body {
     height: 170px;
     object-fit: cover;
 }
+
 .potensi .col-md-4 {
     border: none;
 }
@@ -268,6 +288,7 @@ body {
     position: absolute;
     bottom: 5px;
 }
+
 @media (max-width: 767px) {
     .potensi.row-cols-1.justify-content-center {
         flex-direction: column;
@@ -278,6 +299,7 @@ body {
         width: 100%;
         max-width: 400px;
     }
+
     .potensi a {
         position: block;
     }
@@ -447,39 +469,50 @@ body {
     body {
         overflow-x: hidden !important;
     }
+
     .container-profile {
         padding-left: 2rem;
         padding-right: 2rem;
     }
+
     .profile {
         width: 100%;
         object-position: 100% 35%;
     }
+
     .count-penduduk {
         padding: 15px 0;
     }
+
     .count:first-child .count-penduduk {
         padding-top: 45px;
     }
+
     .count:last-child .count-penduduk {
         padding-bottom: 45px;
     }
+
     .count-penduduk div {
         display: flex;
         flex-direction: column;
     }
+
     .count-penduduk div p {
         margin: 0;
     }
+
     .hero__items {
         height: 80vh;
     }
+
     .owl-nav {
         display: none;
     }
+
     .lightbox-modal .carousel-control-prev {
         left: 0;
     }
+
     .lightbox-modal .carousel-control-next {
         right: 0;
     }
