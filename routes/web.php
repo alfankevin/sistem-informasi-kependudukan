@@ -17,6 +17,7 @@ use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Menu\MenuGroupController;
+use App\Http\Controllers\PengurusWilayahController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use App\Http\Controllers\RoleAndPermission\ExportRoleController;
@@ -109,9 +110,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::resource('galeri', GaleriController::class)->except(['show']);
     });
 
-    Route::prefix('pengajuan-surat-management')->group(function () {
-        //galeri
+    Route::prefix('pelayanan-management')->group(function () {
+        //persuratan
         Route::resource('pengajuan-surat', controller: PengajuanSuratController::class)->except(['show']);
+        Route::get('pengajuan-surat/{id}/approve', [PengajuanSuratController::class, 'approve'])->name('pengajuan-surat.approve');
+        Route::post('pengajuan-surat/{id}/send-email-kelurahan', [PengajuanSuratController::class, 'sendEmailKelurahan'])->name('pengajuan-surat.send-email-kelurahan');
+
+        Route::resource('pengurus-wilayah', controller: PengurusWilayahController::class)->except(['show']);
     });
 
     Route::group(['prefix' => 'role-and-permission'], function () {

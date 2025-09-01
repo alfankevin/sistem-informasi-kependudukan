@@ -11,7 +11,8 @@
     $user = request()->is('user-management/user/' . $id . '/edit');
     $group = request()->is('menu-management/menu-group/' . $id . '/edit');
     $item = request()->is('menu-management/menu-item/' . $id . '/edit');
-    $pengajuan_surat = request()->is('pengajuan-surat-management/pengajuan-surat/' . $id . '/edit');
+    $pengajuan_surat = request()->is('pelayanan-management/pengajuan-surat/' . $id . '/edit');
+    $pengurus_wilayah = request()->is('pelayanan-management/pengurus-wilayah/' . $id . '/edit');
 @endphp
 
 <aside id="sidebar-wrapper">
@@ -108,14 +109,19 @@
             </ul>
         </li>
         <li
-            class="nav-item dropdown {{ request()->is('pengajuan-surat-management/pengajuan-surat') ? 'active' : '' }}
-            {{ request()->is('pengajuan-surat-management/pengajuan-surat/create') ? 'active' : '' }}
-            {{ $pengajuan_surat ? 'active' : '' }}">
+            class="nav-item dropdown {{ request()->is('pelayanan-management/pengajuan-surat') ? 'active' : '' }}
+            {{ request()->is('pelyanan-management/pengajuan-surat/create') ? 'active' : '' }}
+            {{ request()->is('pelyanan-management/pengurus-wilayah') ? 'active' : '' }}
+            {{ request()->is('pelyanan-management/pengurus-wilayah/create') ? 'active' : '' }}
+            {{ $pengajuan_surat ? 'active' : '' }}
+             {{ $pengurus_wilayah ? 'active' : '' }}">
             <a href="" class="nav-link has-dropdown"><i class="fas fa-university"></i>
                 <span>Pelayanan</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('pengajuan-surat-management/pengajuan-surat') ? 'active' : '' }}"><a class="nav-link"
-                        href="/pengajuan-surat-management/pengajuan-surat">Pengajuan Surat</a></li>
+                <li class="{{ request()->is('pelayanan-management/pengurus-wilayah') ? 'active' : '' }}"><a
+                        class="nav-link" href="/pelayanan-management/pengurus-wilayah">Kepengurusan</a></li>
+                <li class="{{ request()->is('pelayanan-management/pengajuan-surat') ? 'active' : '' }}"><a
+                        class="nav-link" href="/pelayanan-management/pengajuan-surat">Pengajuan Surat</a></li>
             </ul>
         </li>
         <li

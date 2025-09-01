@@ -20,4 +20,9 @@ class Penduduk extends Model
     {
         return $this->hasMany(Sosial::class);
     }
+
+    public function pengurus()
+    {
+        return $this->hasOne(PengurusWilayah::class, 'penduduk_id');
+    }
 }
