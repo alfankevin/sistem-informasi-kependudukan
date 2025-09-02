@@ -94,7 +94,7 @@
                                 <span class="badge bg-primary rounded-pill px-3 py-2 text-capitalize">
                                     @if ($pengajuan->status === 'diajukan')
                                         pengajuan diterima
-                                    @elseif (str_contains($item->status, 'disetujui'))
+                                    @elseif (str_contains($pengajuan->status, 'disetujui'))
                                         Verifikasi <span
                                             class="text-uppercase">{{ ucfirst(explode('_', $pengajuan->status)[1]) }}</span>
                                     @endif

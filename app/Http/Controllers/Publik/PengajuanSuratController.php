@@ -50,8 +50,8 @@ class PengajuanSuratController extends Controller
             'pekerjaan' => 'required',
             'pendidikan' => 'required',
             'alamat' => 'required',
-            'rt' => 'required|string|max:3',
-            'rw' => 'required|string|max:3',
+            'rt' => 'required|string|digits:3',
+            'rw' => 'required|string|digits:3',
             'jenis_surat' => 'required',
             'ktp' => [
                 Rule::requiredIf($request->jenis_surat !== 'sktp'),

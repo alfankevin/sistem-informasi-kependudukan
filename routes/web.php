@@ -45,7 +45,7 @@ Route::get('/potensi', [LandingPageController::class, 'potensi']);
 Route::get('/galeri', [LandingPageController::class, 'galeri']);
 
 Route::prefix('pelayanan')->as('pelayanan.')->group(function () {
-    Route::get('/pengajuan-surat',[PengajuanSuratControllerPublik::class, 'create'])->name('pengajuan_surat.form');
+    Route::get('/pengajuan-surat', [PengajuanSuratControllerPublik::class, 'create'])->name('pengajuan_surat.form');
     Route::post('/pengajuan-surat/find-nik', [PengajuanSuratControllerPublik::class, 'findNik'])->name("pengajuan_surat.find_nik");
     Route::post('/pengajuan-surat/generate-pdf', [PengajuanSuratControllerPublik::class, 'store'])->name('pengajuan_surat.store');
 
@@ -116,6 +116,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         //persuratan
         Route::resource('pengajuan-surat', controller: PengajuanSuratController::class)->except(['show']);
         Route::get('pengajuan-surat/{id}/approve', [PengajuanSuratController::class, 'approveSurat'])->name('pengajuan-surat.approve');
+        Route::post('pengajuan-surat/{id}/tolak', [PengajuanSuratController::class, 'tolakSurat'])->name('pengajuan-surat.tolak');
         Route::post('pengajuan-surat/{id}/kirim-email-kelurahan', [PengajuanSuratController::class, 'kirimKeKelurahan'])->name('pengajuan-surat.send-email-kelurahan');
 
         Route::resource('pengurus-wilayah', controller: PengurusWilayahController::class)->except(['show']);

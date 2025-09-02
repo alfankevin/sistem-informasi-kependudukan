@@ -10,6 +10,8 @@ use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class PengurusWilayahController extends Controller
 {
@@ -67,8 +69,8 @@ class PengurusWilayahController extends Controller
             'email' => 'required|unique:users,email|email',
             'penduduk_id' => 'required|exists:penduduk,id',
             'jabatan' => 'required',
-            'rt' => 'nullable|integer',
-            'rw' => 'nullable|integer',
+            'rt' => 'nullable',
+            'rw' => 'nullable',
             'password' => 'required|min:8|confirmed'
         ]);
 
@@ -79,11 +81,17 @@ class PengurusWilayahController extends Controller
             'email_verified_at' => now(),
         ]);
 
+        $manager = new ImageManager(new Driver());
         if ($request->hasFile(key: 'foto')) {
             $file = $request->file('foto');
-            $fileName = 'ttd_' . $user->name . '.' . $file->getClientOriginalExtension();
-            $path = 'assets/img/ttd/';
-            $file = $file->move($path, $fileName);
+
+            $image = $manager->read($file)
+                ->scale(width: 300) // resize ke max 300px (auto aspect ratio)
+                ->toPng();          // simpan sebagai PNG
+
+            $fileName = 'ttd_' . $user->name . '.png';
+            $path = public_path('assets/img/ttd_pengurus/' . $fileName);
+            $file = $image->save($path );
         } else if (!empty($request->input('signature'))) {
             $signature = $request->input('signature');
             $signature = str_replace('data:image/png;base64,', '', $signature);
@@ -156,8 +164,8 @@ class PengurusWilayahController extends Controller
             ],
             'penduduk_id' => 'required|exists:penduduk,id',
             'jabatan' => 'required',
-            'rt' => 'nullable|integer',
-            'rw' => 'nullable|integer',
+            'rt' => 'nullable',
+            'rw' => 'nullable',
             'password' => 'nullable|min:8|confirmed'
         ]);
 
@@ -176,6 +184,8 @@ class PengurusWilayahController extends Controller
         // replace role
         $user->syncRoles([$request->input('jabatan')]);
 
+        $manager = new ImageManager(new Driver());
+
         if ($request->hasFile(key: 'foto')) {
             // hapus file
             $filePath = public_path('assets/img/ttd_pengurus/' . $pengurus->ttd_path);
@@ -184,9 +194,14 @@ class PengurusWilayahController extends Controller
             }
 
             $file = $request->file('foto');
-            $fileName = 'ttd_' . $user->name . '.' . $file->getClientOriginalExtension();
-            $path = 'assets/img/ttd_pengurus/';
-            $file = $file->move($path, $fileName);
+            $image = $manager->read($file)
+                ->scale(width: 300) // resize ke max 300px (auto aspect ratio)
+                ->toPng();          // simpan sebagai PNG
+
+
+            $fileName = 'ttd_' . $user->name . '.png';
+            $path = public_path('assets/img/ttd_pengurus/' . $fileName);
+            $file = $image->save($path);
         }
 
         $pengurus->update([

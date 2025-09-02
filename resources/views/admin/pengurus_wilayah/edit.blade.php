@@ -71,7 +71,7 @@
                             {{-- input wilayah RT --}}
                             <div class="form-group {{ $pengurus->jabatan === 'ketua-rt' ? '' : 'd-none' }}" id="form-rt">
                                 <label for="rt">Wilayah RT</label>
-                                <input type="number" min="1" id="rt" name="rt"
+                                <input type="text" min="1" id="rt" name="rt"
                                     class="form-control @error('rt') is-invalid @enderror"
                                     value="{{ $pengurus->wilayah_rt }}" placeholder="Masukkan Wilayah RT">
                                 @error('rt')
@@ -83,7 +83,7 @@
                             <div class="form-group {{ $pengurus->jabatan === 'ketua-rw' || $pengurus->jabatan === 'ketua-rt' ? '' : 'd-none' }}"
                                 id="form-rw">
                                 <label for="rw">Wilayah RW</label>
-                                <input type="number" min="1" id="rw" name="rw"
+                                <input type="text" min="1" id="rw" name="rw"
                                     class="form-control @error('rw') is-invalid @enderror"
                                     value="{{ $pengurus->wilayah_rw }}" placeholder="Masukkan WIlayah RW">
                                 @error('rw')

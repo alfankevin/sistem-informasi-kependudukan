@@ -7,6 +7,7 @@ use App\Models\HistoriSurat;
 use App\Models\PengajuanSurat;
 use App\Models\PengurusWilayah;
 use Auth;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -19,19 +20,93 @@ class PengajuanSuratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
         $pengurus = PengurusWilayah::where('user_id', $user->id)->first();
 
-        if ($user->hasRole('ketua-rw')) {
-            $pengajuan_surat = PengajuanSurat::where('rw', $pengurus)->orderBy('created_at')->with('historiSurat')->paginate(25);
+        if ($request->ajax()) {
+            try {
+                $columns = array(
+                    0 => 'id',
+                    1 => 'nik_pemohon',
+                    2 => 'nama_pemohon',
+                    3 => 'alamat_pemohon',
+                    4 => 'jenis_surat',
+                    5 => 'status',
+                );
+
+                $query = PengajuanSurat::query();
+
+                // Filter role RW
+                if ($user->hasRole('ketua-rw')) {
+                    $query->where('rw', $pengurus->wilayah_rw);
+                } else if ($user->hasRole('ketua-rt')) {
+                    $query->where('rw', $pengurus->wilayah_rw)->where('rt', $pengurus->wilayah_rt);
+                }
+
+                $totalData = $query->count();
+                $totalFiltered = $totalData;
+
+                $limit = $request->input('length', 10);
+                $start = $request->input('start', 0);
+                $order = $columns[$request->input('order.0.column', 'id')];
+                $dir = $request->input('order.0.dir', 'asc');
+
+
+                if (!empty($request->input('search.value'))) {
+                    $search = $request->input('search.value');
+
+                    $query->where(function ($q) use ($search) {
+                        $q->where('nik_pemohon', 'LIKE', "%{$search}%")
+                            ->orWhere('nama_pemohon', 'LIKE', "%{$search}%")
+                            ->orWhere('alamat_pemohon', 'LIKE', "%{$search}%")
+                            ->orWhere('status', 'LIKE', "%{$search}%");
+                    });
+
+                    $totalFiltered = $query->count();
+                }
+
+                $query->orderByRaw("
+                    CASE
+                        WHEN status = 'diajukan' THEN 1
+                        WHEN status LIKE 'disetujui%' THEN 2
+                        WHEN status LIKE 'ditolak%' THEN 3
+                        WHEN status = 'selesai' THEN 4
+                        ELSE 5
+                    END ASC
+                ");
+
+                $pengajuan_surat = $query
+                    ->when($order !== 'status', function ($q) use ($order, $dir) {
+                        $q->orderBy($order, $dir);
+                    })
+                    ->offset($start)
+                    ->limit($limit)
+                    ->get();
+
+                $pengajuan_surat = $pengajuan_surat->map(function ($pengajuan) {
+                    $pengajuan->action = (string) view('admin.pengajuan_surat.partials.action', [
+                        'item' => $pengajuan
+                    ]);
+
+                    return $pengajuan;
+                });
+            } catch (Exception $e) {
+                return $e;
+            }
+
+            $json_data = array(
+                "draw" => intval($request->input('draw')),
+                "recordsTotal" => intval($totalData),
+                "recordsFiltered" => intval($totalFiltered),
+                "data" => $pengajuan_surat
+            );
+
+            return json_encode($json_data);
         }
 
-        $pengajuan_surat = PengajuanSurat::orderBy('created_at')->with('historiSurat')->paginate(25);
-        return view('admin.pengajuan_surat.index', compact(
-            'pengajuan_surat'
-        ));
+        return view('admin.pengajuan_surat.index');
     }
 
     /**
@@ -114,23 +189,49 @@ class PengajuanSuratController extends Controller
         HistoriSurat::create([
             'surat_pengajuan_id' => $pengajuan->id,
             'status' => $pengajuan->status,
-            'keterangan' => '',
-            'created_at' => now(),
+            'keterangan' => strtoupper(explode('-', $user->getRoleNames()->first())[1]) . ' memverifikasi dokumen',
+            'created_at' => Carbon::now('Asia/Jakarta'),
+            'updated_at' => Carbon::now('Asia/Jakarta')
         ]);
 
         $pdf = new Fpdi();
+        $pageCount = $pdf->setSourceFile($suratPath);
 
-        $pdf->addPage();
-        $pdf->setSourceFile($suratPath);
-        $tplIdx = $pdf->importPage(1);
-        $pdf->useTemplate($tplIdx, 0, 0, 210);
+        for ($i = 1; $i <= $pageCount; $i++) {
+            $pdf->addPage();
+            $tplIdx = $pdf->importPage($i);
+            $pdf->useTemplate($tplIdx, 0, 0, 210);
 
-        $pdf->Image($sign, 25, 225, 40, 0);
+            if ($i === 1) {
+                $pdf->Image($sign, 25, 235, 40, 0);
+            }
+        }
+
         $pdf->Output($suratPath, 'F');
 
         return response()->json([
             'status' => 'success',
             'pdf' => asset('assets/files/form_pengajuan/' . $pengajuan->pdf_path),
+        ]);
+    }
+
+    public function tolakSurat(Request $request, $id)
+    {
+        $user = Auth::user();
+
+        $pengajuan = PengajuanSurat::findOrFail($id);
+        $pengajuan->update(["status" => $user->hasRole('ketua-rt') ? 'ditolak_rt' : ($user->hasRole('ketua-rw') ? 'ditolak_rw' : '')]);
+
+        HistoriSurat::create([
+            'surat_pengajuan_id' => $pengajuan->id,
+            'status' => $pengajuan->status,
+            'keterangan' => $request->keterangan,
+            'created_at' => Carbon::now('Asia/Jakarta'),
+            'updated_at' => Carbon::now('Asia/Jakarta')
+        ]);
+
+        return response()->json([
+            'status' => 'success',
         ]);
     }
 
@@ -151,15 +252,14 @@ class PengajuanSuratController extends Controller
             HistoriSurat::create([
                 'surat_pengajuan_id' => $pengajuan->id,
                 'status' => $pengajuan->status,
-                'keterangan' => 'Telah diserahkan ke Kelurahan',
-                'created_at' => now(),
+                'keterangan' => 'Dokumen dikirim ke Kelurahan dan bisa diambil di kantor desa',
+                'created_at' => Carbon::now('Asia/Jakarta'),
+                'updated_at' => Carbon::now('Asia/Jakarta')
             ]);
 
             return redirect()->route('pengajuan-surat.index')->with('success', 'Email berhasil dikirim ke kelurahan.');
         } catch (Exception $e) {
             return redirect()->route('pengajuan-surat.index')->with('error', $e->getMessage());
         }
-
-
     }
 }

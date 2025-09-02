@@ -46,8 +46,7 @@
             <div class="card-body">
                 <p class="text-muted"><span class="text-danger">*</span> wajib diisi / required</p>
 
-                <form action="{{ route('pelayanan.pengajuan_surat.store') }}" method="post"
-                    enctype="multipart/form-data">
+                <form action="{{ route('pelayanan.pengajuan_surat.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="step-container" id="step-1">
                         <!-- NIK -->
@@ -260,14 +259,16 @@
                                 <div class="row g-2">
                                     <div class="col-6">
                                         <input type="text" class="form-control" name="rt"
-                                            value="{{ old('rt') }}" placeholder="Contoh: 001" required>
+                                            value="{{ old('rt') }}" placeholder="Contoh: 001" required
+                                            pattern="\d{3}" inputmode="numeric">
                                         @error('rt')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-6">
                                         <input type="text" class="form-control" name="rw"
-                                            value="{{ old('rw') }}" placeholder="Contoh: 005" required>
+                                            value="{{ old('rw') }}" placeholder="Contoh: 005" required
+                                            pattern="\d{3}" inputmode="numeric">
                                         @error('rw')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

@@ -30,8 +30,8 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-md">
-                                    <tbody>
+                                <table id="pengajuanTable" class="table table-bordered table-md w-100">
+                                    <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>NIK</th>
@@ -39,9 +39,11 @@
                                             <th>Alamat</th>
                                             <th>Keperluan</th>
                                             <th>Status Pengajuan</th>
-                                            <th class="text-right">Action</th>
+                                            <th>Action</th>
                                         </tr>
-                                        @foreach ($pengajuan_surat as $key => $item)
+                                    </thead>
+                                    <tbody>
+                                        {{-- @foreach ($pengajuan_surat as $key => $item)
                                             <tr>
                                                 <td>{{ ($pengajuan_surat->currentPage() - 1) * $pengajuan_surat->perPage() + $key + 1 }}
                                                 <td>{{ $item->nik_pemohon }}</td>
@@ -98,50 +100,34 @@
                                                     @endswitch
 
                                                 </td>
-                                                {{-- <td class="open-pdf" data-toggle="modal" data-target="#pdfModal"
-                                                    data-pdf="{{ asset('/assets/files/' . $item->pdf_path) }}"
-                                                    data-lampiran="{{ !empty($item->lampiran) ? asset('/assets/files/' . $item->lampiran) : '' }}">
-                                                    Lihat Surat Pengantar</td>
-
-                                                @if (!empty($item->lampiran))
-                                                    <td class="open-pdf" data-toggle="modal" data-target="#pdfModal"
-                                                        data-pdf="{{ '/assets/files/' . $item->lampiran }}">
-                                                        Lihat Lampiran
-                                                    </td>
-                                                @else
-                                                    <td>-</td>
-                                                @endif --}}
-                                                <td class="text-capitalize">{{ $item->status }}</td>
+                                                <td class="text-capitalize">
+                                                    @if ($item->status === 'selesai')
+                                                        <span
+                                                            class="badge badge-success badge-pill px-3 py-2 text-capitalize">{{ $item->status }}</span>
+                                                    @elseif (str_contains($item->status, 'ditolak'))
+                                                        <span
+                                                            class="badge badge-danger badge-pill px-3 py-2 text-capitalize">penolakan
+                                                            <span
+                                                                class="text-uppercase">{{ ucfirst(explode('_', $item->status)[1]) }}</span></span>
+                                                    @elseif ($item->status === 'diajukan')
+                                                        <span
+                                                            class="badge badge-warning badge-pill px-3 py-2 text-capitalize">pengajuan
+                                                            diterima</span>
+                                                    @elseif (str_contains($item->status, 'disetujui'))
+                                                        <span
+                                                            class="badge badge-primary badge-pill px-3 py-2 text-capitalize">
+                                                            Verifikasi <span
+                                                                class="text-uppercase">{{ ucfirst(explode('_', $item->status)[1]) }}</span>
+                                                        </span>
+                                                    @endif
+                                                </td>
                                                 <td>
-                                                    <div class="d-flex flex-column align-items-end">
-                                                        <button
-                                                            class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center mb-1"
-                                                            id="open-pdf" data-toggle="modal" data-target="#pdfModal"
-                                                            data-pdf="{{ asset('/assets/files/form_pengajuan/' . $item->pdf_path) }}"
-                                                            data-idxPengajuan="{{ $item->id }}"
-                                                            data-lampiran="{{ !empty($item->lampiran) ? asset('/assets/files/lampiran/' . $item->lampiran) : '' }}">
-                                                            <i class="fas fa-file-pdf mr-3"></i> Lihat File</button>
 
-                                                        <button
-                                                            class="btn btn-sm btn-primary btn-icon d-flex align-items-center justify-content-center {{ $item->status === 'disetujui_rw' ? '' : 'disabled' }}"
-                                                            {{ $item->status === 'disetujui_rw' ? '' : 'disabled' }}
-                                                            id="send-email" data-toggle="modal" data-target="#emailModal"
-                                                            data-nama-pemohon="{{ $item->nama_pemohon }}"
-                                                            data-id-pengajuan="{{ $item->id }}"
-                                                            data-rw="{{ $item->rw }}"
-                                                            data-pdf-path="{{ $item->pdf_path }}">
-                                                            <i class="fas fa-paper-plane mr-3"></i> Proses ke
-                                                            Kelurahan</button>
-                                                    </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
-
-                                <div class="d-flex justify-content-center">
-                                    {{ $pengajuan_surat->withQueryString()->links() }}
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -153,3 +139,99 @@
     @include('admin.pengajuan_surat.partials.pdf_modal')
     @include('admin.pengajuan_surat.partials.email_modal')
 @endsection
+
+@push('customScript')
+    <script>
+        $(document).ready(function() {
+            $('#pengajuanTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('pengajuan-surat.index') }}",
+                columns: [{
+                        data: 'id',
+                        "orderable": true,
+                        "render": function(data, type, row, meta) {
+                            return meta.row + 1;
+                        }
+                    },
+                    {
+                        data: 'nik_pemohon',
+                        name: 'nik_pemohon',
+                        width: '15%'
+                    },
+                    {
+                        data: 'nama_pemohon',
+                        name: 'nama_pemohon',
+                        width: '15%'
+                    },
+                    {
+                        data: 'alamat_pemohon',
+                        name: 'alamat_pemohon',
+                        width: '25%'
+                    },
+                    {
+                        data: 'jenis_surat',
+                        render: function(data, type, row) {
+                            switch (data) {
+                                case 'sktm':
+                                    return ` <span class="badge badge-success badge-pill px-3 py-2 text-capitalize">${data}</span>`;
+                                case 'sku':
+                                    return 'Surat Keterangan Usaha';
+                                case 'skd':
+                                    return 'Surat Keterangan Domisili';
+                                case 'skck':
+                                    return 'Surat Pengantar SKCK';
+                                case 'ska':
+                                    return 'Surat Izin Acara/Keramaian';
+                                case 'sktp':
+                                    return 'Surat Pengantar KTP';
+                                case 'spkk':
+                                    return 'Surat Pengantar Kartu Keluarga';
+                                case 'skk':
+                                    return 'Surat Keterangan Kematian';
+                                case 'spaw':
+                                    return 'Surat Pengantar Ahli Waris';
+                                case 'skp':
+                                    return 'Surat Keterangan Pindah';
+                                case 'skbk':
+                                    return 'Surat Keterangan Boro Kerja';
+                                case 'skb':
+                                    return 'Surat Keterangan Beasiswa';
+                                default:
+                                    return '-';
+                            }
+                        },
+                        width: '15%'
+                    },
+                    {
+                        data: 'status',
+                        render: function(data, type, row) {
+                            if (data === 'selesai') {
+                                return `<span class="badge badge-success badge-pill px-3 py-2 text-capitalize">${data}</span>`;
+                            } else if (data.includes('ditolak')) {
+                                let who = data.split('_')[1] ? data.split('_')[1].toUpperCase() :
+                                    '';
+                                return `<span class="badge badge-danger badge-pill px-3 py-2 text-capitalize">Penolakan <span class="text-uppercase">${who}</span></span>`;
+                            } else if (data === 'diajukan') {
+                                return `<span class="badge badge-warning badge-pill px-3 py-2 text-capitalize">Pengajuan Diterima</span>`;
+                            } else if (data.includes('disetujui')) {
+                                let who = data.split('_')[1] ? data.split('_')[1].toUpperCase() :
+                                    '';
+                                return `<span class="badge badge-primary badge-pill px-3 py-2 text-capitalize">Verifikasi <span class="text-uppercase">${who}</span></span>`;
+                            }
+                            return `<span class="badge badge-secondary badge-pill px-3 py-2">-</span>`;
+                        },
+                        width: '15%'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                        width: '10%'
+                    },
+                ]
+            });
+        });
+    </script>
+@endpush
