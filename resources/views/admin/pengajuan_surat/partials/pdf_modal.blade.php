@@ -57,7 +57,7 @@
     @push('customScript')
         <script>
             var hideBtnAction = () => {
-                $(".modal-footer").children().addClass("d-none");
+                $("#pdfModal .modal-footer").children().addClass("d-none");
             }
 
             $(document).on("click", "#open-pdf", function() {
@@ -86,7 +86,7 @@
                 const role = $(this).data('user-role');
 
                 // reset dulu biar tombol muncul lagi
-                $(".modal-footer").children().removeClass("d-none");
+                $("#pdfModal .modal-footer").children().removeClass("d-none");
 
                 if (status !== 'diajukan' || (role !== 'ketua-rw' && role !== 'ketua-rt')) {
                     hideBtnAction();
@@ -110,7 +110,7 @@
 
                         $("#pdf").attr("src", pdfUrl);
 
-                        $(".modal-body").prepend(`
+                        $("#pdfModal .modal-body").prepend(`
                             <div class="alert alert-success alert-dismissible show fade mt-2">
                                 <div class="alert-body">
                                     <button class="close" data-dismiss="alert"><span>×</span></button>
@@ -123,7 +123,7 @@
                         $('#pengajuanTable').DataTable().ajax.reload(null, false);
                     },
                     error: function(res) {
-                        $(".modal-body").prepend(`
+                        $("#pdfModal .modal-body").prepend(`
                             <div class="alert alert-danger alert-dismissible show fade mt-2">
                                 <div class="alert-body">
                                     <button class="close" data-dismiss="alert"><span>×</span></button>
@@ -162,7 +162,7 @@
                     success: function(res) {
                         $("#pdf").attr("src", res.pdf);
 
-                        $(".modal-body").prepend(`
+                        $("#pdfModal .modal-body").prepend(`
                             <div class="alert alert-success alert-dismissible show fade mt-2">
                                 <div class="alert-body">
                                     <button class="close" data-dismiss="alert"><span>×</span></button>
@@ -173,9 +173,10 @@
 
                         $("#rejectModal").modal("hide");
                         hideBtnAction();
+                        $('#pengajuanTable').DataTable().ajax.reload(null, false);
                     },
                     error: function(res) {
-                        $(".modal-body").prepend(`
+                        $("#pdfModal .modal-body").prepend(`
                             <div class="alert alert-danger alert-dismissible show fade mt-2">
                                 <div class="alert-body">
                                     <button class="close" data-dismiss="alert"><span>×</span></button>
