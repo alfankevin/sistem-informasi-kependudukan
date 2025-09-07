@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('keperluan');
             $table->string('jenis_surat');
             $table->text('pdf_path');
+            $table->string('status');
 
             $table->timestamps();
         });

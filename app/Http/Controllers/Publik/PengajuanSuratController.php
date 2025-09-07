@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Publik;
 use App\Http\Controllers\Controller;
-use App\Mail\SendPengajuanSuratMail;
+use App\Mail\SendStatusSuratMail;
 use App\Models\HistoriSurat;
 use App\Models\Penduduk;
 use App\Models\PengajuanSurat;
@@ -138,12 +138,14 @@ class PengajuanSuratController extends Controller
                 'tracking_token' => $request->jenis_surat . '-0' . ($nomorUrut + 1) . '/' . $tahun . Str::random(9),
                 'nik_pemohon' => $request->nik,
                 'nama_pemohon' => $request->nama,
+                'email_pemohon' => $request->email,
                 'alamat_pemohon' => $request->alamat,
                 'rt' => $request->rt,
                 'rw' => $request->rw,
                 'keperluan' => request('keperluan') ?? '',
                 'jenis_surat' => $request->jenis_surat,
                 'pdf_path' => $fileName,
+                'status' => 'diajukan',
                 'created_at' => Carbon::now('Asia/Jakarta'),
             ]);
 
@@ -159,7 +161,7 @@ class PengajuanSuratController extends Controller
                 ]);
             }
 
-            HistoriSurat::create([
+            $histori = HistoriSurat::create([
                 'surat_pengajuan_id' => $surat->id,
                 'status' => 'diajukan',
                 'keterangan' => '',
@@ -167,7 +169,8 @@ class PengajuanSuratController extends Controller
                 'updated_at' => Carbon::now('Asia/Jakarta')
             ]);
 
-            Mail::to(users: $request->email)->send(new SendPengajuanSuratMail($surat));
+            $subject = "Pengajuan Surat Anda Berhasil Diajukan";
+            Mail::to(users: $surat->email_pemohon)->send(new SendStatusSuratMail($surat, $subject, $histori->keterangan));
 
             DB::commit();
 

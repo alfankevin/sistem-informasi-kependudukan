@@ -6,7 +6,7 @@
          data-lampiran="{{ !empty($item->lampiran) ? asset('/assets/files/lampiran/' . $item->lampiran) : '' }}"
          title="Lihat File">
          <i class="fas fa-file-pdf"></i></button>
-     @if (auth()->user()->getRoleNames()->first() === 'ketua-rw' || auth()->user()->getRoleNames()->first() === 'ketua-rt')
+     @if (auth()->user()->getRoleNames()->first() === 'ketua-rw')
          <button
              class="btn d-flex align-items-center justify-content-center ml-2 {{ $item->status === 'disetujui_rw' ? 'btn-primary' : 'btn-secondary disabled' }}"
              style="height: 30px; width: 30px" {{ $item->status === 'disetujui_rw' ? '' : 'disabled' }} id="send-email"

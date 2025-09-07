@@ -9,20 +9,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendPengajuanSuratMail extends Mailable
+class SendStatusSuratMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $data, $subject, $keterangan;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $subject, $keterangan)
     {
         $this->data = $data;
+        $this->subject = $subject;
+        $this->keterangan = $keterangan;
     }
 
     /**
@@ -33,7 +35,7 @@ class SendPengajuanSuratMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Pengajuan Surat Berhasil',
+            subject: $this->subject,
         );
     }
 
@@ -46,7 +48,11 @@ class SendPengajuanSuratMail extends Mailable
     {
         return new Content(
             view: 'main.page.pengajuan_surat.partials.email_pengajuan_surat',
-            with: ['trackingToken' => $this->data['tracking_token']]
+            with: [
+                'trackingToken' => $this->data['tracking_token'],
+                'status' => $this->data['status'],
+                'keterangan' => $this->keterangan,
+            ]
         );
     }
 

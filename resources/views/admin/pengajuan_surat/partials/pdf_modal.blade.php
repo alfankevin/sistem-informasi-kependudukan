@@ -48,7 +48,11 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button class="btn btn-danger btn-confirm-reject" data-pengajuan="">Tolak</button>
+                    <button class="btn btn-danger btn-confirm-reject" data-pengajuan="">
+                        <span class="spinner-border spinner-border-sm d-none mr-1" role="status"
+                            aria-hidden="true"></span>
+                        Tolak
+                    </button>
                 </div>
             </div>
         </div>
@@ -152,6 +156,9 @@
                     $("#rejectReason").removeClass("is-invalid"); // reset kalau sudah diisi
                 }
 
+                // Show spinner & disable button
+                $(this).prop("disabled", true);
+                $(this).find(".spinner-border").removeClass("d-none");
 
                 $.ajax({
                     type: "POST",
@@ -186,6 +193,11 @@
                         `);
 
                         $("#rejectModal").modal("hide"); // tutup modal setelah sukses
+                    },
+                    complete: function() {
+                        // Reset button state
+                        $(this).prop("disabled", false);
+                        $(this).find(".spinner-border").addClass("d-none");
                     }
                 })
             })

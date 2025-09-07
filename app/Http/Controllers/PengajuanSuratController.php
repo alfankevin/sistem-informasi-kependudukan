@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendPengajuanSuratKelurahanMail;
+use App\Mail\SendStatusSuratMail;
 use App\Models\HistoriSurat;
 use App\Models\PengajuanSurat;
 use App\Models\PengurusWilayah;
@@ -222,13 +223,16 @@ class PengajuanSuratController extends Controller
         $pengajuan = PengajuanSurat::findOrFail($id);
         $pengajuan->update(["status" => $user->hasRole('ketua-rt') ? 'ditolak_rt' : ($user->hasRole('ketua-rw') ? 'ditolak_rw' : '')]);
 
-        HistoriSurat::create([
+        $histori = HistoriSurat::create([
             'surat_pengajuan_id' => $pengajuan->id,
             'status' => $pengajuan->status,
             'keterangan' => $request->keterangan,
             'created_at' => Carbon::now('Asia/Jakarta'),
             'updated_at' => Carbon::now('Asia/Jakarta')
         ]);
+
+        $subject = "Pengajuan Surat Anda Ditolak";
+        Mail::to(users: $pengajuan->email_pemohon)->send(new SendStatusSuratMail($pengajuan, $subject, $histori->keterangan));
 
         return response()->json([
             'status' => 'success',
@@ -249,13 +253,16 @@ class PengajuanSuratController extends Controller
             $pengajuan = PengajuanSurat::findOrFail($id);
             $pengajuan->update(['status' => 'selesai']);
 
-            HistoriSurat::create([
+            $histori = HistoriSurat::create([
                 'surat_pengajuan_id' => $pengajuan->id,
                 'status' => $pengajuan->status,
                 'keterangan' => 'Dokumen dikirim ke Kelurahan dan bisa diambil di kantor desa',
                 'created_at' => Carbon::now('Asia/Jakarta'),
                 'updated_at' => Carbon::now('Asia/Jakarta')
             ]);
+
+            $subject = "Pengajuan Surat Anda Telah Selesai";
+            Mail::to(users: $pengajuan->email_pemohon)->send(new SendStatusSuratMail($pengajuan, $subject, $histori->keterangan));
 
             return redirect()->route('pengajuan-surat.index')->with('success', 'Email berhasil dikirim ke kelurahan.');
         } catch (Exception $e) {
