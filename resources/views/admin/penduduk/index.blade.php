@@ -55,61 +55,6 @@
                                         </tr>
                                     </thead>
                                     <tbody class="show-data">
-                                        {{-- @foreach ($penduduk as $key => $item)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td class="openKTP" data-toggle="modal" data-target="#ktp"
-                                                    data-nik="{{ $item->nik }}"
-                                                    data-nama="{{ $item->nama }}"
-                                                    data-tempat_lahir="{{ $item->tempat_lahir }}"
-                                                    data-tanggal_lahir="{{ $item->tanggal_lahir }}"
-                                                    data-jenis_kelamin="{{ $item->jenis_kelamin }}"
-                                                    data-golongan_darah="{{ $item->golongan_darah }}"
-                                                    data-alamat="{{ $item->alamat }}"
-                                                    data-rt="{{ $item->rt }}"
-                                                    data-agama="{{ $item->agama }}"
-                                                    data-status_perkawinan="{{ $item->status_perkawinan }}"
-                                                    data-pekerjaan="{{ $item->pekerjaan }}"
-                                                    data-keterangan="{{ $item->keterangan }}"
-                                                    data-sosial="{{ $item->nama_sosial }}">
-                                                    {{ $item->nama }}
-                                                </td>
-                                                <td>{{ $item->tempat_lahir }}</td>
-                                                <td class="text-nowrap">{{ $item->tanggal_lahir }}</td>
-                                                <td>{{ $item->jenis_kelamin }}</td>
-                                                <td>{{ $item->golongan_darah }}</td>
-                                                <td>{{ $item->agama }}</td>
-                                                <td>{{ $item->pekerjaan }}</td>
-                                                <td>{{ $item->alamat }}</td>
-                                                <td>00{{ $item->rt }}</td>
-                                                <td>{{ $item->keterangan }}</td>
-                                                <td class="text-right">
-                                                    <div class="d-flex justify-content-end">
-                                                        <button class="btn btn-sm btn-success btn-icon d-flex align-items-center justify-content-center data-link openKK" style="height: 30px; width: 30px"
-                                                            data-toggle="modal"
-                                                            data-target="#kk"
-                                                            data-value="{{ $item->no_kk }}"
-                                                            data-no_kk="{{ $item->no_kk }}"
-                                                            data-nama="{{ $item->nama }}"
-                                                            data-alamat="{{ $item->alamat }}"
-                                                            data-rt="{{ $item->rt }}">
-                                                            <i class="fas fa-user"></i>
-                                                        </button>
-                                                        <a href="{{ route('penduduk.edit', $item->id) }}" class="btn btn-sm btn-info btn-icon ml-2 mr-2 d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
-                                                            <i class="fas fa-pen"></i>
-                                                        </a>
-                                                        <form action="{{ route('penduduk.destroy', $item->id) }}"
-                                                            method="POST">
-                                                            <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete d-flex align-items-center justify-content-center" style="height: 30px; width: 30px">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -119,6 +64,7 @@
             </div>
         </div>
     </section>
+
     {{-- KK --}}
     <div id="kk" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true" style="height: 100vh; width: 100vw; transform: scale(1)">
@@ -221,6 +167,7 @@
             </div>
         </div>
     </div>
+
     {{-- Import --}}
     <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel"
         aria-hidden="true">
@@ -247,6 +194,78 @@
             </div>
         </div>
     </div>
+
+    <!-- Filter Modal -->
+    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-slideout" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body px-4">
+                    <!-- Filter Golongan Darah -->
+                    <div class="form-group mb-2">
+                        <label>Golongan Darah</label>
+                        <select class="form-control" name="golongan_darah" id="filter-goldar">
+                            <option value="semua">Semua</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter Jenis Kelamin -->
+                    <div class="form-group mb-2">
+                        <label>Jenis Kelamin</label>
+                        <select class="form-control" name="jenis_kelamin" id="filter-jenis-kelamin">
+                            <option value="semua">Semua</option>
+                            <option value="p">Perempuan</option>
+                            <option value="l">Laki-Laki</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter Agama -->
+                    <div class="form-group mb-2">
+                        <label>Agama</label>
+                        <select class="form-control" name="jenis_kelamin" id="filter-agama">
+                            <option value="semua">Semua</option>
+                            <option value="islam">Islam</option>
+                            <option value="protestan">Kristen Protestan</option>
+                            <option value="katolik">Katolik</option>
+                            <option value="hindu">Hindu</option>
+                            <option value="budha">Budha</option>
+                        </select>
+                    </div>
+
+                    <!-- Filter Umur -->
+                    <div class="form-group mb-0">
+                        <label>Umur</label>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="filter-umur-min">Min</label>
+                                <input type="number" class="form-control" id="filter-umur-min" min="0">
+                                <div class="invalid-feedback">
+                                    Umur minimal harus lebih kecil dari umur maksimal
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label for="filter-umur-max">Max</label>
+                                <input type="number" class="form-control" id="filter-umur-max">
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Apply/Remove Button --}}
+                    <div class="d-flex justify-content-end">
+                        <button id="removeFilter" class="btn btn-danger mr-2">Hapus Filter</button>
+                        <button id="applyFilter" class="btn btn-primary">Terapkan Filter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('customScript')
     <script>
@@ -258,15 +277,28 @@
                     "url": "{{ route('penduduk.index') }}",
                     "dataType": "json",
                     "type": "GET",
-                    "data": {
-                        _token: "{{ csrf_token() }}"
+                    data: function(d) {
+                        d._token = "{{ csrf_token() }}";
+                        d.golongan_darah = $('#filter-goldar').val();
+                        d.umur_min = $('#filter-umur-min').val();
+                        d.umur_max = $('#filter-umur-max').val();
+                        d.agama = $('#filter-agama').val();
+                        d.jenis_kelamin = $('#filter-jenis-kelamin').val();
                     }
                 },
+                dom: '<"d-flex justify-content-between align-items-center mb-2 pt-1"l<"d-flex align-items-center ms-auto"fB>>rtip',
+                buttons: [{
+                    text: '<i class="fas fa-list mr-2"></i> Filter <span id="filterCount" class="badge badge-light ml-1 d-none position-absolute">0</span>',
+                    className: 'btn btn-primary ml-2', // kasih jarak kiri
+                    action: function() {
+                        $('#filterModal').modal('show');
+                    }
+                }],
                 "pageLength": 25,
                 "columns": [{
                         "data": "id",
                         "orderable": true,
-                        "render": function (data, type, row, meta) {
+                        "render": function(data, type, row, meta) {
                             return meta.row + 1;
                         }
                     },
@@ -317,6 +349,61 @@
                     }
                 ]
             });
+
+            // Apply Filter Button Action
+            $('#applyFilter').on('click', function() {
+                let min = parseInt($("#filter-umur-min").val()) || 0;
+                let max = parseInt($("#filter-umur-max").val()) || 0;
+
+                if (min > 0 && max > 0 && min > max) {
+                    $("#filter-umur-min").addClass("is-invalid");
+                    return;
+                } else {
+                    $("#filter-umur-min").removeClass("is-invalid");
+                }
+
+                $('#penduduk').DataTable().ajax.reload(null, false);
+                $('#filterModal').modal('hide');
+
+                updateFilterCount(); // 🔹 update badge
+            });
+
+
+            // Remove Filter Button Action
+            $('#removeFilter').on('click', function() {
+                $('#filter-goldar').val('semua');
+                $('#filter-umur-min').val(null);
+                $('#filter-umur-max').val(null);
+                $('#filter-agama').val('semua');
+                $('#filter-jenis-kelamin').val('semua');
+
+                $('#penduduk').DataTable().ajax.reload(null, false);
+                $('#filterModal').modal('hide');
+
+                updateFilterCount(); // 🔹 update badge
+            });
+
+            // update counter filter
+            function updateFilterCount() {
+                let count = 0;
+
+                if ($('#filter-goldar').val() !== 'semua') count++;
+                if ($('#filter-jenis-kelamin').val() !== 'semua') count++;
+                if ($('#filter-agama').val() !== 'semua') count++;
+                if ($('#filter-umur-min').val() && $('#filter-umur-max').val()) {
+                    count++;
+                }
+                $('#filterCount').text(count);
+
+                if (count <= 0) {
+                    $('#filterCount').addClass('d-none');
+                    $('#filterCount').parent().parent().parent().removeClass('pr-3');
+                } else {
+                    $('#filterCount').removeClass('d-none');
+                    $('#filterCount').parent().parent().parent().addClass('pr-3');
+                }
+            }
+
         });
     </script>
     <script>
@@ -407,4 +494,37 @@
 @endpush
 
 @push('customStyle')
+    <style>
+        div.dataTables_filter label {
+            margin-bottom: 0
+        }
+
+        .modal-dialog-slideout {
+            min-height: 100%;
+            margin: 0;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal.fade .modal-dialog.modal-dialog-slideout {
+            transform: translateX(100%);
+        }
+
+        .modal.fade.show .modal-dialog.modal-dialog-slideout {
+            transform: translateX(0);
+        }
+
+        .modal-dialog-slideout .modal-content {
+            min-height: 100vh;
+            border: 0;
+            border-radius: 0;
+        }
+
+        #filterCount {
+            top: 0;
+            right: 0;
+            transform: translate(50%, -50%);
+            border: 2px solid ##2a5788;
+        }
+    </style>
 @endpush

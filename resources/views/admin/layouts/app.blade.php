@@ -16,6 +16,9 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="/assets/js/owl.carousel.min.js"></script>
 
+    <!-- DataTables Buttons -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/assets/css/select.bootstrap4.min.css">
@@ -59,8 +62,7 @@
                                 class="dropdown-item has-icon text-danger d-flex align-items-center">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>
@@ -110,6 +112,10 @@
     <script src="/assets/js/Chart.min.js"></script>
     <script src="/assets/js/chartjs.js"></script>
     <script src="/assets/js/datatables.js"></script>
+    
+    <!-- DataTables Buttons -->
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.bootstrap4.min.js"></script>
     @stack('customScript')
 </body>
 
