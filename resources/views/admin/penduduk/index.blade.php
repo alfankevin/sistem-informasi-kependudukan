@@ -39,7 +39,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-md" id="penduduk" style="width: 100%;">
                                     <thead>
-                                        <tr>
+                                        <tr style="background-color: rgba(0, 0, 0, 0.02);">
                                             <th>#</th>
                                             <th>Nama</th>
                                             <th class="text-nowrap">Tempat Lahir</th>

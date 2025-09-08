@@ -1,0 +1,52 @@
+created:
+    - app/Http/Controllers/PosyanduVaksinController.php
+    - app/Http/Controllers/PosyanduVitaminController.php
+    - app/Http/Controllers/VaksinController.php
+    - app/Http/Controllers/VitaminController.php
+    - database/factories/PosyanduVaksinFactory.php
+    - database/factories/PosyanduVitaminFactory.php
+    - database/factories/VaksinFactory.php
+    - database/factories/VitaminFactory.php
+    - database/migrations/2025_09_08_081740_create_posyandu_vaksins_table.php
+    - database/migrations/2025_09_08_081741_create_posyandu_vitamins_table.php
+    - database/migrations/2025_09_08_081742_create_vaksins_table.php
+    - database/migrations/2025_09_08_081743_create_vitamins_table.php
+    - app/Models/PosyanduVaksin.php
+    - app/Models/PosyanduVitamin.php
+    - app/Models/Vaksin.php
+    - app/Models/Vitamin.php
+    - tests/Feature/Http/Controllers/PosyanduVaksinControllerTest.php
+    - tests/Feature/Http/Controllers/PosyanduVitaminControllerTest.php
+    - tests/Feature/Http/Controllers/VaksinControllerTest.php
+    - tests/Feature/Http/Controllers/VitaminControllerTest.php
+    - app/Http/Requests/PosyanduVaksinStoreRequest.php
+    - app/Http/Requests/PosyanduVaksinUpdateRequest.php
+    - app/Http/Requests/PosyanduVitaminStoreRequest.php
+    - app/Http/Requests/PosyanduVitaminUpdateRequest.php
+    - app/Http/Requests/VaksinStoreRequest.php
+    - app/Http/Requests/VaksinUpdateRequest.php
+    - app/Http/Requests/VitaminStoreRequest.php
+    - app/Http/Requests/VitaminUpdateRequest.php
+    - resources/views/posyanduVaksin/index.blade.php
+    - resources/views/posyanduVaksin/create.blade.php
+    - resources/views/posyanduVaksin/show.blade.php
+    - resources/views/posyanduVaksin/edit.blade.php
+    - resources/views/posyanduVitamin/index.blade.php
+    - resources/views/posyanduVitamin/create.blade.php
+    - resources/views/posyanduVitamin/show.blade.php
+    - resources/views/posyanduVitamin/edit.blade.php
+    - resources/views/vaksin/index.blade.php
+    - resources/views/vaksin/create.blade.php
+    - resources/views/vaksin/show.blade.php
+    - resources/views/vaksin/edit.blade.php
+    - resources/views/vitamin/index.blade.php
+    - resources/views/vitamin/create.blade.php
+    - resources/views/vitamin/show.blade.php
+    - resources/views/vitamin/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    PosyanduVaksin: { posyandu_id: 'id nullable', vaksin_id: 'id nullable', dosis_ke: 'integer nullable', relationships: { belongsTo: 'Posyandu, Vaksin' } }
+    PosyanduVitamin: { posyandu_id: 'id nullable', vitamin_id: 'id nullable', catatan: 'string nullable', relationships: { belongsTo: 'Posyandu, Vitamin' } }
+    Vaksin: { nama_vaksin: 'string:100', deskripsi: text, usia_pemberian: 'string:50', dosis_total: integer, interval: 'string:50', relationships: { hasMany: PosyanduVaksin } }
+    Vitamin: { nama_vitamin: 'string:100', deskripsi: text, usia_pemberian: 'string:50', dosis: 'string:50', relationships: { hasMany: PosyanduVitamin } }

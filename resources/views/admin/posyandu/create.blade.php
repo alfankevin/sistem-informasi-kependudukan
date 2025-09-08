@@ -73,10 +73,13 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-12 col-md-3">
-                                    <label for="usia">Usia (bulan)</label>
-                                    <input id="usia" name="usia" type="number" spellcheck="false"
-                                        autocomplete="off" class="form-control @error('usia') is-invalid @enderror"
-                                        value="{{ old('usia') }}">
+                                    <label for="usia">Usia</label>
+                                    <div class="input-group">
+                                        <input id="usia" name="usia" type="number" spellcheck="false"
+                                            autocomplete="off" class="form-control @error('usia') is-invalid @enderror"
+                                            value="{{ old('usia') }}">
+                                        <span class="input-group-text" id="basic-addon2" style="background-color: #e9ecef;">bulan</span>
+                                    </div>
                                     @error('usia')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -85,11 +88,14 @@
                                 </div>
 
                                 <div class="col-12 col-md-3">
-                                    <label for="berat_badan">Berat Badan (kg)</label>
-                                    <input id="berat_badan" name="berat_badan" type="number" step="any"
-                                        spellcheck="false" autocomplete="off"
-                                        class="form-control @error('berat_badan') is-invalid @enderror"
-                                        value="{{ old('berat_badan') }}" required>
+                                    <label for="berat_badan">Berat Badan</label>
+                                    <div class="input-group">
+                                        <input id="berat_badan" name="berat_badan" type="number" step="any"
+                                            spellcheck="false" autocomplete="off"
+                                            class="form-control @error('berat_badan') is-invalid @enderror"
+                                            value="{{ old('berat_badan') }}" required>
+                                        <span class="input-group-text" id="basic-addon2" style="background-color: #e9ecef;">kg</span>
+                                    </div>
                                     @error('berat_badan')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -98,11 +104,14 @@
                                 </div>
 
                                 <div class="col-12 col-md-3">
-                                    <label for="tinggi_badan">Panjang Badan (cm)</label>
-                                    <input id="tinggi_badan" name="tinggi_badan" type="number" step="any"
-                                        spellcheck="false" autocomplete="off"
-                                        class="form-control @error('tinggi_badan') is-invalid @enderror"
-                                        value="{{ old('tinggi_badan') }}" required>
+                                    <label for="tinggi_badan">Panjang Badan</label>
+                                    <div class="input-group">
+                                        <input id="tinggi_badan" name="tinggi_badan" type="number" step="any"
+                                            spellcheck="false" autocomplete="off"
+                                            class="form-control @error('tinggi_badan') is-invalid @enderror"
+                                            value="{{ old('tinggi_badan') }}" required>
+                                        <span class="input-group-text" id="basic-addon2" style="background-color: #e9ecef;">cm</span>
+                                    </div>
                                     @error('tinggi_badan')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -111,11 +120,14 @@
                                 </div>
 
                                 <div class="col-12 col-md-3">
-                                    <label for="lingkar_lengan_atas">Lingkar Lengan Atas (cm)</label>
-                                    <input id="lingkar_lengan_atas" name="lingkar_lengan_atas" type="number" step="any"
-                                        spellcheck="false" autocomplete="off"
-                                        class="form-control @error('lingkar_lengan_atas') is-invalid @enderror"
-                                        value="{{ old('lingkar_lengan_atas') }}" required>
+                                    <label for="lingkar_lengan_atas">Lingkar Lengan Atas</label>
+                                    <div class="input-group">
+                                        <input id="lingkar_lengan_atas" name="lingkar_lengan_atas" type="number" step="any"
+                                            spellcheck="false" autocomplete="off"
+                                            class="form-control @error('lingkar_lengan_atas') is-invalid @enderror"
+                                            value="{{ old('lingkar_lengan_atas') }}" required>
+                                        <span class="input-group-text" id="basic-addon2" style="background-color: #e9ecef;">cm</span>
+                                    </div>
                                     @error('lingkar_lengan_atas')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -130,11 +142,14 @@
 
 
                                 <div class="col-12 col-md-3">
-                                    <label for="lingkar_lengan_bawah">Lingkar Lengan Bawah (cm)</label>
-                                    <input id="lingkar_lengan_bawah" name="lingkar_lengan_bawah" type="number"
-                                        step="any" spellcheck="false" autocomplete="off"
-                                        class="form-control @error('lingkar_lengan_bawah') is-invalid @enderror"
-                                        value="{{ old('lingkar_lengan_bawah') }}" required>
+                                    <label for="lingkar_lengan_bawah">Lingkar Lengan Bawah</label>
+                                    <div class="input-group">
+                                        <input id="lingkar_lengan_bawah" name="lingkar_lengan_bawah" type="number"
+                                            step="any" spellcheck="false" autocomplete="off"
+                                            class="form-control @error('lingkar_lengan_bawah') is-invalid @enderror"
+                                            value="{{ old('lingkar_lengan_bawah') }}" required>
+                                        <span class="input-group-text" id="basic-addon2" style="background-color: #e9ecef;">cm</span>
+                                    </div>
                                     @error('lingkar_lengan_bawah')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -143,11 +158,14 @@
                                 </div>
 
                                 <div class="col-12 col-md-3">
-                                    <label for="lingkar_dada">Lingkar Dada (cm)</label>
-                                    <input id="lingkar_dada" name="lingkar_dada" type="number" step="any"
-                                        spellcheck="false" autocomplete="off"
-                                        class="form-control @error('lingkar_dada') is-invalid @enderror"
-                                        value="{{ old('lingkar_dada') }}" required>
+                                    <label for="lingkar_dada">Lingkar Dada</label>
+                                    <div class="input-group">
+                                        <input id="lingkar_dada" name="lingkar_dada" type="number" step="any"
+                                            spellcheck="false" autocomplete="off"
+                                            class="form-control @error('lingkar_dada') is-invalid @enderror"
+                                            value="{{ old('lingkar_dada') }}" required>
+                                        <span class="input-group-text" id="basic-addon2" style="background-color: #e9ecef;">cm</span>
+                                    </div>
                                     @error('lingkar_dada')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -156,11 +174,14 @@
                                 </div>
 
                                 <div class="col-12 col-md-3">
-                                    <label for="lingkar_perut">Lingkar Perut (cm)</label>
-                                    <input id="lingkar_perut" name="lingkar_perut" type="number" step="any"
-                                        spellcheck="false" autocomplete="off"
-                                        class="form-control @error('lingkar_perut') is-invalid @enderror"
-                                        value="{{ old('lingkar_perut') }}" required>
+                                    <label for="lingkar_perut">Lingkar Perut</label>
+                                    <div class="input-group">
+                                        <input id="lingkar_perut" name="lingkar_perut" type="number" step="any"
+                                            spellcheck="false" autocomplete="off"
+                                            class="form-control @error('lingkar_perut') is-invalid @enderror"
+                                            value="{{ old('lingkar_perut') }}" required>
+                                        <span class="input-group-text" id="basic-addon2" style="background-color: #e9ecef;">cm</span>
+                                    </div>
                                     @error('lingkar_perut')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -169,11 +190,14 @@
                                 </div>
 
                                 <div class="col-12 col-md-3">
-                                    <label for="lingkar_kepala">Lingkar Kepala (cm)</label>
-                                    <input id="lingkar_kepala" name="lingkar_kepala" type="number" step="any"
-                                        spellcheck="false" autocomplete="off"
-                                        class="form-control @error('lingkar_kepala') is-invalid @enderror"
-                                        value="{{ old('lingkar_kepala') }}" required>
+                                    <label for="lingkar_kepala">Lingkar Kepala</label>
+                                    <div class="input-group">
+                                        <input id="lingkar_kepala" name="lingkar_kepala" type="number" step="any"
+                                            spellcheck="false" autocomplete="off"
+                                            class="form-control @error('lingkar_kepala') is-invalid @enderror"
+                                            value="{{ old('lingkar_kepala') }}" required>
+                                        <span class="input-group-text" id="basic-addon2" style="background-color: #e9ecef;">cm</span>
+                                    </div>
                                     @error('lingkar_kepala')
                                         <div class="invalid-feedback">
                                             {{ $message }}

@@ -45,16 +45,17 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-md" id="posyandu" style="width: 100%;">
                                     <thead>
-                                        <tr>
+                                        <tr style="background-color: rgba(0, 0, 0, 0.02);">
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th width=65px>Tgl Lahir</th>
+                                            <th class="text-nowrap">Tgl Lahir</th>
                                             <th>JK</th>
                                             <th>Alamat</th>
-                                            <th>Usia (Bulan)</th>
-                                            <th>Berat Badan (kg)</th>
-                                            <th>Panjang Badan (cm)</th>
+                                            <th>Usia</th>
+                                            <th class="text-nowrap">Berat Badan</th>
+                                            <th class="text-nowrap">Panjang Badan</th>
                                             <th>Keterangan</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -68,6 +69,9 @@
             </div>
         </div>
     </section>
+
+    @include('admin.posyandu.riwayat')
+
     {{-- ANTRONOMETRI --}}
     <div id="detail-antronometri" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true" style="height: 100vh; width: 100vw; transform: scale(1)">
@@ -218,15 +222,15 @@
                             "orderable": true,
                         },
                         {
-                            "data": "usia",
+                            "data": "usia_str",
                             "orderable": true,
                         },
                         {
-                            "data": "berat_badan",
+                            "data": "berat_badan_str",
                             "orderable": true,
                         },
                         {
-                            "data": "tinggi_badan",
+                            "data": "tinggi_badan_str",
                             "orderable": true,
                         },
                         {
@@ -234,9 +238,24 @@
                             "orderable": false,
                         },
                         {
+                            "data": "status_vaksin",
+                            "orderable": true,
+                        },
+                        {
                             "data": "action",
                             "orderable": false,
                             "searchable": false
+                        }
+                    ],
+                    "columnDefs": [
+                        { "targets": 5, "className": "text-nowrap" }, // Usia
+                        {
+                            "targets": 9,
+                            "orderable": true,
+                            "searchable": false,
+                            "render": function(data, type, row, meta) {
+                                return data;
+                            }
                         }
                     ],
                     "initComplete": function(settings, json) {
@@ -415,6 +434,11 @@
                     return 'warning';
                 }
             }
+
+            $(document).ready(function(){
+                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+            });
         </script>
     @endpush
 

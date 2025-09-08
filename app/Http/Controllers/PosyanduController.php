@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Exports\PosyanduExport;
 use App\Models\Penduduk;
 use App\Models\Posyandu;
+use App\Models\Vaksin;
+use App\Models\Vitamin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Imports\PosyanduImport;
 use App\Models\Stunting;
 use Exception;
@@ -136,9 +139,15 @@ class PosyanduController extends Controller
                         ->count();
                 }
 
-
                 $penduduks = $penduduks->map(function ($penduduk) use ($posyanduBulanSebelumnya) {
                     $bulanSebelumnya = $posyanduBulanSebelumnya->firstWhere('id_penduduk', $penduduk->id_penduduk);
+
+                    $penduduk->berat_badan_str = $penduduk->berat_badan . ' kg';
+                    $penduduk->tinggi_badan_str = $penduduk->tinggi_badan . ' cm';
+                    $penduduk->usia_str = $penduduk->usia . ' bln';
+                    $penduduk->status_vaksin = ($penduduk->status_vaksin == 1)
+                        ? '<span class="badge rounded-pill bg-success text-white text-nowrap"><small class="font-weight-bold">Sudah Vaksin</small></span>'
+                        : '-';
 
                     if (!$bulanSebelumnya) {
                         $keterangan_berat = '-';
@@ -286,6 +295,78 @@ class PosyanduController extends Controller
         ]);
     }
 
+    public function imunisasi($id)
+    {
+        $posyandu = Posyandu::with('penduduk.kartuKeluarga', 'posyanduVaksin.vaksin', 'posyanduVitamin.vitamin', 'posyanduPemeriksaan')->findOrFail($id);
+        $vaksins = Vaksin::all();
+        $vitamins = Vitamin::all();
+        return view('admin.imunisasi.imunisasi', compact('posyandu', 'vaksins', 'vitamins'));
+    }
+
+    public function riwayat($id)
+    {
+        try {
+            // 1. Get semua data posyandu berdasarkan id penduduk
+            $posyanduList = DB::table('posyandu')
+                ->join('penduduk', 'posyandu.id_penduduk', '=', 'penduduk.id')
+                ->where('penduduk.id', $id)
+                ->select('posyandu.*', 'penduduk.nama as nama_penduduk')
+                ->orderByDesc('posyandu.created_at')
+                ->get();
+
+            if ($posyanduList->isEmpty()) {
+                return response()->json([
+                    'message' => 'Data tidak ditemukan',
+                    'data' => []
+                ], 404);
+            }
+
+            $result = [];
+
+            // 2. Loop melalui setiap data posyandu
+            foreach ($posyanduList as $posyandu) {
+                // 3. Get data vaksin untuk posyandu ini
+                $vaksins = DB::table('posyandu_vaksins')
+                    ->join('vaksins', 'posyandu_vaksins.vaksin_id', '=', 'vaksins.id')
+                    ->where('posyandu_vaksins.posyandu_id', $posyandu->id)
+                    ->select('vaksins.*', 'posyandu_vaksins.dosis_ke')
+                    ->get();
+
+                // 4. Get data vitamin untuk posyandu ini
+                $vitamins = DB::table('posyandu_vitamins')
+                    ->join('vitamins', 'posyandu_vitamins.vitamin_id', '=', 'vitamins.id')
+                    ->where('posyandu_vitamins.posyandu_id', $posyandu->id)
+                    ->select('vitamins.*', 'posyandu_vitamins.catatan')
+                    ->get();
+
+                // 5. Get data pemeriksaan untuk posyandu ini
+                $pemeriksaans = DB::table('posyandu_pemeriksaans')
+                    ->where('posyandu_id', $posyandu->id)
+                    ->get();
+
+                // 6. Format data untuk setiap posyandu
+                $result[] = [
+                    'posyandu' => $posyandu,
+                    'data_vaksin' => $vaksins,
+                    'data_vitamin' => $vitamins,
+                    'data_pemeriksaan' => $pemeriksaans
+                ];
+            }
+
+            return response()->json([
+                'message' => 'Data berhasil diambil',
+                'nama_batita' => $posyandu->nama_penduduk,
+                'total_kunjungan' => count($result),
+                'data' => $result
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -308,6 +389,11 @@ class PosyanduController extends Controller
     public function update(Request $request, $id)
     {
         Posyandu::find(id: $id)->update($request->all());
+
+        if ($request->input('imunisasi') == 1) {
+            return back()->with('success', 'Data pertumbuhan berhasil diupdate');
+        }
+        
         return redirect()->route('posyandu.index')->with('success', 'Posyandu berhasil diupdate');
     }
 

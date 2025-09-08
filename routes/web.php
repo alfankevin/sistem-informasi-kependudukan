@@ -6,18 +6,23 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\SosialController;
+use App\Http\Controllers\VaksinController;
+use App\Http\Controllers\VitaminController;
 use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\PotensiController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Menu\MenuGroupController;
+use App\Http\Controllers\PosyanduVaksinController;
+use App\Http\Controllers\PosyanduVitaminController;
 use App\Http\Controllers\PerankinganRisikoController;
-use App\Http\Controllers\PosyanduController;
+use App\Http\Controllers\PosyanduPemeriksaanController;
 use App\Http\Controllers\RoleAndPermission\RoleController;
 use App\Http\Controllers\RoleAndPermission\ExportRoleController;
 use App\Http\Controllers\RoleAndPermission\ImportRoleController;
@@ -133,8 +138,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::prefix('posyandu-management')->group(function () {
         Route::resource('posyandu', controller: PosyanduController::class)->except(['show']);
+        Route::get('/posyandu/{id}/imunisasi', [PosyanduController::class, 'imunisasi'])->name(name: 'posyandu.imunisasi');
         Route::post('/posyandu', [PosyanduController::class, 'show'])->name(name: 'posyandu.detail');
         Route::post('/posyandu/store', [PosyanduController::class, 'store'])->name(name: 'posyandu.store');
+
+        Route::resource('posyandu-vaksin', PosyanduVaksinController::class);
+        Route::resource('posyandu-vitamin', PosyanduVitaminController::class);
+        Route::resource('posyandu-pemeriksaan', PosyanduPemeriksaanController::class);
+        Route::get('/posyandu/riwayat/{id}', [PosyanduController::class, 'riwayat'])->name('posyandu.riwayat');
 
         Route::post('/import', [PosyanduController::class, 'import'])->name('posyandu.import');
         Route::post('/export', [PosyanduController::class, 'export'])->name('posyandu.export');
@@ -142,4 +153,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/risiko-stunting', [PerankinganRisikoController::class, 'index'])->name('perankingan-risiko.index');
         Route::post('/recalculate-risiko', [PerankinganRisikoController::class, 'recalculate'])->name('perankingan-risiko.recalculate');
     });
+
+    Route::resource('vaksin', VaksinController::class);
+    Route::resource('vitamin', VitaminController::class);
 });

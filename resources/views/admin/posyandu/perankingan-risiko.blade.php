@@ -73,7 +73,7 @@
                                         <div class="col-4">
                                             <div class="form-group mb-3">
                                                 <label class="form-label text-primary small">&nbsp;</label>
-                                                <button type="submit" class="btn btn-primary btn-block">
+                                                <button type="submit" class="btn btn-primary btn-block" style="height: 42px">
                                                     <i class="fas fa-sync-alt"></i> Hitung Ulang Data
                                                 </button>
                                             </div>
@@ -98,7 +98,7 @@
                                     <div class="col-4">
                                         <div class="form-group mb-3">
                                             <label class="form-label text-primary small">&nbsp;</label>
-                                            <button id="btn-reset" class="btn btn-primary btn-block">
+                                            <button id="btn-reset" class="btn btn-primary btn-block" style="height: 42px">
                                                 <i class="fas fa-undo"></i> Reset Filter
                                             </button>
                                         </div>

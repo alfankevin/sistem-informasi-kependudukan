@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             AgendaSeeder::class,
             PotensiSeeder::class,
             GaleriSeeder::class,
+            VaksinSeeder::class,
+            VitaminSeeder::class,
         ]);
 
         DB::statement("

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->float('lingkar_perut', 5, 2);
             $table->float('lingkar_kepala', 5, 2);
             $table->float('gizi', 5, 2);
-
+            $table->string('status_vaksin')->nullable();
             $table->foreign('id_penduduk')->references('id')->on('penduduk')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

@@ -70,7 +70,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-md">
                                     <tbody>
-                                        <tr>
+                                        <tr style="background-color: rgba(0, 0, 0, 0.02);">
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Email</th>
