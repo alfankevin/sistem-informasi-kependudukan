@@ -149,7 +149,16 @@ class PendudukController extends Controller
      */
     public function store(StorePendudukRequest $request)
     {
+        $kartuKeluarga = KartuKeluarga::firstOrCreate(['no_kk' => $request->input('no_kk')]);
         $penduduk = $request->input('penduduk');
+
+        if ($kartuKeluarga->wasRecentlyCreated) {
+            foreach ($penduduk as &$data) {
+                $data['status_keluarga'] = 1;
+            }
+            unset($data);
+        }
+
         foreach ($penduduk as $data) {
             Penduduk::create([
                 'no_kk' => $request->input('no_kk'),
@@ -167,7 +176,7 @@ class PendudukController extends Controller
                 'id_sosial' => $data['id_sosial'],
             ]);
         }
-
+        
         $import_kk = $request->input('import_kk');
         if($import_kk) {
             list($rt, $rw) = explode('/', $request->input('rt_rw'));
@@ -425,18 +434,14 @@ class PendudukController extends Controller
         $image = base64_encode(file_get_contents($file));
         Session::put('image', $image);
 
-        $client = new Client();
-        $response = $client->post('http://localhost:5000/ocr', [
-            'multipart' => [
-                [
-                    'name'     => 'file',
-                    'contents' => fopen($file->getPathname(), 'r'),
-                    'filename' => $file->getClientOriginalName(),
-                ],
-            ],
-        ]);
+        $tempPath = $file->store('ocr');
+        $fullTempPath = storage_path('app/' . $tempPath);
 
-        $result = json_decode($response->getBody(), true);
+        $command = "python3 ocr/app.py" . escapeshellarg($fullTempPath) . " 2>&1";
+        $output = shell_exec($command);
+        $result = json_decode($output, true);
+
+        unlink($fullTempPath);
         Session::put('ocr_result', $result['data']);
 
         return view('admin.penduduk.create_kk', ['data' => $result['data']]);
