@@ -102,8 +102,8 @@
                     <div class="item ms-2 me-2">
                         <div class="card border-0 m-auto">
                             <img src="/assets/img/organisasi/{{ $item->gambar_organisasi }}"
-                                class="card-img-top rounded-circle object-fit-cover shadow m-auto"
-                                width="50%" height="200">
+                                class="card-img-top rounded-circle object-fit-cover shadow m-auto" width="50%"
+                                height="200">
                             <div class="card-body mt-2 text-center">
                                 <h5 class="card-title text-capitalize">{{ $item->nama_organisasi }}</h5>
                             </div>
@@ -124,10 +124,12 @@
                 @foreach ($agenda as $item)
                     <div class="col mb-4">
                         <div class="card card-agenda">
-                            <img src="/assets/img/agenda/{{ $item->gambar_agenda }}" class="card-img-top object-fit-cover" height="200">
+                            <img src="/assets/img/agenda/{{ $item->gambar_agenda }}" class="card-img-top object-fit-cover"
+                                height="200">
                             <div class="card-body">
                                 <h5 class="card-title text-capitalize">{{ $item->judul_agenda }}</h5>
-                                <p class="card-text thumbnail read-toggle text-start-end content-desc line-clamp dua cursor-pointer" data-id='0'  style="text-align: justify">
+                                <p class="card-text thumbnail read-toggle text-start-end content-desc line-clamp dua cursor-pointer"
+                                    data-id='0' style="text-align: justify">
                                     <span class="cursor-pointer">{{ $item->deskripsi_agenda }}</span>
                                 </p>
                             </div>
@@ -147,9 +149,12 @@
             <div class="container">
                 <div class="d-flex justify-content-between pb-5 px-3">
                     <h2 class="text-left m-0">Potensi UMKM</h2>
-                    <a href="/potensi" class="see-more fw-bold mt-1" style="text-decoration: none; font-size: 13pt" >Lihat lainnya
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    <a href="/potensi" class="see-more fw-bold mt-1" style="text-decoration: none; font-size: 13pt">Lihat
+                        lainnya
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                         </svg>
                     </a>
                 </div>
@@ -157,18 +162,23 @@
                     @foreach ($potensi as $item)
                         <div class="item ms-2 me-2">
                             <div class="card border-0 col mb-4">
-                                <img src="/assets/img/potensi/{{ $item->gambar_umkm }}" class="card-img-top object-fit-cover w-100" height="180">
+                                <img src="/assets/img/potensi/{{ $item->gambar_umkm }}"
+                                    class="card-img-top object-fit-cover w-100" height="180">
                                 <div class="card-body mt-3">
                                     <h5 class="card-title text-capitalize">{{ $item->nama_umkm }}</h5>
-                                    <p class="card-text thumbnail read-toggle" data-id='0' style="text-align: justify">
-                                        <span id="" class="content-desc line-clamp satu">{{ $item->deskripsi_umkm }}</span>
+                                    <p class="card-text thumbnail read-toggle" data-id='0'
+                                        style="text-align: justify">
+                                        <span id=""
+                                            class="content-desc line-clamp satu">{{ $item->deskripsi_umkm }}</span>
                                     </p>
                                     <div class="row justify-content-between align-content-center">
                                         <div class="col pt-3 w-50">
                                             <span class="font-weight-bold text-black">Rp{{ $item->harga_umkm }},00</span>
                                         </div>
                                         <div class="col d-flex justify-content-end w-50">
-                                            <a href="{{ $item->sosial_media }}" target="_blank" class="text-decoration-none btn btn-buy" id="custom-text-link">beli sekarang</a>
+                                            <a href="{{ $item->sosial_media }}" target="_blank"
+                                                class="text-decoration-none btn btn-buy" id="custom-text-link">beli
+                                                sekarang</a>
                                         </div>
                                     </div>
                                 </div>
@@ -191,12 +201,16 @@
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                         <figure>
                             <a href="#" class="d-block">
-                                <img class="img-fluid img-thumbnail img-galeri" src="/assets/img/galeri/{{ $item->foto }}">
+                                <img class="img-fluid img-thumbnail img-galeri"
+                                    src="/assets/img/galeri/{{ $item->foto }}">
                             </a>
                         </figure>
                     </div>
                 @endforeach
             </div>
+        </div>
+        <div class="pt-2 pb-2 text-center">
+            <a href="/galeri"><button class="btn-more">Lihat lainnya</button></a>
         </div>
     </section>
     <div class="modal lightbox-modal" id="lightbox-modal" tabindex="-1">

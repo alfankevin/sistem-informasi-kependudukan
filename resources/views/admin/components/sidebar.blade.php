@@ -4,6 +4,7 @@
     $keluarga = request()->is('penduduk-management/keluarga/' . $id . '/edit');
     $bantuan = request()->is('penduduk-management/bantuan/' . $id . '/edit');
     $organisasi = request()->is('organisasi-management/organisasi/' . $id . '/edit');
+    $pengurus_wilayah = request()->is('organisasi-management/pengurus-wilayah/' . $id . '/edit');
     $sosial = request()->is('sosial-management/sosial/' . $id . '/edit');
     $agenda = request()->is('agenda-management/agenda/' . $id . '/edit');
     $potensi = request()->is('potensi-management/potensi/' . $id . '/edit');
@@ -12,7 +13,6 @@
     $group = request()->is('menu-management/menu-group/' . $id . '/edit');
     $item = request()->is('menu-management/menu-item/' . $id . '/edit');
     $pengajuan_surat = request()->is('pelayanan-management/pengajuan-surat/' . $id . '/edit');
-    $pengurus_wilayah = request()->is('pelayanan-management/pengurus-wilayah/' . $id . '/edit');
 @endphp
 
 <aside id="sidebar-wrapper">
@@ -54,14 +54,28 @@
             </ul>
         </li>
         <li
-            class="nav-item dropdown {{ request()->is('organisasi-management/organisasi') ? 'active' : '' }}
-            {{ request()->is('organisasi-management/organisasi/create') ? 'active' : '' }}
-            {{ $organisasi ? 'active' : '' }}">
-            <a href="" class="nav-link has-dropdown"><i class="fas fa-sitemap"></i>
-                <span>Organisasi</span></a>
+            class="nav-item dropdown {{ request()->is('pelayanan-management/pengajuan-surat') ? 'active' : '' }}
+            {{ request()->is('pelyanan-management/pengajuan-surat/create') ? 'active' : '' }}
+            {{ $pengajuan_surat ? 'active' : '' }}">
+            <a href="" class="nav-link has-dropdown"><i class="fas fa-university"></i>
+                <span>Pelayanan</span></a>
             <ul class="dropdown-menu">
-                <li class="{{ request()->is('organisasi-management/organisasi') ? 'active' : '' }}"><a class="nav-link"
-                        href="/organisasi-management/organisasi">Organisasi Masyarakat</a></li>
+                <li class="{{ request()->is('pelayanan-management/pengajuan-surat') ? 'active' : '' }}"><a
+                        class="nav-link" href="/pelayanan-management/pengajuan-surat">Pengajuan Surat</a></li>
+            </ul>
+        </li>
+        <li
+            class="nav-item dropdown {{ request()->is('posyandu-management/posyandu') ? 'active' : '' }}
+            {{ request()->is('posyandu-management/posyandu/create') ? 'active' : '' }}
+            {{ request()->is('posyandu-management/risiko-stunting') ? 'active' : '' }}
+            {{ $user ? 'active' : '' }}">
+            <a href="" class="nav-link has-dropdown"><i class="fas fa-notes-medical"></i></i>
+                <span>Posyandu</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ request()->is('posyandu-management/posyandu') ? 'active' : '' }}"><a class="nav-link"
+                        href="/posyandu-management/posyandu">Data Batita</a></li>
+                <li class="{{ request()->is('posyandu-management/risiko-stunting') ? 'active' : '' }}"><a
+                        class="nav-link" href="/posyandu-management/risiko-stunting">Risiko Stunting</a></li>
             </ul>
         </li>
         <li
@@ -73,6 +87,22 @@
             <ul class="dropdown-menu">
                 <li class="{{ request()->is('sosial-management/sosial') ? 'active' : '' }}"><a class="nav-link"
                         href="/sosial-management/sosial">Bantuan Sosial</a></li>
+            </ul>
+        </li>
+        <li
+            class="nav-item dropdown {{ request()->is('organisasi-management/organisasi') ? 'active' : '' }}
+            {{ request()->is('organisasi-management/organisasi/create') ? 'active' : '' }}
+            {{ request()->is('organisasi-management/pengurus-wilayah') ? 'active' : '' }}
+            {{ request()->is('organisasi-management/pengurus-wilayah/create') ? 'active' : '' }}
+            {{ $organisasi ? 'active' : '' }}
+            {{ $pengurus_wilayah ? 'active' : '' }}">
+            <a href="" class="nav-link has-dropdown"><i class="fas fa-sitemap"></i>
+                <span>Organisasi</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ request()->is('organisasi-management/pengurus-wilayah') ? 'active' : '' }}"><a
+                        class="nav-link" href="/organisasi-management/pengurus-wilayah">Kepengurusan</a></li>
+                <li class="{{ request()->is('organisasi-management/organisasi') ? 'active' : '' }}"><a class="nav-link"
+                        href="/organisasi-management/organisasi">Organisasi Masyarakat</a></li>
             </ul>
         </li>
         <li
@@ -108,46 +138,18 @@
                         href="/galeri-management/galeri">Galeri Halaman</a></li>
             </ul>
         </li>
-        <li
-            class="nav-item dropdown {{ request()->is('pelayanan-management/pengajuan-surat') ? 'active' : '' }}
-            {{ request()->is('pelyanan-management/pengajuan-surat/create') ? 'active' : '' }}
-            {{ request()->is('pelyanan-management/pengurus-wilayah') ? 'active' : '' }}
-            {{ request()->is('pelyanan-management/pengurus-wilayah/create') ? 'active' : '' }}
-            {{ $pengajuan_surat ? 'active' : '' }}
-             {{ $pengurus_wilayah ? 'active' : '' }}">
-            <a href="" class="nav-link has-dropdown"><i class="fas fa-university"></i>
-                <span>Pelayanan</span></a>
-            <ul class="dropdown-menu">
-                <li class="{{ request()->is('pelayanan-management/pengurus-wilayah') ? 'active' : '' }}"><a
-                        class="nav-link" href="/pelayanan-management/pengurus-wilayah">Kepengurusan</a></li>
-                <li class="{{ request()->is('pelayanan-management/pengajuan-surat') ? 'active' : '' }}"><a
-                        class="nav-link" href="/pelayanan-management/pengajuan-surat">Pengajuan Surat</a></li>
-            </ul>
-        </li>
-        <li
-            class="nav-item dropdown {{ request()->is('user-management/user') ? 'active' : '' }}
+        @if (auth()->user()->hasRole('superadmin'))
+            <li
+                class="nav-item dropdown {{ request()->is('user-management/user') ? 'active' : '' }}
             {{ request()->is('user-management/user/create') ? 'active' : '' }}
             {{ $user ? 'active' : '' }}">
-            <a href="" class="nav-link has-dropdown"><i class="fas fa-user-tag"></i>
-                <span>Pengguna</span></a>
-            <ul class="dropdown-menu">
-                <li class="{{ request()->is('user-management/user') ? 'active' : '' }}"><a class="nav-link"
-                        href="/user-management/user">Daftar Pengguna</a></li>
-            </ul>
-        </li>
-        <li
-            class="nav-item dropdown {{ request()->is('posyandu-management/posyandu') ? 'active' : '' }}
-            {{ request()->is('posyandu-management/posyandu/create') ? 'active' : '' }}
-            {{ request()->is('posyandu-management/risiko-stunting') ? 'active' : '' }}
-            {{ $user ? 'active' : '' }}">
-            <a href="" class="nav-link has-dropdown"><i class="fas fa-notes-medical"></i></i>
-                <span>Posyandu</span></a>
-            <ul class="dropdown-menu">
-                <li class="{{ request()->is('posyandu-management/posyandu') ? 'active' : '' }}"><a class="nav-link"
-                        href="/posyandu-management/posyandu">Data Batita</a></li>
-                <li class="{{ request()->is('posyandu-management/risiko-stunting') ? 'active' : '' }}"><a
-                        class="nav-link" href="/posyandu-management/risiko-stunting">Risiko Stunting</a></li>
-            </ul>
-        </li>
+                <a href="" class="nav-link has-dropdown"><i class="fas fa-user-tag"></i>
+                    <span>Pengguna</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->is('user-management/user') ? 'active' : '' }}"><a class="nav-link"
+                            href="/user-management/user">Daftar Pengguna</a></li>
+                </ul>
+            </li>
+        @endif
     </ul>
 </aside>

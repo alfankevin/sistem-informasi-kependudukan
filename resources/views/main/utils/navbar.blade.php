@@ -20,8 +20,12 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('potensi') ? 'active' : '' }}" href="/potensi">Potensi</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ Request::is('galeri') ? 'active' : '' }}" href="/galeri">Galeri</a>
+                </li> --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link {{ Request::is('infografis-posyandu') ? 'active' : '' }}"
+                        href="/dashboard">infografis Posyandu</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link {{ Request::is('pelayanan/pengajuan-surat') ? 'active' : '' }}"
@@ -37,9 +41,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{Request::is('statistik') ? 'active' : ''}}" href="/dashboard">Statistik</a>
                 </li>
             </ul>
         </div>

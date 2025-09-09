@@ -51,7 +51,7 @@
 
     <!-- Copyright -->
     <div class="copyright text-center p-3">
-        © Copyright 2023. 2D Tanjung Anom.
+        © Copyright 2023. <a href="https://www.linkedin.com/in/mirabell-joice-laura-9768b7219" class="copyright">Politeknik Negeri Malang Team.</a>
     </div>
     <!-- Copyright -->
 </footer>

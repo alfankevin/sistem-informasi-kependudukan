@@ -50,7 +50,7 @@ Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/agenda', [LandingPageController::class, 'agenda']);
 Route::get('/potensi', [LandingPageController::class, 'potensi']);
 Route::get('/galeri', [LandingPageController::class, 'galeri']);
-Route::get('/statistik', [LandingPageController::class, 'statistik']);
+Route::get('/infografis-posyandu', [LandingPageController::class, 'statistik']);
 
 Route::prefix('pelayanan')->as('pelayanan.')->group(function () {
     Route::get('/pengajuan-surat', [PengajuanSuratControllerPublik::class, 'create'])->name('pengajuan_surat.form');
@@ -98,6 +98,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('organisasi-management')->group(function () {
         //organisasi
         Route::resource('organisasi', OrganisasiController::class)->except(['show']);
+
+        // kepengurusan wilayah
+        Route::resource('pengurus-wilayah', controller: PengurusWilayahController::class)->except(['show']);
     });
 
     Route::prefix('sosial-management')->group(function () {
@@ -127,8 +130,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('pengajuan-surat/{id}/approve', [PengajuanSuratController::class, 'approveSurat'])->name('pengajuan-surat.approve');
         Route::post('pengajuan-surat/{id}/tolak', [PengajuanSuratController::class, 'tolakSurat'])->name('pengajuan-surat.tolak');
         Route::post('pengajuan-surat/{id}/kirim-email-kelurahan', [PengajuanSuratController::class, 'kirimKeKelurahan'])->name('pengajuan-surat.send-email-kelurahan');
-
-        Route::resource('pengurus-wilayah', controller: PengurusWilayahController::class)->except(['show']);
     });
 
     Route::group(['prefix' => 'role-and-permission'], function () {
