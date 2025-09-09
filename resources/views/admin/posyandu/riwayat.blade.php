@@ -109,7 +109,7 @@
                 pemeriksaans.forEach((pemeriksaan, pIndex) => {
                     rowHTML += `
                         <tr>
-                            <td class="p-col" colspan="2">${pIndex === 0 ? '<b>Pemeriksaan</b>' : ''}</td>
+                            ${pIndex === 0 ? `<td class="p-col align-top" colspan="2" rowspan="${pemeriksaans.length}"><b>Pemeriksaan</b></td>` : ''}
                             <td class="p-col align-top" colspan="5">
                                 <div class="row">
                                     <div class="col-3">
@@ -140,7 +140,7 @@
                 vaksins.forEach((vaksin, vIndex) => {
                     rowHTML += `
                         <tr>
-                            <td class="p-col" colspan="2">${vIndex === 0 ? '<b>Vaksinasi</b>' : ''}</td>
+                            ${vIndex === 0 ? `<td class="p-col align-top" colspan="2" rowspan="${vaksins.length}"><b>Vaksinasi</b></td>` : ''}
                             <td class="p-col align-top" colspan="5">
                                 <div class="row">
                                     <div class="col-3">
@@ -174,7 +174,7 @@
                 vitamins.forEach((vitamin, vtIndex) => {
                     rowHTML += `
                         <tr>
-                            <td class="p-col" colspan="2">${vtIndex === 0 ? '<b>Vitamin</b>' : ''}</td>
+                            ${vtIndex === 0 ? `<td class="p-col align-top" colspan="2" rowspan="${vitamins.length}"><b>Vitamin</b></td>` : ''}
                             <td class="p-col align-top" colspan="5">
                                 <div class="row">
                                     <div class="col-3">
