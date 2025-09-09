@@ -145,7 +145,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 {{ auth()->check() ? '' : 'd-none' }}">
+                    <div class="col-lg-12 col-md-12 {{ auth()->check() ? '' : 'd-none' }}" style="padding: 0">
                         <div class="card card-sosial card-hero" style="height: 150px">
                             <div class="card-header border-0" style="height: 100%; border-radius: calc(.25rem - 1px);">
                                 <div class="card-icon">

@@ -78,7 +78,10 @@
             const vitamins = item.data_vitamin || [];
             
             // Calculate total rows needed (1 base row + max of pemeriksaan, vaksin, vitamin counts)
-            const totalRows = 1 + pemeriksaans.length + vaksins.length + vitamins.length;
+            const totalRows = 1 + 
+                (pemeriksaans.length > 0 ? pemeriksaans.length : 1) + 
+                (vaksins.length > 0 ? vaksins.length : 1) + 
+                (vitamins.length > 0 ? vitamins.length : 1);
             
             let rowHTML = `
                 <tr>
