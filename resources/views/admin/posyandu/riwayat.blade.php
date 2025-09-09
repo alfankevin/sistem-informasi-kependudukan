@@ -78,7 +78,7 @@
             const vitamins = item.data_vitamin || [];
             
             // Calculate total rows needed (1 base row + max of pemeriksaan, vaksin, vitamin counts)
-            const totalRows = 3 + Math.max(pemeriksaans.length, vaksins.length, vitamins.length, 1);
+            const totalRows = 1 + pemeriksaans.length + vaksins.length + vitamins.length;
             
             let rowHTML = `
                 <tr>
@@ -177,10 +177,10 @@
                             <td class="p-col" colspan="2">${vtIndex === 0 ? '<b>Vitamin</b>' : ''}</td>
                             <td class="p-col align-top" colspan="5">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <span>${vitamin.nama_vitamin || 'Vitamin'}</span>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <span><span><b>Dosis</b> : </span>${vitamin.dosis || '-'}</span>
                                     </div>
                                     <div class="col-5">
