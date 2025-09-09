@@ -135,5 +135,19 @@
                         href="/user-management/user">Daftar Pengguna</a></li>
             </ul>
         </li>
+        <li
+            class="nav-item dropdown {{ request()->is('posyandu-management/posyandu') ? 'active' : '' }}
+            {{ request()->is('posyandu-management/posyandu/create') ? 'active' : '' }}
+            {{ request()->is('posyandu-management/risiko-stunting') ? 'active' : '' }}
+            {{ $user ? 'active' : '' }}">
+            <a href="" class="nav-link has-dropdown"><i class="fas fa-notes-medical"></i></i>
+                <span>Posyandu</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ request()->is('posyandu-management/posyandu') ? 'active' : '' }}"><a class="nav-link"
+                        href="/posyandu-management/posyandu">Data Batita</a></li>
+                <li class="{{ request()->is('posyandu-management/risiko-stunting') ? 'active' : '' }}"><a
+                        class="nav-link" href="/posyandu-management/risiko-stunting">Risiko Stunting</a></li>
+            </ul>
+        </li>
     </ul>
 </aside>

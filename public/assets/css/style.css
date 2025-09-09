@@ -1270,6 +1270,14 @@ select.form-control:not([size]):not([multiple]) {
     height: 60px;
     vertical-align: middle;
 }
+.p-col {
+    padding: .75rem !important;
+    height: unset !important;
+}
+.riwayat-row {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
 .table:not(.table-sm) thead th {
     border-bottom: none;
     /* background-color: rgba(0, 0, 0, 0.04); */

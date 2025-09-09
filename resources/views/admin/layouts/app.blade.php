@@ -36,6 +36,7 @@
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
+            @if (auth()->check())
             <nav class="navbar navbar-expand-lg main-navbar">
                 <form class="form-inline mr-auto" method="get">
                     <ul class="navbar-nav mr-3">
@@ -69,13 +70,19 @@
                     </li>
                 </ul>
             </nav>
+            {{-- @else
+            <x-landing-nav /> --}}
+            @endif
+            @if (auth()->check())
             <div class="main-sidebar">
                 <x-sidebar title="Test" />
                 {{-- @include('layouts.sidebar') --}}
             </div>
 
+            @endif
+
             <!-- Main Content -->
-            <div class="main-content">
+            <div class="main-content" @guest style="padding-left: 30px;"@endguest>
                 @yield('content')
             </div>
             <footer class="main-footer">
@@ -110,7 +117,6 @@
 
     <!-- Page Specific JS File -->
     <script src="/assets/js/Chart.min.js"></script>
-    <script src="/assets/js/chartjs.js"></script>
     <script src="/assets/js/datatables.js"></script>
     
     <!-- DataTables Buttons -->

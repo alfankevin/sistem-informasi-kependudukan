@@ -220,16 +220,14 @@
         }
     </script>
 
-    <script src="assets/js/main/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/main/bootstrap.min.js"></script>
-    <script src="assets/js/main/player.js"></script>
-    {{-- <script src="assets/js/main/jquery.nice-select.min.js"></script> --}}
-    <script src="assets/js/main/mixitup.min.js"></script>
-    <script src="assets/js/main/jquery.slicknav.js"></script>
-    <script src="assets/js/main/owl.carousel.min.js"></script>
-    <script src="assets/js/main/main.js"></script>
-    @stack('customScript')
-
-</body>
-
+        <script src="assets/js/main/jquery-3.3.1.min.js"></script>
+        <script src="assets/js/main/bootstrap.min.js"></script>
+        <script src="assets/js/main/player.js"></script>
+        <script src="assets/js/main/jquery.nice-select.min.js"></script>
+        <script src="assets/js/main/mixitup.min.js"></script>
+        <script src="assets/js/main/jquery.slicknav.js"></script>
+        <script src="assets/js/main/owl.carousel.min.js"></script>
+        <script src="assets/js/main/main.js"></script>
+        @stack('customScript')
+    </body>
 </html>

@@ -1,0 +1,41 @@
+models:
+  PosyanduVaksin:
+    posyandu_id: id nullable
+    vaksin_id: id nullable
+    dosis_ke: integer nullable
+    relationships:
+      belongsTo: Posyandu, Vaksin
+
+  PosyanduVitamin:
+    posyandu_id: id nullable
+    vitamin_id: id nullable
+    catatan: string nullable
+    relationships:
+      belongsTo: Posyandu, Vitamin
+
+  Vaksin:
+    nama_vaksin: string:100
+    deskripsi: text
+    usia_pemberian: string:50
+    dosis_total: integer
+    interval: string:50
+    relationships:
+      hasMany: PosyanduVaksin
+
+  Vitamin:
+    nama_vitamin: string:100
+    deskripsi: text
+    usia_pemberian: string:50
+    dosis: string:50
+    relationships:
+      hasMany: PosyanduVitamin
+
+controllers:
+  PosyanduVaksin:
+    resource
+  PosyanduVitamin:
+    resource
+  Vaksin:
+    resource
+  Vitamin:
+    resource
