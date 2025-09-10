@@ -100,7 +100,7 @@
                     <td class="p-col align-top position-relative" rowspan="${totalRows}">
                         ${posyandu.lingkar_kepala} cm
                         <div class="form-group" style="position: absolute;left: 50%;transform: translateX(-50%);margin: 0 auto;bottom: 15px;">
-                            <a href="/posyandu-management/posyandu/${posyandu.id}/imunisasi" class="btn btn-info form-control btn-sm mb-2 d-flex align-items-center justify-content-center" style="height: unset; padding: 5px 15px">Ubah</a>
+                            <a href="/posyandu-management/posyandu/${posyandu.id}/imunisasi" class="btn btn-primary form-control btn-sm mb-2 d-flex align-items-center justify-content-center" style="height: unset; padding: 5px 15px">Ubah</a>
                             <button class="btn btn-danger form-control btn-sm d-flex align-items-center justify-content-center" style="height: unset; padding: 5px 15px">Hapus</button>
                         </div>
                     </td>
