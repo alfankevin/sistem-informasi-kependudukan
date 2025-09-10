@@ -248,6 +248,7 @@
                         }
                     ],
                     "columnDefs": [
+                        { "targets": 2, "className": "text-nowrap" }, // tglLahir
                         { "targets": 5, "className": "text-nowrap" }, // Usia
                         {
                             "targets": 9,

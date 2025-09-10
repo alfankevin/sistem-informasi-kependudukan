@@ -78,7 +78,10 @@
             const vitamins = item.data_vitamin || [];
             
             // Calculate total rows needed (1 base row + max of pemeriksaan, vaksin, vitamin counts)
-            const totalRows = 3 + Math.max(pemeriksaans.length, vaksins.length, vitamins.length, 1);
+            const totalRows = 1 + 
+                (pemeriksaans.length > 0 ? pemeriksaans.length : 1) + 
+                (vaksins.length > 0 ? vaksins.length : 1) + 
+                (vitamins.length > 0 ? vitamins.length : 1);
             
             let rowHTML = `
                 <tr>
@@ -109,7 +112,7 @@
                 pemeriksaans.forEach((pemeriksaan, pIndex) => {
                     rowHTML += `
                         <tr>
-                            <td class="p-col" colspan="2">${pIndex === 0 ? '<b>Pemeriksaan</b>' : ''}</td>
+                            ${pIndex === 0 ? `<td class="p-col align-top" colspan="2" rowspan="${pemeriksaans.length}"><b>Pemeriksaan</b></td>` : ''}
                             <td class="p-col align-top" colspan="5">
                                 <div class="row">
                                     <div class="col-3">
@@ -140,7 +143,7 @@
                 vaksins.forEach((vaksin, vIndex) => {
                     rowHTML += `
                         <tr>
-                            <td class="p-col" colspan="2">${vIndex === 0 ? '<b>Vaksinasi</b>' : ''}</td>
+                            ${vIndex === 0 ? `<td class="p-col align-top" colspan="2" rowspan="${vaksins.length}"><b>Vaksinasi</b></td>` : ''}
                             <td class="p-col align-top" colspan="5">
                                 <div class="row">
                                     <div class="col-3">
@@ -174,13 +177,13 @@
                 vitamins.forEach((vitamin, vtIndex) => {
                     rowHTML += `
                         <tr>
-                            <td class="p-col" colspan="2">${vtIndex === 0 ? '<b>Vitamin</b>' : ''}</td>
+                            ${vtIndex === 0 ? `<td class="p-col align-top" colspan="2" rowspan="${vitamins.length}"><b>Vitamin</b></td>` : ''}
                             <td class="p-col align-top" colspan="5">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <span>${vitamin.nama_vitamin || 'Vitamin'}</span>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <span><span><b>Dosis</b> : </span>${vitamin.dosis || '-'}</span>
                                     </div>
                                     <div class="col-5">
