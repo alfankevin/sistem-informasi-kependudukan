@@ -92,7 +92,7 @@
                                 <div class="input-group input-group-md mb-3">
                                     <input type="password" id="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        placeholder="Masukkan Password Pengurus" value="{{ old("password") }}" required>
+                                        placeholder="Masukkan Password Pengurus" value="{{ old('password') }}" required>
                                     <div class="input-group-append" id="show-pass">
                                         <button class="input-group-text btn btn-outline-secondary border-start-0"
                                             type="button"><i class="fa fa-eye"></i></button>
@@ -147,14 +147,19 @@
 
                                 <!-- Canvas Signature -->
                                 <div id="canvas-container" class="mt-2 d-none">
-                                    <div class="border rounded p-2 bg-white">
-                                        <canvas id="signature-pad"
-                                            style="width: 100%; height: 150px; cursor: crosshair;"></canvas>
-                                    </div>
+                                    <canvas id="signature-pad" width="400" height="150"
+                                        class="border rounded mb-2 d-block"
+                                        style="max-width: 100%; height: auto; width: auto;"></canvas>
+
+                                    <small class="text-muted d-block" style="font-size: .75rem;">
+                                        Silakan tanda tangan di kotak di atas menggunakan mouse atau sentuhan layar.
+                                    </small>
+
                                     <input type="hidden" name="signature" id="signature-data">
+
                                     <button type="button" id="clear-signature"
-                                        class="btn btn-sm btn-outline-danger mt-2">
-                                        <i class="fas fa-eraser"></i> Clear Signature
+                                        class="btn btn-outline-danger btn-sm mt-2">
+                                        Hapus Tanda Tangan
                                     </button>
                                 </div>
                             </div>
@@ -282,6 +287,8 @@
                     } else {
                         fotoContainer.classList.add("d-none");
                         canvasContainer.classList.remove("d-none");
+                        resizeCanvas();
+                        window.addEventListener("resize", resizeCanvas);
                     }
                 });
             });
@@ -291,14 +298,11 @@
             ctx.lineWidth = 2;
 
             function resizeCanvas() {
-                canvas.width = canvasContainer.offsetWidth - 1; // kasih padding dikit
-                canvas.height = 150; // tinggi fix
+                canvas.width = 400;
+                canvas.height = 150;
                 ctx.fillStyle = "#ffffff";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
-
-            resizeCanvas();
-            window.addEventListener("resize", resizeCanvas);
 
             canvas.addEventListener('mousedown', function(e) {
                 isDrawing = true;
@@ -319,11 +323,14 @@
 
             $('#clear-signature').on("click", function() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0, 0, canvas.width, canvas.height); // biar balik putih
             });
 
             // Handle form submission to include signature data
             $("form").on("submit", function() {
-                document.getElementById("signature-data").value = canvas.toDataURL("image/png");
+                const signatureInput = document.getElementById("signature-data");
+                signatureInput.value = canvas.toDataURL("image/png");
             });
         });
     </script>

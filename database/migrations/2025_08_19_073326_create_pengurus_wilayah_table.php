@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('penduduk_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('jabatan');
-            $table->varchar('wilayah_rw', 3)->nullable();
-            $table->varchar('wilayah_rt', 3)->nullable();
+            $table->string('wilayah_rw', 3)->nullable();
+            $table->string('wilayah_rt', 3)->nullable();
             $table->text('ttd_path')->nullable();
 
             $table->foreign('penduduk_id')->references('id')->on('penduduk')->onDelete('cascade');

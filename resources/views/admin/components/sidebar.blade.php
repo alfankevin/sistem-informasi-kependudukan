@@ -138,7 +138,7 @@
                         href="/galeri-management/galeri">Galeri Halaman</a></li>
             </ul>
         </li>
-        @if (auth()->user()->hasRole('superadmin'))
+        @if (auth()->user()->hasRole('super-admin'))
             <li
                 class="nav-item dropdown {{ request()->is('user-management/user') ? 'active' : '' }}
             {{ request()->is('user-management/user/create') ? 'active' : '' }}
