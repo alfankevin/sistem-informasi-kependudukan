@@ -32,7 +32,7 @@
                             <div class="table-responsive">
                                 <table id="pengajuanTable" class="table table-bordered table-md w-100">
                                     <thead>
-                                        <tr>
+                                        <tr style="background-color: rgba(0, 0, 0, 0.02);">
                                             <th>#</th>
                                             <th>NIK</th>
                                             <th>Nama</th>
