@@ -64,7 +64,7 @@ class SendStatusSuratMail extends Mailable
     public function attachments()
     {
         return [
-            \Illuminate\Mail\Mailables\Attachment::fromPath(public_path('/assets/files/form_pengajuan/' . $this->data['pdf_path']))
+            \Illuminate\Mail\Mailables\Attachment::fromPath(storage_path('app/public/files/form_pengajuan/' . $this->data['pdf_path']))
         ];
     }
 }

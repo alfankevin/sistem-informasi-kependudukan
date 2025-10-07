@@ -57,6 +57,7 @@ Route::prefix('pelayanan')->as('pelayanan.')->group(function () {
     Route::post('/pengajuan-surat/find-nik', [PengajuanSuratControllerPublik::class, 'findNik'])->name("pengajuan_surat.find_nik");
     Route::post('/pengajuan-surat/generate-pdf', [PengajuanSuratControllerPublik::class, 'store'])->name('pengajuan_surat.store');
 
+    Route::get(uri: '/pengajuan-surat/download/{token}', [PengajuanSuratControllerPublik::class, 'downloadPdf'])->name('pengajuan-surat.download.pdf');
     Route::get('/lacak-pengajuan', [PengajuanSuratControllerPublik::class, 'track'])->name('lacak_pengajuan');
 });
 

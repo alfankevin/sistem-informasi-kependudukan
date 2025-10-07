@@ -104,7 +104,7 @@ class PengajuanSuratController extends Controller
                 "data" => $pengajuan_surat
             );
 
-            return json_encode($json_data);
+            return json_encode(value: $json_data);
         }
 
         return view('admin.pengajuan_surat.index');
@@ -179,11 +179,11 @@ class PengajuanSuratController extends Controller
     public function approveSurat($id)
     {
         $pengajuan = PengajuanSurat::findOrFail($id);
-        $suratPath = public_path('assets/files/form_pengajuan/' . $pengajuan->pdf_path);
+        $suratPath = storage_path('app/public/files/form_pengajuan/' . $pengajuan->pdf_path);
 
         $user = Auth::user();
         $signPath = PengurusWilayah::where('user_id', $user->id)->first()->ttd_path;
-        $sign = public_path('assets/img/ttd_pengurus/' . $signPath);
+        $sign = asset('assets/img/ttd_pengurus/' . $signPath);
 
         $pengajuan->update(["status" => $user->hasRole('ketua-rt') ? 'disetujui_rt' : ($user->hasRole('ketua-rw') ? 'disetujui_rw' : '')]);
 

@@ -30,7 +30,7 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'sosial.management']);
         Permission::create(['name' => 'agenda.management']);
         Permission::create(['name' => 'potensi.management']);
-        Permission::create(['name' => 'galeri.management']);        
+        Permission::create(['name' => 'galeri.management']);
 
         //user
         Permission::create(['name' => 'user.index']);
@@ -45,13 +45,13 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'penduduk.create']);
         Permission::create(['name' => 'penduduk.edit']);
         Permission::create(['name' => 'penduduk.destroy']);
-        
+
         //keluarga
         Permission::create(['name' => 'keluarga.index']);
         Permission::create(['name' => 'keluarga.create']);
         Permission::create(['name' => 'keluarga.edit']);
         Permission::create(['name' => 'keluarga.destroy']);
-        
+
         //bantuan
         Permission::create(['name' => 'bantuan.index']);
         Permission::create(['name' => 'bantuan.create']);
@@ -138,6 +138,16 @@ class RoleAndPermissionSeeder extends Seeder
         // create Super Admin
         $role = Role::create(['name' => 'super-admin']);
         $role->givePermissionTo(Permission::all());
+
+        // bikin role ketua-rw
+        $role = Role::create(['name' => 'ketua-rw']);
+
+        // ambil semua permission kecuali yang mengandung 'user' atau 'permission'
+        $permissions = Permission::query()
+            ->where('name', 'not like', '%user%')
+            ->where('name', 'not like', '%permission%')
+            ->get();
+
 
         //assign user id 1 ke super admin
         $user = User::find(1);

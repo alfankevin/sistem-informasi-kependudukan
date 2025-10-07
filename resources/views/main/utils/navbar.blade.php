@@ -25,7 +25,7 @@
                 </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link {{ Request::is('infografis-posyandu') ? 'active' : '' }}"
-                        href="/dashboard">infografis Posyandu</a>
+                        href="/dashboard">Infografis Posyandu</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link {{ Request::is('pelayanan/pengajuan-surat') ? 'active' : '' }}"

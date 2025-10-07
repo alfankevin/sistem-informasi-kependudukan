@@ -210,9 +210,17 @@
                         <select class="form-control" name="golongan_darah" id="filter-goldar">
                             <option value="semua">Semua</option>
                             <option value="A">A</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
                             <option value="B">B</option>
+                            <option value="B">B+</option>
+                            <option value="B">B-</option>
                             <option value="AB">AB</option>
+                            <option value="AB">AB+</option>
+                            <option value="AB-">AB-</option>
                             <option value="O">O</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
                         </select>
                     </div>
 
@@ -268,6 +276,7 @@
     </div>
 @endsection
 @push('customScript')
+    <script src="/assets/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#penduduk').DataTable({
@@ -348,6 +357,30 @@
                         "searchable": false
                     }
                 ]
+            });
+
+            // select2 filter goldar
+            $(document).ready(function() {
+                $('#filter-goldar').select2({
+                    dropdownAutoWidth: true,
+                    width: '100%'
+                });
+            });
+
+            // select2 filter jenis kelamin
+            $(document).ready(function() {
+                $('#filter-jenis-kelamin').select2({
+                    dropdownAutoWidth: true,
+                    width: '100%'
+                });
+            });
+
+            // select2 filter agama
+            $(document).ready(function() {
+                $('#filter-agama').select2({
+                    dropdownAutoWidth: true,
+                    width: '100%'
+                });
             });
 
             // Apply Filter Button Action
@@ -494,6 +527,7 @@
 @endpush
 
 @push('customStyle')
+    <link rel="stylesheet" href="/assets/css/select2.min.css">
     <style>
         div.dataTables_filter label {
             margin-bottom: 0

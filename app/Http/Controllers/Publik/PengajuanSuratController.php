@@ -123,9 +123,22 @@ class PengajuanSuratController extends Controller
             if (!empty($request->kk)) {
                 $this->KTPorKKProcessing($fpdi, $request->kk, 'kk');
             }
+
             // Simpan pdf
+            // Nama file
             $fileName = $request->jenis_surat . time() . '.pdf';
-            $pdfFinalPath = public_path('assets/files/form_pengajuan/' . $fileName);
+
+            // Folder tempat simpan
+            $folderPath = storage_path('app/public/files/form_pengajuan/');
+            // Pastikan folder ada
+            if (!File::exists($folderPath)) {
+                File::makeDirectory($folderPath, 0777, true);
+            }
+
+            // Path file akhir
+            $pdfFinalPath = $folderPath . $fileName;
+
+            // Simpan PDF
             $fpdi->output($pdfFinalPath, 'F');
 
             if (File::exists($pdfSuratPath)) {
@@ -135,7 +148,7 @@ class PengajuanSuratController extends Controller
             $penduduk = Penduduk::where('nik', $request->nik)->firstOrFail();
             $surat = PengajuanSurat::create([
                 'id_penduduk' => $penduduk->id ?? null,
-                'tracking_token' => $request->jenis_surat . '-0' . ($nomorUrut + 1) . '/' . $tahun . Str::random(9),
+                'tracking_token' => $request->jenis_surat . '-0' . ($nomorUrut + 1) . $tahun . Str::random(9),
                 'nik_pemohon' => $request->nik,
                 'nama_pemohon' => $request->nama,
                 'email_pemohon' => $request->email,
@@ -151,10 +164,14 @@ class PengajuanSuratController extends Controller
 
             if (!empty($request->attachment_file)) {
                 $attachmentFileName = $surat->id . '_attachment_file_' . time() . '.' . $request->attachment_file->getClientOriginalExtension();
-                $request->attachment_file->move(
-                    public_path('assets/files/attachment_files'),
-                    $attachmentFileName
-                );
+                $attachmentPath = storage_path('app/public/files/attachment_files/');
+
+                // Pastikan folder ada
+                if (!File::exists($attachmentPath)) {
+                    File::makeDirectory($attachmentPath, 0777, true);
+                }
+
+                $request->attachment_file->move($attachmentPath, $attachmentFileName);
 
                 $surat->update([
                     'lampiran' => $attachmentFileName
@@ -176,10 +193,11 @@ class PengajuanSuratController extends Controller
 
             return redirect()->back()
                 ->with('success', true)
-                ->with('trackingToken', $surat->tracking_token)
-                ->with('pdfPath', $surat->pdf_path);
+                ->with('trackingToken', $surat->tracking_token);
         } catch (Exception $e) {
             DB::rollBack();
+
+            dd($e->getMessage()); // cek pesan asli
 
             // Catat error biar gampang debug
             Log::error('Generate PDF Error: ' . $e->getMessage(), [
@@ -232,5 +250,16 @@ class PengajuanSuratController extends Controller
                 $fpdi->useTemplate($tpl);
             }
         }
+    }
+
+    public function downloadPdf($token)
+    {
+        $pengajuan = PengajuanSurat::where('tracking_token', $token)->first();
+        $filePath = storage_path('app/public/files/form_pengajuan/' . $pengajuan->pdf_path);
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+
+        return response()->download($filePath, 'pengajuan_' . $pengajuan->nama_pemohon . '.pdf');
     }
 }

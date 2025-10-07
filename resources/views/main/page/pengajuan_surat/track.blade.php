@@ -119,8 +119,8 @@
                                             <h6 class="mb-1">Pengajuan Diterima</h6>
                                             <p class="text-muted small mb-0">Data berhasil masuk ke sistem</p>
                                             <a class="small mb-0 text-decoration-none"
-                                                href="{{ asset('/assets/files/form_pengajuan/' . $item->pengajuanSurat->pdf_path) }}">
-                                                Lihat Surat Pengantar
+                                                href="{{ '/pelayanan/pengajuan-surat/download/'. $pengajuan->tracking_token }}">
+                                                Download Surat Pengantar
                                             </a>
                                         @elseif (str_contains($item->status, 'disetujui'))
                                             @php $verifikator = ucfirst(explode('_', $item->status)[1]); @endphp

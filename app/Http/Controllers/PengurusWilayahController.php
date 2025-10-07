@@ -90,8 +90,8 @@ class PengurusWilayahController extends Controller
                 ->toPng();          // simpan sebagai PNG
 
             $fileName = 'ttd_' . $user->name . '.png';
-            $path = public_path('assets/img/ttd_pengurus/' . $fileName);
-            $file = $image->save($path );
+            $path = 'assets/img/ttd_pengurus/';
+            $file = $image->save($path, $fileName);
         } else if (!empty($request->input('signature'))) {
             $signature = $request->input('signature');
             $signature = str_replace('data:image/png;base64,', '', $signature);
@@ -100,7 +100,7 @@ class PengurusWilayahController extends Controller
             $imageData = base64_decode($signature);
 
             $fileName = 'ttd_' . $user->name . '.png';
-            $filePath = public_path('assets/img/ttd_pengurus/' . $fileName);
+            $filePath = 'assets/img/ttd_pengurus/' . $fileName;
             file_put_contents($filePath, $imageData);
         }
 
@@ -200,8 +200,8 @@ class PengurusWilayahController extends Controller
 
 
             $fileName = 'ttd_' . $user->name . '.png';
-            $path = public_path('assets/img/ttd_pengurus/' . $fileName);
-            $file = $image->save($path);
+            $path = 'assets/img/ttd_pengurus/';
+            $file = $image->save($path, $fileName);
         }
 
         $pengurus->update([
@@ -228,7 +228,7 @@ class PengurusWilayahController extends Controller
         $pengurus = PengurusWilayah::findOrFail($id);
         $user = User::findOrFail($pengurus->user_id);
 
-        $filePath = public_path('assets/img/ttd_pengurus/' . $pengurus->ttd_path);
+        $filePath = 'assets/img/ttd_pengurus/' . $pengurus->ttd_path;
         if (File::exists($filePath)) {
             File::delete($filePath);
         }

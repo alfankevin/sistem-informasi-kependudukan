@@ -27,7 +27,7 @@
                 <hr class="my-4">
 
                 <p class="small text-muted mb-2">Unduh bukti pengajuan:</p>
-                <a href="{{ asset('/assets/files/form_pengajuan/' . ($pdfPath ?? 'contoh.pdf')) }}"
+                <a href="{{ '/pelayanan/pengajuan-surat/download/' . $trackingToken }}"
                     class="btn btn-outline-primary btn-sm" target="_blank">
                     📄 Unduh Surat Pengantar
                 </a>

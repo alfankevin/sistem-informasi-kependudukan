@@ -104,10 +104,18 @@ class PendudukController extends Controller
                 } else if ($order === 'golongan_darah') {
                     $query->orderByRaw("CASE
                         WHEN penduduk.golongan_darah = 'A' THEN 1
-                        WHEN penduduk.golongan_darah = 'B' THEN 2
-                        WHEN penduduk.golongan_darah = 'AB' THEN 3
-                        WHEN penduduk.golongan_darah = 'O' THEN 4
-                        ELSE 5
+                        WHEN penduduk.golongan_darah = 'A+' THEN 2
+                        WHEN penduduk.golongan_darah = 'A-' THEN 3
+                        WHEN penduduk.golongan_darah = 'B' THEN 4
+                        WHEN penduduk.golongan_darah = 'B+' THEN 5
+                        WHEN penduduk.golongan_darah = 'B-' THEN 6
+                        WHEN penduduk.golongan_darah = 'AB' THEN 7
+                        WHEN penduduk.golongan_darah = 'AB+' THEN 8
+                        WHEN penduduk.golongan_darah = 'AB-' THEN 9
+                        WHEN penduduk.golongan_darah = 'O' THEN 10
+                        WHEN penduduk.golongan_darah = 'O+' THEN 11
+                        WHEN penduduk.golongan_darah = 'O-' THEN 12
+                        ELSE 13
                     END $dir");
                 } else {
                     // Tetap prioritaskan hidup dulu, baru pakai order lain

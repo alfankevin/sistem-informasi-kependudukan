@@ -1,9 +1,9 @@
  <div class="d-flex align-items-end">
      <button class="btn btn-success d-flex align-items-center justify-content-center" id="open-pdf" data-toggle="modal"
          style="height: 30px; width: 30px" data-target="#pdfModal"
-         data-pdf="{{ asset('/assets/files/form_pengajuan/' . $item->pdf_path) }}" data-idxPengajuan="{{ $item->id }}"
+         data-pdf="{{ asset('/storage/files/form_pengajuan/' . $item->pdf_path) }}" data-idxPengajuan="{{ $item->id }}"
          data-status="{{ $item->status }}" data-user-role="{{ auth()->user()->getRoleNames()->first() }}"
-         data-lampiran="{{ !empty($item->lampiran) ? asset('/assets/files/lampiran/' . $item->lampiran) : '' }}"
+         data-lampiran="{{ !empty($item->lampiran) ? asset('/storage/files/lampiran/' . $item->lampiran) : '' }}"
          title="Lihat File">
          <i class="fas fa-file-pdf"></i></button>
      @if (auth()->user()->getRoleNames()->first() === 'ketua-rw')
