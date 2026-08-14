@@ -54,7 +54,7 @@ Route::get('/infografis-posyandu', [LandingPageController::class, 'statistik']);
 
 Route::prefix('pelayanan')->as('pelayanan.')->group(function () {
     Route::get('/pengajuan-surat', [PengajuanSuratControllerPublik::class, 'create'])->name('pengajuan_surat.form');
-    Route::post('/pengajuan-surat/find-nik', [PengajuanSuratControllerPublik::class, 'findNik'])->name("pengajuan_surat.find_nik");
+    Route::post('/pengajuan-surat/find-nik', [PengajuanSuratControllerPublik::class, 'findNik'])->name("pengajuan_surat.find_nik")->middleware('throttle:find-nik');
     Route::post('/pengajuan-surat/generate-pdf', [PengajuanSuratControllerPublik::class, 'store'])->name('pengajuan_surat.store');
 
     Route::get(uri: '/pengajuan-surat/download/{token}', [PengajuanSuratControllerPublik::class, 'downloadPdf'])->name('pengajuan-surat.download.pdf');

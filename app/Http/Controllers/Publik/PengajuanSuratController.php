@@ -28,10 +28,27 @@ class PengajuanSuratController extends Controller
 
     public function findNik(Request $request)
     {
+        $request->validate([
+            'nik' => 'required|numeric|digits:16',
+            'tanggal_lahir' => 'required|date|before:today',
+        ]);
         $findPenduduk = Penduduk::leftJoin('kartu_keluarga', 'penduduk.no_kk', 'kartu_keluarga.no_kk')
-            ->where('nik', $request->data)
-            ->select('penduduk.*', 'kartu_keluarga.*')
+            ->where('penduduk.nik', $request->nik)
+            ->whereDate('penduduk.tanggal_lahir', $request->tanggal_lahir)
+            ->select([
+                'penduduk.nama',
+                'penduduk.jenis_kelamin',
+                'penduduk.tempat_lahir',
+                'penduduk.agama',
+                'penduduk.status_perkawinan',
+                'penduduk.pekerjaan',
+                'kartu_keluarga.alamat',
+                'kartu_keluarga.rt',
+                'kartu_keluarga.rw',
+                'kartu_keluarga.no_kk',
+            ])
             ->first();
+
         return response()->json(['data' => $findPenduduk]);
     }
 

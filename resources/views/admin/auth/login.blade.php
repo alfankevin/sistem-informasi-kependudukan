@@ -32,9 +32,11 @@
               <div class="form-group">
                 <label for="email">Email</label>
                 <input  type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email" tabindex="1" required autofocus>
+                @error('email')
                 <div class="invalid-feedback">
-                  Please fill in your email
+                  {{ $message }}
                 </div>
+                @enderror
               </div>
 
               <div class="form-group">

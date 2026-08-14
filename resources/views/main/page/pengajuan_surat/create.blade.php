@@ -55,9 +55,35 @@
                             <div class="col-md-10 col-12 ">
                                 <input type="text" name="nik" id="nik" class="form-control"
                                     placeholder="Masukkan 16 digit NIK sesuai KTP" value="{{ old('nik') }}" required>
+                                <small id="nik-lookup-msg" class="text-danger d-none">NIK dan tanggal lahir tidak cocok.</small>
                                 @error('nik')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <!-- Tempat/Tanggal Lahir -->
+                        <div class="row mb-3">
+                            <label class="col-md-2 col-12 col-form-label">Tempat/Tanggal Lahir <span
+                                    class="text-danger">*</span></label>
+                            <div class="col-md-10 col-12">
+                                <div class="row g-2">
+                                    <div class="col-md-6 col-12">
+                                        <input type="text" class="form-control" name="tempat_lahir"
+                                            value="{{ old('tempat_lahir') }}" placeholder="Masukkan Tempat Lahir" required>
+                                        @error('tempat_lahir')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir"
+                                            value="{{ old('tanggal_lahir') }}" required>
+                                        @error('tanggal_lahir')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -114,31 +140,6 @@
                                 @error('jenis_kelamin')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <!-- Tempat/Tanggal Lahir -->
-                        <div class="row mb-3">
-                            <label class="col-md-2 col-12 col-form-label">Tempat/Tanggal Lahir <span
-                                    class="text-danger">*</span></label>
-                            <div class="col-md-10 col-12">
-                                <div class="row g-2">
-                                    <div class="col-md-6 col-12">
-                                        <input type="text" class="form-control" name="tempat_lahir"
-                                            value="{{ old('tempat_lahir') }}" placeholder="Masukkan Tempat Lahir" required>
-                                        @error('tempat_lahir')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-6 col-12">
-                                        <input type="date" class="form-control" name="tanggal_lahir"
-                                            value="{{ old('tanggal_lahir') }}" required>
-                                        @error('tanggal_lahir')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -579,42 +580,69 @@
                 });
             }
 
-            // Fetch data using AJAX based on the NIK
-            $(document).on('change', '#nik', function() {
-                const nik = $(this).val();
+            let lastLookupKey = null;
+            let lookupRequest = null;
+            let lookupTimer = null;
 
-                $.ajax({
+            function lookupPenduduk() {
+                const nik = $('#nik').val();
+                const tanggal_lahir = $('#tanggal_lahir').val();
+                const $msg = $('#nik-lookup-msg');
+                const key = nik + '|' + tanggal_lahir;
+
+                if (nik.length !== 16 || !tanggal_lahir) {
+                    return;
+                }
+
+                if (key === lastLookupKey) {
+                    return;
+                }
+
+                if (lookupRequest) {
+                    lookupRequest.abort();
+                }
+
+                lookupRequest = $.ajax({
                     url: '/pelayanan/pengajuan-surat/find-nik',
                     method: 'POST',
                     data: {
-                        data: nik
+                        nik: nik,
+                        tanggal_lahir: tanggal_lahir
                     },
                     success: function(response) {
+                        lastLookupKey = key;
                         if (response.data) {
+                            $msg.addClass('d-none');
                             populateFormData(response.data);
                         } else {
-                            console.error("No data found for the given NIK");
+                            $msg.removeClass('d-none');
                         }
                     },
-                    error: function(xhr, status, error) {
-                        console.error(`Error fetching NIK data: ${status} - ${error}`);
+                    error: function(xhr, status) {
+                        if (status === 'abort') {
+                            return;
+                        }
+                        $msg.removeClass('d-none');
                     }
                 });
+            }
+
+            $(document).on('change', '#nik, #tanggal_lahir', function() {
+                clearTimeout(lookupTimer);
+                lookupTimer = setTimeout(lookupPenduduk, 300);
             });
 
-            // Populate form fields with data from AJAX response
             function populateFormData(data) {
                 $('input[name="nama"]').val(data.nama);
                 $('select[name="jenis_kelamin"]').val(data.jenis_kelamin);
                 $('input[name="tempat_lahir"]').val(data.tempat_lahir);
-                $('input[name="tanggal_lahir"]').val(data.tanggal_lahir);
                 $('select[name="agama"]').val(data.agama);
                 $('select[name="status_perkawinan"]').val(data.status_perkawinan);
                 $('input[name="no_kk"]').val(data.no_kk);
                 $('input[name="pekerjaan"]').val(data.pekerjaan);
                 $('input[name="alamat"]').val(data.alamat);
-                $('input[name="rt"]').val(data.rt.padStart(3, "0"));
-                $('input[name="rw"]').val(data.rw.padStart(3, "0"));
+                $('input[name="rt"]').val(String(data.rt || '').padStart(3, '0'));
+                $('input[name="rw"]').val(String(data.rw || '').padStart(3, '0'));
             }
 
             // Canvas signature logic

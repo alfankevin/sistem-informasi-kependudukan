@@ -27,7 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (app()->isProduction()) {
+            config(['app.debug' => false]);
+        }
+
         RateLimiter::for("login", function () {
             Limit::perMinute(5);
         });
